@@ -1,0 +1,8 @@
+3 Pets on Sale!
+  We are proud to offer these fine pets
+  at these amazing prices.  This month only,
+  choose from:
+      horse for only 00.00
+      dog for only 9.99
+      bear for only .99
+     Call Today!
