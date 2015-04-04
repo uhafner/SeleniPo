@@ -36,5 +36,6 @@ public class AppTest
     	App a = new App();
     	a.performLo();
         assertTrue( true );
+        
     }
 }
