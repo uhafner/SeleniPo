@@ -3,7 +3,6 @@ package org.SeleniPoTestharness.config;
 import org.SeleniPoTestharness.ByFactory;
 import org.SeleniPoTestharness.po.BasePo;
 import org.SeleniPoTestharness.po.PageObject;
-import org.SeleniPoTestharness.po.TestPo;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Configurable;
