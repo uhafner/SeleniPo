@@ -1,4 +1,4 @@
-package org.SeleniPoTestharness.po;
+package de.itgkarl.SeleniPoTestharness.po;
 
 /**
  * BasePo ist Vater aller anderen PageObjects. Beinhaltet die Logik zum Einstieg

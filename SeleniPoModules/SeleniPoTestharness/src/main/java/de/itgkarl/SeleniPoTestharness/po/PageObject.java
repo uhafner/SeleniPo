@@ -1,14 +1,15 @@
-package org.SeleniPoTestharness.po;
+package de.itgkarl.SeleniPoTestharness.po;
 
 import java.util.List;
 
-import org.SeleniPoTestharness.ByFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import de.itgkarl.SeleniPoTestharness.ByFactory;
 
 /**
  * Generisches PageObject. Ältester Vater aller anderen PageObjects.

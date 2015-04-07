@@ -1,12 +1,13 @@
-package org.SeleniPoTestharness.config;
+package de.itgkarl.SeleniPoTestharness.config;
 
-import org.SeleniPoTestharness.ByFactory;
-import org.SeleniPoTestharness.po.BasePo;
-import org.SeleniPoTestharness.po.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+
+import de.itgkarl.SeleniPoTestharness.ByFactory;
+import de.itgkarl.SeleniPoTestharness.po.BasePo;
+import de.itgkarl.SeleniPoTestharness.po.PageObject;
 
 @Configurable
 public class Config {

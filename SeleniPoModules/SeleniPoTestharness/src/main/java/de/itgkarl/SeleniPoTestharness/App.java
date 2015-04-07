@@ -1,4 +1,4 @@
-package org.SeleniPoTestharness;
+package de.itgkarl.SeleniPoTestharness;
 
 import org.apache.log4j.Logger;
 

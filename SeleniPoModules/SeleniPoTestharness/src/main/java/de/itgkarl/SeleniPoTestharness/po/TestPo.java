@@ -1,4 +1,4 @@
-package org.SeleniPoTestharness.po;
+package de.itgkarl.SeleniPoTestharness.po;
 
 
 public class TestPo extends BasePo {

@@ -1,4 +1,4 @@
-package org.SeleniPoTestharness;
+package de.itgkarl.SeleniPoTestharness;
 
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
