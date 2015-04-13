@@ -1,22 +1,12 @@
 package de.muenchen.selenipo;
 
-public class Transition {
+public class Transition extends Element {
 
-	private PoGeneric from;
 	private PoGeneric to;
 
-	public Transition(PoGeneric from, PoGeneric to) {
-		super();
-		this.from = from;
+	public Transition(Selector type, String locator, PoGeneric to) {
+		super(type, locator);
 		this.to = to;
-	}
-
-	public PoGeneric getFrom() {
-		return from;
-	}
-
-	public void setFrom(PoGeneric from) {
-		this.from = from;
 	}
 
 	public PoGeneric getTo() {
@@ -25,6 +15,13 @@ public class Transition {
 
 	public void setTo(PoGeneric to) {
 		this.to = to;
+	}
+
+	@Override
+	public String toString() {
+		return "------ Transition [to=" + to.getIdentifier() + ", type="
+				+ super.getType() + ", locator=" + super.getLocator() + "]"
+				+ System.lineSeparator();
 	}
 
 }

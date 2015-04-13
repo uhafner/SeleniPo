@@ -12,7 +12,6 @@ import java.util.List;
 public class PoModel {
 
 	private List<PoGeneric> poGenerics = new ArrayList<PoGeneric>();
-	
 
 	public PoModel() {
 		super();
@@ -24,6 +23,16 @@ public class PoModel {
 
 	public void setPoGenerics(List<PoGeneric> poGenerics) {
 		this.poGenerics = poGenerics;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("PoModel: ");
+		for (PoGeneric poGeneric : poGenerics) {
+			sb.append(poGeneric.toString() + System.lineSeparator());
+		}
+		return sb.toString();
 	}
 
 }

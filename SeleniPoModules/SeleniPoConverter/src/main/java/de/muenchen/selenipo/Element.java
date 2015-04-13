@@ -27,4 +27,10 @@ public class Element {
 		this.locator = locator;
 	}
 
+	@Override
+	public String toString() {
+		return "------ Element [type=" + type + ", locator=" + locator + "]"
+				+ System.lineSeparator();
+	}
+
 }

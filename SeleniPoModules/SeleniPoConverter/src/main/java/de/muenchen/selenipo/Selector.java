@@ -19,6 +19,5 @@ public enum Selector {
 	public void setByMethodName(String byMethodName) {
 		this.byMethodName = byMethodName;
 	}
-	
-	
+
 }

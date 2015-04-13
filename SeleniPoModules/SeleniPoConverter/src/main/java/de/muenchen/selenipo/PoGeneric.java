@@ -44,4 +44,19 @@ public class PoGeneric {
 		this.transitions = transitions;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("--PoGeneric - " + identifier + ": " + System.lineSeparator());
+		sb.append("----Elements: " + System.lineSeparator());
+		for (Element element : elements) {
+			sb.append(element.toString());
+		}
+		sb.append("----Transitions: " + System.lineSeparator());
+		for (Transition transition : transitions) {
+			sb.append(transition.toString());
+		}
+		return sb.toString();
+	}
+
 }
