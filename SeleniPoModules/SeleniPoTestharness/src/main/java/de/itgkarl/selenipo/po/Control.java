@@ -4,7 +4,7 @@
  * Copyright (c): IT@M - Dienstleister für Informations- und Telekommunikationstechnik
  * der Landeshauptstadt München, 2012
  */
-package de.itgkarl.SeleniPoTestharness.po;
+package de.itgkarl.selenipo.po;
 
 import org.openqa.selenium.WebElement;
 

@@ -1,4 +1,4 @@
-package de.itgkarl.SeleniPoTestharness;
+package de.itgkarl.selenipo;
 
 import org.apache.log4j.Logger;
 
@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
  */
 public class App {
 	Logger log = Logger.getLogger(App.class);
-	
+
 	public void performLo() {
 		log.info("HelloWorld");
 

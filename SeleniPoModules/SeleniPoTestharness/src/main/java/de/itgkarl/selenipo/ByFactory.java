@@ -1,4 +1,4 @@
-package de.itgkarl.SeleniPoTestharness;
+package de.itgkarl.selenipo;
 
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
  * 
  * @author Matthias Karl
  * @see gitHub/jenkinssci/acceptance-test-harness
+ * 
  */
 public class ByFactory {
 	public By xpath(String xpath) {

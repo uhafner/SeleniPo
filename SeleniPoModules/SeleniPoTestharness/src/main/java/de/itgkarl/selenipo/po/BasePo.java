@@ -1,4 +1,4 @@
-package de.itgkarl.SeleniPoTestharness.po;
+package de.itgkarl.selenipo.po;
 
 /**
  * BasePo ist Vater aller anderen PageObjects. Beinhaltet die Logik zum Einstieg
@@ -10,12 +10,21 @@ package de.itgkarl.SeleniPoTestharness.po;
  */
 public class BasePo extends PageObject {
 
-	public BasePo(PageObject po) {
+	/**
+	 * Constructor.
+	 * 
+	 * @param po
+	 *            Some pageObject
+	 */
+	public BasePo(final PageObject po) {
 		super();
 		this.driver = po.getDriver();
 		this.by = po.getBy();
 	}
 
+	/**
+	 * Base Constructor.
+	 */
 	public BasePo() {
 		super();
 	}
