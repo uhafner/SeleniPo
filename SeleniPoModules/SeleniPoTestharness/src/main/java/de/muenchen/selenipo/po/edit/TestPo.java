@@ -1,7 +1,7 @@
-package de.itgkarl.selenipo.po.edit;
+package de.muenchen.selenipo.po.edit;
 
-import de.itgkarl.selenipo.po.PageObject;
-import de.itgkarl.selenipo.po.generated.TestPoGenerated;
+import de.muenchen.selenipo.po.PageObject;
+import de.muenchen.selenipo.po.generated.TestPoGenerated;
 
 public class TestPo extends TestPoGenerated {
 

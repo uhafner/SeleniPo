@@ -1,8 +1,8 @@
-package de.itgkarl.selenipo.po.generated;
+package de.muenchen.selenipo.po.generated;
 
-import de.itgkarl.selenipo.po.BasePo;
-import de.itgkarl.selenipo.po.Control;
-import de.itgkarl.selenipo.po.PageObject;
+import de.muenchen.selenipo.po.BasePo;
+import de.muenchen.selenipo.po.Control;
+import de.muenchen.selenipo.po.PageObject;
 
 public class TestPoGenerated extends BasePo {
 

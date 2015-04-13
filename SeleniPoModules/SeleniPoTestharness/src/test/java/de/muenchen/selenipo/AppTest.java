@@ -1,4 +1,4 @@
-package de.itgkarl.selenipo;
+package de.muenchen.selenipo;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,9 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import de.itgkarl.selenipo.config.Config;
-import de.itgkarl.selenipo.po.BasePo;
-import de.itgkarl.selenipo.po.edit.TestPo;
+import de.muenchen.selenipo.config.Config;
+import de.muenchen.selenipo.po.BasePo;
+import de.muenchen.selenipo.po.edit.TestPo;
 
 /**
  * Unit test for simple App.

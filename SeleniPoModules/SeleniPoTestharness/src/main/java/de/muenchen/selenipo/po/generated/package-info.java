@@ -6,4 +6,4 @@
  * @author matthias
  *
  */
-package de.itgkarl.selenipo.po.generated;
+package de.muenchen.selenipo.po.generated;

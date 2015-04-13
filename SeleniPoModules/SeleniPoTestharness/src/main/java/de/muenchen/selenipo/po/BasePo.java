@@ -1,4 +1,4 @@
-package de.itgkarl.selenipo.po;
+package de.muenchen.selenipo.po;
 
 /**
  * BasePo ist Vater aller anderen PageObjects. Beinhaltet die Logik zum Einstieg

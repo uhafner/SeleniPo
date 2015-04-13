@@ -1,15 +1,9 @@
-/*
- * Projekt: KiTa Gebühren
- * Autor: $Id$
- * Copyright (c): IT@M - Dienstleister für Informations- und Telekommunikationstechnik
- * der Landeshauptstadt München, 2012
- */
-package de.itgkarl.selenipo.po;
+package de.muenchen.selenipo.po;
 
 import org.openqa.selenium.WebElement;
 
 /**
- * @author sybille.mueller
+ * @author matthias
  */
 public interface Control {
 

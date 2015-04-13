@@ -1,4 +1,4 @@
-package de.itgkarl.selenipo;
+package de.muenchen.selenipo;
 
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;

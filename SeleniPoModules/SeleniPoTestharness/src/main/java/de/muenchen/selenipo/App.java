@@ -1,4 +1,4 @@
-package de.itgkarl.selenipo;
+package de.muenchen.selenipo;
 
 import org.apache.log4j.Logger;
 

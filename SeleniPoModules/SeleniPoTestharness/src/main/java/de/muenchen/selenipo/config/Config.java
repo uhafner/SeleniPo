@@ -1,8 +1,8 @@
-package de.itgkarl.selenipo.config;
+package de.muenchen.selenipo.config;
 
-import de.itgkarl.selenipo.ByFactory;
-import de.itgkarl.selenipo.po.BasePo;
-import de.itgkarl.selenipo.po.PageObject;
+import de.muenchen.selenipo.ByFactory;
+import de.muenchen.selenipo.po.BasePo;
+import de.muenchen.selenipo.po.PageObject;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;

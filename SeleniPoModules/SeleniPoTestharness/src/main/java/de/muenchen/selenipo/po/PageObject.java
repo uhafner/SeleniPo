@@ -1,4 +1,4 @@
-package de.itgkarl.selenipo.po;
+package de.muenchen.selenipo.po;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.itgkarl.selenipo.ByFactory;
+import de.muenchen.selenipo.ByFactory;
 
 /**
  * Generisches PageObject. Ältester Vater aller anderen PageObjects.

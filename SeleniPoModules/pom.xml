@@ -9,6 +9,7 @@
   <modules>
   <module>SeleniPoTestharness</module>
     <module>SeleniPoUMLet</module>
+    <module>SeleniPoConverter</module>
   </modules>
   
   <build>

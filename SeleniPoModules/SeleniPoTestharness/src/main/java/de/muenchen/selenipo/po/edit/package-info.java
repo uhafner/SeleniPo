@@ -5,4 +5,4 @@
  * @author matthias
  *
  */
-package de.itgkarl.selenipo.po.edit;
+package de.muenchen.selenipo.po.edit;
