@@ -7,6 +7,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import de.muenchen.selenipo.config.Config;
+import de.muenchen.selenipo.impl.ElementImpl;
+import de.muenchen.selenipo.impl.PoGenericImpl;
+import de.muenchen.selenipo.impl.TransitionImpl;
 
 @org.junit.runner.RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config.class, loader = AnnotationConfigContextLoader.class)
@@ -27,11 +30,12 @@ public class GeneratorServiceImplTest {
 	 * @return
 	 */
 	private PoGeneric getTestPoGeneric() {
-		PoGeneric welcomePo = new PoGeneric("WelcomePo");
-		PoGeneric listPo = new PoGeneric("listPo");
-		Transition bEnter = new Transition(Selector.LINK, "bEnter", listPo);
-		Element h1 = new Element(Selector.XPATH, "//h1");
-		Transition index = new Transition(Selector.LINK, "ToDo-App", welcomePo);
+		PoGeneric welcomePo = new PoGenericImpl("WelcomePo");
+		PoGeneric listPo = new PoGenericImpl("listPo");
+		Transition bEnter = new TransitionImpl(Selector.LINK, "bEnter", listPo);
+		ElementImpl h1 = new ElementImpl(Selector.XPATH, "//h1");
+		TransitionImpl index = new TransitionImpl(Selector.LINK, "ToDo-App",
+				welcomePo);
 		welcomePo.getTransitions().add(bEnter);
 		welcomePo.getElements().add(h1);
 		listPo.getTransitions().add(index);

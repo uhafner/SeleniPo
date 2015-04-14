@@ -1,36 +1,17 @@
 package de.muenchen.selenipo;
 
-public class Element {
+public interface Element {
 
-	private Selector type;
-	private String locator;
+	Selector getType();
 
-	public Element(Selector type, String locator) {
-		super();
-		this.type = type;
-		this.locator = locator;
-	}
+	void setType(Selector type);
 
-	public Selector getType() {
-		return type;
-	}
+	public String getLocator();
 
-	public void setType(Selector type) {
-		this.type = type;
-	}
+	public void setLocator(String locator);
 
-	public String getLocator() {
-		return locator;
-	}
+	public String getIdentefier();
 
-	public void setLocator(String locator) {
-		this.locator = locator;
-	}
-
-	@Override
-	public String toString() {
-		return "------ Element [type=" + type + ", locator=" + locator + "]"
-				+ System.lineSeparator();
-	}
+	public void setIdentefier(String identefier);
 
 }

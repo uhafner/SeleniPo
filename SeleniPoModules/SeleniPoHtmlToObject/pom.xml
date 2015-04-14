@@ -9,4 +9,11 @@
 	<groupId>de.muenchen.SeleniPoHtmlToObject</groupId>
 	<artifactId>SeleniPoHtmlToObject</artifactId>
 	<name>SeleniPoHtmlToObject</name>
+	<dependencies>
+		<dependency>
+			<groupId>de.muenchen.SeleniPoConverter</groupId>
+			<artifactId>SeleniPoConverter</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>
