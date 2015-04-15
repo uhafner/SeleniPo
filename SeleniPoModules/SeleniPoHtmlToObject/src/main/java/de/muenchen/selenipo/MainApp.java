@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import de.muenchen.selenipo.impl.ElementImpl;
-import de.muenchen.selenipo.impl.TransitionImpl;
 import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.model.PoModelFx;
