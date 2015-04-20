@@ -8,7 +8,6 @@
 
 	<packaging>pom</packaging>
 	<modules>
-		<module>SeleniPoTestharness</module>
 		<module>SeleniPoUMLet</module>
 		<module>SeleniPoConverter</module>
 		<module>SeleniPoGenerator</module>
@@ -30,11 +29,6 @@
 		</pluginManagement>
 	</build>
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.7</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import org.apache.log4j.Logger;
+
 import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.model.PoModelFx;
@@ -15,6 +18,8 @@ import de.muenchen.selenipo.model.TransitionFx;
 import de.muenchen.selenipo.view.PoOverviewController;
 
 public class MainApp extends Application {
+
+	private static final Logger logger = Logger.getLogger(MainApp.class);
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;

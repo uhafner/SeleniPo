@@ -26,7 +26,6 @@ public class ControlBys implements Control {
 		this.bys = bys;
 	}
 
-	@Override
 	public WebElement resolve() {
 		NoSuchElementException problem = new NoSuchElementException("No 'By' specified!");
 		for (By by : bys) {
@@ -40,39 +39,32 @@ public class ControlBys implements Control {
 		throw problem;
 	}
 
-	@Override
 	public void sendKeys(String t) {
 		resolve().sendKeys(t);
 	}
 
-	@Override
 	public void uncheck() {
 		parent.check(resolve(), false);
 	}
 
-	@Override
 	public void check() {
 		parent.check(resolve(), true);
 	}
 
-	@Override
 	public void check(boolean state) {
 		parent.check(resolve(), state);
 	}
 
-	@Override
 	public void click() {
 		resolve().click();
 	}
 
-	@Override
 	public void set(String text) {
 		WebElement e = resolve();
 		e.clear();
 		e.sendKeys(text);
 	}
 
-	@Override
 	public void set(Object text) {
 		set(text.toString());
 	}
@@ -80,7 +72,6 @@ public class ControlBys implements Control {
 	/**
 	 * Select an option.
 	 */
-	@Override
 	public void select(String option) {
 		WebElement e = resolve();
 		e.findElement(parent.by.option(option)).click();
@@ -92,7 +83,6 @@ public class ControlBys implements Control {
 	/**
 	 * @return value des Elements
 	 */
-	@Override
 	public String value() {
 		WebElement e = resolve();
 		return e.getAttribute("value");
@@ -101,7 +91,6 @@ public class ControlBys implements Control {
 	/**
 	 * @return true, wenn das Attribut "readonly" auf Wert "readonly" oder "true" ist
 	 */
-	@Override
 	public boolean isReadOnly() {
 		WebElement e = resolve();
 		String attribute = e.getAttribute("readonly");
