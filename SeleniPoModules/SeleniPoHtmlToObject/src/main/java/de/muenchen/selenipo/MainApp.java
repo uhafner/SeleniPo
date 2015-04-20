@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import org.apache.log4j.Logger;
@@ -15,7 +16,9 @@ import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.model.PoModelFx;
 import de.muenchen.selenipo.model.TransitionFx;
+import de.muenchen.selenipo.view.ElementEditDialogController;
 import de.muenchen.selenipo.view.PoOverviewController;
+import de.muenchen.selenipo.view.TransitionEditDialogController;
 
 public class MainApp extends Application {
 
@@ -99,6 +102,85 @@ public class MainApp extends Application {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Opens a dialog to edit a selected Element. If the user clicks OK, the
+	 * changes are saved into the provided person object and true is returned.
+	 * 
+	 * @param element
+	 *            the elemnet object to be edited
+	 * @return true if the user clicked OK, false otherwise.
+	 */
+	public boolean showElementEditDialog(ElementFx element) {
+		try {
+			// Load the fxml file and create a new stage for the popup dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("view/ElementEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Edit Person");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the person into the controller.
+			ElementEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setElement(element);
+
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+			return controller.isOkClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * Opens a dialog to edit a selected Transition. If the user clicks OK, the
+	 * changes are saved into the provided person object and true is returned.
+	 * 
+	 * @param transition
+	 *            the transition object to be edited
+	 * @return true if the user clicked OK, false otherwise.
+	 */
+	public boolean showTransitionEditDialog(TransitionFx transition) {
+		try {
+			// Load the fxml file and create a new stage for the popup dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("view/TransitionEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Edit Person");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the person into the controller.
+			TransitionEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setTransition(transition);
+			controller.setMainApp(this);
+
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+			return controller.isOkClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 

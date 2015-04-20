@@ -1,8 +1,12 @@
 package de.muenchen.selenipo.view.poOverviewStates;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableView;
+
 import org.apache.log4j.Logger;
 
-import javafx.scene.control.TableView;
+import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.TransitionFx;
 import de.muenchen.selenipo.view.PoOverviewController;
 import de.muenchen.selenipo.view.PoOverviewState;
@@ -21,8 +25,30 @@ public class TransitionTableState implements PoOverviewState {
 
 	@Override
 	public void handleNew() {
-		System.out.println("Trans");
+		if (poOverviewController.getPoComboBox().getSelectionModel()
+				.getSelectedItem() != null) {
+			TransitionFx transition = new TransitionFx("", null, "", null);
+			boolean okClicked = poOverviewController.getMainApp()
+					.showTransitionEditDialog(transition);
+			if (okClicked) {
+				poOverviewController
+						.getMainApp()
+						.getPoModelFx()
+						.getPoGenericsFx()
+						.get(poOverviewController.getPoComboBox()
+								.getSelectionModel().getSelectedIndex())
+						.getTransitionsFx().add(transition);
+			}
+		} else {
+			// Nothing selected.
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(poOverviewController.getMainApp().getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No pageObject Selected");
+			alert.setContentText("Please select a pageObject in the dropdown.");
 
+			alert.showAndWait();
+		}
 	}
 
 	@Override
@@ -46,9 +72,24 @@ public class TransitionTableState implements PoOverviewState {
 	}
 
 	@Override
-	public void handelEdit() {
-		// TODO Auto-generated method stub
+	public void handleEdit() {
+		TableView<TransitionFx> transitionTable = poOverviewController
+				.getTransitionTable();
+		TransitionFx transition = transitionTable.getSelectionModel()
+				.getSelectedItem();
+		if (transition != null) {
+			boolean okClicked = poOverviewController.getMainApp()
+					.showTransitionEditDialog(transition);
+		} else {
+			// Nothing selected.
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(poOverviewController.getMainApp().getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Element Selected");
+			alert.setContentText("Please select a transition in the table.");
 
+			alert.showAndWait();
+		}
 	}
 
 }

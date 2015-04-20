@@ -54,11 +54,10 @@ public class PoComboBoxState implements PoOverviewState {
 					poOverviewController.getMainApp().getPrimaryStage(),
 					"po comboBox");
 		}
-
 	}
 
 	@Override
-	public void handelEdit() {
+	public void handleEdit() {
 
 	}
 

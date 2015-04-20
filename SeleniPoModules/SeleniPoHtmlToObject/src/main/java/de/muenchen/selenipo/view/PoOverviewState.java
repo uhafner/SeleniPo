@@ -6,6 +6,6 @@ public interface PoOverviewState {
 
 	void handleDelete();
 
-	void handelEdit();
+	void handleEdit();
 
 }

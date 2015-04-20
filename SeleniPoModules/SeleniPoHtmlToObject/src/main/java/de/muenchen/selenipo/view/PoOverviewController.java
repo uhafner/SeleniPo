@@ -131,6 +131,15 @@ public class PoOverviewController {
 		logger.debug("New pressed..");
 		poOverviewState.handleNew();
 	}
+	
+	/**
+	 * Called when the user clicks on the edit button.
+	 */
+	@FXML
+	private void handleEdit() {
+		logger.debug("Edit pressed..");
+		poOverviewState.handleEdit();
+	}
 
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {
 		// Nothing selected.
