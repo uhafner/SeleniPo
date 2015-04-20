@@ -104,8 +104,21 @@ public class TransitionEditDialogController {
 	 * @return true if the input is valid
 	 */
 	private boolean isInputValid() {
-		String errorMessage = "";
-
+		StringBuilder errorMessage = new StringBuilder();
+		if (identefierField.getText() == null
+				|| identefierField.getText().trim().length() == 0) {
+			errorMessage.append("No valid Identefier!\n");
+		}
+		if (locatorField.getText() == null
+				|| locatorField.getText().trim().length() == 0) {
+			errorMessage.append("No valid Locator!\n");
+		}
+		if (typeComboBox.getSelectionModel().getSelectedItem() == null) {
+			errorMessage.append("No valid Type!\n");
+		}
+		if (poComboBox.getSelectionModel().getSelectedItem() == null) {
+			errorMessage.append("No valid pageObject!\n");
+		}
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
@@ -114,7 +127,7 @@ public class TransitionEditDialogController {
 			alert.initOwner(dialogStage);
 			alert.setTitle("Invalid Fields");
 			alert.setHeaderText("Please correct invalid fields");
-			alert.setContentText(errorMessage);
+			alert.setContentText(errorMessage.toString());
 
 			alert.showAndWait();
 
