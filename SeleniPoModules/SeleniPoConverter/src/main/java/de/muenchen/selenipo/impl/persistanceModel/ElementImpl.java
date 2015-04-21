@@ -1,4 +1,4 @@
-package de.muenchen.selenipo.impl;
+package de.muenchen.selenipo.impl.persistanceModel;
 
 import de.muenchen.selenipo.Element;
 import de.muenchen.selenipo.Selector;

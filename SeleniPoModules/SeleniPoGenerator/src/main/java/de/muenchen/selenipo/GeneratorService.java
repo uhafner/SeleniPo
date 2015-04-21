@@ -2,8 +2,8 @@ package de.muenchen.selenipo;
 
 import java.util.Map;
 
-import de.muenchen.selenipo.impl.PoGenericImpl;
-import de.muenchen.selenipo.impl.PoModelImpl;
+import de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl;
+import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
 /**
  * Service der die Funktionalität zum Generieren von PageObjecrts bereitstellt.

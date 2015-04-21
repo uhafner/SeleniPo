@@ -1,4 +1,4 @@
-package de.muenchen.selenipo.impl;
+package de.muenchen.selenipo.impl.persistanceModel;
 
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.Selector;
@@ -11,6 +11,10 @@ public class TransitionImpl extends ElementImpl implements Transition {
 	public TransitionImpl(Selector type, String locator, PoGeneric to) {
 		super(type, locator);
 		this.to = to;
+	}
+
+	public TransitionImpl() {
+		super();
 	}
 
 	public PoGeneric getDestination() {

@@ -227,12 +227,12 @@ public class MainApp extends Application {
 		}
 	}
 
-	public ConverterService getPersistService() {
+	public ConverterService getConverterService() {
 		return persistService;
 	}
 
-	public void setPersistService(ConverterService persistService) {
-		this.persistService = persistService;
+	public void setConverterService(ConverterService converterService) {
+		this.persistService = converterService;
 	}
 
 	/**

@@ -5,8 +5,7 @@ import javafx.fxml.FXML;
 import org.apache.log4j.Logger;
 
 import de.muenchen.selenipo.MainApp;
-import de.muenchen.selenipo.PoModel;
-import de.muenchen.selenipo.model.PoModelFx;
+import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
 public class RootLayoutController {
 	private static final Logger logger = Logger
@@ -17,17 +16,16 @@ public class RootLayoutController {
 	@FXML
 	public void handleSave() {
 		logger.debug("Save..");
-
-		PoModelFx poModelFx = new PoModelFx();
-		mainApp.getPersistService().persistToXml("POSAVE.xml",
-				(PoModel) poModelFx);
+		PoModelImpl poModelImpl = mainApp.getConverterService().convertToImpl(
+				mainApp.getPoModelFx());
+		mainApp.getConverterService().persistToXml("POSAVE.xml", poModelImpl);
 	}
 
 	@FXML
 	public void handleLoad() {
 		logger.debug("Load..");
-		Object loadFromXml = mainApp.getPersistService().loadFromXml(
-				"POSAVE.xml");
+		PoModelImpl loadFromXml = (PoModelImpl) mainApp.getConverterService()
+				.loadFromXml("POSAVE.xml");
 		System.out.println(loadFromXml);
 	}
 

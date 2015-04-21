@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import de.muenchen.selenipo.GeneratorService;
 import de.muenchen.selenipo.impl.GeneratorServiceImpl;
 
-public class Config {
+public class GeneratorConfig {
 
 	@Bean
 	public GeneratorService generatorService() {

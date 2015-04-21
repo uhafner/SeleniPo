@@ -1,27 +1,27 @@
-<de.muenchen.selenipo.model.PoModelFx>
-  <poGenericsFx class="com.sun.javafx.collections.ObservableListWrapper">
-    <backingList/>
-    <elementObserver>
-      <extractor class="de.muenchen.selenipo.model.PoModelFx$1">
-        <outer-class reference="../../../.."/>
-      </extractor>
-      <listenerGenerator class="com.sun.javafx.collections.ObservableListWrapper$1">
-        <outer-class reference="../../.."/>
-      </listenerGenerator>
-      <list class="com.sun.javafx.collections.ObservableListWrapper" reference="../.."/>
-      <elementsMap serialization="custom">
-        <unserializable-parents/>
-        <java.util.IdentityHashMap>
-          <default>
-            <size>0</size>
-          </default>
-          <int>0</int>
-        </java.util.IdentityHashMap>
-      </elementsMap>
-    </elementObserver>
-    <changeBuilder>
-      <list class="com.sun.javafx.collections.ObservableListWrapper" reference="../.."/>
-      <changeLock>0</changeLock>
-    </changeBuilder>
-  </poGenericsFx>
-</de.muenchen.selenipo.model.PoModelFx>
+<de.muenchen.selenipo.impl.PoModelImpl>
+  <poGenerics>
+    <de.muenchen.selenipo.impl.PoGenericImpl>
+      <identifier>dad</identifier>
+      <elements>
+        <de.muenchen.selenipo.impl.ElementImpl>
+          <type>LINK</type>
+          <locator>aaa</locator>
+          <identefier>aaa</identefier>
+        </de.muenchen.selenipo.impl.ElementImpl>
+      </elements>
+      <transitions>
+        <de.muenchen.selenipo.impl.TransitionImpl>
+          <to class="de.muenchen.selenipo.impl.PoGenericImpl">
+            <identifier>bbbb</identifier>
+            <elements/>
+            <transitions/>
+          </to>
+          <type reference="../../../elements/de.muenchen.selenipo.impl.ElementImpl/type"/>
+          <locator>aaa</locator>
+          <identefier>aaa</identefier>
+        </de.muenchen.selenipo.impl.TransitionImpl>
+      </transitions>
+    </de.muenchen.selenipo.impl.PoGenericImpl>
+    <de.muenchen.selenipo.impl.PoGenericImpl reference="../de.muenchen.selenipo.impl.PoGenericImpl/transitions/de.muenchen.selenipo.impl.TransitionImpl/to"/>
+  </poGenerics>
+</de.muenchen.selenipo.impl.PoModelImpl>

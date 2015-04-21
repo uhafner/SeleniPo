@@ -1,4 +1,4 @@
-package de.muenchen.selenipo.impl;
+package de.muenchen.selenipo.impl.persistanceModel;
 
 import java.util.ArrayList;
 import java.util.List;
