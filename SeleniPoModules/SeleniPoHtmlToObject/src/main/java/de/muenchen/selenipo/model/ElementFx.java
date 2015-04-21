@@ -11,13 +11,13 @@ public class ElementFx implements Element {
 
 	private ObjectProperty<Selector> type;
 	private StringProperty locator;
-	private StringProperty identefier;
+	private StringProperty identifier;
 
-	public ElementFx(String identefier,Selector type, String locator) {
+	public ElementFx(String identifier, Selector type, String locator) {
 		super();
 		this.type = new SimpleObjectProperty<Selector>(type);
 		this.locator = new SimpleStringProperty(locator);
-		this.identefier = new SimpleStringProperty(identefier);
+		this.identifier = new SimpleStringProperty(identifier);
 	}
 
 	@Override
@@ -50,17 +50,17 @@ public class ElementFx implements Element {
 	}
 
 	@Override
-	public String getIdentefier() {
-		return this.identefier.get();
+	public String getIdentifier() {
+		return this.identifier.get();
 	}
 
 	@Override
-	public void setIdentefier(String identefier) {
-		this.identefier.set(identefier);
+	public void setIdentifier(String identifier) {
+		this.identifier.set(identifier);
 	}
 
-	public StringProperty identefierProperty() {
-		return identefier;
+	public StringProperty identifierProperty() {
+		return identifier;
 	}
 
 }

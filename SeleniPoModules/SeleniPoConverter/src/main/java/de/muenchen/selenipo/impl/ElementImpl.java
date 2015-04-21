@@ -32,11 +32,11 @@ public class ElementImpl implements Element {
 	}
 	
 
-	public String getIdentefier() {
+	public String getIdentifier() {
 		return identefier;
 	}
 
-	public void setIdentefier(String identefier) {
+	public void setIdentifier(String identefier) {
 		this.identefier = identefier;
 	}
 

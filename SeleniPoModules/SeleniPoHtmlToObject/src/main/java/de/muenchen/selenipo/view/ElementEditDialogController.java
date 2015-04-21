@@ -13,7 +13,7 @@ import de.muenchen.selenipo.model.ElementFx;
 public class ElementEditDialogController {
 
 	@FXML
-	private TextField identefierField;
+	private TextField identifierField;
 	@FXML
 	private TextField locatorField;
 	@FXML
@@ -50,7 +50,7 @@ public class ElementEditDialogController {
 	public void setElement(ElementFx element) {
 		this.elementFx = element;
 
-		identefierField.setText(element.getIdentefier());
+		identifierField.setText(element.getIdentifier());
 		locatorField.setText(element.getLocator());
 		typeComboBox.getSelectionModel().select(element.getType());
 	}
@@ -70,7 +70,7 @@ public class ElementEditDialogController {
 	@FXML
 	private void handleOk() {
 		if (isInputValid()) {
-			elementFx.setIdentefier(identefierField.getText());
+			elementFx.setIdentifier(identifierField.getText());
 			elementFx.setLocator(locatorField.getText());
 			elementFx.setType(typeComboBox.getSelectionModel()
 					.getSelectedItem());
@@ -94,9 +94,9 @@ public class ElementEditDialogController {
 	 */
 	private boolean isInputValid() {
 		StringBuilder errorMessage = new StringBuilder();
-		if (identefierField.getText() == null
-				|| identefierField.getText().trim().length() == 0) {
-			errorMessage.append("No valid Identefier!\n");
+		if (identifierField.getText() == null
+				|| identifierField.getText().trim().length() == 0) {
+			errorMessage.append("No valid Identifier!\n");
 		}
 		if (locatorField.getText() == null
 				|| locatorField.getText().trim().length() == 0) {

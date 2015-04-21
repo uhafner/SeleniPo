@@ -20,10 +20,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Identefier" />
+            <Label text="Identifier" />
             <Label text="SelectorType" GridPane.rowIndex="1" />
             <Label text="Locator" GridPane.rowIndex="2" />
-            <TextField fx:id="identefierField" GridPane.columnIndex="1">
+            <TextField fx:id="identifierField" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>

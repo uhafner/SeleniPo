@@ -1,34 +1,20 @@
 package de.muenchen.selenipo.view;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.print.PageOrientation;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import de.muenchen.selenipo.MainApp;
-import de.muenchen.selenipo.Selector;
-import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
-import de.muenchen.selenipo.model.TransitionFx;
 
-public class TransitionEditDialogController {
+public class PoEditDialogController {
 
 	@FXML
 	private TextField identifierField;
-	@FXML
-	private TextField locatorField;
-	@FXML
-	private ComboBox<Selector> typeComboBox;
-	@FXML
-	private ComboBox<PoGenericFx> poComboBox;
 
 	private Stage dialogStage;
-	private TransitionFx transitionFx;
+	private PoGenericFx poGenericFx;
 	private boolean okClicked = false;
-	private MainApp mainApp;
 
 	/**
 	 * Initializes the controller class. This method is automatically called
@@ -36,8 +22,6 @@ public class TransitionEditDialogController {
 	 */
 	@FXML
 	private void initialize() {
-		typeComboBox.setItems(FXCollections.observableArrayList(Selector
-				.values()));
 	}
 
 	/**
@@ -54,14 +38,10 @@ public class TransitionEditDialogController {
 	 * 
 	 * @param person
 	 */
-	public void setTransition(TransitionFx transition) {
-		this.transitionFx = transition;
+	public void setPo(PoGenericFx po) {
+		this.poGenericFx = po;
 
-		identifierField.setText(transition.getIdentifier());
-		locatorField.setText(transition.getLocator());
-		typeComboBox.getSelectionModel().select(transition.getType());
-		poComboBox.getSelectionModel().select(
-				transition.destinationProperty().get());
+		identifierField.setText(po.getIdentifier());
 	}
 
 	/**
@@ -79,12 +59,7 @@ public class TransitionEditDialogController {
 	@FXML
 	private void handleOk() {
 		if (isInputValid()) {
-			transitionFx.setIdentifier(identifierField.getText());
-			transitionFx.setLocator(locatorField.getText());
-			transitionFx.setType(typeComboBox.getSelectionModel()
-					.getSelectedItem());
-			transitionFx.setDestination(poComboBox.getSelectionModel()
-					.getSelectedItem());
+			poGenericFx.setIdentifier(identifierField.getText());
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -109,16 +84,7 @@ public class TransitionEditDialogController {
 				|| identifierField.getText().trim().length() == 0) {
 			errorMessage.append("No valid Identifier!\n");
 		}
-		if (locatorField.getText() == null
-				|| locatorField.getText().trim().length() == 0) {
-			errorMessage.append("No valid Locator!\n");
-		}
-		if (typeComboBox.getSelectionModel().getSelectedItem() == null) {
-			errorMessage.append("No valid Type!\n");
-		}
-		if (poComboBox.getSelectionModel().getSelectedItem() == null) {
-			errorMessage.append("No valid pageObject!\n");
-		}
+
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
@@ -133,15 +99,5 @@ public class TransitionEditDialogController {
 
 			return false;
 		}
-	}
-
-	/**
-	 * Is called by the main application to give a reference back to itself.
-	 * 
-	 * @param mainApp
-	 */
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
-		poComboBox.setItems(mainApp.getPoModelFx().getPoGenericsFx());
 	}
 }

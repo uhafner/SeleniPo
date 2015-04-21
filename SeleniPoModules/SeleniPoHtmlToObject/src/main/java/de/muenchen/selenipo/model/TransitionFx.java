@@ -10,9 +10,9 @@ public class TransitionFx extends ElementFx implements Transition {
 
 	private ObjectProperty<PoGenericFx> destination;
 
-	public TransitionFx(String identefier, Selector type, String locator,
+	public TransitionFx(String identifier, Selector type, String locator,
 			PoGenericFx to) {
-		super(identefier, type, locator);
+		super(identifier, type, locator);
 		this.destination = new SimpleObjectProperty<PoGenericFx>(to);
 	}
 

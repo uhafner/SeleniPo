@@ -3,10 +3,10 @@ package de.muenchen.selenipo.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -26,9 +26,11 @@ public class PoOverviewController {
 			.getLogger(PoOverviewController.class);
 
 	@FXML
+	private TextField urlField;
+	@FXML
 	private TableView<ElementFx> elementTable;
 	@FXML
-	private TableColumn<ElementFx, String> elemIdentefierColumn;
+	private TableColumn<ElementFx, String> elemIdentifierColumn;
 	@FXML
 	private TableColumn<ElementFx, String> elemSelectorTypeColumn;
 	@FXML
@@ -37,7 +39,7 @@ public class PoOverviewController {
 	@FXML
 	private TableView<TransitionFx> transitionTable;
 	@FXML
-	private TableColumn<TransitionFx, String> transIdentefierColumn;
+	private TableColumn<TransitionFx, String> transIdentifierColumn;
 	@FXML
 	private TableColumn<TransitionFx, String> transSelectorTypeColumn;
 	@FXML
@@ -71,15 +73,15 @@ public class PoOverviewController {
 				.locatorProperty());
 		elemSelectorTypeColumn.setCellValueFactory(cellData -> cellData
 				.getValue().typeProperty().asString());
-		elemIdentefierColumn.setCellValueFactory(cellData -> cellData
-				.getValue().identefierProperty());
+		elemIdentifierColumn.setCellValueFactory(cellData -> cellData
+				.getValue().identifierProperty());
 
 		transLocatorColumn.setCellValueFactory(cellData -> cellData.getValue()
 				.locatorProperty());
 		transSelectorTypeColumn.setCellValueFactory(cellData -> cellData
 				.getValue().typeProperty().asString());
-		transIdentefierColumn.setCellValueFactory(cellData -> cellData
-				.getValue().identefierProperty());
+		transIdentifierColumn.setCellValueFactory(cellData -> cellData
+				.getValue().identifierProperty());
 		transDestinationColumn.setCellValueFactory(cellData -> cellData
 				.getValue().destinationProperty().asString());
 
@@ -89,7 +91,7 @@ public class PoOverviewController {
 				if (object == null) {
 					return null;
 				} else {
-					return object.getIdentifier();
+					return object.identifierProperty().get();
 				}
 			}
 
@@ -131,7 +133,7 @@ public class PoOverviewController {
 		logger.debug("New pressed..");
 		poOverviewState.handleNew();
 	}
-	
+
 	/**
 	 * Called when the user clicks on the edit button.
 	 */
@@ -139,6 +141,14 @@ public class PoOverviewController {
 	private void handleEdit() {
 		logger.debug("Edit pressed..");
 		poOverviewState.handleEdit();
+	}
+
+	/**
+	 * Called when the user clicks on the edit button.
+	 */
+	@FXML
+	private void handleUrlStart() {
+		logger.debug("Url Start..");
 	}
 
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {

@@ -1,11 +1,14 @@
 package de.muenchen.selenipo.view.poOverviewStates;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ComboBox;
 
 import org.apache.log4j.Logger;
 
+import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.view.PoOverviewController;
 import de.muenchen.selenipo.view.PoOverviewState;
@@ -24,8 +27,13 @@ public class PoComboBoxState implements PoOverviewState {
 
 	@Override
 	public void handleNew() {
-		System.out.println("Combo");
-
+		PoGenericFx poGenericFx = new PoGenericFx("");
+		boolean okClicked = poOverviewController.getMainApp().showPoEditDialog(
+				poGenericFx);
+		if (okClicked) {
+			poOverviewController.getMainApp().getPoModelFx().getPoGenericsFx()
+					.add(poGenericFx);
+		}
 	}
 
 	@Override
@@ -58,7 +66,22 @@ public class PoComboBoxState implements PoOverviewState {
 
 	@Override
 	public void handleEdit() {
+		ComboBox<PoGenericFx> poComboBox = poOverviewController.getPoComboBox();
+		PoGenericFx poGenericFx = poComboBox.getSelectionModel()
+				.getSelectedItem();
+		if (poGenericFx != null) {
+			boolean okClicked = poOverviewController.getMainApp()
+					.showPoEditDialog(poGenericFx);
+		} else {
+			// Nothing selected.
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(poOverviewController.getMainApp().getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Element Selected");
+			alert.setContentText("Please select a pageObject from the Dropdown.");
 
+			alert.showAndWait();
+		}
 	}
 
 }

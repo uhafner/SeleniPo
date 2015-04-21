@@ -17,6 +17,7 @@ import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.model.PoModelFx;
 import de.muenchen.selenipo.model.TransitionFx;
 import de.muenchen.selenipo.view.ElementEditDialogController;
+import de.muenchen.selenipo.view.PoEditDialogController;
 import de.muenchen.selenipo.view.PoOverviewController;
 import de.muenchen.selenipo.view.TransitionEditDialogController;
 
@@ -123,7 +124,7 @@ public class MainApp extends Application {
 
 			// Create the dialog Stage.
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Person");
+			dialogStage.setTitle("Edit Element");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
@@ -162,7 +163,7 @@ public class MainApp extends Application {
 
 			// Create the dialog Stage.
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Person");
+			dialogStage.setTitle("Edit Transition");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
@@ -173,6 +174,45 @@ public class MainApp extends Application {
 			controller.setDialogStage(dialogStage);
 			controller.setTransition(transition);
 			controller.setMainApp(this);
+
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+			return controller.isOkClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * Opens a dialog to edit a selected Po. If the user clicks OK, the changes
+	 * are saved into the provided person object and true is returned.
+	 * 
+	 * @param PoGenericFx
+	 *            The Po object
+	 * @return true if the user clicked OK, false otherwise.
+	 */
+	public boolean showPoEditDialog(PoGenericFx poGenericFx) {
+		try {
+			// Load the fxml file and create a new stage for the popup dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("view/PoEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Edit pageObject");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the person into the controller.
+			PoEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setPo(poGenericFx);
 
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();

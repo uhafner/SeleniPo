@@ -10,8 +10,8 @@ public interface Element {
 
 	public void setLocator(String locator);
 
-	public String getIdentefier();
+	public String getIdentifier();
 
-	public void setIdentefier(String identefier);
+	public void setIdentifier(String identefier);
 
 }
