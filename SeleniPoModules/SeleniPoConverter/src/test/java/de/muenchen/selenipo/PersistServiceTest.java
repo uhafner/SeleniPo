@@ -1,5 +1,6 @@
 package de.muenchen.selenipo;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,29 +10,32 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import de.muenchen.selenipo.config.ConverterConfig;
 import de.muenchen.selenipo.impl.ElementImpl;
 import de.muenchen.selenipo.impl.PoGenericImpl;
+import de.muenchen.selenipo.impl.PoModelImpl;
 import de.muenchen.selenipo.impl.TransitionImpl;
 
 @org.junit.runner.RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ConverterConfig.class, loader = AnnotationConfigContextLoader.class)
-public class GeneratorServiceImplTest {
+public class PersistServiceTest {
 
 	@Autowired
-	public GeneratorService generatorService;
+	ConverterService persistService;
 
 	@Test
-	public void testGenerationSinglePo() {
-		PoGeneric po = getTestPoGeneric();
-		System.out.println(po);
+	public void BaseTest() {
+		String path = "test.xml";
+		PoModel testModel = getTestPoGeneric();
+		System.out.println(testModel);
+		persistService.persistToXml(path, testModel);
+		PoModel loaded = (PoModel) persistService.loadFromXml(path);
+		Assert.assertEquals(testModel, loaded);
 	}
 
-	/**
-	 * Generates a dummy PoGeneric for testcases.
-	 * 
-	 * @return
-	 */
-	private PoGeneric getTestPoGeneric() {
+	private PoModel getTestPoGeneric() {
+		PoModelImpl model = new PoModelImpl();
 		PoGeneric welcomePo = new PoGenericImpl("WelcomePo");
 		PoGeneric listPo = new PoGenericImpl("listPo");
+		model.getPoGenerics().add(welcomePo);
+		model.getPoGenerics().add(listPo);
 		Transition bEnter = new TransitionImpl(Selector.LINK, "bEnter", listPo);
 		ElementImpl h1 = new ElementImpl(Selector.XPATH, "//h1");
 		TransitionImpl index = new TransitionImpl(Selector.LINK, "ToDo-App",
@@ -39,6 +43,6 @@ public class GeneratorServiceImplTest {
 		welcomePo.getTransitions().add(bEnter);
 		welcomePo.getElements().add(h1);
 		listPo.getTransitions().add(index);
-		return welcomePo;
+		return model;
 	}
 }

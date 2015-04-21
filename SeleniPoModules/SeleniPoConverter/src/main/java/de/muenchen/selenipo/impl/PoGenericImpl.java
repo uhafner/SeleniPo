@@ -24,6 +24,10 @@ public class PoGenericImpl implements PoGeneric {
 		this.identifier = identifier;
 	}
 
+	public PoGenericImpl() {
+		super();
+	}
+
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -46,6 +50,48 @@ public class PoGenericImpl implements PoGeneric {
 
 	public void setTransitions(List<Transition> transitions) {
 		this.transitions = transitions;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((elements == null) ? 0 : elements.hashCode());
+		result = prime * result
+				+ ((identifier == null) ? 0 : identifier.hashCode());
+		result = prime * result
+				+ ((transitions == null) ? 0 : transitions.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PoGenericImpl other = (PoGenericImpl) obj;
+		if (elements == null) {
+			if (other.elements != null)
+				return false;
+		} else if (!elements.equals(other.elements))
+			return false;
+		if (identifier == null) {
+			if (other.identifier != null)
+				return false;
+		} else if (!identifier.equals(other.identifier))
+			return false;
+		if (transitions == null) {
+			if (other.transitions != null)
+				return false;
+		} else if (!transitions.equals(other.transitions))
+			return false;
+		return true;
 	}
 
 	@Override

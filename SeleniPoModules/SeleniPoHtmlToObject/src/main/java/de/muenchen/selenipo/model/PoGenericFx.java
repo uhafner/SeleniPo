@@ -23,6 +23,10 @@ public class PoGenericFx implements PoGeneric {
 		this.identifier = new SimpleStringProperty(identifier);
 	}
 
+	public PoGenericFx() {
+		super();
+	}
+
 	@Override
 	public String getIdentifier() {
 		return identifier.get();

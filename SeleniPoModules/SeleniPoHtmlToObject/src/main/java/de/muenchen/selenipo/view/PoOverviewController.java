@@ -11,11 +11,15 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import de.muenchen.selenipo.MainApp;
 import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.model.TransitionFx;
+import de.muenchen.selenipo.util.ByFactory;
 import de.muenchen.selenipo.view.poOverviewStates.ElementTableState;
 import de.muenchen.selenipo.view.poOverviewStates.PoComboBoxState;
 import de.muenchen.selenipo.view.poOverviewStates.TransitionTableState;
@@ -84,8 +88,7 @@ public class PoOverviewController {
 				.getValue().identifierProperty());
 		transDestinationColumn.setCellValueFactory(cellData -> cellData
 				.getValue().destinationProperty().asString());
-
-		poComboBox.setConverter(new StringConverter<PoGenericFx>() {
+		StringConverter<PoGenericFx> poConverter = new StringConverter<PoGenericFx>() {
 			@Override
 			public String toString(PoGenericFx object) {
 				if (object == null) {
@@ -99,7 +102,8 @@ public class PoOverviewController {
 			public PoGenericFx fromString(String string) {
 				return null;
 			}
-		});
+		};
+		poComboBox.setConverter(poConverter);
 	}
 
 	@FXML
@@ -145,10 +149,20 @@ public class PoOverviewController {
 
 	/**
 	 * Called when the user clicks on the edit button.
+	 * 
+	 * @throws InterruptedException
 	 */
 	@FXML
-	private void handleUrlStart() {
-		logger.debug("Url Start..");
+	private void handleUrlStart() throws InterruptedException {
+		logger.debug(String.format("Url Start.. [%s]", urlField.getText()));
+		ByFactory by = new ByFactory();
+		WebDriver driver = new FirefoxDriver();
+		driver.get(urlField.getText());
+		Thread.sleep(5000);
+		System.out.println("go");
+		WebElement findElement = driver.findElement(by.link("New"));
+		findElement.click();
+
 	}
 
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {

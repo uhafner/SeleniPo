@@ -6,10 +6,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import de.muenchen.selenipo.config.Config;
+import de.muenchen.selenipo.config.ConverterConfig;
 
 @org.junit.runner.RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Config.class, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = ConverterConfig.class, loader = AnnotationConfigContextLoader.class)
 public class EnumTest {
 
 	/**

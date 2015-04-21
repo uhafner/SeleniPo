@@ -20,6 +20,10 @@ public class ElementFx implements Element {
 		this.identifier = new SimpleStringProperty(identifier);
 	}
 
+	public ElementFx() {
+		super();
+	}
+
 	@Override
 	public Selector getType() {
 		return type.get();

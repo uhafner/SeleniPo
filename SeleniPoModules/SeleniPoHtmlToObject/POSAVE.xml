@@ -1,0 +1,27 @@
+<de.muenchen.selenipo.model.PoModelFx>
+  <poGenericsFx class="com.sun.javafx.collections.ObservableListWrapper">
+    <backingList/>
+    <elementObserver>
+      <extractor class="de.muenchen.selenipo.model.PoModelFx$1">
+        <outer-class reference="../../../.."/>
+      </extractor>
+      <listenerGenerator class="com.sun.javafx.collections.ObservableListWrapper$1">
+        <outer-class reference="../../.."/>
+      </listenerGenerator>
+      <list class="com.sun.javafx.collections.ObservableListWrapper" reference="../.."/>
+      <elementsMap serialization="custom">
+        <unserializable-parents/>
+        <java.util.IdentityHashMap>
+          <default>
+            <size>0</size>
+          </default>
+          <int>0</int>
+        </java.util.IdentityHashMap>
+      </elementsMap>
+    </elementObserver>
+    <changeBuilder>
+      <list class="com.sun.javafx.collections.ObservableListWrapper" reference="../.."/>
+      <changeLock>0</changeLock>
+    </changeBuilder>
+  </poGenericsFx>
+</de.muenchen.selenipo.model.PoModelFx>

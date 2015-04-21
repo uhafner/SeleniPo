@@ -11,7 +11,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import de.muenchen.selenipo.config.ConverterConfig;
 import de.muenchen.selenipo.model.ElementFx;
 import de.muenchen.selenipo.model.PoGenericFx;
 import de.muenchen.selenipo.model.PoModelFx;
@@ -19,6 +21,7 @@ import de.muenchen.selenipo.model.TransitionFx;
 import de.muenchen.selenipo.view.ElementEditDialogController;
 import de.muenchen.selenipo.view.PoEditDialogController;
 import de.muenchen.selenipo.view.PoOverviewController;
+import de.muenchen.selenipo.view.RootLayoutController;
 import de.muenchen.selenipo.view.TransitionEditDialogController;
 
 public class MainApp extends Application {
@@ -29,28 +32,24 @@ public class MainApp extends Application {
 	private BorderPane rootLayout;
 
 	private PoModelFx poModelFx;
+	private ConverterService persistService;
 
 	public PoModelFx getPoModelFx() {
 		return poModelFx;
+	}
+
+	public void setPoModelFx(PoModelFx poModelFx) {
+		this.poModelFx = poModelFx;
 	}
 
 	/**
 	 * Constructor
 	 */
 	public MainApp() {
-		this.poModelFx = new PoModelFx();
-		PoGenericFx welcomePo = new PoGenericFx("WelcomePo");
-		PoGenericFx listPo = new PoGenericFx("listPo");
-		TransitionFx bEnter = new TransitionFx("bEnter", Selector.LINK,
-				"bEnter", listPo);
-		ElementFx h1 = new ElementFx("eH1", Selector.XPATH, "//h1");
-		TransitionFx index = new TransitionFx("tIndex", Selector.LINK,
-				"ToDo-App", welcomePo);
-		welcomePo.getTransitionsFx().add(bEnter);
-		welcomePo.getElementsFx().add(h1);
-		listPo.getTransitionsFx().add(index);
-		getPoModelFx().getPoGenericsFx().add(welcomePo);
-		getPoModelFx().getPoGenericsFx().add(listPo);
+		poModelFx = new PoModelFx();
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				ConverterConfig.class);
+		persistService = context.getBean(ConverterService.class);
 	}
 
 	@Override
@@ -74,10 +73,14 @@ public class MainApp extends Application {
 					.getResource("view/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
+			// Give the controller access to the main app.
+			RootLayoutController controller = loader.getController();
+			controller.setMainApp(this);
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -222,6 +225,14 @@ public class MainApp extends Application {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public ConverterService getPersistService() {
+		return persistService;
+	}
+
+	public void setPersistService(ConverterService persistService) {
+		this.persistService = persistService;
 	}
 
 	/**
