@@ -17,4 +17,10 @@ public class TestPoGenerated extends BasePo {
 	public TestPoGenerated(final PageObject po) {
 		super(po);
 	}
+
+	public Control getbEnter() {
+		return bEnter;
+	}
+	
+	
 }

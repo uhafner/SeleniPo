@@ -35,16 +35,17 @@ public class ConverterServiceTest {
 
 	@Test
 	public void saveAndLoad() {
-		File file = new File("test.xml");
-		PoModel testModel = getTestPoGeneric();
-		converterService.persistToXml(file, testModel);
-		PoModel loaded = (PoModel) converterService.loadFromXml(file);
+		File fileSave = new File("test.xml");
+		PoModel testModel = getTestPoGenericImpl();
+		converterService.persistToXml(fileSave, testModel);
+		File fileLoad = new File("test.xml");
+		PoModel loaded = (PoModel) converterService.loadFromXml(fileLoad);
 		assertEquals(testModel, loaded);
 	}
 
 	@Test
 	public void convertToFx() {
-		PoModelImpl testModel = getTestPoGeneric();
+		PoModelImpl testModel = getTestPoGenericImpl();
 		PoModelFx fxModel = converterService.convertToFxModel(testModel);
 
 		Assert.assertThat(fxModel, CoreMatchers.instanceOf(PoModelFx.class));
@@ -60,6 +61,8 @@ public class ConverterServiceTest {
 					CoreMatchers.instanceOf(PoGenericFx.class));
 			Assert.assertEquals(poGeneric.getIdentifier(),
 					poGenericFx.getIdentifier());
+			Assert.assertEquals(poGeneric.getPackageName(),
+					poGenericFx.getPackageName());
 
 			List<Element> elements = poGeneric.getElements();
 			List<Element> elementsFx = poGenericFx.getElements();
@@ -82,8 +85,8 @@ public class ConverterServiceTest {
 			Assert.assertEquals(transitions.size(), transitionsFx.size());
 
 			for (int k = 0; k < elements.size(); k++) {
-				Element transition = transitions.get(k);
-				Element transitionFx = transitionsFx.get(k);
+				Transition transition = transitions.get(k);
+				Transition transitionFx = transitionsFx.get(k);
 				Assert.assertThat(transitionFx,
 						CoreMatchers.instanceOf(TransitionFx.class));
 				Assert.assertEquals(transition.getIdentifier(),
@@ -92,24 +95,107 @@ public class ConverterServiceTest {
 						transitionFx.getLocator());
 				Assert.assertEquals(transition.getType(),
 						transitionFx.getType());
+				Assert.assertEquals(transition.getType(),
+						transitionFx.getType());
+				Assert.assertEquals(
+						transition.getDestination().getIdentifier(),
+						transitionFx.getDestination().getIdentifier());
 			}
 		}
 	}
 
-	private PoModelImpl getTestPoGeneric() {
+	@Test
+	public void convertToImpl() {
+		PoModelFx testModel = getTestPoGenericFx();
+		PoModelImpl implModel = converterService.convertToImpl(testModel);
+
+		Assert.assertThat(implModel, CoreMatchers.instanceOf(PoModelImpl.class));
+
+		List<PoGeneric> poGenerics = testModel.getPoGenerics();
+		List<PoGeneric> poGenericsImpl = implModel.getPoGenerics();
+		Assert.assertEquals(poGenerics.size(), poGenericsImpl.size());
+
+		for (int i = 0; i < poGenerics.size(); i++) {
+			PoGeneric poGeneric = poGenerics.get(i);
+			PoGeneric poGenericImpl = poGenericsImpl.get(i);
+			Assert.assertThat(poGenericImpl,
+					CoreMatchers.instanceOf(PoGenericImpl.class));
+			Assert.assertEquals(poGeneric.getIdentifier(),
+					poGenericImpl.getIdentifier());
+			Assert.assertEquals(poGeneric.getPackageName(),
+					poGenericImpl.getPackageName());
+
+			List<Element> elements = poGeneric.getElements();
+			List<Element> elementsImpl = poGenericImpl.getElements();
+			Assert.assertEquals(elements.size(), elementsImpl.size());
+
+			for (int j = 0; j < elements.size(); j++) {
+				Element element = elements.get(j);
+				Element elementImpl = elementsImpl.get(j);
+				Assert.assertThat(elementImpl,
+						CoreMatchers.instanceOf(ElementImpl.class));
+				Assert.assertEquals(element.getIdentifier(),
+						elementImpl.getIdentifier());
+				Assert.assertEquals(element.getLocator(),
+						elementImpl.getLocator());
+				Assert.assertEquals(element.getType(), elementImpl.getType());
+			}
+
+			List<Transition> transitions = poGeneric.getTransitions();
+			List<Transition> transitionsImpl = poGenericImpl.getTransitions();
+			Assert.assertEquals(transitions.size(), transitionsImpl.size());
+
+			for (int k = 0; k < elements.size(); k++) {
+				Transition transition = transitions.get(k);
+				Transition transitionImpl = transitionsImpl.get(k);
+				Assert.assertThat(transitionImpl,
+						CoreMatchers.instanceOf(TransitionImpl.class));
+				Assert.assertEquals(transition.getIdentifier(),
+						transitionImpl.getIdentifier());
+				Assert.assertEquals(transition.getLocator(),
+						transitionImpl.getLocator());
+				Assert.assertEquals(transition.getType(),
+						transitionImpl.getType());
+				Assert.assertEquals(transition.getType(),
+						transitionImpl.getType());
+				Assert.assertEquals(
+						transition.getDestination().getIdentifier(),
+						transitionImpl.getDestination().getIdentifier());
+			}
+		}
+	}
+
+	private PoModelImpl getTestPoGenericImpl() {
 		PoModelImpl model = new PoModelImpl();
-		PoGeneric welcomePo = new PoGenericImpl("WelcomePo");
-		PoGeneric listPo = new PoGenericImpl("listPo");
+		PoGeneric welcomePo = new PoGenericImpl("WelcomePo", "basePackage");
+		PoGeneric listPo = new PoGenericImpl("listPo", "basePackage");
 		model.getPoGenerics().add(welcomePo);
 		model.getPoGenerics().add(listPo);
-		Transition bEnter = new TransitionImpl("EnterButton", Selector.LINK,
+		Transition bEnter = new TransitionImpl("enterButton", Selector.LINK,
 				"bEnter", listPo);
 		ElementImpl h1 = new ElementImpl("hi", Selector.XPATH, "//h1");
-		TransitionImpl index = new TransitionImpl("ToDo-App", Selector.LINK,
+		TransitionImpl index = new TransitionImpl("toDo-App", Selector.LINK,
 				"ToDo-App", welcomePo);
 		welcomePo.getTransitions().add(bEnter);
 		welcomePo.getElements().add(h1);
 		listPo.getTransitions().add(index);
+		return model;
+	}
+
+	private PoModelFx getTestPoGenericFx() {
+		PoModelFx model = new PoModelFx();
+		PoGenericFx welcomePo = new PoGenericFx("WelcomePo", "basePackage");
+		PoGenericFx listPo = new PoGenericFx("listPo", "basePackage");
+		model.getPoGenericsFx().add(welcomePo);
+		model.getPoGenericsFx().add(listPo);
+		TransitionFx bEnter = new TransitionFx("enterButton", Selector.LINK,
+				"bEnter", listPo);
+		ElementFx h1 = new ElementFx("hi", Selector.XPATH, "//h1");
+		TransitionFx index = new TransitionFx("toDo-App", Selector.LINK,
+				"toDo-App", welcomePo);
+		welcomePo.getTransitionsFx().add(bEnter);
+		welcomePo.getElementsFx().add(h1);
+		listPo.getTransitionsFx().add(index);
 		return model;
 	}
 }

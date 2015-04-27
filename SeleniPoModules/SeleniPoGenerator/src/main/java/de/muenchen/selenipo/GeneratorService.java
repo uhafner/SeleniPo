@@ -1,5 +1,6 @@
 package de.muenchen.selenipo;
 
+import java.io.IOException;
 import java.util.Map;
 
 import de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl;
@@ -20,7 +21,7 @@ public interface GeneratorService {
 	 *            PoModel
 	 * @return PoModel
 	 */
-	Map<String, String> generatePageObjects(PoModel poModel);
+	Map<String, String> generatePageObjects(PoModel poModel) throws IOException;
 
 	/**
 	 * Generates a singel pageObject frim a PoGeneric.
@@ -29,6 +30,7 @@ public interface GeneratorService {
 	 *            poGeneric
 	 * @return String - Generated String
 	 */
-	Map<String, String> generatePageObject(PoGeneric poGeneric);
+	Map<String, String> generatePageObject(PoGeneric poGeneric)
+			throws IOException;
 
 }

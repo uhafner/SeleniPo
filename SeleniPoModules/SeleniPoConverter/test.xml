@@ -1,7 +1,7 @@
 <de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>
   <poGenerics>
     <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
-      <identifier>WelcomePo</identifier>
+      <identifier>basePackage</identifier>
       <elements>
         <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
           <type>XPATH</type>
@@ -12,7 +12,7 @@
       <transitions>
         <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
           <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl">
-            <identifier>listPo</identifier>
+            <identifier>basePackage</identifier>
             <elements/>
             <transitions>
               <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>

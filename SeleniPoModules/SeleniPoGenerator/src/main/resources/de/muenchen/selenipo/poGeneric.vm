@@ -1,0 +1,45 @@
+package de.muenchen.selenipo.po.generated;
+
+import de.muenchen.selenipo.po.BasePo;
+import de.muenchen.selenipo.po.Control;
+import de.muenchen.selenipo.po.PageObject;
+
+public class $poGeneric.getIdentifier()Generated extends BasePo {
+
+#foreach( $element in $poGeneric.getElements() )
+	public final Control $element.getIdentifier() = control(by.$element.getType().getByMethodName()("$element.getLocator()"))
+#end
+#foreach( $transition in $poGeneric.getTransitions() )
+	public final Control $transition.getIdentifier() = control(by.$transition.getType().getByMethodName()("$transition.getLocator()"))
+#end
+ 
+#foreach( $transition in $poGeneric.getTransitions() )
+	
+	public de.muenchen.sepenipo.po.edit$transition.getDestination().getClass() click$transition.getIdentifier()() {
+		return $transition.getIdentifier();
+	}
+	
+#end 
+ 
+#foreach( $element in $poGeneric.getElements() )
+	/**
+	 * Get the Control for the Element $transition.getIdentifier().
+	 * @return $transition.getIdentifier() - Element
+	 */
+	public Control get${display.capitalize($element.getIdentifier())}() {
+		return $element.getIdentifier();
+	}
+	
+#end
+#foreach( $transition in $poGeneric.getTransitions() )
+	/**
+	 * Get the Control for the Transition $transition.getIdentifier().
+	 * @return $transition.getIdentifier() - Transition
+	 */
+	public Control get${display.capitalize($transition.getIdentifier())}() {
+		return $transition.getIdentifier();
+	}
+	
+#end
+
+}

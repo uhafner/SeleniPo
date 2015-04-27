@@ -6,7 +6,11 @@ public interface PoGeneric {
 
 	String getIdentifier();
 
+	String getPackageName();
+
 	void setIdentifier(String identifier);
+
+	void setPackageName(String packageName);
 
 	List<Element> getElements();
 

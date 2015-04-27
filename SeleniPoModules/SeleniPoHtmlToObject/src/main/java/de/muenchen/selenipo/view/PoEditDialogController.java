@@ -11,6 +11,8 @@ public class PoEditDialogController {
 
 	@FXML
 	private TextField identifierField;
+	@FXML
+	private TextField packageNameField;
 
 	private Stage dialogStage;
 	private PoGenericFx poGenericFx;
@@ -42,6 +44,7 @@ public class PoEditDialogController {
 		this.poGenericFx = po;
 
 		identifierField.setText(po.getIdentifier());
+		packageNameField.setText(po.getPackageName());
 	}
 
 	/**
@@ -60,6 +63,7 @@ public class PoEditDialogController {
 	private void handleOk() {
 		if (isInputValid()) {
 			poGenericFx.setIdentifier(identifierField.getText());
+			poGenericFx.setPackageName(packageNameField.getText());
 			okClicked = true;
 			dialogStage.close();
 		}

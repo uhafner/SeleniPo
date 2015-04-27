@@ -16,12 +16,14 @@ import de.muenchen.selenipo.Transition;
 public class PoGenericImpl implements PoGeneric {
 
 	private String identifier;
+	private String packageName;
 	private List<Element> elements = new ArrayList<Element>();
 	private List<Transition> transitions = new ArrayList<Transition>();
 
-	public PoGenericImpl(String identifier) {
+	public PoGenericImpl(String identifier, String packageName) {
 		super();
 		this.identifier = identifier;
+		this.packageName = packageName;
 	}
 
 	public PoGenericImpl() {
@@ -51,8 +53,14 @@ public class PoGenericImpl implements PoGeneric {
 	public void setTransitions(List<Transition> transitions) {
 		this.transitions = transitions;
 	}
-	
-	
+
+	public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
 
 	@Override
 	public int hashCode() {
@@ -62,6 +70,8 @@ public class PoGenericImpl implements PoGeneric {
 				+ ((elements == null) ? 0 : elements.hashCode());
 		result = prime * result
 				+ ((identifier == null) ? 0 : identifier.hashCode());
+		result = prime * result
+				+ ((packageName == null) ? 0 : packageName.hashCode());
 		result = prime * result
 				+ ((transitions == null) ? 0 : transitions.hashCode());
 		return result;
@@ -86,6 +96,11 @@ public class PoGenericImpl implements PoGeneric {
 				return false;
 		} else if (!identifier.equals(other.identifier))
 			return false;
+		if (packageName == null) {
+			if (other.packageName != null)
+				return false;
+		} else if (!packageName.equals(other.packageName))
+			return false;
 		if (transitions == null) {
 			if (other.transitions != null)
 				return false;
@@ -98,6 +113,7 @@ public class PoGenericImpl implements PoGeneric {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("--PoGeneric - " + identifier + ": " + System.lineSeparator());
+		sb.append("---Package - " + packageName + System.lineSeparator());
 		sb.append("----Elements: " + System.lineSeparator());
 		for (Element element : elements) {
 			sb.append(element.toString());

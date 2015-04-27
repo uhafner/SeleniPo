@@ -14,18 +14,21 @@ import de.muenchen.selenipo.Transition;
 public class PoGenericFx implements PoGeneric {
 
 	private StringProperty identifier;
+	private StringProperty packageName;
 	ObservableList<ElementFx> elementsFx = FXCollections.observableArrayList();
 	ObservableList<TransitionFx> transitionsFx = FXCollections
 			.observableArrayList();
 
-	public PoGenericFx(String identifier) {
+	public PoGenericFx(String identifier, String packageName) {
 		super();
 		this.identifier = new SimpleStringProperty(identifier);
+		this.packageName = new SimpleStringProperty(packageName);
 	}
 
 	public PoGenericFx() {
 		super();
 		this.identifier = new SimpleStringProperty();
+		this.packageName = new SimpleStringProperty();
 	}
 
 	@Override
@@ -40,6 +43,14 @@ public class PoGenericFx implements PoGeneric {
 
 	public StringProperty identifierProperty() {
 		return identifier;
+	}
+
+	public String getPackageName() {
+		return packageName.get();
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName.set(packageName);
 	}
 
 	@Override

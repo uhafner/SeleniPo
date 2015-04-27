@@ -27,7 +27,7 @@ public class PoComboBoxState implements PoOverviewState {
 
 	@Override
 	public void handleNew() {
-		PoGenericFx poGenericFx = new PoGenericFx("");
+		PoGenericFx poGenericFx = new PoGenericFx();
 		boolean okClicked = poOverviewController.getMainApp().showPoEditDialog(
 				poGenericFx);
 		if (okClicked) {

@@ -28,8 +28,6 @@ import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 import de.muenchen.selenipo.impl.persistanceModel.TransitionImpl;
 
 /**
- * Implementierung des PersistService der den Java Bean XMLEncoder benutzt.
- * Objekte müssen JavaBeans sein.
  * 
  * @author matthias
  *
@@ -82,6 +80,7 @@ public class ConverterServiceImpl implements ConverterService {
 			PoGenericImpl tempPoGeneric = new PoGenericImpl();
 			poModelImpl.getPoGenerics().add(tempPoGeneric);
 			tempPoGeneric.setIdentifier(poGeneric.getIdentifier());
+			tempPoGeneric.setPackageName(poGeneric.getPackageName());
 
 			// Erzeuge jedes Element
 			for (Element element : poGeneric.getElements()) {
@@ -129,6 +128,7 @@ public class ConverterServiceImpl implements ConverterService {
 			PoGenericFx tempPoGeneric = new PoGenericFx();
 			poModelFx.getPoGenericsFx().add(tempPoGeneric);
 			tempPoGeneric.setIdentifier(poGeneric.getIdentifier());
+			tempPoGeneric.setPackageName(poGeneric.getPackageName());
 
 			// Erzeuge jedes Element
 			for (Element element : poGeneric.getElements()) {
