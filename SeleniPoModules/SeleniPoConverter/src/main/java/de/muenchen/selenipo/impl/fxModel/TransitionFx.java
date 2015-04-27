@@ -1,4 +1,4 @@
-package de.muenchen.selenipo.model;
+package de.muenchen.selenipo.impl.fxModel;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -14,6 +14,11 @@ public class TransitionFx extends ElementFx implements Transition {
 			PoGenericFx to) {
 		super(identifier, type, locator);
 		this.destination = new SimpleObjectProperty<PoGenericFx>(to);
+	}
+
+	public TransitionFx() {
+		super();
+		this.destination = new SimpleObjectProperty<PoGenericFx>();
 	}
 
 	@Override

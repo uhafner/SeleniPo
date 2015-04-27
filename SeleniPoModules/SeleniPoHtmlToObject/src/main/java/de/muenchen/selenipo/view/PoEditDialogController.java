@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import de.muenchen.selenipo.model.PoGenericFx;
+import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 
 public class PoEditDialogController {
 

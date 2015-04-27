@@ -1,4 +1,4 @@
-package de.muenchen.selenipo.model;
+package de.muenchen.selenipo.impl.fxModel;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -22,6 +22,9 @@ public class ElementFx implements Element {
 
 	public ElementFx() {
 		super();
+		this.type = new SimpleObjectProperty<Selector>();
+		this.locator = new SimpleStringProperty();
+		this.identifier = new SimpleStringProperty();
 	}
 
 	@Override

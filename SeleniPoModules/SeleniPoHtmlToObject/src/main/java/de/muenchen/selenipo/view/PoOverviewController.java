@@ -16,9 +16,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import de.muenchen.selenipo.MainApp;
-import de.muenchen.selenipo.model.ElementFx;
-import de.muenchen.selenipo.model.PoGenericFx;
-import de.muenchen.selenipo.model.TransitionFx;
+import de.muenchen.selenipo.impl.fxModel.ElementFx;
+import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
+import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.util.ByFactory;
 import de.muenchen.selenipo.view.poOverviewStates.ElementTableState;
 import de.muenchen.selenipo.view.poOverviewStates.PoComboBoxState;

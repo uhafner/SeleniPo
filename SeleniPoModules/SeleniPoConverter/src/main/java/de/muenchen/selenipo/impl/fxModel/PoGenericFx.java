@@ -1,4 +1,4 @@
-package de.muenchen.selenipo.model;
+package de.muenchen.selenipo.impl.fxModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ public class PoGenericFx implements PoGeneric {
 
 	public PoGenericFx() {
 		super();
+		this.identifier = new SimpleStringProperty();
 	}
 
 	@Override

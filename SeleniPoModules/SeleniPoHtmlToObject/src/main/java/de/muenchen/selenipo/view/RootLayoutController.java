@@ -1,10 +1,14 @@
 package de.muenchen.selenipo.view;
 
+import java.io.File;
+
 import javafx.fxml.FXML;
+import javafx.stage.FileChooser;
 
 import org.apache.log4j.Logger;
 
 import de.muenchen.selenipo.MainApp;
+import de.muenchen.selenipo.impl.fxModel.PoModelFx;
 import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
 public class RootLayoutController {
@@ -16,17 +20,49 @@ public class RootLayoutController {
 	@FXML
 	public void handleSave() {
 		logger.debug("Save..");
-		PoModelImpl poModelImpl = mainApp.getConverterService().convertToImpl(
-				mainApp.getPoModelFx());
-		mainApp.getConverterService().persistToXml("POSAVE.xml", poModelImpl);
+		FileChooser fileChooser = new FileChooser();
+
+		// Set extension filter
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+				"XML files (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		// Show save file dialog
+		File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+
+		if (file != null) {
+			// Make sure it has the correct extension
+			if (!file.getPath().endsWith(".xml")) {
+				file = new File(file.getPath() + ".xml");
+			}
+			PoModelImpl poModelImpl = mainApp.getConverterService()
+					.convertToImpl(mainApp.getPoModelFx());
+			mainApp.getConverterService().persistToXml(file, poModelImpl);
+		}
 	}
 
 	@FXML
 	public void handleLoad() {
 		logger.debug("Load..");
-		PoModelImpl loadFromXml = (PoModelImpl) mainApp.getConverterService()
-				.loadFromXml("POSAVE.xml");
-		System.out.println(loadFromXml);
+		FileChooser fileChooser = new FileChooser();
+
+		// Set extension filter
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+				"XML files (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		// Show save file dialog
+		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+
+		if (file != null) {
+			PoModelImpl loadFromXml = (PoModelImpl) mainApp
+					.getConverterService().loadFromXml(file);
+			PoModelFx fxModel = mainApp.getConverterService().convertToFxModel(
+					loadFromXml);
+			mainApp.setPoModelFx(fxModel);
+			System.out.println(fxModel.getPoGenerics().size());
+			mainApp.showPoOverview();
+		}
 	}
 
 	/**

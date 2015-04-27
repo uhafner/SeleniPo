@@ -8,8 +8,8 @@ import javafx.scene.control.ComboBox;
 
 import org.apache.log4j.Logger;
 
-import de.muenchen.selenipo.model.ElementFx;
-import de.muenchen.selenipo.model.PoGenericFx;
+import de.muenchen.selenipo.impl.fxModel.ElementFx;
+import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.view.PoOverviewController;
 import de.muenchen.selenipo.view.PoOverviewState;
 

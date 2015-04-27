@@ -1,5 +1,7 @@
 package de.muenchen.selenipo;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,11 @@ public class PersistServiceTest {
 	ConverterService persistService;
 
 	@Test
-	public void BaseTest() {
-		String path = "test.xml";
+	public void saveAndLoad() {
+		File file = new File("test.xml");
 		PoModel testModel = getTestPoGeneric();
-		System.out.println(testModel);
-		persistService.persistToXml(path, testModel);
-		PoModel loaded = (PoModel) persistService.loadFromXml(path);
+		persistService.persistToXml(file, testModel);
+		PoModel loaded = (PoModel) persistService.loadFromXml(file);
 		Assert.assertEquals(testModel, loaded);
 	}
 

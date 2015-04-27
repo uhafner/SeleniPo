@@ -14,10 +14,10 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import de.muenchen.selenipo.config.ConverterConfig;
-import de.muenchen.selenipo.model.ElementFx;
-import de.muenchen.selenipo.model.PoGenericFx;
-import de.muenchen.selenipo.model.PoModelFx;
-import de.muenchen.selenipo.model.TransitionFx;
+import de.muenchen.selenipo.impl.fxModel.ElementFx;
+import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
+import de.muenchen.selenipo.impl.fxModel.PoModelFx;
+import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.view.ElementEditDialogController;
 import de.muenchen.selenipo.view.PoEditDialogController;
 import de.muenchen.selenipo.view.PoOverviewController;

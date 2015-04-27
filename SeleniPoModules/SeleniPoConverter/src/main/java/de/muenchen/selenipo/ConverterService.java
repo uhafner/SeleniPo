@@ -1,5 +1,8 @@
 package de.muenchen.selenipo;
 
+import java.io.File;
+
+import de.muenchen.selenipo.impl.fxModel.PoModelFx;
 import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
 /**
@@ -16,7 +19,7 @@ public interface ConverterService {
 	 * @param o
 	 *            Objekt das Serialisiert werden soll.
 	 */
-	void persistToXml(String path, Object o);
+	void persistToXml(File file, Object o);
 
 	/**
 	 * 
@@ -25,8 +28,10 @@ public interface ConverterService {
 	 *            Type der geladen werden soll
 	 * @return
 	 */
-	Object loadFromXml(String path);
+	Object loadFromXml(File File);
 
 	PoModelImpl convertToImpl(PoModel poModel);
+
+	PoModelFx convertToFxModel(PoModel poModel);
 
 }

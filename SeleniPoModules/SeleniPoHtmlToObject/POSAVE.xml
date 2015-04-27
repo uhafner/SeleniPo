@@ -1,27 +1,15 @@
-<de.muenchen.selenipo.impl.PoModelImpl>
+<de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>
   <poGenerics>
-    <de.muenchen.selenipo.impl.PoGenericImpl>
+    <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
       <identifier>dad</identifier>
       <elements>
-        <de.muenchen.selenipo.impl.ElementImpl>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
           <type>LINK</type>
-          <locator>aaa</locator>
-          <identefier>aaa</identefier>
-        </de.muenchen.selenipo.impl.ElementImpl>
+          <locator>da</locator>
+          <identefier>dad</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
       </elements>
-      <transitions>
-        <de.muenchen.selenipo.impl.TransitionImpl>
-          <to class="de.muenchen.selenipo.impl.PoGenericImpl">
-            <identifier>bbbb</identifier>
-            <elements/>
-            <transitions/>
-          </to>
-          <type reference="../../../elements/de.muenchen.selenipo.impl.ElementImpl/type"/>
-          <locator>aaa</locator>
-          <identefier>aaa</identefier>
-        </de.muenchen.selenipo.impl.TransitionImpl>
-      </transitions>
-    </de.muenchen.selenipo.impl.PoGenericImpl>
-    <de.muenchen.selenipo.impl.PoGenericImpl reference="../de.muenchen.selenipo.impl.PoGenericImpl/transitions/de.muenchen.selenipo.impl.TransitionImpl/to"/>
+      <transitions/>
+    </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
   </poGenerics>
-</de.muenchen.selenipo.impl.PoModelImpl>
+</de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>

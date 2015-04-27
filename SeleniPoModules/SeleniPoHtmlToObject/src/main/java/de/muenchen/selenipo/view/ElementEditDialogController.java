@@ -8,7 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import de.muenchen.selenipo.Selector;
-import de.muenchen.selenipo.model.ElementFx;
+import de.muenchen.selenipo.impl.fxModel.ElementFx;
 
 public class ElementEditDialogController {
 
