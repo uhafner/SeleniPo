@@ -9,8 +9,9 @@ public class ElementImpl implements Element {
 	private String locator;
 	private String identefier;
 
-	public ElementImpl(Selector type, String locator) {
+	public ElementImpl(String idetefier, Selector type, String locator) {
 		super();
+		this.identefier = idetefier;
 		this.type = type;
 		this.locator = locator;
 	}

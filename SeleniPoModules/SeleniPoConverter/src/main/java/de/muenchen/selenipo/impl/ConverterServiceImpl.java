@@ -185,7 +185,10 @@ public class ConverterServiceImpl implements ConverterService {
 	}
 
 	private Transition findTransInList(List<Transition> list, String identifier) {
+		logger.debug("Überprüfe [" + list.size() + "] Trans");
 		for (Transition transitionImpl : list) {
+			logger.debug("Vergleiche: [" + transitionImpl.getIdentifier() + "/"
+					+ identifier + "]");
 			if (identifier.equals(transitionImpl.getIdentifier())) {
 				return transitionImpl;
 			}

@@ -8,8 +8,9 @@ public class TransitionImpl extends ElementImpl implements Transition {
 
 	private PoGeneric to;
 
-	public TransitionImpl(Selector type, String locator, PoGeneric to) {
-		super(type, locator);
+	public TransitionImpl(String identefier, Selector type, String locator,
+			PoGeneric to) {
+		super(identefier, type, locator);
 		this.to = to;
 	}
 
