@@ -21,6 +21,5 @@ public class TestPoGenerated extends BasePo {
 	public Control getbEnter() {
 		return bEnter;
 	}
-	
-	
+
 }

@@ -9,8 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
@@ -22,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.muenchen.selenipo.GeneratorService;
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.PoModel;
+import de.muenchen.selenipo.Transition;
 
 /**
  * Impl des GeneratorService Interface.
@@ -62,11 +65,17 @@ public class GeneratorServiceImpl implements GeneratorService {
 			final String rootFolder) throws IOException {
 		// Map to return
 		Map<String, String> returnValue = new HashMap<String, String>();
+		// Befülle liste mit unterschiedlichen DestinationPos für die Imports
+		Set<PoGeneric> destinationPos = new HashSet<PoGeneric>();
+		for (Transition transition : poGeneric.getTransitions()) {
+			destinationPos.add(transition.getDestination());
+		}
 
 		// create a context and add data
 		VelocityContext context = new VelocityContext();
 		context.put("display", display);
 		context.put("poGeneric", poGeneric);
+		context.put("destionationPos", destinationPos);
 
 		logger.debug(String.format("RootFolder: %s", rootFolder));
 		logger.debug("-Erzeuge Generated PO:");
@@ -92,11 +101,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 		final String wholePathEdit = String.format("%s/%s/%s/%s.java",
 				rootFolder, EDIT_FOLDER_NAME, packagePath,
 				poGeneric.getIdentifier());
-		Map<String, String> mapEdit = writeFile(wholePathEdit, context, tEdit,
-				poGeneric);
+		writeFile(wholePathEdit, context, tEdit, poGeneric);
 
 		returnValue.putAll(mapGenerated);
-		returnValue.putAll(mapEdit);
 		return returnValue;
 	}
 

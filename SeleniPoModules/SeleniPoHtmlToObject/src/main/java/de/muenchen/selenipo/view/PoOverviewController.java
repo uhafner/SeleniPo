@@ -155,14 +155,9 @@ public class PoOverviewController {
 	@FXML
 	private void handleUrlStart() throws InterruptedException {
 		logger.debug(String.format("Url Start.. [%s]", urlField.getText()));
-		ByFactory by = new ByFactory();
 		WebDriver driver = new FirefoxDriver();
+		mainApp.setWebDriver(driver);
 		driver.get(urlField.getText());
-		Thread.sleep(5000);
-		System.out.println("go");
-		WebElement findElement = driver.findElement(by.link("New"));
-		findElement.click();
-
 	}
 
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {

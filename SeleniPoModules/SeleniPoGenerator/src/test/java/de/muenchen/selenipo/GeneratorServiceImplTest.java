@@ -29,7 +29,7 @@ public class GeneratorServiceImplTest {
 		Map<String, String> generatePageObject = generatorService
 				.generatePageObject(testPoGenericFx.getPoGenerics().get(0),
 						"./");
-		Assert.assertEquals(generatePageObject.size(), 2);
+		Assert.assertEquals(1,generatePageObject.size());
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class GeneratorServiceImplTest {
 		PoModelFx testPoGenericFx = getTestPoGenericFx();
 		Map<String, String> generatePageObject = generatorService
 				.generatePageObjects(testPoGenericFx, "./");
-		Assert.assertEquals(generatePageObject.size(), 1);
+		Assert.assertEquals(2,generatePageObject.size());
 	}
 
 	private PoModelFx getTestPoGenericFx() {

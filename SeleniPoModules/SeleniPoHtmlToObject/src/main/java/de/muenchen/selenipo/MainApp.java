@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import de.muenchen.selenipo.config.ConverterConfig;
@@ -32,6 +33,7 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
+	private WebDriver webDriver;
 	private PoModelFx poModelFx;
 	private ConverterService converterService;
 	private GeneratorService generatorService;
@@ -53,6 +55,7 @@ public class MainApp extends Application {
 				ConverterConfig.class, GeneratorConfig.class);
 		converterService = context.getBean(ConverterService.class);
 		generatorService = context.getBean(GeneratorService.class);
+		webDriver = null;
 	}
 
 	@Override
@@ -244,6 +247,14 @@ public class MainApp extends Application {
 
 	public void setGeneratorService(GeneratorService generatorService) {
 		this.generatorService = generatorService;
+	}
+
+	public WebDriver getWebDriver() {
+		return webDriver;
+	}
+
+	public void setWebDriver(WebDriver webDriver) {
+		this.webDriver = webDriver;
 	}
 
 	/**
