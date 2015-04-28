@@ -5,11 +5,16 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import de.muenchen.selenipo.Selector;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.view.PoOverviewController;
 import de.muenchen.selenipo.view.PoOverviewState;
+import de.muenchen.selenipo.view.PoOverviewController.Colour;
 
 public class TransitionTableState implements PoOverviewState {
 
@@ -89,8 +94,32 @@ public class TransitionTableState implements PoOverviewState {
 
 	@Override
 	public void handleTest() {
-		// TODO Auto-generated method stub
+		TableView<TransitionFx> transitionTable = poOverviewController
+				.getTransitionTable();
 
+		TransitionFx transition = transitionTable.getSelectionModel()
+				.getSelectedItem();
+		if (transition != null) {
+			WebDriver driver = poOverviewController.getMainApp().getWebDriver();
+			Selector type = transition.getType();
+			String locator = transition.getLocator();
+			try {
+				WebElement webElement = driver.findElement(type.by(locator));
+				poOverviewController.getTransitionColour().put(
+						transitionTable.getSelectionModel().getSelectedIndex(),
+						Colour.GREEN);
+
+			} catch (NoSuchElementException e) {
+				poOverviewController.getTransitionColour().put(
+						transitionTable.getSelectionModel().getSelectedIndex(),
+						Colour.RED);
+			}
+
+		} else {
+			poOverviewController.createNoElementSelectedAlert(
+					poOverviewController.getMainApp().getPrimaryStage(),
+					"transition Table");
+		}
 	}
 
 }

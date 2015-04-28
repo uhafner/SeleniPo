@@ -115,7 +115,6 @@ public class ElementTableState implements PoOverviewState {
 						Colour.GREEN);
 
 			} catch (NoSuchElementException e) {
-				System.out.println("RED");
 				poOverviewController.getElementColour().put(
 						elementTable.getSelectionModel().getSelectedIndex(),
 						Colour.RED);

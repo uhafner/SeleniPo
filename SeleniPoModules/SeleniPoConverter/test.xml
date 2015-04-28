@@ -1,7 +1,8 @@
 <de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>
   <poGenerics>
     <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
-      <identifier>basePackage</identifier>
+      <identifier>WelcomePo</identifier>
+      <packageName>basePackage</packageName>
       <elements>
         <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
           <type>XPATH</type>
@@ -12,20 +13,21 @@
       <transitions>
         <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
           <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl">
-            <identifier>basePackage</identifier>
+            <identifier>listPo</identifier>
+            <packageName>basePackage</packageName>
             <elements/>
             <transitions>
               <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
                 <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../../../../.."/>
                 <type>LINK</type>
                 <locator>ToDo-App</locator>
-                <identefier>ToDo-App</identefier>
+                <identefier>toDo-App</identefier>
               </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
             </transitions>
           </to>
           <type reference="../to/transitions/de.muenchen.selenipo.impl.persistanceModel.TransitionImpl/type"/>
           <locator>bEnter</locator>
-          <identefier>EnterButton</identefier>
+          <identefier>enterButton</identefier>
         </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
       </transitions>
     </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>

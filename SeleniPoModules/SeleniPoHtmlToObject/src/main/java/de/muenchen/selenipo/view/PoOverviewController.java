@@ -2,15 +2,20 @@ package de.muenchen.selenipo.view;
 
 import java.util.Collections;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -122,36 +127,17 @@ public class PoOverviewController {
 		};
 		poComboBox.setConverter(poConverter);
 
-		registerElementRowHiglighting(elementTable);
+		setElementRowFactory(elementTable);
+		setTransitionRowFactory(transitionTable);
 	}
 
-	private void registerElementRowHiglighting(TableView<ElementFx> elementTable) {
+	private void setElementRowFactory(TableView<ElementFx> elementTable) {
 		elementTable
 				.setRowFactory(new Callback<TableView<ElementFx>, TableRow<ElementFx>>() {
 					@Override
 					public TableRow<ElementFx> call(
 							TableView<ElementFx> tableView) {
-						final TableRow<ElementFx> row = new TableRow<ElementFx>() {
-							@Override
-							protected void updateItem(ElementFx elementFx,
-									boolean empty) {
-								super.updateItem(elementFx, empty);
-								getStyleClass().remove("okStatus");
-								getStyleClass().remove("errorStatus");
-								if (elementColour.get(getIndex()) != null) {
-									switch (elementColour.get(getIndex())) {
-									case RED:
-										getStyleClass().add("errorStatus");
-										break;
-									case GREEN:
-										getStyleClass().add("okStatus");
-										break;
-									default:
-										break;
-									}
-								}
-							}
-						};
+						final TableRow<ElementFx> row = new TableRow<ElementFx>();
 						elementColour
 								.addListener(new MapChangeListener<Integer, Colour>() {
 									@Override
@@ -178,6 +164,96 @@ public class PoOverviewController {
 
 									}
 								});
+
+						// Contextmenü hinzufügen
+						final ContextMenu rowMenu = new ContextMenu();
+						MenuItem editItem = new MenuItem("Edit");
+						editItem.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent event) {
+								handleEdit();
+							}
+						});
+						MenuItem removeItem = new MenuItem("Delete");
+						removeItem.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent event) {
+								handleDelete();
+							}
+						});
+						rowMenu.getItems().addAll(editItem, removeItem);
+
+						// only display context menu for non-null items:
+						row.contextMenuProperty().bind(
+								Bindings.when(
+										Bindings.isNotNull(row.itemProperty()))
+										.then(rowMenu)
+										.otherwise((ContextMenu) null));
+
+						return row;
+					}
+				});
+	}
+
+	private void setTransitionRowFactory(TableView<TransitionFx> transitionTable) {
+		transitionTable
+				.setRowFactory(new Callback<TableView<TransitionFx>, TableRow<TransitionFx>>() {
+					@Override
+					public TableRow<TransitionFx> call(
+							TableView<TransitionFx> tableView) {
+						final TableRow<TransitionFx> row = new TableRow<TransitionFx>();
+						transitionColour
+								.addListener(new MapChangeListener<Integer, Colour>() {
+									@Override
+									public void onChanged(
+											javafx.collections.MapChangeListener.Change<? extends Integer, ? extends Colour> change) {
+										row.getStyleClass().remove("okStatus");
+										row.getStyleClass().remove(
+												"errorStatus");
+										if (transitionColour.get(row.getIndex()) != null) {
+											switch (transitionColour.get(row
+													.getIndex())) {
+											case GREEN:
+												row.getStyleClass().add(
+														"okStatus");
+												break;
+											case RED:
+												row.getStyleClass().add(
+														"errorStatus");
+												break;
+											default:
+												break;
+											}
+										}
+
+									}
+								});
+
+						// Contextmenü hinzufügen
+						final ContextMenu rowMenu = new ContextMenu();
+						MenuItem editItem = new MenuItem("Edit");
+						editItem.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent event) {
+								handleEdit();
+							}
+						});
+						MenuItem removeItem = new MenuItem("Delete");
+						removeItem.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent event) {
+								handleDelete();
+							}
+						});
+						rowMenu.getItems().addAll(editItem, removeItem);
+
+						// only display context menu for non-null items:
+						row.contextMenuProperty().bind(
+								Bindings.when(
+										Bindings.isNotNull(row.itemProperty()))
+										.then(rowMenu)
+										.otherwise((ContextMenu) null));
+
 						return row;
 					}
 				});
@@ -231,6 +307,7 @@ public class PoOverviewController {
 	private void handleTest() {
 		logger.debug("Test pressed..");
 		elementColour.clear();
+		transitionColour.clear();
 		WebDriver driver = mainApp.getWebDriver();
 		if (driver != null) {
 			poOverviewState.handleTest();
