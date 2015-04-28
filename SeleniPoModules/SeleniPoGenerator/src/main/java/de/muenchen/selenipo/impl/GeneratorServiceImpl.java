@@ -5,6 +5,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -29,35 +34,94 @@ public class GeneratorServiceImpl implements GeneratorService {
 	private static final Logger logger = Logger
 			.getLogger(GeneratorServiceImpl.class);
 
+	private static final String GENERATED_FOLDER_NAME = "generated";
+	private static final String EDIT_FOLDER_NAME = "edit";
+
 	@Autowired
 	VelocityEngine velocityEngine;
+	@Autowired
+	DisplayTool display;
 
 	@Override
-	public Map<String, String> generatePageObjects(final PoModel poModel)
-			throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, String> generatePageObjects(final PoModel poModel,
+			final String rootFolder) throws IOException {
+		Map<String, String> returnValue = new HashMap<String, String>();
+		List<PoGeneric> poGenerics = poModel.getPoGenerics();
+		for (PoGeneric poGeneric : poGenerics) {
+			logger.debug(String.format("Starte Generierung für Po: [%s]",
+					poGeneric.getIdentifier()));
+			Map<String, String> poMap = generatePageObject(poGeneric,
+					rootFolder);
+			returnValue.putAll(poMap);
+		}
+		return returnValue;
 	}
 
 	@Override
-	public Map<String, String> generatePageObject(final PoGeneric poGeneric)
-			throws IOException {
-		/* next, get the Template */
-		Template t = velocityEngine
-				.getTemplate("de/muenchen/selenipo/poGeneric.vm");
-		/* create a context and add data */
+	public Map<String, String> generatePageObject(final PoGeneric poGeneric,
+			final String rootFolder) throws IOException {
+		// Map to return
+		Map<String, String> returnValue = new HashMap<String, String>();
+
+		// create a context and add data
 		VelocityContext context = new VelocityContext();
-		context.put("display", new DisplayTool());
+		context.put("display", display);
 		context.put("poGeneric", poGeneric);
-		/* now render the template into a StringWriter */
-		File file = new File("./test.txt");
-		FileWriter out = new FileWriter(file);
-		BufferedWriter w = new BufferedWriter(out);
-		StringWriter writer = new StringWriter();
-		t.merge(context, w);
-		w.flush();
-		/* show the World */
-		return null;
+
+		logger.debug(String.format("RootFolder: %s", rootFolder));
+		logger.debug("-Erzeuge Generated PO:");
+		// Generate Path
+		final String packagePath = poGeneric.getPackageName().replaceAll("\\.",
+				"/");
+		logger.debug(String.format("-- packagePath: %s", packagePath));
+
+		// Erzeuge Generated Po
+		// Get Template
+		Template tGenerated = velocityEngine
+				.getTemplate("de/muenchen/selenipo/poGeneric.vm");
+		final String wholePathGenerated = String.format(
+				"%s/%s/%s/%sGenerated.java", rootFolder, GENERATED_FOLDER_NAME,
+				packagePath, poGeneric.getIdentifier());
+		Map<String, String> mapGenerated = writeFile(wholePathGenerated,
+				context, tGenerated, poGeneric);
+
+		// Erzeuge Edit Po
+		// Get Template
+		Template tEdit = velocityEngine
+				.getTemplate("de/muenchen/selenipo/poEditable.vm");
+		final String wholePathEdit = String.format("%s/%s/%s/%s.java",
+				rootFolder, EDIT_FOLDER_NAME, packagePath,
+				poGeneric.getIdentifier());
+		Map<String, String> mapEdit = writeFile(wholePathEdit, context, tEdit,
+				poGeneric);
+
+		returnValue.putAll(mapGenerated);
+		returnValue.putAll(mapEdit);
+		return returnValue;
 	}
 
+	private Map<String, String> writeFile(String wholePath,
+			VelocityContext context, Template t, PoGeneric poGeneric)
+			throws IOException {
+		Map<String, String> returnValue = new HashMap<String, String>();
+		logger.debug(String.format("-- wholePath: %s", wholePath));
+		Path path = Paths.get(wholePath);
+
+		// Create File
+		Files.createDirectories(path.getParent());
+		File fileGenerated = new File(path.toString());
+
+		// Write Data
+		FileWriter out = new FileWriter(fileGenerated);
+		BufferedWriter w = new BufferedWriter(out);
+		StringWriter sw = new StringWriter();
+		t.merge(context, w);
+		t.merge(context, sw);
+
+		returnValue.put(poGeneric.getIdentifier(), sw.toString());
+		w.flush();
+		sw.flush();
+		/* show the World */
+		return returnValue;
+	}
 }

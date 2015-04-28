@@ -3,9 +3,6 @@ package de.muenchen.selenipo;
 import java.io.IOException;
 import java.util.Map;
 
-import de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl;
-import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
-
 /**
  * Service der die Funktionalität zum Generieren von PageObjecrts bereitstellt.
  * 
@@ -19,18 +16,23 @@ public interface GeneratorService {
 	 * 
 	 * @param poModel
 	 *            PoModel
+	 * @param rootFolder
+	 *            Path to Folder which contains the 'generated'-Folder
 	 * @return PoModel
 	 */
-	Map<String, String> generatePageObjects(PoModel poModel) throws IOException;
+	Map<String, String> generatePageObjects(PoModel poModel, String rootFolder)
+			throws IOException;
 
 	/**
 	 * Generates a singel pageObject frim a PoGeneric.
 	 * 
 	 * @param poGeneric
 	 *            poGeneric
+	 * @param rootFolder
+	 *            Path to Folder which contains the 'generated'-Folder
 	 * @return String - Generated String
 	 */
-	Map<String, String> generatePageObject(PoGeneric poGeneric)
-			throws IOException;
+	Map<String, String> generatePageObject(PoGeneric poGeneric,
+			String rootFolder) throws IOException;
 
 }

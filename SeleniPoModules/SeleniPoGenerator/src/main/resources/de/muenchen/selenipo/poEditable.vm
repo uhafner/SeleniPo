@@ -1,0 +1,12 @@
+package de.muenchen.selenipo.po.edit#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end;
+
+import de.muenchen.selenipo.po.BasePo;
+import de.muenchen.selenipo.po.Control;
+import de.muenchen.selenipo.po.PageObject;
+import de.muenchen.selenipo.po.generated#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end.$poGeneric.getIdentifier()Generated;
+
+public class $poGeneric.getIdentifier() extends $poGeneric.getIdentifier()Generated {
+
+
+
+}

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import de.muenchen.selenipo.config.ConverterConfig;
+import de.muenchen.selenipo.config.GeneratorConfig;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
@@ -32,7 +33,8 @@ public class MainApp extends Application {
 	private BorderPane rootLayout;
 
 	private PoModelFx poModelFx;
-	private ConverterService persistService;
+	private ConverterService converterService;
+	private GeneratorService generatorService;
 
 	public PoModelFx getPoModelFx() {
 		return poModelFx;
@@ -48,8 +50,9 @@ public class MainApp extends Application {
 	public MainApp() {
 		poModelFx = new PoModelFx();
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				ConverterConfig.class);
-		persistService = context.getBean(ConverterService.class);
+				ConverterConfig.class, GeneratorConfig.class);
+		converterService = context.getBean(ConverterService.class);
+		generatorService = context.getBean(GeneratorService.class);
 	}
 
 	@Override
@@ -228,11 +231,19 @@ public class MainApp extends Application {
 	}
 
 	public ConverterService getConverterService() {
-		return persistService;
+		return converterService;
 	}
 
 	public void setConverterService(ConverterService converterService) {
-		this.persistService = converterService;
+		this.converterService = converterService;
+	}
+
+	public GeneratorService getGeneratorService() {
+		return generatorService;
+	}
+
+	public void setGeneratorService(GeneratorService generatorService) {
+		this.generatorService = generatorService;
 	}
 
 	/**

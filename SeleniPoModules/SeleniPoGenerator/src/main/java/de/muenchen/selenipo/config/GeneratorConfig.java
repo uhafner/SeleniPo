@@ -3,6 +3,7 @@ package de.muenchen.selenipo.config;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.apache.velocity.tools.generic.DisplayTool;
 import org.springframework.context.annotation.Bean;
 
 import de.muenchen.selenipo.GeneratorService;
@@ -24,5 +25,10 @@ public class GeneratorConfig {
 		ve.setProperty("runtime.log.logsystem.log4j.logger", "velocity");
 		ve.init();
 		return ve;
+	}
+
+	@Bean
+	DisplayTool displayTool() {
+		return new DisplayTool();
 	}
 }

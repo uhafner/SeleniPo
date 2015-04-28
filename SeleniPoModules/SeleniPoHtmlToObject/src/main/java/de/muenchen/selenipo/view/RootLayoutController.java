@@ -1,8 +1,12 @@
 package de.muenchen.selenipo.view;
 
 import java.io.File;
+import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 import org.apache.log4j.Logger;
@@ -60,8 +64,30 @@ public class RootLayoutController {
 			PoModelFx fxModel = mainApp.getConverterService().convertToFxModel(
 					loadFromXml);
 			mainApp.setPoModelFx(fxModel);
-			System.out.println(fxModel.getPoGenerics().size());
 			mainApp.showPoOverview();
+		}
+	}
+
+	@FXML
+	public void handleGenerate() {
+		logger.debug("generate..");
+		DirectoryChooser dirChooser = new DirectoryChooser();
+		File dir = dirChooser.showDialog(mainApp.getPrimaryStage());
+		if (dir != null) {
+			try {
+				mainApp.getGeneratorService().generatePageObjects(
+						mainApp.getPoModelFx(), dir.getAbsolutePath());
+			} catch (IOException e) {
+				// Show the error message.
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.initOwner(mainApp.getPrimaryStage());
+				alert.setTitle("Fehler beim Generieren");
+				alert.setHeaderText("Stacktrace:");
+				alert.setContentText(e.toString());
+
+				alert.showAndWait();
+
+			}
 		}
 	}
 

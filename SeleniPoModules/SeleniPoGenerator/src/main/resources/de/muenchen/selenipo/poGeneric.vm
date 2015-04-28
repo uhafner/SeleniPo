@@ -1,21 +1,22 @@
-package de.muenchen.selenipo.po.generated;
+package de.muenchen.selenipo.po.generated#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end;
 
 import de.muenchen.selenipo.po.BasePo;
 import de.muenchen.selenipo.po.Control;
 import de.muenchen.selenipo.po.PageObject;
+import de.muenchen.selenipo.po.edit.*;
 
 public class $poGeneric.getIdentifier()Generated extends BasePo {
 
 #foreach( $element in $poGeneric.getElements() )
-	public final Control $element.getIdentifier() = control(by.$element.getType().getByMethodName()("$element.getLocator()"))
+	public final Control $element.getIdentifier() = control(by.$element.getType().getByMethodName()("$element.getLocator()"));
 #end
 #foreach( $transition in $poGeneric.getTransitions() )
-	public final Control $transition.getIdentifier() = control(by.$transition.getType().getByMethodName()("$transition.getLocator()"))
+	public final Control $transition.getIdentifier() = control(by.$transition.getType().getByMethodName()("$transition.getLocator()"));
 #end
  
 #foreach( $transition in $poGeneric.getTransitions() )
 	
-	public de.muenchen.sepenipo.po.edit$transition.getDestination().getClass() click$transition.getIdentifier()() {
+	public $transition.getDestination().getIdentifier() click${display.capitalize($transition.getIdentifier())}() {
 		return $transition.getIdentifier();
 	}
 	
