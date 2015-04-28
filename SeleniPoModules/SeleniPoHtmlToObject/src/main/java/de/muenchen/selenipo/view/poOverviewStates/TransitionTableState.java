@@ -81,15 +81,16 @@ public class TransitionTableState implements PoOverviewState {
 			boolean okClicked = poOverviewController.getMainApp()
 					.showTransitionEditDialog(transition);
 		} else {
-			// Nothing selected.
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.initOwner(poOverviewController.getMainApp().getPrimaryStage());
-			alert.setTitle("No Selection");
-			alert.setHeaderText("No Element Selected");
-			alert.setContentText("Please select a transition in the table.");
-
-			alert.showAndWait();
+			poOverviewController.createNoElementSelectedAlert(
+					poOverviewController.getMainApp().getPrimaryStage(),
+					"transition table");
 		}
+	}
+
+	@Override
+	public void handleTest() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

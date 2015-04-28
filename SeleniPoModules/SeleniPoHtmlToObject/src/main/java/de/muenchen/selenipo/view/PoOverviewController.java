@@ -1,25 +1,32 @@
 package de.muenchen.selenipo.view;
 
+import java.util.Collections;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import de.muenchen.selenipo.MainApp;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.TransitionFx;
-import de.muenchen.selenipo.util.ByFactory;
 import de.muenchen.selenipo.view.poOverviewStates.ElementTableState;
 import de.muenchen.selenipo.view.poOverviewStates.PoComboBoxState;
 import de.muenchen.selenipo.view.poOverviewStates.TransitionTableState;
@@ -50,6 +57,16 @@ public class PoOverviewController {
 	private TableColumn<TransitionFx, String> transLocatorColumn;
 	@FXML
 	private TableColumn<TransitionFx, String> transDestinationColumn;
+
+	public enum Colour {
+		RED, GREEN;
+	};
+
+	final ObservableMap<Integer, Colour> elementColour = FXCollections
+			.observableHashMap();
+
+	final ObservableMap<Integer, Colour> transitionColour = FXCollections
+			.observableHashMap();
 
 	@FXML
 	private ComboBox<PoGenericFx> poComboBox;
@@ -104,6 +121,66 @@ public class PoOverviewController {
 			}
 		};
 		poComboBox.setConverter(poConverter);
+
+		registerElementRowHiglighting(elementTable);
+	}
+
+	private void registerElementRowHiglighting(TableView<ElementFx> elementTable) {
+		elementTable
+				.setRowFactory(new Callback<TableView<ElementFx>, TableRow<ElementFx>>() {
+					@Override
+					public TableRow<ElementFx> call(
+							TableView<ElementFx> tableView) {
+						final TableRow<ElementFx> row = new TableRow<ElementFx>() {
+							@Override
+							protected void updateItem(ElementFx elementFx,
+									boolean empty) {
+								super.updateItem(elementFx, empty);
+								getStyleClass().remove("okStatus");
+								getStyleClass().remove("errorStatus");
+								if (elementColour.get(getIndex()) != null) {
+									switch (elementColour.get(getIndex())) {
+									case RED:
+										getStyleClass().add("errorStatus");
+										break;
+									case GREEN:
+										getStyleClass().add("okStatus");
+										break;
+									default:
+										break;
+									}
+								}
+							}
+						};
+						elementColour
+								.addListener(new MapChangeListener<Integer, Colour>() {
+									@Override
+									public void onChanged(
+											javafx.collections.MapChangeListener.Change<? extends Integer, ? extends Colour> change) {
+										row.getStyleClass().remove("okStatus");
+										row.getStyleClass().remove(
+												"errorStatus");
+										if (elementColour.get(row.getIndex()) != null) {
+											switch (elementColour.get(row
+													.getIndex())) {
+											case GREEN:
+												row.getStyleClass().add(
+														"okStatus");
+												break;
+											case RED:
+												row.getStyleClass().add(
+														"errorStatus");
+												break;
+											default:
+												break;
+											}
+										}
+
+									}
+								});
+						return row;
+					}
+				});
 	}
 
 	@FXML
@@ -145,6 +222,29 @@ public class PoOverviewController {
 	private void handleEdit() {
 		logger.debug("Edit pressed..");
 		poOverviewState.handleEdit();
+	}
+
+	/**
+	 * Called when the user clicks on the edit button.
+	 */
+	@FXML
+	private void handleTest() {
+		logger.debug("Test pressed..");
+		elementColour.clear();
+		WebDriver driver = mainApp.getWebDriver();
+		if (driver != null) {
+			poOverviewState.handleTest();
+		} else {
+			// Nothing selected.
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("No Browser");
+			alert.setHeaderText("Browser not started.");
+			alert.setContentText("Please start the Browser with the startbutton and"
+					+ System.lineSeparator() + "navigate to the website.");
+
+			alert.showAndWait();
+		}
 	}
 
 	/**
@@ -215,6 +315,14 @@ public class PoOverviewController {
 
 	public TableView<TransitionFx> getTransitionTable() {
 		return transitionTable;
+	}
+
+	public ObservableMap<Integer, Colour> getElementColour() {
+		return elementColour;
+	}
+
+	public ObservableMap<Integer, Colour> getTransitionColour() {
+		return transitionColour;
 	}
 
 	public MainApp getMainApp() {

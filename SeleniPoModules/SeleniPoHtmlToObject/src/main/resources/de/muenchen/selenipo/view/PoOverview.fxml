@@ -36,6 +36,7 @@
                   </TableView>
                   <ButtonBar layoutX="5.0" layoutY="424.0" prefHeight="0.0" prefWidth="464.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                     <buttons>
+                        <Button layoutX="199.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleTest" prefHeight="0.0" text="Test" />
                         <Button mnemonicParsing="false" onAction="#handleDelete" prefHeight="0.0" text="Delete" />
                         <Button mnemonicParsing="false" onAction="#handleEdit" prefHeight="0.0" text="Edit.." />
                       <Button mnemonicParsing="false" onAction="#handleNew" prefHeight="0.0" text="New.." />
