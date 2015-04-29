@@ -1,15 +1,8 @@
 package de.muenchen.selenipo.view.poOverviewStates;
 
-import java.util.Collections;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
@@ -99,7 +92,7 @@ public class ElementTableState implements PoOverviewState {
 	}
 
 	@Override
-	public void handleTest() {
+	public boolean handleTest() {
 		TableView<ElementFx> elementTable = poOverviewController
 				.getElementTable();
 
@@ -114,16 +107,86 @@ public class ElementTableState implements PoOverviewState {
 						elementTable.getSelectionModel().getSelectedIndex(),
 						Colour.GREEN);
 
+				return true;
 			} catch (NoSuchElementException e) {
 				poOverviewController.getElementColour().put(
 						elementTable.getSelectionModel().getSelectedIndex(),
 						Colour.RED);
+				return false;
 			}
 
 		} else {
 			poOverviewController.createNoElementSelectedAlert(
 					poOverviewController.getMainApp().getPrimaryStage(),
 					"element Table");
+			return false;
 		}
+	}
+
+	@Override
+	public boolean handleTestWithMessage() {
+		TableView<ElementFx> elementTable = poOverviewController
+				.getElementTable();
+
+		ElementFx element = elementTable.getSelectionModel().getSelectedItem();
+		if (element != null) {
+			WebDriver driver = poOverviewController.getMainApp().getWebDriver();
+			Selector type = element.getType();
+			String locator = element.getLocator();
+			try {
+				WebElement webElement = driver.findElement(type.by(locator));
+				poOverviewController.getElementColour().put(
+						elementTable.getSelectionModel().getSelectedIndex(),
+						Colour.GREEN);
+				// Meldung anzeigen
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.initOwner(poOverviewController.getMainApp()
+						.getPrimaryStage());
+				alert.setTitle("Element Gefunden");
+				alert.setHeaderText("Element Tag: " + webElement.getTagName());
+				alert.setContentText("Text: " + webElement.getText());
+
+				alert.showAndWait();
+				return true;
+
+			} catch (NoSuchElementException e) {
+				poOverviewController.getElementColour().put(
+						elementTable.getSelectionModel().getSelectedIndex(),
+						Colour.RED);
+				// Meldung anzeigen
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.initOwner(poOverviewController.getMainApp()
+						.getPrimaryStage());
+				alert.setTitle("Element nicht Gefunden");
+				alert.setHeaderText("Stacktrace:");
+				alert.setContentText(e.toString());
+
+				alert.showAndWait();
+				return false;
+			}
+
+		} else {
+			poOverviewController.createNoElementSelectedAlert(
+					poOverviewController.getMainApp().getPrimaryStage(),
+					"transition Table");
+			return false;
+		}
+	}
+
+	@Override
+	public boolean handleTestAndClick() {
+		boolean handleTest = handleTest();
+		if (handleTest) {
+			TableView<ElementFx> elementTable = poOverviewController
+					.getElementTable();
+			ElementFx element = elementTable.getSelectionModel()
+					.getSelectedItem();
+			WebDriver driver = poOverviewController.getMainApp().getWebDriver();
+			Selector type = element.getType();
+			String locator = element.getLocator();
+			WebElement webElement = driver.findElement(type.by(locator));
+			webElement.click();
+		}
+		return handleTest;
 	}
 }

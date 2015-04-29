@@ -7,7 +7,11 @@ public interface PoOverviewState {
 	void handleDelete();
 
 	void handleEdit();
-	
-	void handleTest();
+
+	boolean handleTest();
+
+	boolean handleTestWithMessage();
+
+	boolean handleTestAndClick();
 
 }

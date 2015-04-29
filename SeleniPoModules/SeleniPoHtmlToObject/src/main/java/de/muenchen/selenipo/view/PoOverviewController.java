@@ -1,12 +1,8 @@
 package de.muenchen.selenipo.view;
 
-import java.util.Collections;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -137,7 +133,16 @@ public class PoOverviewController {
 					@Override
 					public TableRow<ElementFx> call(
 							TableView<ElementFx> tableView) {
-						final TableRow<ElementFx> row = new TableRow<ElementFx>();
+						final TableRow<ElementFx> row = new TableRow<ElementFx>() {
+							@Override
+							protected void updateItem(ElementFx elementFx,
+									boolean empty) {
+								super.updateItem(elementFx, empty);
+								getStyleClass().remove("okStatus");
+								getStyleClass().remove("errorStatus");
+							}
+
+						};
 						elementColour
 								.addListener(new MapChangeListener<Integer, Colour>() {
 									@Override
@@ -165,30 +170,7 @@ public class PoOverviewController {
 									}
 								});
 
-						// Contextmenü hinzufügen
-						final ContextMenu rowMenu = new ContextMenu();
-						MenuItem editItem = new MenuItem("Edit");
-						editItem.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent event) {
-								handleEdit();
-							}
-						});
-						MenuItem removeItem = new MenuItem("Delete");
-						removeItem.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent event) {
-								handleDelete();
-							}
-						});
-						rowMenu.getItems().addAll(editItem, removeItem);
-
-						// only display context menu for non-null items:
-						row.contextMenuProperty().bind(
-								Bindings.when(
-										Bindings.isNotNull(row.itemProperty()))
-										.then(rowMenu)
-										.otherwise((ContextMenu) null));
+						setElementTransitionRowMenu(row);
 
 						return row;
 					}
@@ -201,7 +183,15 @@ public class PoOverviewController {
 					@Override
 					public TableRow<TransitionFx> call(
 							TableView<TransitionFx> tableView) {
-						final TableRow<TransitionFx> row = new TableRow<TransitionFx>();
+						final TableRow<TransitionFx> row = new TableRow<TransitionFx>() {
+							@Override
+							protected void updateItem(
+									TransitionFx transitionFx, boolean empty) {
+								super.updateItem(transitionFx, empty);
+								getStyleClass().remove("okStatus");
+								getStyleClass().remove("errorStatus");
+							}
+						};
 						transitionColour
 								.addListener(new MapChangeListener<Integer, Colour>() {
 									@Override
@@ -229,34 +219,52 @@ public class PoOverviewController {
 									}
 								});
 
-						// Contextmenü hinzufügen
-						final ContextMenu rowMenu = new ContextMenu();
-						MenuItem editItem = new MenuItem("Edit");
-						editItem.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent event) {
-								handleEdit();
-							}
-						});
-						MenuItem removeItem = new MenuItem("Delete");
-						removeItem.setOnAction(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent event) {
-								handleDelete();
-							}
-						});
-						rowMenu.getItems().addAll(editItem, removeItem);
-
-						// only display context menu for non-null items:
-						row.contextMenuProperty().bind(
-								Bindings.when(
-										Bindings.isNotNull(row.itemProperty()))
-										.then(rowMenu)
-										.otherwise((ContextMenu) null));
+						setElementTransitionRowMenu(row);
 
 						return row;
 					}
+
 				});
+	}
+
+	private void setElementTransitionRowMenu(TableRow<?> row) {
+		// Contextmenü hinzufügen
+		final ContextMenu rowMenu = new ContextMenu();
+		MenuItem editItem = new MenuItem("Edit");
+		editItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				handleEdit();
+			}
+		});
+		MenuItem removeItem = new MenuItem("Delete");
+		removeItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				handleDelete();
+			}
+		});
+		MenuItem testWithMessage = new MenuItem("Test and message");
+		testWithMessage.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				handleTestWithMesage();
+			}
+		});
+		MenuItem testAndClick = new MenuItem("Test and click");
+		testAndClick.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				handleTestAndClick();
+			}
+		});
+		rowMenu.getItems().addAll(editItem, removeItem, testWithMessage,
+				testAndClick);
+		// only display context menu for non-null items:
+		row.contextMenuProperty().bind(
+				Bindings.when(Bindings.isNotNull(row.itemProperty()))
+						.then(rowMenu).otherwise((ContextMenu) null));
+
 	}
 
 	@FXML
@@ -312,15 +320,39 @@ public class PoOverviewController {
 		if (driver != null) {
 			poOverviewState.handleTest();
 		} else {
-			// Nothing selected.
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.initOwner(mainApp.getPrimaryStage());
-			alert.setTitle("No Browser");
-			alert.setHeaderText("Browser not started.");
-			alert.setContentText("Please start the Browser with the startbutton and"
-					+ System.lineSeparator() + "navigate to the website.");
+			createBrowserNotStartedAlert(getMainApp().getPrimaryStage());
+		}
+	}
 
-			alert.showAndWait();
+	/**
+	 * Called when the user clicks on the edit button.
+	 */
+	@FXML
+	private void handleTestWithMesage() {
+		logger.debug("Test pressed..");
+		elementColour.clear();
+		transitionColour.clear();
+		WebDriver driver = mainApp.getWebDriver();
+		if (driver != null) {
+			poOverviewState.handleTestWithMessage();
+		} else {
+			createBrowserNotStartedAlert(getMainApp().getPrimaryStage());
+		}
+	}
+
+	/**
+	 * Called when the user clicks on the edit button.
+	 */
+	@FXML
+	private void handleTestAndClick() {
+		logger.debug("Test pressed..");
+		elementColour.clear();
+		transitionColour.clear();
+		WebDriver driver = mainApp.getWebDriver();
+		if (driver != null) {
+			poOverviewState.handleTestAndClick();
+		} else {
+			createBrowserNotStartedAlert(getMainApp().getPrimaryStage());
 		}
 	}
 
@@ -335,6 +367,21 @@ public class PoOverviewController {
 		WebDriver driver = new FirefoxDriver();
 		mainApp.setWebDriver(driver);
 		driver.get(urlField.getText());
+	}
+
+	@FXML
+	private void elementTabeleClick() {
+		poOverviewState = new ElementTableState(this);
+	}
+
+	@FXML
+	private void transitionTableClick() {
+		poOverviewState = new TransitionTableState(this);
+	}
+
+	@FXML
+	private void poComboboxClick() {
+		poOverviewState = new PoComboBoxState(this);
 	}
 
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {
@@ -360,19 +407,17 @@ public class PoOverviewController {
 		return confirm;
 	}
 
-	@FXML
-	private void elementTabeleClick() {
-		poOverviewState = new ElementTableState(this);
-	}
+	public Alert createBrowserNotStartedAlert(Stage stage) {
+		// Nothing selected.
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.initOwner(mainApp.getPrimaryStage());
+		alert.setTitle("No Browser");
+		alert.setHeaderText("Browser not started.");
+		alert.setContentText("Please start the Browser with the startbutton and"
+				+ System.lineSeparator() + "navigate to the website.");
 
-	@FXML
-	private void transitionTableClick() {
-		poOverviewState = new TransitionTableState(this);
-	}
-
-	@FXML
-	private void poComboboxClick() {
-		poOverviewState = new PoComboBoxState(this);
+		alert.showAndWait();
+		return alert;
 	}
 
 	/**

@@ -13,8 +13,8 @@ import de.muenchen.selenipo.Selector;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.view.PoOverviewController;
-import de.muenchen.selenipo.view.PoOverviewState;
 import de.muenchen.selenipo.view.PoOverviewController.Colour;
+import de.muenchen.selenipo.view.PoOverviewState;
 
 public class TransitionTableState implements PoOverviewState {
 
@@ -93,7 +93,7 @@ public class TransitionTableState implements PoOverviewState {
 	}
 
 	@Override
-	public void handleTest() {
+	public boolean handleTest() {
 		TableView<TransitionFx> transitionTable = poOverviewController
 				.getTransitionTable();
 
@@ -108,18 +108,89 @@ public class TransitionTableState implements PoOverviewState {
 				poOverviewController.getTransitionColour().put(
 						transitionTable.getSelectionModel().getSelectedIndex(),
 						Colour.GREEN);
+				return true;
 
 			} catch (NoSuchElementException e) {
 				poOverviewController.getTransitionColour().put(
 						transitionTable.getSelectionModel().getSelectedIndex(),
 						Colour.RED);
+				return false;
 			}
 
 		} else {
 			poOverviewController.createNoElementSelectedAlert(
 					poOverviewController.getMainApp().getPrimaryStage(),
 					"transition Table");
+			return false;
 		}
+	}
+
+	@Override
+	public boolean handleTestWithMessage() {
+		TableView<TransitionFx> transitionTable = poOverviewController
+				.getTransitionTable();
+
+		TransitionFx transition = transitionTable.getSelectionModel()
+				.getSelectedItem();
+		if (transition != null) {
+			WebDriver driver = poOverviewController.getMainApp().getWebDriver();
+			Selector type = transition.getType();
+			String locator = transition.getLocator();
+			try {
+				WebElement webElement = driver.findElement(type.by(locator));
+				poOverviewController.getTransitionColour().put(
+						transitionTable.getSelectionModel().getSelectedIndex(),
+						Colour.GREEN);
+				// Meldung anzeigen
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.initOwner(poOverviewController.getMainApp()
+						.getPrimaryStage());
+				alert.setTitle("Element Gefunden");
+				alert.setHeaderText("Element Tag: " + webElement.getTagName());
+				alert.setContentText("Text: " + webElement.getText());
+
+				alert.showAndWait();
+				return true;
+
+			} catch (NoSuchElementException e) {
+				poOverviewController.getTransitionColour().put(
+						transitionTable.getSelectionModel().getSelectedIndex(),
+						Colour.RED);
+				// Meldung anzeigen
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.initOwner(poOverviewController.getMainApp()
+						.getPrimaryStage());
+				alert.setTitle("Element nicht Gefunden");
+				alert.setHeaderText("Stacktrace:");
+				alert.setContentText(e.toString());
+
+				alert.showAndWait();
+				return false;
+			}
+
+		} else {
+			poOverviewController.createNoElementSelectedAlert(
+					poOverviewController.getMainApp().getPrimaryStage(),
+					"transition Table");
+			return false;
+		}
+	}
+
+	@Override
+	public boolean handleTestAndClick() {
+		boolean handleTest = handleTest();
+		if (handleTest) {
+			TableView<TransitionFx> transitionTable = poOverviewController
+					.getTransitionTable();
+			ElementFx transition = transitionTable.getSelectionModel()
+					.getSelectedItem();
+			WebDriver driver = poOverviewController.getMainApp().getWebDriver();
+			Selector type = transition.getType();
+			String locator = transition.getLocator();
+			WebElement webElement = driver.findElement(type.by(locator));
+			webElement.click();
+		}
+		return handleTest;
 	}
 
 }

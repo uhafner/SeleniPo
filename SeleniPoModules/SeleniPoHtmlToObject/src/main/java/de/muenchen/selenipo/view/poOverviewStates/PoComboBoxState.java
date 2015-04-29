@@ -7,11 +7,17 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ComboBox;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import de.muenchen.selenipo.Selector;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
+import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.view.PoOverviewController;
 import de.muenchen.selenipo.view.PoOverviewState;
+import de.muenchen.selenipo.view.PoOverviewController.Colour;
 
 public class PoComboBoxState implements PoOverviewState {
 
@@ -85,9 +91,69 @@ public class PoComboBoxState implements PoOverviewState {
 	}
 
 	@Override
-	public void handleTest() {
+	public boolean handleTest() {
+		boolean noError = true;
+		PoGenericFx selectedItem = poOverviewController.getPoComboBox()
+				.getSelectionModel().getSelectedItem();
+
+		for (ElementFx element : selectedItem.getElementsFx()) {
+
+			if (element != null) {
+				WebDriver driver = poOverviewController.getMainApp()
+						.getWebDriver();
+				Selector type = element.getType();
+				String locator = element.getLocator();
+				try {
+					WebElement webElement = driver
+							.findElement(type.by(locator));
+					poOverviewController.getElementColour().put(
+							selectedItem.getElementsFx().indexOf(element),
+							Colour.GREEN);
+
+				} catch (NoSuchElementException e) {
+					poOverviewController.getElementColour().put(
+							selectedItem.getElementsFx().indexOf(element),
+							Colour.RED);
+					noError = false;
+				}
+			}
+		}
+
+		for (TransitionFx transition : selectedItem.getTransitionsFx()) {
+
+			if (transition != null) {
+				WebDriver driver = poOverviewController.getMainApp()
+						.getWebDriver();
+				Selector type = transition.getType();
+				String locator = transition.getLocator();
+				try {
+					WebElement webElement = driver
+							.findElement(type.by(locator));
+					poOverviewController.getTransitionColour()
+							.put(selectedItem.getTransitionsFx().indexOf(
+									transition), Colour.GREEN);
+
+				} catch (NoSuchElementException e) {
+					poOverviewController.getTransitionColour()
+							.put(selectedItem.getTransitionsFx().indexOf(
+									transition), Colour.RED);
+					noError = false;
+				}
+			}
+		}
+		return noError;
+
+	}
+
+	@Override
+	public boolean handleTestWithMessage() {
+		return false;
+	}
+
+	@Override
+	public boolean handleTestAndClick() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

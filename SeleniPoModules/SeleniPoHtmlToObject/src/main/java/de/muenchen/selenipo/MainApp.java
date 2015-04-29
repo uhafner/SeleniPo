@@ -1,6 +1,7 @@
 package de.muenchen.selenipo;
 
 import java.io.IOException;
+import java.net.ConnectException;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -39,7 +40,7 @@ public class MainApp extends Application {
 	private PoModelFx poModelFx;
 	private ConverterService converterService;
 	private GeneratorService generatorService;
-	
+
 	final ObservableList<Integer> highlightRows = FXCollections
 			.observableArrayList();
 
@@ -254,7 +255,20 @@ public class MainApp extends Application {
 		this.generatorService = generatorService;
 	}
 
+	/**
+	 * Tests if the Webdriver got colsed. If that is the case sets it back to
+	 * null;
+	 * 
+	 * @return Webdriver or null;
+	 */
 	public WebDriver getWebDriver() {
+		if (webDriver != null) {
+			try {
+				webDriver.getTitle();
+			} catch (Exception e) {
+				webDriver = null;
+			}
+		}
 		return webDriver;
 	}
 
