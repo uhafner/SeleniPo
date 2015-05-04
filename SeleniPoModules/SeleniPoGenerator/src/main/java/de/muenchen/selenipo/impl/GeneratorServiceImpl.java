@@ -41,9 +41,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 	private static final String EDIT_FOLDER_NAME = "edit";
 
 	@Autowired
-	VelocityEngine velocityEngine;
+	private VelocityEngine velocityEngine;
 	@Autowired
-	DisplayTool display;
+	private DisplayTool display;
 
 	@Override
 	public Map<String, String> generatePageObjects(final PoModel poModel,
