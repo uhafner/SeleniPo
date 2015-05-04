@@ -81,8 +81,8 @@ public class ElementImpl implements Element {
 
 	@Override
 	public String toString() {
-		return "------ Element [type=" + type + ", locator=" + locator + "]"
-				+ System.lineSeparator();
+		return "------ Element [type=" + type + ", locator=" + locator
+				+ ", identifier=" + identefier + "]" + System.lineSeparator();
 	}
 
 }

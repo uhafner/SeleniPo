@@ -1,5 +1,8 @@
 package de.muenchen.selenipo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 
 import de.muenchen.selenipo.util.ByFactory;
@@ -63,5 +66,11 @@ public enum Selector {
 			break;
 		}
 		return returnBy;
+	}
+
+	private static final List<Selector> getParsableSelectors() {
+		List<Selector> selectors = new LinkedList<Selector>();
+		selectors.add(LINK);
+		return selectors;
 	}
 }

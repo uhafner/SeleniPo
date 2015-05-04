@@ -367,6 +367,7 @@ public class PoOverviewController {
 		WebDriver driver = new FirefoxDriver();
 		mainApp.setWebDriver(driver);
 		driver.get(urlField.getText());
+		System.out.println(driver.getPageSource());
 	}
 
 	@FXML
