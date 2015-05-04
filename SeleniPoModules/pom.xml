@@ -11,7 +11,7 @@
 		<module>SeleniPoUMLet</module>
 		<module>SeleniPoConverter</module>
 		<module>SeleniPoGenerator</module>
-		<module>SeleniPoHtmlToObject</module>
+		<module>SeleniPoEditor</module>
 	</modules>
 
 	<build>
