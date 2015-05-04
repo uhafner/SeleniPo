@@ -195,4 +195,30 @@ public class ConverterServiceImpl implements ConverterService {
 		}
 		throw new RuntimeException("Konnte Transition nicht in Liste finden");
 	}
+
+	@Override
+	public PoGenericFx convertToPoGenericFx(PoGeneric poGeneric) {
+		PoGenericFx tempPoGeneric = new PoGenericFx();
+		tempPoGeneric.setIdentifier(poGeneric.getIdentifier());
+		tempPoGeneric.setPackageName(poGeneric.getPackageName());
+
+		// Erzeuge jedes Element
+		for (Element element : poGeneric.getElements()) {
+			ElementFx tempElement = new ElementFx();
+			tempElement.setIdentifier(element.getIdentifier());
+			tempElement.setLocator(element.getLocator());
+			tempElement.setType(element.getType());
+			tempPoGeneric.getElementsFx().add(tempElement);
+		}
+
+		// Erzeuge Transitions
+		for (Transition transition : poGeneric.getTransitions()) {
+			TransitionFx tempTransition = new TransitionFx();
+			tempTransition.setIdentifier(transition.getIdentifier());
+			tempTransition.setLocator(transition.getLocator());
+			tempTransition.setType(transition.getType());
+			tempPoGeneric.getTransitionsFx().add(tempTransition);
+		}
+		return tempPoGeneric;
+	}
 }

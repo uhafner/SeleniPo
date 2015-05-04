@@ -14,4 +14,8 @@ public interface PoOverviewState {
 
 	boolean handleTestAndClick();
 
+	void handleMoveHtmlToElement();
+
+	void handleMoveHtmlToTransition();
+
 }

@@ -156,4 +156,16 @@ public class PoComboBoxState implements PoOverviewState {
 		return false;
 	}
 
+	@Override
+	public void handleMoveHtmlToElement() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void handleMoveHtmlToTransition() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

@@ -3,6 +3,7 @@ package de.muenchen.selenipo.view;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,11 +25,17 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
+import de.muenchen.selenipo.ConverterService;
 import de.muenchen.selenipo.MainApp;
+import de.muenchen.selenipo.PoGeneric;
+import de.muenchen.selenipo.Selector;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.view.poOverviewStates.ElementTableState;
+import de.muenchen.selenipo.view.poOverviewStates.HtmlSelectorComboboxState;
+import de.muenchen.selenipo.view.poOverviewStates.HtmlTableState;
 import de.muenchen.selenipo.view.poOverviewStates.PoComboBoxState;
 import de.muenchen.selenipo.view.poOverviewStates.TransitionTableState;
 
@@ -59,6 +66,21 @@ public class PoOverviewController {
 	@FXML
 	private TableColumn<TransitionFx, String> transDestinationColumn;
 
+	@FXML
+	private TableView<ElementFx> htmlTable;
+	@FXML
+	private TableColumn<ElementFx, String> htmlIdentifierColumn;
+	@FXML
+	private TableColumn<ElementFx, String> htmlSelectorTypeColumn;
+	@FXML
+	private TableColumn<ElementFx, String> htmlLocatorColumn;
+
+	@FXML
+	private ComboBox<PoGenericFx> poComboBox;
+
+	@FXML
+	private ComboBox<Selector> htmlSelectorComboBox;
+
 	public enum Colour {
 		RED, GREEN;
 	};
@@ -68,9 +90,6 @@ public class PoOverviewController {
 
 	final ObservableMap<Integer, Colour> transitionColour = FXCollections
 			.observableHashMap();
-
-	@FXML
-	private ComboBox<PoGenericFx> poComboBox;
 
 	// Reference to the main application.
 	private MainApp mainApp;
@@ -91,6 +110,13 @@ public class PoOverviewController {
 	 */
 	@FXML
 	private void initialize() {
+		htmlLocatorColumn.setCellValueFactory(cellData -> cellData.getValue()
+				.locatorProperty());
+		htmlSelectorTypeColumn.setCellValueFactory(cellData -> cellData
+				.getValue().typeProperty().asString());
+		htmlIdentifierColumn.setCellValueFactory(cellData -> cellData
+				.getValue().identifierProperty());
+
 		elemLocatorColumn.setCellValueFactory(cellData -> cellData.getValue()
 				.locatorProperty());
 		elemSelectorTypeColumn.setCellValueFactory(cellData -> cellData
@@ -281,6 +307,41 @@ public class PoOverviewController {
 		}
 	}
 
+	@FXML
+	private void htmlSelectorComboBoxAction() {
+		int selectedIndex = htmlSelectorComboBox.getSelectionModel()
+				.getSelectedIndex();
+
+		htmlTable.setItems(null);
+		if (selectedIndex >= 0) {
+			Selector selectedType = htmlSelectorComboBox.getSelectionModel()
+					.getSelectedItem();
+			WebDriver driver = mainApp.getWebDriver();
+			if (driver != null) {
+				HtmlParserService htmlParserService = mainApp
+						.getHtmlParserService();
+				ConverterService converterService = mainApp
+						.getConverterService();
+				String htmlString = driver.getPageSource();
+				PoGeneric htmlPoGeneric = htmlParserService
+						.parseElementsFromHtmlForType(htmlString, selectedType);
+				logger.debug(String.format(
+						"Habe %s Elemente gefunden. Convertiere sie..",
+						htmlPoGeneric.getElements().size()));
+				PoGenericFx htmlPoGenericFx = converterService
+						.convertToPoGenericFx(htmlPoGeneric);
+				logger.debug(String.format("Setze %s Elemente in Gui..",
+						htmlPoGenericFx.getElements().size()));
+				mainApp.setHtmlPoGenericFx(htmlPoGenericFx);
+				htmlTable
+						.setItems(mainApp.getHtmlPoGenericFx().getElementsFx());
+
+			} else {
+				logger.debug("Kein Parsing, da Webdriver null.");
+			}
+		}
+	}
+
 	/**
 	 * Called when the user clicks on the delete button.
 	 */
@@ -322,6 +383,32 @@ public class PoOverviewController {
 		} else {
 			createBrowserNotStartedAlert(getMainApp().getPrimaryStage());
 		}
+	}
+
+	/**
+	 * Called when the user clicks on the Element > button.
+	 */
+	@FXML
+	private void handleMoveHtmlToElement() {
+		logger.debug("Element > pressed..");
+	}
+
+	/**
+	 * Called when the user clicks on the Element > button.
+	 */
+	@FXML
+	private void handleMoveHtmlToTransition() {
+		logger.debug("Transition > pressed..");
+	}
+
+	/**
+	 * Called when the user clicks on the Element > button.
+	 */
+	@FXML
+	private void handleParseHtml() {
+		logger.debug("Parse Html pressed..");
+		logger.debug("delegate to htmlSelectorComboBoxAction()");
+		htmlSelectorComboBoxAction();
 	}
 
 	/**
@@ -385,6 +472,16 @@ public class PoOverviewController {
 		poOverviewState = new PoComboBoxState(this);
 	}
 
+	@FXML
+	private void htmlSelectorComboboxClick() {
+		poOverviewState = new HtmlSelectorComboboxState(this);
+	}
+
+	@FXML
+	private void htmlTableClick() {
+		poOverviewState = new HtmlTableState(this);
+	}
+
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {
 		// Nothing selected.
 		Alert alert = new Alert(AlertType.WARNING);
@@ -429,7 +526,9 @@ public class PoOverviewController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		poComboBox.setItems(mainApp.getPoModelFx().getPoGenericsFx());
-
+		ObservableList<Selector> observableSelectorList = FXCollections
+				.observableArrayList(Selector.getParsableSelectors());
+		htmlSelectorComboBox.setItems(observableSelectorList);
 	}
 
 	public TableView<ElementFx> getElementTable() {
@@ -446,6 +545,14 @@ public class PoOverviewController {
 
 	public ObservableMap<Integer, Colour> getTransitionColour() {
 		return transitionColour;
+	}
+
+	public TableView<ElementFx> getHtmlTable() {
+		return htmlTable;
+	}
+
+	public void setHtmlTable(TableView<ElementFx> htmlTable) {
+		this.htmlTable = htmlTable;
 	}
 
 	public MainApp getMainApp() {

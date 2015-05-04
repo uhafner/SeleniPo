@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
+import de.muenchen.SeleniPoHtmlParser.config.HtmlParserConfig;
 import de.muenchen.selenipo.config.ConverterConfig;
 import de.muenchen.selenipo.config.GeneratorConfig;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
@@ -38,8 +40,10 @@ public class MainApp extends Application {
 
 	private WebDriver webDriver;
 	private PoModelFx poModelFx;
+	private PoGenericFx htmlPoGenericFx;
 	private ConverterService converterService;
 	private GeneratorService generatorService;
+	private HtmlParserService htmlParserService;
 
 	final ObservableList<Integer> highlightRows = FXCollections
 			.observableArrayList();
@@ -58,9 +62,11 @@ public class MainApp extends Application {
 	public MainApp() {
 		poModelFx = new PoModelFx();
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				ConverterConfig.class, GeneratorConfig.class);
+				ConverterConfig.class, GeneratorConfig.class,
+				HtmlParserConfig.class);
 		converterService = context.getBean(ConverterService.class);
 		generatorService = context.getBean(GeneratorService.class);
+		htmlParserService = context.getBean(HtmlParserService.class);
 		webDriver = null;
 	}
 
@@ -253,6 +259,22 @@ public class MainApp extends Application {
 
 	public void setGeneratorService(GeneratorService generatorService) {
 		this.generatorService = generatorService;
+	}
+
+	public HtmlParserService getHtmlParserService() {
+		return htmlParserService;
+	}
+
+	public void setHtmlParserService(HtmlParserService htmlParserService) {
+		this.htmlParserService = htmlParserService;
+	}
+
+	public PoGenericFx getHtmlPoGenericFx() {
+		return htmlPoGenericFx;
+	}
+
+	public void setHtmlPoGenericFx(PoGenericFx htmlPoGenericFx) {
+		this.htmlPoGenericFx = htmlPoGenericFx;
 	}
 
 	/**

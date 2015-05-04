@@ -193,4 +193,16 @@ public class TransitionTableState implements PoOverviewState {
 		return handleTest;
 	}
 
+	@Override
+	public void handleMoveHtmlToElement() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void handleMoveHtmlToTransition() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

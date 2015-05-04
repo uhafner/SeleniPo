@@ -68,7 +68,7 @@ public enum Selector {
 		return returnBy;
 	}
 
-	private static final List<Selector> getParsableSelectors() {
+	public static final List<Selector> getParsableSelectors() {
 		List<Selector> selectors = new LinkedList<Selector>();
 		selectors.add(LINK);
 		return selectors;
