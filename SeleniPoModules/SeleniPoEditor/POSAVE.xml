@@ -1,0 +1,53 @@
+<de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>
+  <poGenerics>
+    <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
+      <identifier>Po1</identifier>
+      <packageName>test</packageName>
+      <elements>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+          <type>LINK</type>
+          <locator>ENTER</locator>
+          <identefier>dad</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+          <type>XPATH</type>
+          <locator>ENTER</locator>
+          <identefier>dad</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+      </elements>
+      <transitions>
+        <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
+          <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../.."/>
+          <type>HREF</type>
+          <locator>da</locator>
+          <identefier>da</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
+      </transitions>
+    </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
+    <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
+      <identifier>Po2</identifier>
+      <packageName>test2</packageName>
+      <elements>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+          <type>RADIOBUTTON</type>
+          <locator>hgdh</locator>
+          <identefier>fg</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+      </elements>
+      <transitions>
+        <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
+          <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../../../de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl"/>
+          <type reference="../../../../de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl/elements/de.muenchen.selenipo.impl.persistanceModel.ElementImpl[2]/type"/>
+          <locator>dh</locator>
+          <identefier>hd</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
+        <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
+          <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../../../de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl"/>
+          <type reference="../../../../de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl/transitions/de.muenchen.selenipo.impl.persistanceModel.TransitionImpl/type"/>
+          <locator>hdfgh</locator>
+          <identefier>hdhd</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
+      </transitions>
+    </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
+  </poGenerics>
+</de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>

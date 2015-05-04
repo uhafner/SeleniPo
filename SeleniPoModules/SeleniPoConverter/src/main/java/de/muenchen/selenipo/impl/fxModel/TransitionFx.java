@@ -11,9 +11,9 @@ public class TransitionFx extends ElementFx implements Transition {
 	private ObjectProperty<PoGenericFx> destination;
 
 	public TransitionFx(String identifier, Selector type, String locator,
-			PoGenericFx to) {
+			PoGenericFx destenation) {
 		super(identifier, type, locator);
-		this.destination = new SimpleObjectProperty<PoGenericFx>(to);
+		this.destination = new SimpleObjectProperty<PoGenericFx>(destenation);
 	}
 
 	public TransitionFx() {
@@ -26,12 +26,16 @@ public class TransitionFx extends ElementFx implements Transition {
 		return destination.get();
 	}
 
-	public void setDestination(PoGenericFx poGenericFx) {
+	public void setDestinationFx(PoGenericFx poGenericFx) {
 		this.destination.set(poGenericFx);
 	}
 
 	public ObjectProperty<PoGenericFx> destinationProperty() {
 		return destination;
+	}
+
+	public PoGenericFx getDestinationFx() {
+		return this.destination.get();
 	}
 
 }

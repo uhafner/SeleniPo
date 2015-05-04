@@ -15,8 +15,9 @@ public class PoGenericFx implements PoGeneric {
 
 	private StringProperty identifier;
 	private StringProperty packageName;
-	ObservableList<ElementFx> elementsFx = FXCollections.observableArrayList();
-	ObservableList<TransitionFx> transitionsFx = FXCollections
+	private ObservableList<ElementFx> elementsFx = FXCollections
+			.observableArrayList();
+	private ObservableList<TransitionFx> transitionsFx = FXCollections
 			.observableArrayList();
 
 	public PoGenericFx(String identifier, String packageName) {
@@ -51,6 +52,10 @@ public class PoGenericFx implements PoGeneric {
 
 	public void setPackageName(String packageName) {
 		this.packageName.set(packageName);
+	}
+
+	public StringProperty packageNameProperty() {
+		return packageName;
 	}
 
 	@Override

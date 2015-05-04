@@ -162,7 +162,7 @@ public class ConverterServiceImpl implements ConverterService {
 				PoGeneric innerTempPoGen = findPoInList(
 						poModelFx.getPoGenerics(), transition.getDestination()
 								.getIdentifier());
-				tempTransInList.setDestination((PoGenericFx) innerTempPoGen);
+				tempTransInList.setDestinationFx((PoGenericFx) innerTempPoGen);
 			}
 		}
 		logger.debug(String.format(
