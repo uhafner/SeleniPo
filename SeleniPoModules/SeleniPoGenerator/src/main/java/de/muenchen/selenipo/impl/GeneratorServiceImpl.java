@@ -80,9 +80,11 @@ public class GeneratorServiceImpl implements GeneratorService {
 		logger.debug(String.format("RootFolder: %s", rootFolder));
 		logger.debug("-Erzeuge Generated PO:");
 		// Generate Path
-		final String packagePath = poGeneric.getPackageName().replaceAll("\\.",
-				"/");
-		logger.debug(String.format("-- packagePath: %s", packagePath));
+		String packagePath = "";
+		if (poGeneric.getPackageName() != null) {
+			packagePath = poGeneric.getPackageName().replaceAll("\\.", "/");
+		}
+		logger.debug(String.format("-- packagePath: [%s]", packagePath));
 
 		// Erzeuge Generated Po
 		// Get Template
