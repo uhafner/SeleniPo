@@ -381,6 +381,7 @@ public class PoOverviewController {
 
 	@FXML
 	private void poComboBoxAction() {
+		resetColours();
 		int selectedIndex = poComboBox.getSelectionModel().getSelectedIndex();
 
 		elementTable.setItems(null);
@@ -395,6 +396,7 @@ public class PoOverviewController {
 
 	@FXML
 	private void htmlSelectorComboBoxAction() {
+		resetColours();
 		int selectedIndex = htmlSelectorComboBox.getSelectionModel()
 				.getSelectedIndex();
 

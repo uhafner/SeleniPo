@@ -71,6 +71,8 @@ public enum Selector {
 	public static final List<Selector> getParsableSelectors() {
 		List<Selector> selectors = new LinkedList<Selector>();
 		selectors.add(LINK);
+		selectors.add(INPUT);
+		selectors.add(BUTTON);
 		return selectors;
 	}
 }

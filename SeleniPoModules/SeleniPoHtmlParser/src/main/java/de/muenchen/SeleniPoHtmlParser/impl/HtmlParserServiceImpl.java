@@ -25,6 +25,12 @@ public class HtmlParserServiceImpl implements HtmlParserService {
 		case LINK:
 			poGeneric = parseElementsFromHtmlForLink(html);
 			break;
+		case INPUT:
+			poGeneric = parseElementsFromHtmlForInput(html);
+			break;
+		case BUTTON:
+			poGeneric = parseElementsFromHtmlForButton(html);
+			break;
 
 		default:
 			logger.warn(String.format("Der Selector %s wird nicht unterstützt",
@@ -41,30 +47,148 @@ public class HtmlParserServiceImpl implements HtmlParserService {
 	 * @return
 	 */
 	private PoGeneric parseElementsFromHtmlForLink(String html) {
+		final String PREFIX = "a";
 		PoGeneric poGeneric = new PoGenericImpl();
 		Document doc = Jsoup.parse(html);
 		Elements elements = doc.select("a");
 		for (Element element : elements) {
 			if (element.hasAttr("id")) {
 				de.muenchen.selenipo.Element createdElement = createElement(
-						genIdentefier("a", element), Selector.LINK,
+						genIdentefier(PREFIX, element), Selector.LINK,
 						element.attr("id"));
 				poGeneric.getElements().add(createdElement);
 			}
 
 			else if (element.hasText()) {
 				de.muenchen.selenipo.Element createdElement = createElement(
-						genIdentefier("a", element), Selector.LINK,
+						genIdentefier(PREFIX, element), Selector.LINK,
 						element.text());
 				poGeneric.getElements().add(createdElement);
 			}
 
 			else if (element.hasAttr("title")) {
 				de.muenchen.selenipo.Element createdElement = createElement(
-						genIdentefier("a", element), Selector.LINK,
+						genIdentefier(PREFIX, element), Selector.LINK,
 						element.attr("title"));
 				poGeneric.getElements().add(createdElement);
 			}
+		}
+
+		return poGeneric;
+	}
+
+	private PoGeneric parseElementsFromHtmlForInput(String html) {
+		final String PREFIX = "i";
+		PoGeneric poGeneric = new PoGenericImpl();
+		Document doc = Jsoup.parse(html);
+		Elements elements = doc.select("textarea,input,select");
+		for (Element element : elements) {
+			if (element.hasAttr("id")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.INPUT,
+						element.attr("id"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("name")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.INPUT,
+						element.attr("name"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("value")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.INPUT,
+						element.attr("value"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("placeholder")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier("i", element), Selector.INPUT,
+						element.attr("placeholder"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+		}
+
+		return poGeneric;
+	}
+
+	private PoGeneric parseElementsFromHtmlForButton(String html) {
+		final String PREFIX = "b";
+		PoGeneric poGeneric = new PoGenericImpl();
+		Document doc = Jsoup.parse(html);
+		Elements elementsInput = doc
+				.select("input[type=\"submit\"],input[type=\"reset\"],input[type=\"image\"],input[type=\"button\"]");
+		for (Element element : elementsInput) {
+			if (element.hasAttr("id")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("id"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("name")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("name"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("value")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("value"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("title")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("title"));
+				poGeneric.getElements().add(createdElement);
+			} else if (element.hasAttr("type")
+					&& element.attr("type").equals("image")) {
+				if (element.hasAttr("alt")) {
+					de.muenchen.selenipo.Element createdElement = createElement(
+							genIdentefier(PREFIX, element), Selector.BUTTON,
+							element.attr("alt"));
+					poGeneric.getElements().add(createdElement);
+				}
+			}
+
+		}
+
+		Elements elementsButton = doc.select("button");
+		for (Element element : elementsButton) {
+			if (element.hasAttr("id")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("id"));
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("value")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("value"));
+				poGeneric.getElements().add(createdElement);
+			} else if (element.hasText()) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.text());
+				poGeneric.getElements().add(createdElement);
+			}
+
+			else if (element.hasAttr("title")) {
+				de.muenchen.selenipo.Element createdElement = createElement(
+						genIdentefier(PREFIX, element), Selector.BUTTON,
+						element.attr("title"));
+				poGeneric.getElements().add(createdElement);
+			}
+
 		}
 
 		return poGeneric;
@@ -81,18 +205,26 @@ public class HtmlParserServiceImpl implements HtmlParserService {
 		String returnIdentefier = prefix;
 		String suffix = "";
 		if (element.hasText()) {
-			suffix = element.text();
-		} else if (element.hasAttr("id")) {
-			suffix = element.attr("id");
-		} else if (element.hasAttr("name")) {
-			suffix = element.attr("name");
-		} else if (element.hasAttr("title")) {
-			suffix = element.attr("title");
-		} else {
-			RandomStringUtils.randomAlphanumeric(6);
+			suffix = prepareIdentefierString(element.text());
+		}
+		if (suffix.equals("") && element.hasAttr("value")) {
+			suffix = prepareIdentefierString(element.attr("value"));
+		}
+		if (suffix.equals("") && element.hasAttr("id")) {
+			suffix = prepareIdentefierString(element.attr("id"));
+		}
+		if (suffix.equals("") && element.hasAttr("name")) {
+			suffix = prepareIdentefierString(element.attr("name"));
+		}
+		if (suffix.equals("") && element.hasAttr("title")) {
+			suffix = prepareIdentefierString(element.attr("title"));
 		}
 
-		return returnIdentefier + prepareIdentefierString(suffix);
+		if (suffix.equals("")) {
+			suffix = RandomStringUtils.randomAlphanumeric(6);
+		}
+
+		return returnIdentefier + suffix;
 	}
 
 	private String prepareIdentefierString(String str) {
