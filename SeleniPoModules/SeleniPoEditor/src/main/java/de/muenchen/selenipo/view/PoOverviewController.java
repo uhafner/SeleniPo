@@ -1,5 +1,9 @@
 package de.muenchen.selenipo.view;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Map;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
@@ -12,17 +16,24 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import org.apache.commons.chain.web.MapEntry;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
@@ -91,6 +102,9 @@ public class PoOverviewController {
 	final ObservableMap<Integer, Colour> transitionColour = FXCollections
 			.observableHashMap();
 
+	final ObservableMap<Integer, Colour> htmlColour = FXCollections
+			.observableHashMap();
+
 	// Reference to the main application.
 	private MainApp mainApp;
 
@@ -110,6 +124,10 @@ public class PoOverviewController {
 	 */
 	@FXML
 	private void initialize() {
+		elementTable.setPlaceholder(new Label("Elements of pageObject"));
+		transitionTable.setPlaceholder(new Label("Transitions of pageObject"));
+		htmlTable.setPlaceholder(new Label("Elements in browser"));
+
 		htmlLocatorColumn.setCellValueFactory(cellData -> cellData.getValue()
 				.locatorProperty());
 		htmlSelectorTypeColumn.setCellValueFactory(cellData -> cellData
@@ -151,6 +169,7 @@ public class PoOverviewController {
 
 		setElementRowFactory(elementTable);
 		setTransitionRowFactory(transitionTable);
+		setHtmlRowFactory(htmlTable);
 	}
 
 	private void setElementRowFactory(TableView<ElementFx> elementTable) {
@@ -164,8 +183,6 @@ public class PoOverviewController {
 							protected void updateItem(ElementFx elementFx,
 									boolean empty) {
 								super.updateItem(elementFx, empty);
-								getStyleClass().remove("okStatus");
-								getStyleClass().remove("errorStatus");
 							}
 
 						};
@@ -214,8 +231,6 @@ public class PoOverviewController {
 							protected void updateItem(
 									TransitionFx transitionFx, boolean empty) {
 								super.updateItem(transitionFx, empty);
-								getStyleClass().remove("okStatus");
-								getStyleClass().remove("errorStatus");
 							}
 						};
 						transitionColour
@@ -250,6 +265,53 @@ public class PoOverviewController {
 						return row;
 					}
 
+				});
+	}
+
+	private void setHtmlRowFactory(TableView<ElementFx> htmlTable) {
+		htmlTable
+				.setRowFactory(new Callback<TableView<ElementFx>, TableRow<ElementFx>>() {
+					@Override
+					public TableRow<ElementFx> call(
+							TableView<ElementFx> tableView) {
+						final TableRow<ElementFx> row = new TableRow<ElementFx>() {
+							@Override
+							protected void updateItem(ElementFx elementFx,
+									boolean empty) {
+								super.updateItem(elementFx, empty);
+							}
+
+						};
+						htmlColour
+								.addListener(new MapChangeListener<Integer, Colour>() {
+									@Override
+									public void onChanged(
+											javafx.collections.MapChangeListener.Change<? extends Integer, ? extends Colour> change) {
+										row.getStyleClass().remove("okStatus");
+										row.getStyleClass().remove(
+												"errorStatus");
+										if (htmlColour.get(row.getIndex()) != null) {
+											switch (htmlColour.get(row
+													.getIndex())) {
+											case GREEN:
+												row.getStyleClass().add(
+														"okStatus");
+												break;
+											case RED:
+												row.getStyleClass().add(
+														"errorStatus");
+												break;
+											default:
+												break;
+											}
+										}
+
+									}
+								});
+
+						setHtmlRowMenu(row);
+						return row;
+					}
 				});
 	}
 
@@ -291,6 +353,30 @@ public class PoOverviewController {
 				Bindings.when(Bindings.isNotNull(row.itemProperty()))
 						.then(rowMenu).otherwise((ContextMenu) null));
 
+	}
+
+	private void setHtmlRowMenu(TableRow<?> row) {
+		// Contextmenü hinzufügen
+		final ContextMenu rowMenu = new ContextMenu();
+		MenuItem testWithMessage = new MenuItem("Test and message");
+		testWithMessage.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				handleTestWithMesage();
+			}
+		});
+		MenuItem testAndClick = new MenuItem("Test and click");
+		testAndClick.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				handleTestAndClick();
+			}
+		});
+		rowMenu.getItems().addAll(testWithMessage, testAndClick);
+		// only display context menu for non-null items:
+		row.contextMenuProperty().bind(
+				Bindings.when(Bindings.isNotNull(row.itemProperty()))
+						.then(rowMenu).otherwise((ContextMenu) null));
 	}
 
 	@FXML
@@ -348,6 +434,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleDelete() {
 		logger.debug("Delete pressed..");
+		resetColours();
 		poOverviewState.handleDelete();
 	}
 
@@ -357,6 +444,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleNew() {
 		logger.debug("New pressed..");
+		resetColours();
 		poOverviewState.handleNew();
 	}
 
@@ -366,6 +454,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleEdit() {
 		logger.debug("Edit pressed..");
+		resetColours();
 		poOverviewState.handleEdit();
 	}
 
@@ -375,8 +464,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleTest() {
 		logger.debug("Test pressed..");
-		elementColour.clear();
-		transitionColour.clear();
+		resetColours();
 		WebDriver driver = mainApp.getWebDriver();
 		if (driver != null) {
 			poOverviewState.handleTest();
@@ -391,6 +479,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleMoveHtmlToElement() {
 		logger.debug("Element > pressed..");
+		poOverviewState.handleMoveHtmlToElement();
 	}
 
 	/**
@@ -399,6 +488,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleMoveHtmlToTransition() {
 		logger.debug("Transition > pressed..");
+		poOverviewState.handleMoveHtmlToTransition();
 	}
 
 	/**
@@ -408,6 +498,7 @@ public class PoOverviewController {
 	private void handleParseHtml() {
 		logger.debug("Parse Html pressed..");
 		logger.debug("delegate to htmlSelectorComboBoxAction()");
+		resetColours();
 		htmlSelectorComboBoxAction();
 	}
 
@@ -417,8 +508,7 @@ public class PoOverviewController {
 	@FXML
 	private void handleTestWithMesage() {
 		logger.debug("Test pressed..");
-		elementColour.clear();
-		transitionColour.clear();
+		resetColours();
 		WebDriver driver = mainApp.getWebDriver();
 		if (driver != null) {
 			poOverviewState.handleTestWithMessage();
@@ -433,11 +523,14 @@ public class PoOverviewController {
 	@FXML
 	private void handleTestAndClick() {
 		logger.debug("Test pressed..");
-		elementColour.clear();
-		transitionColour.clear();
+		resetColours();
 		WebDriver driver = mainApp.getWebDriver();
 		if (driver != null) {
-			poOverviewState.handleTestAndClick();
+			try {
+				poOverviewState.handleTestAndClick();
+			} catch (Exception e) {
+				createWebDriverClickAlert(getMainApp().getPrimaryStage(), e);
+			}
 		} else {
 			createBrowserNotStartedAlert(getMainApp().getPrimaryStage());
 		}
@@ -454,7 +547,6 @@ public class PoOverviewController {
 		WebDriver driver = new FirefoxDriver();
 		mainApp.setWebDriver(driver);
 		driver.get(urlField.getText());
-		System.out.println(driver.getPageSource());
 	}
 
 	@FXML
@@ -482,9 +574,15 @@ public class PoOverviewController {
 		poOverviewState = new HtmlTableState(this);
 	}
 
+	private void resetColours() {
+		elementColour.clear();
+		transitionColour.clear();
+		htmlColour.clear();
+	}
+
 	public Alert createNoElementSelectedAlert(Stage stage, String customText) {
-		// Nothing selected.
 		Alert alert = new Alert(AlertType.WARNING);
+		alert.setResizable(true);
 		alert.initOwner(stage);
 		alert.setTitle("No Selection");
 		alert.setHeaderText("No element selected.");
@@ -494,9 +592,21 @@ public class PoOverviewController {
 		return alert;
 	}
 
+	public Alert createNoPoSelectedAlert(Stage stage) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setResizable(true);
+		alert.initOwner(stage);
+		alert.setTitle("No Selection");
+		alert.setHeaderText("No pageObject selected.");
+		String contentText = "Please select a pageObject from the dropdown.";
+		alert.setContentText(contentText);
+		alert.showAndWait();
+		return alert;
+	}
+
 	public Alert createConfirmDelete(Stage stage, String customText) {
-		// Nothing selected.
 		Alert confirm = new Alert(AlertType.CONFIRMATION);
+		confirm.setResizable(true);
 		confirm.initOwner(mainApp.getPrimaryStage());
 		confirm.setTitle("Delete?");
 		confirm.setHeaderText("Do you really want to delete the Element?");
@@ -508,12 +618,124 @@ public class PoOverviewController {
 	public Alert createBrowserNotStartedAlert(Stage stage) {
 		// Nothing selected.
 		Alert alert = new Alert(AlertType.WARNING);
+		alert.setResizable(true);
 		alert.initOwner(mainApp.getPrimaryStage());
 		alert.setTitle("No Browser");
 		alert.setHeaderText("Browser not started.");
 		alert.setContentText("Please start the Browser with the startbutton and"
 				+ System.lineSeparator() + "navigate to the website.");
 
+		alert.showAndWait();
+		return alert;
+	}
+
+	public Alert createWebDriverClickAlert(Stage stage, Exception ex) {
+		// Nothing selected.
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setResizable(true);
+		alert.initOwner(mainApp.getPrimaryStage());
+		alert.setTitle("WebDriver click");
+		alert.setHeaderText("Click not successful.");
+		// Create expandable Exception.
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		ex.printStackTrace(pw);
+		String exceptionText = sw.toString();
+
+		Label label = new Label("The exception stacktrace was:");
+
+		TextArea textArea = new TextArea(exceptionText);
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(label, 0, 0);
+		expContent.add(textArea, 0, 1);
+
+		// Set expandable Exception into the dialog pane.
+		alert.getDialogPane().setExpandableContent(expContent);
+
+		alert.showAndWait();
+		return alert;
+	}
+
+	public Alert createElementNotFoundAlert(Stage stage, Exception ex) {
+		// Nothing selected.
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setResizable(true);
+		alert.initOwner(mainApp.getPrimaryStage());
+		alert.setTitle("Element not found");
+		alert.setHeaderText(String.format("Exception occured: %s",
+				ex.getClass()));
+		// Create expandable Exception.
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		ex.printStackTrace(pw);
+		String exceptionText = sw.toString();
+
+		Label label = new Label("The exception stacktrace was:");
+
+		TextArea textArea = new TextArea(exceptionText);
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(label, 0, 0);
+		expContent.add(textArea, 0, 1);
+
+		// Set expandable Exception into the dialog pane.
+		alert.getDialogPane().setExpandableContent(expContent);
+
+		alert.showAndWait();
+		return alert;
+	}
+
+	public Alert createWebElementInfo(Stage stage, WebElement webElement,
+			WebDriver driver) {
+		StringBuffer message = new StringBuffer();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setResizable(true);
+		alert.initOwner(getMainApp().getPrimaryStage());
+		alert.setTitle("Element Gefunden");
+		alert.setHeaderText("Element Tag: " + webElement.getTagName());
+		message.append("Text: " + webElement.getText() + System.lineSeparator());
+		message.append("Attributes:" + System.lineSeparator());
+		@SuppressWarnings("unchecked")
+		Map<String, Object> executeScript = (Map<String, Object>) ((JavascriptExecutor) driver)
+				.executeScript(
+						"var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;",
+						webElement);
+		for (Map.Entry<String, Object> entry : executeScript.entrySet()) {
+			message.append("	-- " + entry.getKey() + ": " + entry.getValue()
+					+ System.lineSeparator());
+		}
+		TextArea textArea = new TextArea(message.toString());
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(textArea, 0, 1);
+
+		// Set expandable Exception into the dialog pane.
+		alert.getDialogPane().setContent(expContent);
 		alert.showAndWait();
 		return alert;
 	}
@@ -545,6 +767,10 @@ public class PoOverviewController {
 
 	public ObservableMap<Integer, Colour> getTransitionColour() {
 		return transitionColour;
+	}
+
+	public ObservableMap<Integer, Colour> getHtmlColour() {
+		return htmlColour;
 	}
 
 	public TableView<ElementFx> getHtmlTable() {

@@ -80,13 +80,8 @@ public class PoComboBoxState implements PoOverviewState {
 					.showPoEditDialog(poGenericFx);
 		} else {
 			// Nothing selected.
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.initOwner(poOverviewController.getMainApp().getPrimaryStage());
-			alert.setTitle("No Selection");
-			alert.setHeaderText("No Element Selected");
-			alert.setContentText("Please select a pageObject from the Dropdown.");
-
-			alert.showAndWait();
+			poOverviewController.createNoPoSelectedAlert(poOverviewController
+					.getMainApp().getPrimaryStage());
 		}
 	}
 

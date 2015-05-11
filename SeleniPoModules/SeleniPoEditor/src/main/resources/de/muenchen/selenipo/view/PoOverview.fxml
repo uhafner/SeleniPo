@@ -11,7 +11,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ComboBox fx:id="htmlSelectorComboBox" layoutX="14.0" layoutY="14.0" onAction="#htmlSelectorComboBoxAction" onMouseClicked="#htmlSelectorComboboxClick" prefWidth="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <ComboBox fx:id="htmlSelectorComboBox" layoutX="14.0" layoutY="14.0" onAction="#htmlSelectorComboBoxAction" onMouseClicked="#htmlSelectorComboboxClick" prefWidth="150.0" promptText="Locator" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                   <TableView fx:id="htmlTable" layoutX="14.0" layoutY="38.0" onMouseClicked="#htmlTableClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                     <columns>
                       <TableColumn fx:id="htmlIdentifierColumn" prefWidth="75.0" text="Identifier" />
@@ -36,7 +36,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ComboBox fx:id="poComboBox" onAction="#poComboBoxAction" onMouseClicked="#poComboboxClick" prefWidth="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <ComboBox fx:id="poComboBox" onAction="#poComboBoxAction" onMouseClicked="#poComboboxClick" prefWidth="150.0" promptText="PageObject" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                               <TableView fx:id="elementTable" onMouseClicked="#elementTabeleClick" prefHeight="256.0" prefWidth="245.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                 <columns>
                                   <TableColumn fx:id="elemIdentifierColumn" prefWidth="75.0" text="Identifier" />

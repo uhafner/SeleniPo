@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.lang.model.element.ElementKind;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -125,28 +127,8 @@ public class ConverterServiceImpl implements ConverterService {
 		PoModelFx poModelFx = new PoModelFx();
 		// Lege alle PoGeneric an
 		for (PoGeneric poGeneric : poModel.getPoGenerics()) {
-			PoGenericFx tempPoGeneric = new PoGenericFx();
+			PoGenericFx tempPoGeneric = convertToPoGenericFx(poGeneric);
 			poModelFx.getPoGenericsFx().add(tempPoGeneric);
-			tempPoGeneric.setIdentifier(poGeneric.getIdentifier());
-			tempPoGeneric.setPackageName(poGeneric.getPackageName());
-
-			// Erzeuge jedes Element
-			for (Element element : poGeneric.getElements()) {
-				ElementFx tempElement = new ElementFx();
-				tempElement.setIdentifier(element.getIdentifier());
-				tempElement.setLocator(element.getLocator());
-				tempElement.setType(element.getType());
-				tempPoGeneric.getElementsFx().add(tempElement);
-			}
-
-			// Erzeuge Transitions
-			for (Transition transition : poGeneric.getTransitions()) {
-				TransitionFx tempTransition = new TransitionFx();
-				tempTransition.setIdentifier(transition.getIdentifier());
-				tempTransition.setLocator(transition.getLocator());
-				tempTransition.setType(transition.getType());
-				tempPoGeneric.getTransitionsFx().add(tempTransition);
-			}
 		}
 
 		// Durchlaufe nochmal und setze rückreferenzen
@@ -220,5 +202,17 @@ public class ConverterServiceImpl implements ConverterService {
 			tempPoGeneric.getTransitionsFx().add(tempTransition);
 		}
 		return tempPoGeneric;
+	}
+
+	@Override
+	public TransitionFx convertElementToTransitionFx(final Element element) {
+		TransitionFx transFx = new TransitionFx();
+		transFx.setIdentifier(element.getIdentifier());
+		transFx.setType(element.getType());
+		transFx.setLocator(element.getLocator());
+		// Destinatin is null (element does not contain this info. Developer has
+		// to handle this.
+		transFx.setDestinationFx(null);
+		return transFx;
 	}
 }

@@ -4,6 +4,7 @@ import java.io.File;
 
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
+import de.muenchen.selenipo.impl.fxModel.TransitionFx;
 import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
 /**
@@ -36,5 +37,7 @@ public interface ConverterService {
 	PoModelFx convertToFxModel(PoModel poModel);
 
 	PoGenericFx convertToPoGenericFx(PoGeneric poGeneric);
+
+	TransitionFx convertElementToTransitionFx(Element element);
 
 }

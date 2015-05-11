@@ -1,7 +1,5 @@
 package de.muenchen.selenipo.view.poOverviewStates;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView;
 
 import org.apache.log4j.Logger;
@@ -45,14 +43,8 @@ public class TransitionTableState implements PoOverviewState {
 						.getTransitionsFx().add(transition);
 			}
 		} else {
-			// Nothing selected.
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.initOwner(poOverviewController.getMainApp().getPrimaryStage());
-			alert.setTitle("No Selection");
-			alert.setHeaderText("No pageObject Selected");
-			alert.setContentText("Please select a pageObject in the dropdown.");
-
-			alert.showAndWait();
+			poOverviewController.createNoPoSelectedAlert(poOverviewController
+					.getMainApp().getPrimaryStage());
 		}
 	}
 
@@ -142,14 +134,8 @@ public class TransitionTableState implements PoOverviewState {
 						transitionTable.getSelectionModel().getSelectedIndex(),
 						Colour.GREEN);
 				// Meldung anzeigen
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.initOwner(poOverviewController.getMainApp()
-						.getPrimaryStage());
-				alert.setTitle("Element Gefunden");
-				alert.setHeaderText("Element Tag: " + webElement.getTagName());
-				alert.setContentText("Text: " + webElement.getText());
-
-				alert.showAndWait();
+				poOverviewController.createWebElementInfo(poOverviewController
+						.getMainApp().getPrimaryStage(), webElement, driver);
 				return true;
 
 			} catch (NoSuchElementException e) {
@@ -157,14 +143,8 @@ public class TransitionTableState implements PoOverviewState {
 						transitionTable.getSelectionModel().getSelectedIndex(),
 						Colour.RED);
 				// Meldung anzeigen
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.initOwner(poOverviewController.getMainApp()
-						.getPrimaryStage());
-				alert.setTitle("Element nicht Gefunden");
-				alert.setHeaderText("Stacktrace:");
-				alert.setContentText(e.toString());
-
-				alert.showAndWait();
+				poOverviewController.createElementNotFoundAlert(
+						poOverviewController.getMainApp().getPrimaryStage(), e);
 				return false;
 			}
 
