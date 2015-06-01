@@ -1,0 +1,42 @@
+\BOOKMARK [1][-]{section*.1}{Eidesstattliche Erkl\344rung}{}% 1
+\BOOKMARK [1][-]{section*.2}{Zusammenfassung / Abstract}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Softwarequalit\344t}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Softwaretest}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{Testprozess}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.3.1}{Testplanung und Steuerung}{section.2.3}% 8
+\BOOKMARK [2][-]{subsection.2.3.2}{Testanalyse und Testdesign}{section.2.3}% 9
+\BOOKMARK [2][-]{subsection.2.3.3}{Testrealisierung und Testdurchf\374hrung}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.4}{Testauswertung und Bericht}{section.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.3.5}{Abschluss der Testaktivit\344ten}{section.2.3}% 12
+\BOOKMARK [1][-]{section.2.4}{Softwarelebenszyklus}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.4.1}{V-Modell}{section.2.4}% 14
+\BOOKMARK [0][-]{chapter.3}{Testautomatisierung}{}% 15
+\BOOKMARK [1][-]{section.3.1}{Warum Testautomatisierung}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.2}{Bereiche der Testautomatisierung}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.2.1}{Testdesign}{section.3.2}% 18
+\BOOKMARK [2][-]{subsection.3.2.2}{Testcodeerstellung}{section.3.2}% 19
+\BOOKMARK [2][-]{subsection.3.2.3}{Testdurchf\374hrung}{section.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.2.4}{Testauswertung}{section.3.2}% 21
+\BOOKMARK [1][-]{section.3.3}{Schnittstellen der Testautomatisierung zum System}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.1}{API}{section.3.3}% 23
+\BOOKMARK [2][-]{subsection.3.3.2}{GUI}{section.3.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Testautomatisierung mit Selenium}{}% 25
+\BOOKMARK [1][-]{section.4.1}{Selenium}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Testdurchf\374hrung mit Selenium}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.3}{Testcodeerstellung mit Selenium}{chapter.4}% 28
+\BOOKMARK [2][-]{subsection.4.3.1}{Recorde-and-playback}{section.4.3}% 29
+\BOOKMARK [3][-]{subsubsection.4.3.1.1}{Vorteile von Recorde-and-playback}{subsection.4.3.1}% 30
+\BOOKMARK [3][-]{subsubsection.4.3.1.2}{Probleme von Recorde-and-playback}{subsection.4.3.1}% 31
+\BOOKMARK [2][-]{subsection.4.3.2}{Manuell}{section.4.3}% 32
+\BOOKMARK [2][-]{subsection.4.3.3}{Page Object Pattern}{section.4.3}% 33
+\BOOKMARK [3][-]{subsubsection.4.3.3.1}{Vorteile des Page Object Pattern}{subsection.4.3.3}% 34
+\BOOKMARK [3][-]{subsubsection.4.3.3.2}{Probleme des Page Object Pattern}{subsection.4.3.3}% 35
+\BOOKMARK [0][-]{chapter.5}{Teilautomatisierte Generierung von Page Objects}{}% 36
+\BOOKMARK [1][-]{section.5.1}{\374bersicht \374ber die Idee}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.2}{einordnung des Testharness und gui in die Geamtstruktur \(Deploymentdiagramm\)}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.3}{\374bersicht \374ber Aufbau des Systems}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.3.1}{pro modul ein kapitel}{section.5.3}% 40
+\BOOKMARK [1][-]{section.5.4}{Vorteile und Probleme}{chapter.5}% 41
+\BOOKMARK [1][-]{section.5.5}{Anwendung}{chapter.5}% 42
