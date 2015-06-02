@@ -28,16 +28,16 @@ public class GeneratorServiceImplTest {
 		PoModelFx testPoGenericFx = getTestPoGenericFx();
 		Map<String, String> generatePageObject = generatorService
 				.generatePageObject(testPoGenericFx.getPoGenerics().get(0),
-						"./");
-		Assert.assertEquals(1,generatePageObject.size());
+						"./test");
+		Assert.assertEquals(1, generatePageObject.size());
 	}
 
 	@Test
 	public void testGenerationFromModel() throws IOException {
 		PoModelFx testPoGenericFx = getTestPoGenericFx();
 		Map<String, String> generatePageObject = generatorService
-				.generatePageObjects(testPoGenericFx, "./");
-		Assert.assertEquals(2,generatePageObject.size());
+				.generatePageObjects(testPoGenericFx, "./test");
+		Assert.assertEquals(2, generatePageObject.size());
 	}
 
 	private PoModelFx getTestPoGenericFx() {

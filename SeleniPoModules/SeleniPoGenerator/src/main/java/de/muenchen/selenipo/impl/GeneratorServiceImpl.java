@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -37,8 +38,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 	private static final Logger logger = Logger
 			.getLogger(GeneratorServiceImpl.class);
 
-	private static final String GENERATED_FOLDER_NAME = "generated";
-	private static final String EDIT_FOLDER_NAME = "edit";
+	public static final String CONFIG_FILE = "gernerator.properties";
 
 	@Autowired
 	private VelocityEngine velocityEngine;
@@ -65,6 +65,19 @@ public class GeneratorServiceImpl implements GeneratorService {
 			final String rootFolder) throws IOException {
 		// Map to return
 		Map<String, String> returnValue = new HashMap<String, String>();
+		// Lese die Zielpfade ab dem Rootfolder aus der config aus
+		Properties props = new Properties();
+		props.load(this.getClass().getResourceAsStream("/" + CONFIG_FILE));
+		String generatedBasePath = props.getProperty("generator.generatedPath");
+		String editableBasePath = props.getProperty("generator.editablePath");
+		String packagePath = props.getProperty("generator.packagePath");
+		logger.debug(String.format("Base path für generated: %s",
+				generatedBasePath));
+		logger.debug(String.format("Base path für editable: %s",
+				editableBasePath));
+		logger.debug(String.format("Base Package path für edit/generated: %s",
+				packagePath));
+
 		// Befülle liste mit unterschiedlichen DestinationPos für die Imports
 		Set<PoGeneric> destinationPos = new HashSet<PoGeneric>();
 		for (Transition transition : poGeneric.getTransitions()) {
@@ -80,9 +93,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 		logger.debug(String.format("RootFolder: %s", rootFolder));
 		logger.debug("-Erzeuge Generated PO:");
 		// Generate Path
-		String packagePath = "";
 		if (poGeneric.getPackageName() != null) {
-			packagePath = poGeneric.getPackageName().replaceAll("\\.", "/");
+			packagePath = packagePath + "/"
+					+ poGeneric.getPackageName().replaceAll("\\.", "/");
 		}
 		logger.debug(String.format("-- packagePath: [%s]", packagePath));
 
@@ -91,7 +104,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 		Template tGenerated = velocityEngine
 				.getTemplate("de/muenchen/selenipo/poGeneric.vm");
 		final String wholePathGenerated = String.format(
-				"%s/%s/%s/%sGenerated.java", rootFolder, GENERATED_FOLDER_NAME,
+				"%s/%s/%s/%sGenerated.java", rootFolder, generatedBasePath,
 				packagePath, poGeneric.getIdentifier());
 		Map<String, String> mapGenerated = writeFile(wholePathGenerated,
 				context, tGenerated, poGeneric);
@@ -101,7 +114,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 		Template tEdit = velocityEngine
 				.getTemplate("de/muenchen/selenipo/poEditable.vm");
 		final String wholePathEdit = String.format("%s/%s/%s/%s.java",
-				rootFolder, EDIT_FOLDER_NAME, packagePath,
+				rootFolder, editableBasePath, packagePath,
 				poGeneric.getIdentifier());
 		writeFile(wholePathEdit, context, tEdit, poGeneric);
 

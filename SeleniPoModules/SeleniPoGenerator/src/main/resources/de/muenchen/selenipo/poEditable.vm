@@ -1,5 +1,5 @@
-#set( $OWN_PACKAGE = "de.muenchen.selenipo.po.edit#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
-#set( $GENERATED_PACKAGE = "de.muenchen.selenipo.po.generated#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $OWN_PACKAGE = "de.muenchen.selenipo.po#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $GENERATED_PACKAGE = "de.muenchen.selenipo.po#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
 #set( $CLASS_NAME = "$poGeneric.getIdentifier()")
 #set( $CLASS_NAME_SUPER = "$poGeneric.getIdentifier()Generated")
 
