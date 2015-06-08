@@ -11,7 +11,7 @@
 		<module>SeleniPoConverter</module>
 		<module>SeleniPoGenerator</module>
 		<module>SeleniPoEditor</module>
-    <module>SeleniPoHtmlParser</module>
+    	<module>SeleniPoHtmlParser</module>
   </modules>
 
 	<build>
