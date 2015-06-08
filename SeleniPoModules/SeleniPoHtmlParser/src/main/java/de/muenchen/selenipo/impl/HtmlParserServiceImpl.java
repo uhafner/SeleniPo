@@ -1,4 +1,4 @@
-package de.muenchen.SeleniPoHtmlParser.impl;
+package de.muenchen.selenipo.impl;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.text.WordUtils;
@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
+import de.muenchen.selenipo.HtmlParserService;
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.Selector;
 import de.muenchen.selenipo.impl.persistanceModel.ElementImpl;

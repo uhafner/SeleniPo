@@ -1,4 +1,4 @@
-package de.muenchen.SeleniPoHtmlParser;
+package de.muenchen.selenipo;
 
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.Selector;

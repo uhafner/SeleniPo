@@ -1,4 +1,4 @@
-package de.muenchen.SeleniPoHtmlParser;
+package de.muenchen.selenipo;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,9 +7,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import de.muenchen.SeleniPoHtmlParser.config.HtmlParserConfig;
+import de.muenchen.selenipo.HtmlParserService;
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.Selector;
+import de.muenchen.selenipo.config.HtmlParserConfig;
 
 @org.junit.runner.RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = HtmlParserConfig.class, loader = AnnotationConfigContextLoader.class)

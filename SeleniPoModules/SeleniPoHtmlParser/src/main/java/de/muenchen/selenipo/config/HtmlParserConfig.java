@@ -1,9 +1,9 @@
-package de.muenchen.SeleniPoHtmlParser.config;
+package de.muenchen.selenipo.config;
 
 import org.springframework.context.annotation.Bean;
 
-import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
-import de.muenchen.SeleniPoHtmlParser.impl.HtmlParserServiceImpl;
+import de.muenchen.selenipo.HtmlParserService;
+import de.muenchen.selenipo.impl.HtmlParserServiceImpl;
 
 public class HtmlParserConfig {
 

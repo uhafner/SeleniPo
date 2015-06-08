@@ -36,8 +36,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
 import de.muenchen.selenipo.ConverterService;
+import de.muenchen.selenipo.HtmlParserService;
 import de.muenchen.selenipo.MainApp;
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.Selector;
