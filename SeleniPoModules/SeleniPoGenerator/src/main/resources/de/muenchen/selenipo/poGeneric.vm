@@ -1,8 +1,8 @@
-#set( $OWN_PACKAGE = "de.muenchen.selenipo.po#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $GENERATED_PACKAGE = "de.muenchen.selenipo.po#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
 #set( $EDIT_PACKAGE = "de.muenchen.selenipo.po" )
 #set( $CLASS_NAME = "$poGeneric.getIdentifier()Generated")
 
-package $OWN_PACKAGE;
+package $GENERATED_PACKAGE;
 
 import de.muenchen.selenipo.po.BasePo;
 import de.muenchen.selenipo.po.Control;

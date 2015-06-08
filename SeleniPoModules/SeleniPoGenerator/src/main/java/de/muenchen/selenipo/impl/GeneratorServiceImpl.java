@@ -110,16 +110,33 @@ public class GeneratorServiceImpl implements GeneratorService {
 				context, tGenerated, poGeneric);
 
 		// Erzeuge Edit Po
+
 		// Get Template
 		Template tEdit = velocityEngine
 				.getTemplate("de/muenchen/selenipo/poEditable.vm");
 		final String wholePathEdit = String.format("%s/%s/%s/%s.java",
 				rootFolder, editableBasePath, packagePath,
 				poGeneric.getIdentifier());
-		writeFile(wholePathEdit, context, tEdit, poGeneric);
-
+		// Überprüfe ob das Po bereits vorhanden ist
+		if (!doesEditPoAlreadyExist(wholePathEdit)) {
+			// Edit Po wird nicht in die rückgabe übernommen da einfach eine
+			// leere Klasse.
+			writeFile(wholePathEdit, context, tEdit, poGeneric);
+		}
 		returnValue.putAll(mapGenerated);
 		return returnValue;
+	}
+
+	private boolean doesEditPoAlreadyExist(String wholePath) {
+		File f = new File(wholePath);
+		if (f.exists() && !f.isDirectory()) {
+			logger.debug(String.format("EditPo [%s] gefunden.", wholePath));
+			return true;
+		} else {
+			logger.debug(String
+					.format("EditPo [%s] nicht gefunden.", wholePath));
+			return false;
+		}
 	}
 
 	private Map<String, String> writeFile(String wholePath,
