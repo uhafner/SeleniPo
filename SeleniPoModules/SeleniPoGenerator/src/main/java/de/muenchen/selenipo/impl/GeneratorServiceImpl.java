@@ -2,6 +2,7 @@ package de.muenchen.selenipo.impl;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -14,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
+import javax.imageio.stream.FileImageInputStream;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
@@ -67,7 +70,16 @@ public class GeneratorServiceImpl implements GeneratorService {
 		Map<String, String> returnValue = new HashMap<String, String>();
 		// Lese die Zielpfade ab dem Rootfolder aus der config aus
 		Properties props = new Properties();
-		props.load(this.getClass().getResourceAsStream("/" + CONFIG_FILE));
+		try {
+			// Wurde ein eigenes File vom User hinterlegt?
+			String path = "./" + CONFIG_FILE;
+			FileInputStream file = new FileInputStream(path);
+			props.load(file);
+			logger.info("Verwende generator.config des Users");
+		} catch (Exception e) {
+			props.load(this.getClass().getResourceAsStream("/" + CONFIG_FILE));
+			logger.info("Verwende generator.config aus jar");
+		}
 		String generatedBasePath = props.getProperty("generator.generatedPath");
 		String editableBasePath = props.getProperty("generator.editablePath");
 		String packagePath = props.getProperty("generator.packagePath");
