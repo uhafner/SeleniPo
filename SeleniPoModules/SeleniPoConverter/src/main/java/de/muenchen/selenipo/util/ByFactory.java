@@ -103,6 +103,39 @@ public class ByFactory {
 				locator));
 	}
 
+	/**
+	 * Finds select fields.
+	 *
+	 * @param locator
+	 *            Text, id, title.
+	 */
+	public By select(String locator) {
+		return xpath(fieldXPath("*[name()='select' or name()='SELECT']",
+				locator));
+	}
+
+	/**
+	 * Finds textarea fields.
+	 *
+	 * @param locator
+	 *            Text, id, title.
+	 */
+	public By textArea(String locator) {
+		return xpath(fieldXPath("*[name()='textarea' or name()='TEXTAREA']",
+				locator));
+	}
+
+	/**
+	 * Finds textarea fields.
+	 *
+	 * @param locator
+	 *            Text, id, title.
+	 */
+	public By textField(String locator) {
+		//TODO
+		return xpath(".//input[./@type = 'text']", locator);
+	}
+
 	private static String fieldXPath(String base, String locator) {
 		// TODO: there's actually a lot more
 		return String

@@ -11,7 +11,8 @@ public enum Selector {
 
 	LINK("link"), XPATH("xpath"), HREF("href"), CHECKBOX("checkbox"), RADIOBUTTON(
 			"radioButton"), INPUT("input"), BUTTON("button"), TAGNAME("tagName"), OPTION(
-			"option"), ID("id");
+			"option"), ID("id"), TEXTAREA("textarea"), TEXTFIELD("textfield"), SELECT(
+			"select");
 
 	private static final ByFactory by = new ByFactory();
 	private String byMethodName;
@@ -61,7 +62,15 @@ public enum Selector {
 		case ID:
 			returnBy = by.id(locator);
 			break;
-
+		case TEXTAREA:
+			returnBy = by.textArea(locator);
+			break;
+		case TEXTFIELD:
+			returnBy = by.textField(locator);
+			break;
+		case SELECT:
+			returnBy = by.select(locator);
+			break;
 		default:
 			break;
 		}
@@ -73,6 +82,14 @@ public enum Selector {
 		selectors.add(LINK);
 		selectors.add(INPUT);
 		selectors.add(BUTTON);
+		selectors.add(ID);
+		selectors.add(HREF);
+		selectors.add(CHECKBOX);
+		selectors.add(RADIOBUTTON);
+		selectors.add(OPTION);
+		selectors.add(TEXTAREA);
+		selectors.add(TEXTFIELD);
+		selectors.add(SELECT);
 		return selectors;
 	}
 }
