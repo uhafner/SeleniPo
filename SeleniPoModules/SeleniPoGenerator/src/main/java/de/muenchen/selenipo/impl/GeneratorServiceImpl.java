@@ -16,8 +16,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.imageio.stream.FileImageInputStream;
-
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
