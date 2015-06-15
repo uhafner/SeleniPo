@@ -165,6 +165,13 @@ public class ConverterServiceTest {
 		}
 	}
 
+	@Test
+	public void testForDuplecateKeys() {
+		PoModelFx model = getTestPoGenericFxWithDuplecateKeys();
+		List<ValidationMessage> validateModel = converterService.validateModel(model);
+		Assert.assertEquals(validateModel.size(), 4);
+	}
+
 	private PoModelImpl getTestPoGenericImpl() {
 		PoModelImpl model = new PoModelImpl();
 		PoGeneric welcomePo = new PoGenericImpl("WelcomePo", "basePackage");
@@ -196,6 +203,35 @@ public class ConverterServiceTest {
 		welcomePo.getTransitionsFx().add(bEnter);
 		welcomePo.getElementsFx().add(h1);
 		listPo.getTransitionsFx().add(index);
+		return model;
+	}
+
+	private PoModelFx getTestPoGenericFxWithDuplecateKeys() {
+		PoModelFx model = new PoModelFx();
+		PoGenericFx welcomePo = new PoGenericFx("WelcomePo", "basePackage");
+		PoGenericFx welcomePo2 = new PoGenericFx("WelcomePo", "basePackage");
+		model.getPoGenericsFx().add(welcomePo);
+		model.getPoGenericsFx().add(welcomePo2);
+		TransitionFx bEnter1 = new TransitionFx("key1", Selector.LINK,
+				"bEnter", welcomePo);
+		TransitionFx bEnter2 = new TransitionFx("key2", Selector.LINK,
+				"bEnter", welcomePo);
+		TransitionFx bEnter3 = new TransitionFx("key2", Selector.LINK,
+				"bEnter", welcomePo);
+		TransitionFx bEnter4 = new TransitionFx("key2", Selector.LINK,
+				"bEnter", welcomePo);
+		ElementFx h1 = new ElementFx("key1", Selector.XPATH, "//h1");
+		ElementFx h2 = new ElementFx("key3", Selector.XPATH, "//h1");
+		ElementFx h3 = new ElementFx("key3", Selector.XPATH, "//h1");
+		ElementFx h4 = new ElementFx("key4", Selector.XPATH, "//h1");
+		welcomePo.getTransitionsFx().add(bEnter1);
+		welcomePo.getTransitionsFx().add(bEnter2);
+		welcomePo.getTransitionsFx().add(bEnter3);
+		welcomePo.getTransitionsFx().add(bEnter4);
+		welcomePo.getElementsFx().add(h1);
+		welcomePo.getElementsFx().add(h2);
+		welcomePo.getElementsFx().add(h3);
+		welcomePo.getElementsFx().add(h4);
 		return model;
 	}
 }

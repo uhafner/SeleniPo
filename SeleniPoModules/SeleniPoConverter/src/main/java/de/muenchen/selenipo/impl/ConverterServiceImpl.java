@@ -6,9 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 
-import javax.lang.model.element.ElementKind;
+import javafx.print.PageOrientation;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import de.muenchen.selenipo.Element;
 import de.muenchen.selenipo.PoGeneric;
 import de.muenchen.selenipo.PoModel;
 import de.muenchen.selenipo.Transition;
+import de.muenchen.selenipo.ValidationMessage;
+import de.muenchen.selenipo.ValidationMessage.ListType;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
@@ -214,5 +217,88 @@ public class ConverterServiceImpl implements ConverterService {
 		// to handle this.
 		transFx.setDestinationFx(null);
 		return transFx;
+	}
+
+	/**
+	 * überprüft die elemente und transitions eines Pos auf doppelte identefier.
+	 */
+	private List<ValidationMessage> testForDuplicateKeys(PoGeneric po) {
+		List<String> uniqueKeys = new LinkedList<String>();
+		List<ValidationMessage> duplecateKeysToReturn = new LinkedList<ValidationMessage>();
+
+		List<Element> elements = po.getElements();
+		List<Transition> transitions = po.getTransitions();
+
+		if (elements != null) {
+			for (Element elem : elements) {
+				if (!uniqueKeys.contains(elem.getIdentifier())) {
+					uniqueKeys.add(elem.getIdentifier());
+				} else {
+					ValidationMessage vMessage = new ValidationMessage(
+							po.getIdentifier()+"."+elem.getIdentifier(), ListType.ELEMENT,
+							"Identefier ist nicht eindeutig");
+					if (!duplecateKeysToReturn.contains(vMessage)) {
+						duplecateKeysToReturn.add(vMessage);
+					}
+				}
+			}
+		}
+		if (transitions != null) {
+			for (Transition trans : transitions) {
+				if (!uniqueKeys.contains(trans.getIdentifier())) {
+					uniqueKeys.add(trans.getIdentifier());
+				} else {
+					ValidationMessage vMessage = new ValidationMessage(
+							po.getIdentifier()+"."+trans.getIdentifier(), ListType.TRANISTION,
+							"Identefier ist nicht eindeutig");
+					if (!duplecateKeysToReturn.contains(vMessage)) {
+						duplecateKeysToReturn.add(vMessage);
+					}
+				}
+			}
+		}
+		return duplecateKeysToReturn;
+	}
+
+	/**
+	 * Überprüft ob in einer Po liste doppelte identefier sind. Überprüft nur
+	 * die übergebene Liste, nicht die Pos selbst.
+	 * 
+	 * @param pos
+	 * @return
+	 */
+	private List<ValidationMessage> testPoListForDuplecateKeys(
+			List<PoGeneric> pos) {
+		List<String> uniqueKeys = new LinkedList<String>();
+		List<ValidationMessage> duplecateKeysToReturn = new LinkedList<ValidationMessage>();
+
+		for (PoGeneric po : pos) {
+			if (!uniqueKeys.contains(po.getIdentifier())) {
+				uniqueKeys.add(po.getIdentifier());
+			} else {
+				ValidationMessage vMessage = new ValidationMessage(
+						po.getIdentifier(), ListType.PAGEOBJECT,
+						"Identefier ist nicht eindeutig");
+				if (!duplecateKeysToReturn.contains(vMessage)) {
+					duplecateKeysToReturn.add(vMessage);
+				}
+			}
+		}
+		return duplecateKeysToReturn;
+	}
+
+	@Override
+	public List<ValidationMessage> validateModel(PoModel model) {
+		List<ValidationMessage> errorsToReturn = new LinkedList<ValidationMessage>();
+
+		List<PoGeneric> poGenerics = model.getPoGenerics();
+		List<ValidationMessage> testPoListForDuplecateKeys = testPoListForDuplecateKeys(poGenerics);
+		errorsToReturn.addAll(testPoListForDuplecateKeys);
+		for (PoGeneric po : poGenerics) {
+			List<ValidationMessage> testForDuplicateKeys = testForDuplicateKeys(po);
+			errorsToReturn.addAll(testForDuplicateKeys);
+		}
+
+		return errorsToReturn;
 	}
 }

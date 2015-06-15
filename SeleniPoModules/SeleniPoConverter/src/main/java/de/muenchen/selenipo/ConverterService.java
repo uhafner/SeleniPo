@@ -1,7 +1,9 @@
 package de.muenchen.selenipo;
 
 import java.io.File;
+import java.util.List;
 
+import javafx.print.PageOrientation;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
 import de.muenchen.selenipo.impl.fxModel.TransitionFx;
@@ -39,5 +41,9 @@ public interface ConverterService {
 	PoGenericFx convertToPoGenericFx(PoGeneric poGeneric);
 
 	TransitionFx convertElementToTransitionFx(Element element);
+
+	List<ValidationMessage> validateModel(PoModel model);
+	
+	
 
 }

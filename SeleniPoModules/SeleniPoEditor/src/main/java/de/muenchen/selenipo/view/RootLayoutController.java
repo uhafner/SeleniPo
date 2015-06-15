@@ -2,16 +2,25 @@ package de.muenchen.selenipo.view;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import org.apache.log4j.Logger;
 
 import de.muenchen.selenipo.MainApp;
+import de.muenchen.selenipo.ValidationMessage;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
 import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
@@ -41,7 +50,15 @@ public class RootLayoutController {
 			}
 			PoModelImpl poModelImpl = mainApp.getConverterService()
 					.convertToImpl(mainApp.getPoModelFx());
-			mainApp.getConverterService().persistToXml(file, poModelImpl);
+			// Validiere das Model
+			List<ValidationMessage> validateMessages = mainApp
+					.getConverterService().validateModel(poModelImpl);
+			if (validateMessages.size() == 0) {
+				mainApp.getConverterService().persistToXml(file, poModelImpl);
+			} else {
+				createValidationErrorAlert(mainApp.getPrimaryStage(),
+						validateMessages);
+			}
 		}
 	}
 
@@ -75,20 +92,95 @@ public class RootLayoutController {
 		File dir = dirChooser.showDialog(mainApp.getPrimaryStage());
 		if (dir != null) {
 			try {
-				mainApp.getGeneratorService().generatePageObjects(
-						mainApp.getPoModelFx(), dir.getAbsolutePath());
+				// Validiere das Model
+				List<ValidationMessage> validateMessages = mainApp
+						.getConverterService().validateModel(
+								mainApp.getPoModelFx());
+				if (validateMessages.size() == 0) {
+					mainApp.getGeneratorService().generatePageObjects(
+							mainApp.getPoModelFx(), dir.getAbsolutePath());
+				} else {
+					createValidationErrorAlert(mainApp.getPrimaryStage(),
+							validateMessages);
+				}
 			} catch (IOException e) {
 				// Show the error message.
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.initOwner(mainApp.getPrimaryStage());
-				alert.setTitle("Fehler beim Generieren");
-				alert.setHeaderText("Stacktrace:");
-				alert.setContentText(e.toString());
-
-				alert.showAndWait();
-
+				createGeneratorException(mainApp.getPrimaryStage(), e);
 			}
 		}
+	}
+
+	private Alert createValidationErrorAlert(Stage stage,
+			List<ValidationMessage> errors) {
+		// Nothing selected.
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setResizable(true);
+		alert.initOwner(mainApp.getPrimaryStage());
+		alert.setTitle("Validation Error");
+		alert.setHeaderText("Bei der Validierung des Models traten fehler auf.");
+
+		Label label = new Label("Fehlermeldungen:");
+
+		StringBuffer sb = new StringBuffer();
+		for (ValidationMessage validationMessage : errors) {
+			sb.append(validationMessage + System.getProperty("line.separator"));
+		}
+
+		TextArea textArea = new TextArea(sb.toString());
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(label, 0, 0);
+		expContent.add(textArea, 0, 1);
+
+		// Set expandable Exception into the dialog pane.
+		alert.getDialogPane().setExpandableContent(expContent);
+
+		alert.showAndWait();
+		return alert;
+	}
+
+	private Alert createGeneratorException(Stage stage, Exception ex) {
+		// Nothing selected.
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setResizable(true);
+		alert.initOwner(mainApp.getPrimaryStage());
+		alert.setTitle("Generator Exception");
+		alert.setHeaderText("Fehler beim Generieren.");
+		// Create expandable Exception.
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		ex.printStackTrace(pw);
+		String exceptionText = sw.toString();
+
+		Label label = new Label("The exception stacktrace was:");
+
+		TextArea textArea = new TextArea(exceptionText);
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(label, 0, 0);
+		expContent.add(textArea, 0, 1);
+
+		// Set expandable Exception into the dialog pane.
+		alert.getDialogPane().setExpandableContent(expContent);
+
+		alert.showAndWait();
+		return alert;
 	}
 
 	/**
