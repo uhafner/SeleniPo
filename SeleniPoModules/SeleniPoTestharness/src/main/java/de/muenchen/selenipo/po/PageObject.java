@@ -109,7 +109,7 @@ public class PageObject {
 	 */
 	protected WebElement find(By selector) {
 		try {
-			long endTime = System.currentTimeMillis() + 1000;
+			long endTime = System.currentTimeMillis() + 3000;
 			while (System.currentTimeMillis() <= endTime) {
 				WebElement e = driver.findElement(selector);
 				if (isDisplayed(e))

@@ -1,7 +1,5 @@
 package de.muenchen.selenipo;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,7 +10,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import de.muenchen.selenipo.config.Config;
 import de.muenchen.selenipo.po.BasePo;
-import de.muenchen.selenipo.po.edit.TestPo;
+import de.muenchen.selenipo.po.base.OverviewPage;
+import de.muenchen.selenipo.po.base.WelcomePage;
 
 /**
  * Unit test for simple App.
@@ -27,12 +26,13 @@ public class AppTest {
 
 	/**
 	 * Rigourous Test :-)
+	 * @throws InterruptedException 
 	 */
 	@Test
-	public void testApp() {
-		TestPo p = new TestPo(po);
-		p.doIt();
-		assertTrue(true);
+	public void testApp() throws InterruptedException {
+		WelcomePage wp = new WelcomePage(po);
+		OverviewPage ov = wp.clickAENTER();
+		ov.clickAToDoApp();
 
 	}
 }

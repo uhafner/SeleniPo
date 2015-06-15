@@ -2,6 +2,7 @@ package de.muenchen.selenipo.impl;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -37,8 +39,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 	private static final Logger logger = Logger
 			.getLogger(GeneratorServiceImpl.class);
 
-	private static final String GENERATED_FOLDER_NAME = "generated";
-	private static final String EDIT_FOLDER_NAME = "edit";
+	public static final String CONFIG_FILE = "gernerator.properties";
 
 	@Autowired
 	private VelocityEngine velocityEngine;
@@ -65,6 +66,28 @@ public class GeneratorServiceImpl implements GeneratorService {
 			final String rootFolder) throws IOException {
 		// Map to return
 		Map<String, String> returnValue = new HashMap<String, String>();
+		// Lese die Zielpfade ab dem Rootfolder aus der config aus
+		Properties props = new Properties();
+		try {
+			// Wurde ein eigenes File vom User hinterlegt?
+			String path = "./" + CONFIG_FILE;
+			FileInputStream file = new FileInputStream(path);
+			props.load(file);
+			logger.info("Verwende generator.config des Users");
+		} catch (Exception e) {
+			props.load(this.getClass().getResourceAsStream("/" + CONFIG_FILE));
+			logger.info("Verwende generator.config aus jar");
+		}
+		String generatedBasePath = props.getProperty("generator.generatedPath");
+		String editableBasePath = props.getProperty("generator.editablePath");
+		String packagePath = props.getProperty("generator.packagePath");
+		logger.debug(String.format("Base path für generated: %s",
+				generatedBasePath));
+		logger.debug(String.format("Base path für editable: %s",
+				editableBasePath));
+		logger.debug(String.format("Base Package path für edit/generated: %s",
+				packagePath));
+
 		// Befülle liste mit unterschiedlichen DestinationPos für die Imports
 		Set<PoGeneric> destinationPos = new HashSet<PoGeneric>();
 		for (Transition transition : poGeneric.getTransitions()) {
@@ -80,9 +103,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 		logger.debug(String.format("RootFolder: %s", rootFolder));
 		logger.debug("-Erzeuge Generated PO:");
 		// Generate Path
-		String packagePath = "";
 		if (poGeneric.getPackageName() != null) {
-			packagePath = poGeneric.getPackageName().replaceAll("\\.", "/");
+			packagePath = packagePath + "/"
+					+ poGeneric.getPackageName().replaceAll("\\.", "/");
 		}
 		logger.debug(String.format("-- packagePath: [%s]", packagePath));
 
@@ -91,22 +114,39 @@ public class GeneratorServiceImpl implements GeneratorService {
 		Template tGenerated = velocityEngine
 				.getTemplate("de/muenchen/selenipo/poGeneric.vm");
 		final String wholePathGenerated = String.format(
-				"%s/%s/%s/%sGenerated.java", rootFolder, GENERATED_FOLDER_NAME,
+				"%s/%s/%s/%sGenerated.java", rootFolder, generatedBasePath,
 				packagePath, poGeneric.getIdentifier());
 		Map<String, String> mapGenerated = writeFile(wholePathGenerated,
 				context, tGenerated, poGeneric);
 
 		// Erzeuge Edit Po
+
 		// Get Template
 		Template tEdit = velocityEngine
 				.getTemplate("de/muenchen/selenipo/poEditable.vm");
 		final String wholePathEdit = String.format("%s/%s/%s/%s.java",
-				rootFolder, EDIT_FOLDER_NAME, packagePath,
+				rootFolder, editableBasePath, packagePath,
 				poGeneric.getIdentifier());
-		writeFile(wholePathEdit, context, tEdit, poGeneric);
-
+		// Überprüfe ob das Po bereits vorhanden ist
+		if (!doesEditPoAlreadyExist(wholePathEdit)) {
+			// Edit Po wird nicht in die rückgabe übernommen da einfach eine
+			// leere Klasse.
+			writeFile(wholePathEdit, context, tEdit, poGeneric);
+		}
 		returnValue.putAll(mapGenerated);
 		return returnValue;
+	}
+
+	private boolean doesEditPoAlreadyExist(String wholePath) {
+		File f = new File(wholePath);
+		if (f.exists() && !f.isDirectory()) {
+			logger.debug(String.format("EditPo [%s] gefunden.", wholePath));
+			return true;
+		} else {
+			logger.debug(String
+					.format("EditPo [%s] nicht gefunden.", wholePath));
+			return false;
+		}
 	}
 
 	private Map<String, String> writeFile(String wholePath,

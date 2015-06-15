@@ -17,10 +17,10 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import de.muenchen.SeleniPoHtmlParser.HtmlParserService;
-import de.muenchen.SeleniPoHtmlParser.config.HtmlParserConfig;
+import de.muenchen.selenipo.HtmlParserService;
 import de.muenchen.selenipo.config.ConverterConfig;
 import de.muenchen.selenipo.config.GeneratorConfig;
+import de.muenchen.selenipo.config.HtmlParserConfig;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
