@@ -19,6 +19,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import de.muenchen.selenipo.HtmlParserService;
 import de.muenchen.selenipo.config.ConverterConfig;
+import de.muenchen.selenipo.config.EditorConfig;
 import de.muenchen.selenipo.config.GeneratorConfig;
 import de.muenchen.selenipo.config.HtmlParserConfig;
 import de.muenchen.selenipo.impl.fxModel.ElementFx;
@@ -37,6 +38,7 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	AnnotationConfigApplicationContext context;
 
 	private WebDriver webDriver;
 	private PoModelFx poModelFx;
@@ -61,9 +63,9 @@ public class MainApp extends Application {
 	 */
 	public MainApp() {
 		poModelFx = new PoModelFx();
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				ConverterConfig.class, GeneratorConfig.class,
-				HtmlParserConfig.class);
+		context = new AnnotationConfigApplicationContext(ConverterConfig.class,
+				GeneratorConfig.class, HtmlParserConfig.class,
+				EditorConfig.class);
 		converterService = context.getBean(ConverterService.class);
 		generatorService = context.getBean(GeneratorService.class);
 		htmlParserService = context.getBean(HtmlParserService.class);
@@ -275,6 +277,10 @@ public class MainApp extends Application {
 
 	public void setHtmlPoGenericFx(PoGenericFx htmlPoGenericFx) {
 		this.htmlPoGenericFx = htmlPoGenericFx;
+	}
+
+	public AnnotationConfigApplicationContext getContext() {
+		return context;
 	}
 
 	/**

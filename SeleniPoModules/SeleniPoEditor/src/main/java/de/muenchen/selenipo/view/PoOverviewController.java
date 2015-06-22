@@ -546,7 +546,8 @@ public class PoOverviewController {
 	@FXML
 	private void handleUrlStart() throws InterruptedException {
 		logger.debug(String.format("Url Start.. [%s]", urlField.getText()));
-		WebDriver driver = new FirefoxDriver();
+
+		WebDriver driver = getMainApp().getContext().getBean(WebDriver.class);
 		mainApp.setWebDriver(driver);
 		driver.get(urlField.getText());
 	}

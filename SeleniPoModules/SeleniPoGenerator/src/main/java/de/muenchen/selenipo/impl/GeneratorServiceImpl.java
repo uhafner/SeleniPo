@@ -20,8 +20,10 @@ import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.tools.generic.DisplayTool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import de.muenchen.selenipo.GeneratorService;
 import de.muenchen.selenipo.PoGeneric;
@@ -42,7 +44,11 @@ public class GeneratorServiceImpl implements GeneratorService {
 	public static final String CONFIG_FILE = "gernerator.properties";
 
 	@Autowired
-	private VelocityEngine velocityEngine;
+	@Qualifier("classpath")
+	private VelocityEngine velocityEngineClasspath;
+	@Autowired
+	@Qualifier("filesystem")
+	private VelocityEngine velocityEngineFilesystem;
 	@Autowired
 	private DisplayTool display;
 
@@ -111,8 +117,16 @@ public class GeneratorServiceImpl implements GeneratorService {
 
 		// Erzeuge Generated Po
 		// Get Template
-		Template tGenerated = velocityEngine
-				.getTemplate("de/muenchen/selenipo/poGeneric.vm");
+		Template tGenerated;
+		try {
+			// Eigenes Tamplate von User vorhanden?
+			tGenerated = velocityEngineFilesystem.getTemplate("poGenerated.vm");
+			logger.info("Verwende poGenerated.vm des Users");
+		} catch (Exception e) {
+			tGenerated = velocityEngineClasspath
+					.getTemplate("de/muenchen/selenipo/poGenerated.vm");
+			logger.info("Verwende poGenerated.vm aus resourcen.");
+		}
 		final String wholePathGenerated = String.format(
 				"%s/%s/%s/%sGenerated.java", rootFolder, generatedBasePath,
 				packagePath, poGeneric.getIdentifier());
@@ -122,8 +136,16 @@ public class GeneratorServiceImpl implements GeneratorService {
 		// Erzeuge Edit Po
 
 		// Get Template
-		Template tEdit = velocityEngine
-				.getTemplate("de/muenchen/selenipo/poEditable.vm");
+		Template tEdit;
+		try {
+			// Eigenes Tamplate von User vorhanden?
+			tEdit = velocityEngineFilesystem.getTemplate("poEditable.vm");
+			logger.info("Verwende poEdit.vm des Users");
+		} catch (Exception e) {
+			tEdit = velocityEngineClasspath
+					.getTemplate("de/muenchen/selenipo/poEditable.vm");
+			logger.info("Verwende poEdit.vm aus resourcen.");
+		}
 		final String wholePathEdit = String.format("%s/%s/%s/%s.java",
 				rootFolder, editableBasePath, packagePath,
 				poGeneric.getIdentifier());
