@@ -10,5 +10,10 @@ A level-1 auxiliary file: 08_teilautomatisierte_generierung_von_pageObjects.aux
 The style file: alphadin.bst
 Database file #1: Literatur.bib
 Warning--neither address nor publication date in hoffmann_software-qualitat_2013
+Warning--there's no year in ieee_ieee_1991
 Warning--neither address nor publication date in iso/iec_iso/iec_2001
-(There were 2 warnings)
+Warning--neither address nor publication date in ramler_economic_2006
+Warning--neither address nor publication date in seidl_basiswissen_2012
+Warning--neither address nor publication date in spillner_basiswissen_2007
+Warning--neither address nor publication date in thaller_software-test_2002
+(There were 7 warnings)
