@@ -87,17 +87,41 @@ Testaufgaben, die man dabei unterscheidet sind:
 \end{itemize}
 
 Obgleich die Aufgaben in sequenzieller Reihenfolge im Testprozess angegeben sind, können sie sich überschneiden und teilweise auch gleichzeitig durchgeführt werden. Auf Grundlage des fundamentalen Testprozesses nach Splinner und Linz werden im folgenden diese Teilaufgaben näher beschrieben. \cite[S.20ff]{spillner_basiswissen_2007}
+Für jede Teilaufgabe wird kurz darauf eingegangen worauf bei der Testautomatisierung zu achten ist. Dabei wird sich an die Erkenntnisse von Seidl et al. angelehnt. \cite[Seite 9 ff.]{seidl_basiswissen_2012}
 
 \subsection{Testplanung und Steuerung}
 \label{subsec:testplanung_und_steuerung}
-
+Das testen eines Softwareprojektes stellt eine umfangreiche Aufgabe dar. Um diese zu bewältigen wird eine sorgfältige Planung zu beginn des Softwareprojekts benötigt.
+Ziel dieser Planung ist es, die Rahmenbedingungen für die Testaktivitäten festzulegen. Nachdem Aufgaben und die Zielsetzung der Tests bestimmt wurden, können die Resourcen die für die Durchführung der Aufgaben benötigt werden geplant werden. Eine Weitere Kernaufgabe der Planung ist es, eine geeignete Teststrategie zu erarbeiten. In Kapitel \ref{sec:softwaretest} wurde bereits erwähnt, dass das vollständige Testen einer Anwendung in der Regel nicht möglich ist. Die einzelnen Systemteile müssen daher nach Schwere der zu erwartenden Fehlerwirkung priorisiert werden. Je nach schwere der zu erwarteten Auswirkungen, kann dann die Intensität bestimmt werden, mit der ein einzelner Systemteil getestet werden soll. Das ziel der Teststrategie ist es also eine optimale Verteilung der Tests auf das Softwaresystem zu erreichen. Steht das Softwareprojekt unter einem hohen Zeitdruck müssen Testfälle zusätzlich Priorisiert werden.
+Um zu verhindern, dass das Testen zu einem endlosen Prozess wird, müssen auch geeignete Testendekriterien festgelegt werden. Anhand dieser Kriterien kann später entschieden werden ob der Testprozess abgeschlossen werden kann.
+Oftmals wird im Rahmen der Tests eine besondere Werkzeugunterstützung oder Infrastruktur benötigt. Derartige Punkte müssen auch bereits in der frühen Planungsphase berücksichtigt werden. Wie Kapitel \ref{sec:softwaretest} gezeigt hat, ist das im besonderen der Fall wenn in der Planung beschlossen wird, dass die Testfälle automatisiert durchgeführt werden sollen.
+Die Gesammten erarbeiteten Rahmenbedingungen werden in einem Testkonzept dokumentiert.
+Eine mögliche Vorlage für dieses Dokument bietet die internationale Norm IEEE 829-2008 \cite{ieee_ieee_2008}.
+Neben der frühzeitigen Planung der Tests muss während des gesamten Testprozesses eine Steuerung erfolgen.
+Hierfür werden die Ergebnisse und Fortschritte der Tests und des Projekts laufend erhoben, geprüft und bewertet. Werden Probleme erkannt, kann so rechtzeitig gegengesteuert werden.
+Bereits in dieser Frühen Phase werden auch wichtige Grundsteine für eine spätere Testautomatisierung gesetzt. Es muss entschieden werden, in welchen Teststufen und Testbereichen eine Automatisierung eingesetzt werden soll. Vor allem ist die frage zu klären ob und in welchem Ausmaß eine Automatisierung überhaupt sinnvoll ist.
+Entscheidet man sich für eine Testautomatisierung hat das in der Regel große Auswirkung auf die einzusetzenden Ressourcen und die Zeitliche Planung und Aufwandsschätzung.
+Diese Informationen fließen auch in das Testkonzept mit ein und erweitern und verändern dort die Rahmenbedingungen. 
 
 \subsection{Testanalyse und Testdesign}
 \label{subsec:testanalyse_und_design}
-
+In dieser Phase wird zunächst die Qualität der Testbasis überprüft. Alle Dokumente die für die Erstellung der Testfälle benötigt werden müssen in ausreichendem Detailgrad vorhanden sind. Mit Hilfe der qualitätsgesicherten Dokumente kann die eigentliche Testfallerstellung beginnen.
+Anhand der Informationen aus dem Testkonzept und den Spezifikationen werden mittels strukturierter Testfallerstellungsmethoden logische Testfälle erstellt. Diese logischen Testfälle können dann in einer späteren Phase konkretisiert werden, indem ihnen z.B. tatsächliche Eingabewerte zugeordnet werden. Für jeden dieser Testfälle müssen die möglichen Rand- und Vorbedingungen so wie ein erwartetes Ergebnis bestimmt werden. Um letzteres ermitteln zu können, muss ein so genanntes Testorakel befragt werden. Hierbei handelt es sich um eine Quelle, die auf das erwartete Ergebnis schließen lässt. Als ein solches Testorakel kann beispielsweise die Spezifikation der Software dienen.
+In dieser Phase beginnt auch die Umsetzung der Testfälle in der Testautomatisierung.
+Abgestimmt auf die ausgewählten Automatisierungswerkzeuge und die zu testende Software  muss die Umgebung für die Testautomatisierung vorbereitet werden. Anhand der Vorgaben des Testkonzeptes können dann jene Testfälle und Testabläufe ausgewählt werden die im Zuge der Testautomatisierung implementiert werden sollen. Hierbei wird noch einmal die technische Umsetzbarkeit der ausgewählten Testfälle geprüft. Bei der Auswahl der Testfälle sollte zu beginn eine möglichst breite Testabdeckung angestrebt werden.
+Problemfelder können dann später durch weitere Testfälle in in der Tiefe getestet werden.
 
 \subsection{Testrealisierung und Testdurchführung}
 \label{subsec:testrealisierung_und_durchführung}
+In diesem Schritt des Testprozesses werden aus den Logischen Testfällen der vorangegangenen Phase konkrete Testfälle gebildet.
+Diese Testfälle werden anhand ihrer fachlichen und technischen Zusammengehörigkeit zu Testszenarien gruppiert und anhand der Vorgaben aus dem Testkonzept priorisiert.
+Sobald die zu testende Software zur Verfügung steht, kann mit der Abarbeitung der Testfälle begonnen werden. Die dabei erhaltenen Ergebnisse werden vollständig protokolliert. Auf Abweichungen von den erwarteten Ergebnissen muss entsprechend reagiert werden. Korrekturen und nachgehende Veränderungen am Testobjekt werden durch eine Wiederholung der Testläufe abgedeckt.
+Aus Sicht der Testautomatisierung beginnt in dieser Phase die technische Umsetzung der Testfälle.
+In vielen Fällen bedeutet das Programmiertätigkeit. Diese Programmiertätigkeiten sind wiederum anfällig für eigene Fehler und müssen daher in angemessener Weise qualitätsgesichert werden. Auch bei der Testautomatisierung ist eine Zusammenfassung von Testfällen sinnvoll. Auf diese weise kann man funktionalen und logischen Abhängigkeiten zwischen den Testfällen gerecht werden.
+Nach der Implementierung können die geplanten Testfälle durchgeführt werden.
+Auch bei der Automatisierung ist eine Genaue Protokollierung der Ergebnisse wichtig.
+Nur durch eine sehr genaue Protokollierung ist es später möglich, aufgetretene Fehler zu lokalisieren.
+Im Vergleich zu manuellen Tests werden automatisierte Testfälle in der Regel häufiger wiederholt. Es ist daher besonders darauf zu achten, dass erneute Testläufe nicht die Protokolle von vorangegangenen Tests überschreiben sondern ein neues Testprotokoll starten.
 
 \subsection{Testauswertung und Bericht}
 \label{subsec:testauswertung_und_bericht}
