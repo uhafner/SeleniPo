@@ -7,12 +7,20 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Har00]{harrold_testing:_2000}
+\textsc{Harrold}, Mary~J.:
+\newblock Testing: {A} {Roadmap}.
+\newblock {In: }\emph{Proceedings of the {Conference} on {The} {Future} of
+  {Software} {Engineering}}.
+\newblock New York, NY, USA : ACM, 2000 ({ICSE} '00). --
+\newblock ISBN 1--58113--253--0, 61--72
+
 \bibitem[Hof13]{hoffmann_software-qualitat_2013}
 \textsc{Hoffmann}, Dirk~W.:
 \newblock \emph{Software-{Qualität}}.
 \newblock 2013.
 \newblock Berlin : Springer, 2013. --
-\newblock ISBN 9783540763222
+\newblock ISBN 978--3--540--76322--2
 
 \bibitem[{IEE}91]{ieee_ieee_1991}
 \textsc{{IEEE}}:
@@ -33,6 +41,12 @@
 \newblock \emph{{ISO}/{IEC} 9126. {Software} engineering -- {Product} quality}.
 \newblock 2001.
 \newblock ISO/IEC, 2001
+
+\bibitem[{Pro}06]{prof._dr._r._lindermeier_projekt-_2006}
+\textsc{{Prof. Dr. R. Lindermeier}}:
+\newblock \emph{Projekt- und {Qualitätsmanagement} {Softwarequalität} und
+  {Softwareprüfung}}.
+\newblock 2006
 
 \bibitem[RW06]{ramler_economic_2006}
 \textsc{Ramler}, Rudolf ; \textsc{Wolfmaier}, Klaus:
