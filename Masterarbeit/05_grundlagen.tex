@@ -158,7 +158,7 @@ Auf gröbster ebene können dabei vier Hauptphasen unterschieden werden, die auc
 
 Das Testen, bzw. der Testprozess ist also eine von mehreren Phasen in solch einem Entwicklungsmodell.
 Es gibt eine Vielzahl von unterschiedlichen Softwareentwicklungsmodellen. Der Hauptunterschied liegt meist in der zeitlichen Koppelung und der inhaltlichen Ausprägung der einzelnen Phasen. Die einzelnen Phasen können sich innerhalb eines Vorgehensmodells überschneiden und wiederholen und müssen auch nicht immer wie in der Auflistung angegeben sequentiell abgearbeitet werden.
-Aus der Sicht der Testautomatisierung ist daher eine Einteilung der verschiedenen Vorgehensmodelle in zwei Gruppen sinnvoll: \cite[vgl. S.21 ff.]{seidl_basiswissen_2012}
+Aus der Sicht der Testautomatisierung ist eine Einteilung der verschiedenen Vorgehensmodelle in zwei Gruppen sinnvoll: \cite[vgl. S.21 ff.]{seidl_basiswissen_2012}
 
 \begin{itemize}
 \item Klassische Entwicklungsmodelle, die eher sequentiell ausgerichtet sind
@@ -168,6 +168,8 @@ Aus der Sicht der Testautomatisierung ist daher eine Einteilung der verschiedene
 \subsection{Klassische Entwicklungsmodelle}
 \label{subsec:klassische_entwicklungsmodelle}
 
+Die hier als Klassische Entwicklungsmodelle betitelten Vorgehensmodelle zeichnen sich vor allem dadurch aus, dass die einzelnen Phasen sequentiell ausgeführt werden. Der bekannteste Vertreter dieser Vorgehensmodelle ist das Wasserfallmodell \cite{royce_managing_1987}. In diesem Modell sind alle Phasen strickt voneinander getrennt. Eine neue Phase kann erst begonnen werden, wenn eine vorangegangene Phase abgeschlossen wurde. Rücksprünge in vorangegangene Phasen sind unerwünscht. In der Praxis wird diese vorgehen jedoch oft nicht ganz so strickt umgesetzt. Es kommt zu Mischformen, bei denen die einzelnen Phasen nicht mehr voll sequentiell abgearbeitet werden sondern sich teilweise überlagern. Vor allem im Bereich des Testens geht man oft dazu über, dieses strikte Vorgehensmodell aufzuweichen. Das Testen ist meist keine getrennte Phase am Ende des Entwicklungsprozesses sondern erstreckt sich über den gesamten Prozess ausgehend von der frühen Spezifikationsphase.
+
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.7]{img/sequentielleentwicklungsmodelle.png}\\
@@ -176,14 +178,31 @@ Aus der Sicht der Testautomatisierung ist daher eine Einteilung der verschiedene
   \label{fig:verschiedene_auspraegungen_klassischer_entwicklungsmodelle}
 \end{figure}
 
+In Projekten die ein solch sequentielles Vorgehen wählen, muss bereits in der Planungsphase des Testprozesses genau abgewägt werden, ob eine Automatisierung der Testfälle überhaupt sinnvoll ist.
+Wenn zu Beginn des Projektes schon klar ist, dass die Testfälle nur ein einziges mal am Ende des Entwicklungsprozesses ausgeführt werden, steht eine Automatisierung oft nicht in Relation zu den erhöhten Kosten die bei der Erstellung der Testfälle anfallen würden.
+Bei dieser Entscheidung ist allerdings zu beachten, dass Software meist mit dem Ende eines Projektes nicht seinen finalen Stand erreicht hat. Fehler so wie geänderte Anforderungen führen meist dazu, dass sich Softwareprodukte ständig Weiterentwickeln.
+Diese Weiterentwicklung ist zwangsläufig mit Codeänderungen verbunden die wiederum zu Fehlern in bereits bestehenden Code führen kann.
+Um solche Fehler zu entdecken müssen im Rahmen von Regressionstests auch Testfälle wiederholt werden die bereits erfolgreich abgeschlossen wurden.
+Solche Regressionstests lassen sich bei einer vorhandenen Testautomatisierung besonders leicht durchführen. Sind also in der Software nach Projektabschluss größere Änderungen zu erwarten kann sich eine Automatisierung über längere Sicht durchaus lohnen.
+Neben Regressionstests kann auch die Notwendigkeit einer höheren Testtiefe oder einer breiteren Testabdeckung ein Faktor sein sich für eine Automatisierung zu entscheiden.
+In manchen Fällen, wie beispielsweise Lasttests mit mehreren hundert Usern, kann eine Automatisierung auch unabdingbar werden.
+
 \subsection{Iterative und agile Entwicklungsmodelle}
 \label{subsec:iterative_und_agile_entwicklungsmodelle}
-
+Im Gegensatz zu den klassischen Entwicklungsmodellen sin in iterativen Modellen Rücksprünge in vorangegangene Phasen explizit erlaubt. Eine oder alle Phasen werden in diesen Modellen wiederholt durchlaufen. Auf diese weise kann das Softwareprodukt inkrementell wachsen. Durch ein derartiges Vorgehen ist es einfacher möglich auf den Umstand zu reagieren, dass sich Anforderungen in Softwareprojekten häufig ändern. Auch agile Vorgehensmodelle leben von solch einem iterativen Vorgehen. Die einzelnen Phasen werden in kleinen Zyklen viele male durchlaufen.
+Ein bekannter Vertreter der agilen Methoden ist Scrum \cite{schwaber_agile_2002}. In Scrum wird ein Softwareprodukt in kurzen sogenannten Sprints realisiert. Innerhalb eines solchen Sprints wählt das Team selbständig eine Teilaufgabe des Projekts aus. Diese Teilaufgabe wird spezifiziert, designet, entwickelt und getestet. Am Ende eines Sprints steht ein Softwareprodukt, welches um ein weiteren Baustein ergänzt wurde.
+Der Sprint ist das zentrale Element dieses Prozessmodelles und kennzeichnet eine Iteration.
 \begin{figure}[htb]
   \centering  
-  \includegraphics[scale=0.7]{img/iterativeentwicklungsmodelle.png}\\
+  \includegraphics[scale=0.8]{img/iterativeentwicklungsmodelle.png}\\
   \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S.24]{seidl_basiswissen_2012}
   \caption{Verschiedene Ausprägungen iterativer und agiler Entwicklungsmodelle}
   \label{fig:verschiedene_auspraegungen_iterativer_und_agiler_entwicklungsmodelle}
 \end{figure}
-
+Für das Testen stellen diese kurzen Iterationen ein Problem dar.
+Jeder Entwicklungszyklus bringt neue Features hervor die mit Testfällen abgedeckt werden müssen. Der Agile Charakter in diesen Vorgehensmodellen bedingt, dass sich Anforderungen ständig ändern und somit auch bereits fertiger Code oft angepasst werden muss. Darüber hinaus ist nicht ausgeschlossen, dass neue Features Auswirkungen auf alten Code haben können. Neben den neu implementierten Teilen muss daher zum Ende einer jeden Iteration auch sämtlicher alter Code getestet werden.
+Das bedingt einen enormen Testaufwand am Ende einer jeden Iteration. 
+In agilen Vorgehensmodellen wie Scrum ist der Testaufwand nach wenigen Sprints bereits so hoch, dass ein Testdurchlauf zusammen mit allen Regressionstests nicht mehr zu bewältigen ist.
+Gerade in Projekten, die einem derartigen Vorgehensmodell folgen, ist es daher sinnvoll Testautomatisierung einzusetzen. Einmal implementierte Testfälle können zum Ende einer jeden Iteration erneut ausgeführt werden. Die höheren Kosten, die bei der Automatisierung entstehen sind so schnell amortisiert.
+Mit Hilfe von Ansätzen wie Test-driven development versucht man die hohen Anforderungen an die Testautomatisierung in agilen Vorgehensmodellen gerecht zu werden. Automatisierte Testfälle werden dazu bereits vor den zu testenden Komponenten implementiert. So kann eine ausreichend hohe Testabdeckung gewährleistet werden.
+Das sich ständig ändernde Testobjekt bedingt nicht nur die Notwendigkeit von automatisierten Testfällen, es erhöht gleichzeitig auch die Anforderungen an die Qualität der Testfälle. Häufige Änderungen am zu testenden Code lassen einmal implementierte Testfälle schnell veralten. Es muss daher bei der Erstellung der automatisierten Tests besonders auf die Wartbarkeit geachtet werden. Testfälle sollten möglichst Robust gewählt werden und nicht schon durch kleine Änderungen am Testobjekt zerstört werden. Änderungen am Testobjekt sind in agilen Projekten unvermeidbar. Unter diesem Gesichtspunkt sollte daher auch das Design der Testfälle erfolgen. Automatisierte Testfälle sollten ähnliche Qualitätsstandards wie der Code des eigentlichen Projektes verfolgen. Anpassungen an den Testfällen werden sonst schnell zu zeitaufwändig. Die Pflege der bereits implementierten Testfälle wird dann nicht mehr tragbar und die Akzeptanz der Tests im Projekt sinkt.

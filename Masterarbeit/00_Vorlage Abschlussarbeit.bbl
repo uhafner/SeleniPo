@@ -48,6 +48,16 @@
   {Softwareprüfung}}.
 \newblock 2006
 
+\bibitem[Roy87]{royce_managing_1987}
+\textsc{Royce}, W.~W.:
+\newblock Managing the {Development} of {Large} {Software} {Systems}:
+  {Concepts} and {Techniques}.
+\newblock {In: }\emph{Proceedings of the 9th {International} {Conference} on
+  {Software} {Engineering}}.
+\newblock Los Alamitos, CA, USA : IEEE Computer Society Press, 1987 ({ICSE}
+  '87). --
+\newblock ISBN 978--0--89791--216--7, 328--338
+
 \bibitem[RW06]{ramler_economic_2006}
 \textsc{Ramler}, Rudolf ; \textsc{Wolfmaier}, Klaus:
 \newblock Economic {Perspectives} in {Test} {Automation}: {Balancing}
@@ -56,6 +66,17 @@
   {Automation} of {Software} {Test}}.
 \newblock New York, NY, USA : ACM, 2006 ({AST} '06). --
 \newblock ISBN 1--59593--408--1, 85--91
+
+\bibitem[Sch02]{schwaber_agile_2002}
+\textsc{Schwaber}, Ken:
+\newblock \emph{Agile software development with {Scrum}}.
+\newblock Pearson Internat. Ed.
+\newblock Upper Saddle River, NJ : Pearson Education International, 2002
+  (Series in agile software development).
+\newblock
+  \url{http://fhmoz3.bib-bvb.de/InfoGuideClient.fhmsis/start.do?Login=wofhmze&Query=540="0-13-207489-3"}.
+  --
+\newblock ISBN 978--0--13--207489--6
 
 \bibitem[Sei12]{seidl_basiswissen_2012}
 \textsc{Seidl}, Richard:
