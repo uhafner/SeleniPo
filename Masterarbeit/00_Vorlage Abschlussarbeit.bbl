@@ -7,6 +7,22 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Dus01]{dustin_software_2001}
+\textsc{Dustin}, Elfriede:
+\newblock \emph{Software automatisch testen}.
+\newblock Berlin [u.a.] : Springer, 2001 (Xpert.press).
+\newblock
+  \url{http://fhmoz3.bib-bvb.de/InfoGuideClient.fhmsis/start.do?Login=wofhmze&Query=540="3-540-67639-2"}.
+  --
+\newblock ISBN 978--3--540--67639--3
+
+\bibitem[FG99]{fewster_software_1999}
+\textsc{Fewster}, Mark ; \textsc{Graham}, Dorothy:
+\newblock \emph{Software {Test} {Automation} {Effective} use of test execution
+  tools}.
+\newblock Addison-Wesley, 1999. --
+\newblock ISBN 0--201--33140--3
+
 \bibitem[Har00]{harrold_testing:_2000}
 \textsc{Harrold}, Mary~J.:
 \newblock Testing: {A} {Roadmap}.
