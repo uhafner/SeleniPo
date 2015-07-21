@@ -3,9 +3,8 @@
 In Kapitel \ref{sec:testautoGrundlagen} wurde der Begriff Testautomatisierung bereits eingeführt. Die darin gewählte Definition hat gezeigt, dass man unter Testautomatisierung weit mehr versteht, als das automatisierte ausführen von Testfällen auch wenn das der wohl am weitesten verbreiteten Bereich der Automatisierung ist.
 Testautomatisierung ist in allen Bereichen des Entwicklungs- bzw. Testprozesses möglich.
 \glqq Das Spektrum umfasst alle Tätigkeiten zur überprüfung der Softwarequalität im Entwicklungsprozess, in den unterschiedlichen Entwicklungsphasen und Teststufen so wie die entsprechenden Aktivitäten von Entwicklern, Testern, Analytikern oder auch der in die Entwicklung eingebundenen Anwender. Die Grenzen der Automatisierung liegen darin, dass diese nur die manuellen Tätigkeiten eines Testers übernehmen kann, nicht aber die intellektuelle, krative und intuitive Dimension dieser Rolle.\grqq\ \cite[S.7]{seidl_basiswissen_2012}
-Diese intellektuelle Dimension ist vor allem in den frühen Phasen des Testprozesses gefordert. Diese Phasen sind maßgeblich für die Spätere Qualität der einzelnen Testfälle. Testautomatisierung wird daher nie die arbeiten eines guten Testanalysten voll ersetzen können. Um so weiter der Testprozess voranschreitet, um so p
-raktischer werden auch die zu erledigenden Aufgaben. Das Potential für eine Automatisierung steigt.
-Fewster et al. stellen diesen Zusammenhang in einer Grafik bildlich dar. \cite[vgl. S.18]{fewster_software_1999} Abbildung \ref{fig:intellektuellVsPraktisch} greift diese Darstellung auf und passt sie auf den in Kapitel \ref{sec:testprozess} vorgestellten Testprozess an. Die verschiedenen Möglichkeiten der Testautomatisierung werden in Kapitel \ref{sec:bereiche_der_estautomatisierung} geklärt. Zunächst soll jedoch die Frage beantwortet werden warum eine Automatisierung von Testfällen überhaupt Sinn macht.
+Die intellektuelle Dimension ist vor allem in den frühen Phasen des Testprozesses gefordert. Diese Phasen sind maßgeblich für die Spätere Qualität der einzelnen Testfälle. Testautomatisierung wird daher nie die arbeiten eines guten Testanalysten voll ersetzen können. Um so weiter der Testprozess voranschreitet, um so praktischer werden auch die zu erledigenden Aufgaben. Das Potential für eine Automatisierung steigt also im laufe des Testprozesses.
+Fewster und Graham stellen diesen Zusammenhang in einer Grafik bildlich dar. \cite[vgl. S.18]{fewster_software_1999} Abbildung \ref{fig:intellektuellVsPraktisch} greift diese Darstellung auf und passt sie auf den in Kapitel \ref{sec:testprozess} vorgestellten Testprozess an. Die verschiedenen Möglichkeiten der Testautomatisierung werden in Kapitel \ref{sec:bereiche_der_estautomatisierung} geklärt. Zunächst soll jedoch die Frage beantwortet werden warum eine Automatisierung von Testfällen überhaupt Sinn macht.
 
 \begin{figure}[htb]
   \centering  
@@ -25,15 +24,112 @@ Richtig durchgeführt kann Testautomatisierung eine Reihe von Vorteilen bringen.
 \item[3.] Verringerung des Testaufwands und Reduzierung des Zeitplans
 \end{itemize}
 
-Diese Vorteile stehen in enger Abhängigkeit zueinander. Eine Verringerung des Testaufwands für einzelne Tests schafft mehr Zeit die in bessere und breiter angelegte Tests investiert werden kann. Neben der direkten Beeinflussung führt Testautomatisierung also zusätzlich auch indirekt zu einer höhere Testqualität und Testtiefe. Diese bedingt dann wiederum dass mehr Fehler im System aufgedeckt werde können. So kann eine höhere Qualität des Endproduktes erreicht werden die sich in einem zuverlässigeren System zeigt.
 
-In der Literatur gibt es zahlreiche Listen von Vorteilen der Testautomatisierung die bereits sehr fein gegliedert sind. \cite{fewster_software_1999} \cite{thaller_software-test_2002}
-Gleicht man diese Vorteile mit den von Dustin et al. gewählten Oberpunkten ab zeigt sich, dass vor allem die Punkte 2 und 3 also Qualität und Effezienz gut durch diese repräsentiert werden. Sie lassen sich leicht mit den Vorteilen anderer Autoren unterfüttern. Die Erstellung eines zuverlässigen Systems ist hingegen nur schwer direkt zu beeinflussen. In der Regel wird dieser Punkt wie oben beschrieben indirekt beeinflusst.
-Im folgenden wird daher dieser Punkt nicht weiter betrachtet. Die feiner gegliederten Vorteile wie sie Fewster et al. beschreiben werden Verbesserung der Testqualität und Testtiefe so wie der Verringerung des Testaufwands und Reduzierung des Zeitplans zugeordnet.
+In der Literatur gibt es zahlreiche Listen von Vorteilen der Testautomatisierung die sehr viel feiner gegliedert sind als die von Dustin et al. gewählten Oberpunkte. \cite{fewster_software_1999} \cite{thaller_software-test_2002}
+Gleicht man diese Vorteile mit den von Dustin et al. gewählten Oberpunkten ab zeigt sich, dass vor allem die Punkte 2 und 3 gut durch diese repräsentiert werden. Sie lassen sich leicht mit den feiner ausformulierten Vorteilen unterfüttern. Die Erstellung eines zuverlässigen Systems ist hingegen nur schwer direkt zu beeinflussen. In der Regel wird dieser Punkt indirekt durch eine Verbesserung in in den Punkten 2 und 3 beeinflusst.
+Eine Verringerung des Testaufwands für einzelne Tests schafft mehr Zeit die in bessere und breiter angelegte Tests investiert werden kann. Neben der direkten Beeinflussung führt Testautomatisierung also zusätzlich auch indirekt zu einer höhere Testqualität und Testtiefe. Diese bedingt dann wiederum dass mehr Fehler im System aufgedeckt werde können. So kann eine höhere Qualität des Endproduktes erreicht werden die sich in einem zuverlässigeren System zeigt.
+Auf Grund seiner passiven Natur wird Punkt 1 daher im weiteren nicht näher betrachtet.
+Fewster und Graham fassen die Vorteile der Testautomatisierung noch weiter zusammen und reduzieren sich in ihrer Fazit auf die Worte Qualitäts- und Effizienzsteigerung.
+Diese Begriffe entsprechen weitestgehend den von Dustin et al. gewählten Oberpunkten. Qualitätssteigerung fasst dabei die Verbessuerung der Testqualität und Testtiefe zusammen, die Verringerung des Testaufwands und Reduzierung des Zeitplans entspricht der Effizienzsteigerung. 
+Um die Vorteile der Testautomatisierung auf eine Feinere und damit greifbarer Ebene zu bewegen werden im Folgenden die Vorteile wie sie 
+Fewster und Graham beschreiben verwendet und den von Dustin et al. gewählten Kategorien zugeordnet.
+
+\subsection{Verringerung des Testaufwands und Reduzierung des Zeitplans}
+\label{sec:verringerung_des_testaufwands_und_reduzierung_des_zeitplans}
+Die Vorteile in Tabelle \ref{tbl:effizienz_testautomatisierung} beschreiben, dass der Aufwand der für das Testen einer Software betrieben werden muss mit Hilfe von Automatisierung reduziert werden kann.
+Reduzierter Aufwand in den Tests so wie eine schnellere und wiederholbare Abarbeitung der Testfälle führen dann meist dazu, dass der gesamte Zeitplan des Projekts positiv beeinflusst wird. Sein volles Potential entfaltet Automatisierung immer dann, wenn Testfälle wiederholt ausgeführt werden. Regressionstests, die vor jedem neuen Releaszyklus einer Software ausgeführt werden sind daher beispielsweise prädestiniert dazu automatisiert zu werden. Tester können so von sich wiederholenden Testaufgaben entlastet werden. Der Testaufwand wird reduziert und die Tester sind frei für andere Aufgaben was wiederum das Projekt beschleunigt.
+
+\begin{table}
+\begin{tabular}{p{0.4\textwidth}|p{0.6\textwidth}}
+Ausführen existierender Regressionstests für eine neue Version der Software
+& Der Aufwand um Regressionstests manuell durchzuführen kann schnell sehr groß werden. Sind Testfälle automatisiert ist es möglich sie bei Änderungen am System mit wenig aufwand erneut durchzuführen. \\
+\hline 
+Besserer Einsatz von Resourcen
+& Durch Automatisierung lässt es sich vermeiden Tester mit generischen Aufgaben zu binden wie beispielsweise das immer gleiche Tippen von Testeingaben.
+Die so freien gewordenen Resourcen können für andere Aufgaben verwendet werden.
+Der Zeitplan des Projektes kann so verkürzt werden. \\ 
+\hline 
+Wiederverwendbarkeit von Testfällen & 
+Neue Projekte können von den Ergebnissen der Testautomatisierung aus vorangegangenen Projekten profitieren. Auch innerhalb eines Projektes können Teile von Automatisierten Testfällen oft wiederverwendet werden.
+Das Reduziert den Zeitplan des Projekts. \\ 
+\hline 
+Frühere Markteinführung. & Richtig eingesetzt beschleunigt Testautomatisierung den gesamten Testprozess. Das verkürzt letztendlich auch die Zeit bis zur Markteinführung der Software. \\ 
 
 
-Während das zuverlässige System eher eine Folge aus höherer Effizienz und Qualität im Testen sind, können der Qualitätsgewinn und die Effizienzsteigerung durch feinere Vorteile unterfüttert werden.
+\end{tabular} 
+\caption{Verringerung des Testaufwands und Reduzierung des Zeitplans nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}}
+\label{tbl:effizienz_testautomatisierung}
+\end{table}
 
+\subsection{Verbesserung der Testqualität und Testtiefe}
+\label{sec:verbesserung_der_testqualität_und_testtiefe}
+Die in Tabelle \ref{tbl:qualitaet_testautomatisierung} beschriebenen Vorteile zeigen, dass sich mit Hilfe der Testautomatisierungen Verbesserungen im Bereich der Testqualität und Testtiefe erreichen lassen. Eine bessere Testqualität wird meist dadurch erzielt, dass die Testfälle in ihrer Gesamtheit ein höheres Potential erreichen Fehler aufzudecken. Eine hohe Testtiefe und eine möglichst breite Testabdeckung bedingen daher eine allgemein höhere Qualität der Tests. Aber auch die Qualität einzelner Testfälle kann mittels Testautomatisierung direkt verbessert werden. Vor allem eine bessere Wiederverwendbarkeit und Wiederholbarkeit sind hier der ausschlaggebende Faktor.
+
+\begin{table}
+\begin{tabular}{p{0.4\textwidth}|p{0.6\textwidth}}
+\\
+\hline 
+Mehr Testfälle öfter ausführen
+& Aus Zeitmangel müssen sich Tester oft auf einen geringeren Testumfang zurückziehen also eigentlich gewünscht ist. Vor allem bei sehr generischen Testfällen, die sich vielleicht nur in verschiedenen Maskeneingabe unterscheiden ist es mithilfe von Testautomatisierung möglich in weniger Zeit ein vielfaches an Testfällen durchzuführen.
+Eine tiefere Testabdeckung ist die Folge. Da solche Testfälle in der Regel auf einem generischen Basistestfall beruhen ist es hier besonders einfach möglich eine durchgehend hohe Testqualität zu gewährleisten. \\ 
+\hline 
+Testfälle durchführen die ohne Automatisierung schwer bis unmöglich wären & 
+Einen Lasttest für mit z.B. mehr als 200 Benutzern manuell durchzuführen erweist sich als nahezu unmöglich. Die eingaben von 200 Benutzern lassen sich mit Hilfe von automatisierten Lasttests jedoch gut simulieren. Über Testfälle die ohne Automatisierung gar nicht möglich wären, lässt sich die Testbreite erhöhen. Die Qualität der Tests steigt durch das erhöhte Potential Fehler zu entdecken. \\ 
+\hline 
+Konsistenz und Wiederholbarkeit von Testfällen & Testfälle die automatisch durchgeführt werden, werden immer auf die selbe weise durchgeführt. Eine derartige Konsistenz in den Testfällen ist auf Manuellem Wege kaum zu erreichen. Fehlerhaft in der Testfalldurchführung können so vermieden werden. Die Qualität der Testfälle steigt. \\ 
+\hline 
+Erhöhtes Vertrauen in die Testfälle und Software & Das Wissen, dass eine vielzahl an Testfällen erfolgreich vor jedem Release durchgeführt wurde, erhöht das vertrauen von Entwickler und Kunden, dass unerwartete Überraschungen ausbleiben.
+Werden Testfälle regelmäßig ausgeführt, erhöht das zusätzlich das vertrauen, dass diese Testfälle stabil sind und keine Falschmeldungen liefern. \\ 
+
+
+\end{tabular} 
+\caption{Verbesserung der Testqualität und Testtiefe nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}}
+\label{tbl:qualitaet_testautomatisierung}
+\end{table}
+
+\subsection{Kosten also Bewertungsgrundlage für die Testautomatisierung}
+\label{sec:kosten_der_testautomatisierung}
+Die unter Kapitel \ref{sec:verbesserung_der_testqualität_und_testtiefe} und Kapitel \ref{sec:verringerung_des_testaufwands_und_reduzierung_des_zeitplans} aufgezeigten Vorteile eignen sich gut um sich in einer Diskussion über das testen positiv über eine Automatisierung zu äußern. Die genannten Argumente haben allerdings das große Problem, dass sie sich meist nur schwer messen und mit genauen Zahlen belegen lassen.
+Um das zu erreichen muss man sich auf die kleinste ge
+meinsame Größe zurückziehen auf die all die genannten Vorteile hinarbeiten, eine Reduzierung der Kosten beim Testen.
+Sowohl eine Verbesserung der Testqualität und Testtiefe als auch eine Verringerung des Testaufwands und Reduzierung des Zeitplans verfolgen in letzter Instanz immer das Ziel Kosten einzusparen. Sei es direkt durch z.B. eine verkürzte Projektlaufzeit als auch indirekt durch geringere Folgekosten in der Wartung bedingt durch eine höhere Testqualität.
+Letzteres ist wiederum schwer mit einer genauen Zahl zu beziffern. Ist ein Projekt erst einmal abgeschlossen lässt sich nicht mehr einfach ermitteln wie hoch die Differenz und der Schweregrad der gefundenen Fehler beim automatisierten im Gegensatz zum manuellen Testen wäre.
+Um den Nutzen von Testautomatisierung daher für ein Projekt nachvollziehbar zu begründen bieten die direkten Kosten die durch das erstellen und ausführen der Testfälle entstehen den besten Angriffspunkt. \cite{ramler_economic_2006}
+Ramler und Wolfmaier \cite{ramler_economic_2006} zitieren eine Fallstudie von Linz und Daigl \cite{dustin_automated_1999} die eine Unterteilung der Kosten in Zwei Komponenten vornimmt.
+\begin{itemize}
+    \item[] \(V:=\text{Ausgaben für testspezifikation und implementierung}\)
+    \item[] \(D:=\text{Ausgaben für eine einzelnen Testlauf}\)
+\end{itemize}
+
+Mit Hilfe dieser beiden Variablen können die Kosten (\(A_a\)) für einen einzelnen Testfall wie folgt angegeben werden:
+\begin{equation}
+A_a:=V_a+n*D_a
+\end{equation}
+\(V_a\) Symbolisiert die Kosten die für die Spezifikation und Implementierung des automatisierten Testfalls anfallen. \(D_a\) die Kosten die für das einmalige Ausführen des Testfalles entstehen und \(n\) für die Anzahl der durchgeführten Testläufe.
+Um zu bestimmen wie sich das Manuelle und Automatisiertes Testen zueinander verhalten, kann analog die selbe Gleichung für das manuelle Testen aufgestellt werden.
+\begin{equation}
+A_m:=V_m+n*D_m
+\end{equation}
+
+Mit Hilfe dieser beiden Gleichungen lässt sich zeigen, dass sich ab einer gewissen Anzahl an Testläufen die Automatisierung gegenüber der manuellen Ausführung aus Sicht der Kosten lohnt.
+Es wird dabei davon ausgegangen, dass die initiale Investition \(V_a\) für die Automatisierung höher ist als die initiale Investition für das Manuelle Testen \(V_m\).
+Die Kosten für die Automatisierung steigen mit jeder Testausführung \(n\) für die Automatisierung jedoch langsamer an. Beide Funktionen schneiden sich daher in einem break-even Punkt ab dem die Automatisierung die günstigere Alternative darstellt.
+Abbildung \ref{fig:breakEven} veranschaulicht diesen Zusammenhang noch einmal grafisch.
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.8]{img/breakeven.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite{ramler_economic_2006}
+  \caption{Break-even Punkt für Testautomatisierung}
+  \label{fig:breakEven}
+\end{figure}
+
+Zusammenfassend lässt sich also feststellen, dass vor allem wiederholt ausgeführte Testtätigkeiten hohes Einsparungspotential bei einer Testautomatisierung bieten.
+
+
+\subsection{Probleme der Testautomatisierung}
+\label{sec:probleme_der_testautomatisierung}
+Ramler und Wolfmaier \cite{ramler_economic_2006} zitieren ein erreichen des break-even Punkt wie er in Kapitel \ref{sec:kosten_der_testautomatisierung} beschrieben ist nach einer Ausführung von 2-20 Testläufen. Diese große Spanne macht noch einmal deutlich, wie wichtig es ist in der Testplanung und Steuerung genau abzuwägen ob und wo eine Automatisierung sinnvoll einzusetzen ist. Eine Automatisierung kann oft auch unwirtschaftlich sein, vor allem immer dann, wenn Tests nur ein einziges mal ausgeführt werden. 
 
 
 \section{Möglichkeiten der Testautomatisierung im Testprozess}

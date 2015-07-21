@@ -7,13 +7,17 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[DRP99]{dustin_automated_1999}
+\textsc{Dustin}, Elfriede ; \textsc{Rashka}, Jeff  ; \textsc{Paul}, John:
+\newblock \emph{Automated {Software} {Testing}: {Introduction}, {Management},
+  and {Performance}}.
+\newblock Addison-Wesley Professional, 1999. --
+\newblock ISBN 978--0--672--33384--2
+
 \bibitem[Dus01]{dustin_software_2001}
 \textsc{Dustin}, Elfriede:
 \newblock \emph{Software automatisch testen}.
-\newblock Berlin [u.a.] : Springer, 2001 (Xpert.press).
-\newblock
-  \url{http://fhmoz3.bib-bvb.de/InfoGuideClient.fhmsis/start.do?Login=wofhmze&Query=540="3-540-67639-2"}.
-  --
+\newblock Berlin [u.a.] : Springer, 2001 (Xpert.press). --
 \newblock ISBN 978--3--540--67639--3
 
 \bibitem[FG99]{fewster_software_1999}
@@ -88,10 +92,7 @@
 \newblock \emph{Agile software development with {Scrum}}.
 \newblock Pearson Internat. Ed.
 \newblock Upper Saddle River, NJ : Pearson Education International, 2002
-  (Series in agile software development).
-\newblock
-  \url{http://fhmoz3.bib-bvb.de/InfoGuideClient.fhmsis/start.do?Login=wofhmze&Query=540="0-13-207489-3"}.
-  --
+  (Series in agile software development). --
 \newblock ISBN 978--0--13--207489--6
 
 \bibitem[Sei12]{seidl_basiswissen_2012}
