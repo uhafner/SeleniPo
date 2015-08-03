@@ -7,6 +7,15 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[AGIS14]{amannejad_search-based_2014}
+\textsc{Amannejad}, Y. ; \textsc{Garousi}, V. ; \textsc{Irving}, R.  ;
+  \textsc{Sahaf}, Z.:
+\newblock A {Search}-{Based} {Approach} for {Cost}-{Effective} {Software}
+  {Test} {Automation} {Decision} {Support} and an {Industrial} {Case} {Study}.
+\newblock {In: }\emph{2014 {IEEE} {Seventh} {International} {Conference} on
+  {Software} {Testing}, {Verification} and {Validation} {Workshops} ({ICSTW})},
+  2014, S. 302--311
+
 \bibitem[DRP99]{dustin_automated_1999}
 \textsc{Dustin}, Elfriede ; \textsc{Rashka}, Jeff  ; \textsc{Paul}, John:
 \newblock \emph{Automated {Software} {Testing}: {Introduction}, {Management},
@@ -67,6 +76,13 @@
 \newblock \emph{Projekt- und {Qualitätsmanagement} {Softwarequalität} und
   {Softwareprüfung}}.
 \newblock 2006
+
+\bibitem[Ro{\ss}10]{rossner_basiswissen_2010}
+\textsc{Ro{\ss}ner}, Thomas:
+\newblock \emph{Basiswissen modellbasierter {Test}}.
+\newblock 1. Aufl.
+\newblock Heidelberg : dpunkt-Verl., 2010. --
+\newblock ISBN 978--3--89864--589--8
 
 \bibitem[Roy87]{royce_managing_1987}
 \textsc{Royce}, W.~W.:
