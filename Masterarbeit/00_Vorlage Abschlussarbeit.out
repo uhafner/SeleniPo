@@ -25,20 +25,17 @@
 \BOOKMARK [2][-]{subsection.3.2.2}{Testcodeerstellung}{section.3.2}% 25
 \BOOKMARK [2][-]{subsection.3.2.3}{Testdurchf\374hrung}{section.3.2}% 26
 \BOOKMARK [2][-]{subsection.3.2.4}{Testauswertung}{section.3.2}% 27
-\BOOKMARK [1][-]{section.3.3}{Schnittstellen der Testautomatisierung zum System}{chapter.3}% 28
-\BOOKMARK [2][-]{subsection.3.3.1}{API}{section.3.3}% 29
-\BOOKMARK [2][-]{subsection.3.3.2}{GUI}{section.3.3}% 30
-\BOOKMARK [0][-]{chapter.4}{Testautomatisierung mit Selenium}{}% 31
-\BOOKMARK [1][-]{section.4.1}{Selenium}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.2}{Testdurchf\374hrung mit Selenium}{chapter.4}% 33
-\BOOKMARK [1][-]{section.4.3}{Testcodeerstellung mit Selenium}{chapter.4}% 34
-\BOOKMARK [2][-]{subsection.4.3.1}{Recorde-and-playback}{section.4.3}% 35
-\BOOKMARK [2][-]{subsection.4.3.2}{Manuell}{section.4.3}% 36
-\BOOKMARK [2][-]{subsection.4.3.3}{Page Object Pattern}{section.4.3}% 37
-\BOOKMARK [0][-]{chapter.5}{Teilautomatisierte Generierung von Page Objects}{}% 38
-\BOOKMARK [1][-]{section.5.1}{\374bersicht \374ber die Idee}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.2}{einordnung des Testharness und gui in die Geamtstruktur \(Deploymentdiagramm\)}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.3}{\374bersicht \374ber Aufbau des Systems}{chapter.5}% 41
-\BOOKMARK [2][-]{subsection.5.3.1}{pro modul ein kapitel}{section.5.3}% 42
-\BOOKMARK [1][-]{section.5.4}{Vorteile und Probleme}{chapter.5}% 43
-\BOOKMARK [1][-]{section.5.5}{Anwendung}{chapter.5}% 44
+\BOOKMARK [0][-]{chapter.4}{Testautomatisierung mit Selenium}{}% 28
+\BOOKMARK [1][-]{section.4.1}{Selenium}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.2}{Testdurchf\374hrung mit Selenium}{chapter.4}% 30
+\BOOKMARK [1][-]{section.4.3}{Testcodeerstellung mit Selenium}{chapter.4}% 31
+\BOOKMARK [2][-]{subsection.4.3.1}{Recorde-and-playback}{section.4.3}% 32
+\BOOKMARK [2][-]{subsection.4.3.2}{Manuell}{section.4.3}% 33
+\BOOKMARK [2][-]{subsection.4.3.3}{Page Object Pattern}{section.4.3}% 34
+\BOOKMARK [0][-]{chapter.5}{Teilautomatisierte Generierung von Page Objects}{}% 35
+\BOOKMARK [1][-]{section.5.1}{\374bersicht \374ber die Idee}{chapter.5}% 36
+\BOOKMARK [1][-]{section.5.2}{einordnung des Testharness und gui in die Geamtstruktur \(Deploymentdiagramm\)}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.3}{\374bersicht \374ber Aufbau des Systems}{chapter.5}% 38
+\BOOKMARK [2][-]{subsection.5.3.1}{pro modul ein kapitel}{section.5.3}% 39
+\BOOKMARK [1][-]{section.5.4}{Vorteile und Probleme}{chapter.5}% 40
+\BOOKMARK [1][-]{section.5.5}{Anwendung}{chapter.5}% 41

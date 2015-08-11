@@ -236,7 +236,7 @@ Bei der Testautomatisierung versteht man unter Testcodeerstellung das erzeugen v
 In vielen Fällen handelt es sich dabei um einen manuellen Schritt. Die Testcodeerstellung ist oft eine reine Entwicklertätigkeit bei der ein Tester die angedachten Testfälle in Testcode implementiert.
 Aber auch in diesem Schritt sind Möglichkeiten für eine Automatisierung gegeben.
 Es existieren beispielsweise teilautomatisierte Ansätze. Mit Hilfe von sogenannten \grq record-and playback\grq\ Tools (R\&PB) können die Interaktionen eines Benutzers mit der zu testenden Software aufgezeichnet werden. Die aufgezeichneten Abläufe können dann verwendet werden um automatisierte Testskripte zu generieren.
-Auch ein voll automatisierter Ansatz ist möglich wenn auch nicht so weit verbreitet wie der manuelle bzw. tailautomatisierte Ansatz.
+Auch ein voll automatisierter Ansatz ist möglich, wenn auch nicht so weit verbreitet wie der manuelle bzw. tailautomatisierte Ansatz.
 Mittels modellbasiertem Testen ist es nicht nur möglich Testfalldesigns abzuleiten. Liegen die Modelle in einem entsprechend hohen Detailgrad vor ist es sogar möglich daraus direkt Testcode zu erzeugen. Bouquet et al. \cite{bouquet_test_2008} beschreiben beispielsweise einen modellbasierten Ansatz mit dessen Hilfe das designen, erstellen und ausführen von Testfällen automatisiert geschehen kann. \cite{amannejad_search-based_2014}
 Zusammengefasst ist die Testcodeerstellung damit in drei unterschiedlichen Automatisierungsgraden möglich:
 \begin{itemize}
@@ -264,39 +264,48 @@ Kombiniert man die verschiedenen Ansätze der Testcodeerstellung mit den Schnitt
   \label{fig:bereicheTestcodeerstellung}
 \end{figure}
 
-Die vollautomatisierte Generierung befindet sich außerhalb des Rahmens dieser Arbeit und wird daher im folgenden nicht mehr näher betrachtet.
-Meszaros et al. haben eine ähnliche Matrix aufgestellt die noch um eine weitere Dimension der Testgranularität (Unit-, Integrations- und System-Test) erweitert ist. Diese Dimension hat allerdings nur wenig Auswirkungen auf die Herangehensweise in der Testautomatisierung und wurden deshalb in Abbildung \ref{fig:bereicheTestcodeerstellung} nicht mit aufgeführt.
+Die vollautomatisierte Generierung, also die beiden rechten Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung}, befindet sich außerhalb des Rahmens dieser Arbeit und wird daher im folgenden nicht mehr näher betrachtet.
+Meszaros et al.  \cite{meszaros_agile_2003} haben eine ähnliche Matrix aufgestellt die noch um eine weitere Dimension der Testgranularität (Unit-, Integrations- und System-Test) erweitert ist. Diese Dimension hat allerdings nur wenig Auswirkungen auf die Herangehensweise in der Testautomatisierung und wurden deshalb in Abbildung \ref{fig:bereicheTestcodeerstellung} nicht mit aufgeführt.
 
 \subsubsection{API}
 \label{subsubsec:API}
 
 Unter der Abkürzung API (application programming interface) sind in diesem Zusammenhang alle Schnittstellen zu verstehen, die intern von der zu testenden Anwendung angeboten werden. Darunter fällt beispielsweise das direkte aufrufen von Servicemethoden die als Businesslogik innerhalb der Anwendung bereitgestellt werden.
-Ein weit verbreitete Technologie die im Rahmen der Testautomatisierung oft diese Art der Schnittstelle verwenden sind die modernen \grq XUnit-Frameworks\grq. In den Meisten Programmiersprachen existiert ein Unit-Framework mit dem es möglich ist direkt die im Programm angebotene Logik mit automatisierten Testfällen abzuprüfen. In der Praxis wird diese Aufgabe meist direkt vom Entwickler in Form von Unit-Tests (Komponenten-Tests) übernommen. Der Begriff \grq XUnit-Frameworks\grq kann leicht missverstanden werden, da er impliziert, dass es sich bei den mit Hilfe des Frameworks umgesetzten Testfällen um Unit-Tests handelt. Tatsächlich können jedoch Testfälle aller Teststufen, von Unit- bis System-Test, mit Hilfe dieser Frameworks umgesetzt werden.
+Ein weit verbreitete Technologie die im Rahmen der Testautomatisierung oft diese Art der Schnittstelle verwenden sind die modernen \grq XUnit-Frameworks\grq. In den Meisten Programmiersprachen existiert ein Unit-Framework mit dem es möglich ist direkt die im Programm angebotene Logik mit automatisierten Testfällen abzuprüfen. In der Praxis wird diese Aufgabe meist direkt vom Entwickler in Form von Unit-Tests (Komponenten-Tests) übernommen. Der Begriff \grq XUnit-Frameworks\grq\ kann leicht missverstanden werden, da er impliziert, dass es sich bei den mit Hilfe des Frameworks umgesetzten Testfällen um Unit-Tests handelt. Tatsächlich können jedoch Testfälle aller Teststufen, von Unit- bis System-Test, mit Hilfe dieser Frameworks umgesetzt werden.
 Die Testcodeerstellung erfolgt dabei meist Manuell womit diese Art der Automatisierung ein Beispiel für den oberen linken Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung} darstellt.
+Meszaros et al. \cite{meszaros_agile_2003} beschreiben die Möglichkeit auch \grq record-and playback\grq\ für Testfälle zu verwenden die als Schnittstelle die API verwenden.
+Hierfür muss eine \grq record-and playback\grq\ auf API-Ebene für die zu testende Software entwickelt werden. Darüber ist es dann möglich bei einem manuellem Testlauf all das aufzuzeichnen, was den Zustand des Systems beeinflusst. Diese Aufzeichnungen können dann später wieder als Eingaben verwendet werden. Dieses Vorgehen wäre ein Beispiel für den oberen mittleren Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung} ist jedoch nicht sehr weit verbreitet.
 
-
-
-
-
+\subsubsection{UI}
+\label{subsubsec:UI}
+Bei Testfällen die als Schnittstelle zum System das User-Interface verwenden ist \grq record-and playback\grq\ sehr weit verbreitet. Hierfür existieren Zahlreiche kommerzielle Testwerkzeuge wie beispielsweise HP Unified Functional Testing \cite{hp_testautomatisierung_2015}, aber auch Open-Source-Lösungen wie beispielsweise Selenium \cite{selenium_selenium_2015}.
+Mit Hilfe dieser Tools ist es möglich Testfälle aufzuzeichnen. Die Testfälle werden dazu zunächst einmal manuell durchzuführen. Während dieser manuellen Testausführung können die vom Tester auf der Benutzeroberfläche getätigten Eingaben vom Tool gespeichert werden. Die gespeicherten Interaktionen werden dann verwendet um daraus Testcode zu generieren mit dem der aufgezeichnete Testfall beliebig oft wiederholt werden kann. Dieses Vorgehen wird in Abbildung \ref{fig:bereicheTestcodeerstellung} durch den unteren mittleren Quadranten abgebildet.
+Der untere linke Quadrant symbolisiert die von Hand geschriebenen Testfälle die als Schnittstelle das User-Interface verwenden. Oft handelt es sich dabei um eine Abwandlung der unter Abschnitt \ref{subsubsec:API} bereits beschriebenen \grq XUnit-Frameworks\grq.\\ Diese Frameworks können um Aufsätze wie beispielsweise HttpUnit \cite{httpunit_httpunit_2015} oder Selenium \cite{selenium_selenium_2015} erweitert werden. Mit Hilfe solcher Erweiterungen ist es möglich, die Testfälle nicht mehr nur gegen die API der zu testenden Software zu entwickeln sondern zur Steuerung die Benutzeroberfläche zu verwenden. Neben diesen Aufsätzen für vorhandene Frameworks existieren auch zahlreiche eigenständige Tools wie beispielsweise MicroFocus SilkTest \cite{silk_test_borland_2015} welches neben Webanwendungen auch die Möglichkeit zum Testen von Denktopanwendungen bieten.
+Testcode von Hand zu schreiben ist ein weit verbreitetes Vorgehen. Vor allem immer dann, wenn kein vorhandenes Testtool verwendet wird sondern das Automatisierungsframeword für die zu testende Software selbst entwickelt wurde.
 
 
 \subsection{Testdurchführung}
 \label{subsec:testdurchführung}
+Unter Testdurchführung versteht man das ausführen der Testfälle so wie das aufzeichnen von Testergebnissen bzw. Testausgaben. Nach den Erfahrungen von  Amannejad et al. \cite{amannejad_search-based_2014} ist dieser Bereich der Testautomatisierung derjenige, der von den meisten Tester am ehesten mit der Automatisierung verbunden wird.
+Die zuvor erstellten Testfälle müssen in dieser Phase des Testprozesses zur Ausführung gebracht werden. Die Möglichkeit zur Automatisierung hängt in diesem Schritt stark von den gewählten Methoden in den vorangegangenen Phasen des Testprozesses ab. Oft ist eine Automatisierung in diesem Schritt bereits ohne zusätzlichen Aufwand vorhanden. Vor allem immer dann, wenn der Testcode bereits Tool bzw. Framework unterstützt erstellt wurden.
+Die meisten Tools und Frameworks bieten eine automatisierte Testdurchführung bereits mit an.
+Im besonderen Maße sind an dieser Stelle auf Grund ihrer hohen Verbreitung die \grq XUnit-Frameworks\grq\ zu nennen.
+In Abschnitt \ref{subsec:testcodeerstellung} wurde gezeigt, dass diese Frameworks oft in der händischen Testcodeerstellung verwendet werden. Das Unit-Framework übernimmt dabei die automatisierte Ausführung und Präsentation der Testergebnisse der Testskripte. Es handelt sich daher um ein Framework, welches die Testdurchführung automatisiert.
+Problematisch wird die Testdurchführung immer dann, wenn Testcode losgelöst von bereits vorhandenen Tools bzw. Frameworks entwickelt wird. Der Testcode könnte beispielsweise gekapselt in Funktionen vorliegen und seine Ergebnisse einfach in die Konsole loggen. Steigt die Anzahl der Testfalle an, wird die Ausführung und vor allem die Auswertung dieser Testfälle schnell zum Problem. Der Aufwand der betrieben werden muss um die Testfälle anhand ihrer Logmeldungen Auszuwerten kann schnell so ansteigen, dass der Zeitaufwand dazu nicht mehr tragbar wird. 
+Eine gesonderte Ausführung von einzelnen Testfällen bzw. kleineren Testfallgruppen ist in diesem Modell nur mit zusätzlichem Aufwand möglich.
+Werden Testfälle daher ohne Tool- bzw. Framework-unterstützung erstellt muss sich früh darüber Gedanken gemacht werden, wie die Testfälle sinnvoll und auswertbar zur Ausführung gebracht werden können.
+Diese Überlegungen resultieren meist in einem eigen entwickelten Testframework welches die Ausführung und Auswertung des automatisierten Testcodes übernimmt.
 
 
 \subsection{Testauswertung}
 \label{subsec:testauswertung}
+Nachdem die zu testende Software mittels eines Testfalls ausgeführt wurde muss bestimmt werden, ober der Testfall erfolgreich oder fehlerhaft war. Diese Prüfung kann manuell erfolgen, handelt es sich jedoch um automatisierte Testfälle ist diese Prüfung meist über feste Akzeptanzkriterien direkt im Testfall hinterlegt. Im Fall von Testfällen deren Durchführung über ein \grq XUnit-Frameworks\grq\ automatisiert wurde, werden diese Akzeptanzkriterien beispielsweise über sogenannte \grq Assertions\grq\ festgelegt.
+Um die Erwarteten Ergebnisse für einen Testfall zu finden, werden sogenannte Testorakel verwendet.
+Jede Quelle die Auskunft über zu erwartendes gibt kann als Testorakel dienen.
+Es gibt zahlreiche Möglichkeiten und Versuche diese Testorakel zu automatisieren. \cite{memon_automated_2000} \cite{richardson_specification-based_1992} \cite{shahamiri_comparative_2009}
+Die automatisierten Testorakel können dann wiederum für die Auswertung der Testergebnisse in den automatisierten Testfällen dienen.
+Bereits mit fest hinterlegten Akzeptanzkriterien gilt die Testauswertung als automatisiert. Mittels automatischer Testorakel kann diese Auswertung noch ein höheres Level an Intelligenz erreichen. \cite[vgl.]{amannejad_search-based_2014}
 
 
 
-\section{Schnittstellen der Testautomatisierung zum System}
-\label{sec:schnittstellen_der_testautomatisierung_zum_syste}
 
-Jeder testfall muss in irgendeiner weise mit dem zu testenden objekt interagieren.
-Analog zu manuellen tests gibt es hierfür verschiedene möglichkeiten.
-\subsection{API}
-\subsubsection{JUnit}
-\label{sec:junit}
-
-\subsection{GUI}
-Web
