@@ -10,8 +10,8 @@ Die DIN-ISO-Norm 9126 definiert Software-Qualität wie folgt:
 \\
 \glqq Software-Qualität ist die Gesamtheit der Merkmale und Merkmalswerte eines Software-Produkts, die sich auf dessen Eignung beziehen, festgelegte Erfordernisse zu erfüllen.\grqq \cite{iso/iec_iso/iec_2001}
 \\
-Aus dieser Definition wird deutlich, dass es sich bei dem Begriff der Software-Qualität um eine multikausale Größe handelt. Das bedeutet, dass zur Bestimmung der Qualität einer Software nicht ein einzelnes Kriterium existiert. Vielmehr verbergen sich hinter dem Begriff eine ganze Reihe verschiedener Kriterien, die je nach den gestellten Anforderungen in ihrer Relevanz variieren.\cite[vgl. S.6 ff.]{hoffmann_software-qualitat_2013}
-Sammlungen solcher Kriterien werden in sogenannten Qualitätsmodellen zusammengefasst. Die DIN-ISO-Norm 9126 bietet ein solches Qualitätsmodell und definiert damit eine Reihe von wesentlichen Merkmalen, die für die Beurteilung der Software-Qualität eine Rolle spielen. Diese Merkmale sind in der Abbildung \ref{fig:qualitaetsmerkmaleVonSoftwaresystemen} zusammengefasst.
+Nach Hoffmann \cite[vgl. S.6 ff.]{hoffmann_software-qualitat_2013} wird aus dieser Definition deutlich, dass es sich bei dem Begriff der Software-Qualität um eine multikausale Größe handelt. Das bedeutet, dass zur Bestimmung der Qualität einer Software nicht ein einzelnes Kriterium existiert. Vielmehr verbergen sich hinter dem Begriff eine ganze Reihe verschiedener Kriterien, die je nach den gestellten Anforderungen in ihrer Relevanz variieren.
+Sammlungen solcher Kriterien werden in sogenannten Qualitätsmodellen zusammengefasst. Die DIN-ISO-Norm 9126 \cite{iso/iec_iso/iec_2001} bietet ein solches Qualitätsmodell und definiert damit eine Reihe von wesentlichen Merkmalen, die für die Beurteilung der Software-Qualität eine Rolle spielen. Diese Merkmale sind in der Abbildung \ref{fig:qualitaetsmerkmaleVonSoftwaresystemen} zusammengefasst.
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.6]{img/softwarequalitaet9126.png}\\
@@ -19,13 +19,13 @@ Sammlungen solcher Kriterien werden in sogenannten Qualitätsmodellen zusammenge
   \caption{Qualitätsmerkmale von Softwaresystemen (ISO 9126)}
   \label{fig:qualitaetsmerkmaleVonSoftwaresystemen}
 \end{figure}
-Eine nähere Definition der einzelnen Begriffe des Qualitätsmodells kann beispielsweise dem Buch Software-Qualität von Dirk W. Hoffmann entnommen werden. \cite[S.7 ff.]{hoffmann_software-qualitat_2013}
-Um die Qualität einer Software zu Steigern, bietet die moderne Software-Qualitätssicherung eine Vielzahl von Methoden und Techniken.
+Eine nähere Definition der einzelnen Begriffe des Qualitätsmodells kann beispielsweise dem Buch Software-Qualität von Dirk W. Hoffmann \cite[S.7 ff.]{hoffmann_software-qualitat_2013} entnommen werden. 
+Um die Qualität einer Software zu Steigern, bietet die moderne Software-Qualitätssicherung laut Hofmann \cite[vgl. S.19 ff.]{hoffmann_software-qualitat_2013} eine Vielzahl von Methoden und Techniken:
 Ein Teil der Methoden versucht durch eine Verbesserung des Prozesses der Produkterstellung die Entstehung von qualitativ hochwertigen Produkten zu begünstigen. Diese Methoden fallen in den Bereich der Prozessqualität.
-Einen weiteren Bereich bilden die Methoden die zur Verbesserung der Produktqualität dienen. Bei diesen Methoden wird das Softwareprodukt direkt bezüglich der Qualitätsmerkmale überprüft. Dieser Bereich unterteilt sich in die konstruktive und analytische Qualitätssicherung. \cite[vgl. S.19 ff.]{hoffmann_software-qualitat_2013} Unter konstruktiver Qualitätssicherung versteht man den Einsatz von z.B. Methoden, Werkzeugen oder Standards die
+Einen weiteren Bereich bilden die Methoden die zur Verbesserung der Produktqualität dienen. Bei diesen Methoden wird das Softwareprodukt direkt bezüglich der Qualitätsmerkmale überprüft. Dieser Bereich unterteilt sich in die konstruktive und analytische Qualitätssicherung. Unter konstruktiver Qualitätssicherung versteht man den Einsatz von z.B. Methoden, Werkzeugen oder Standards die
 dafür sorgen, dass ein Produkt bestimmte Forderungen erfüllt. 
 Unter analytische Qualitätssicherung versteht man den Einsatz von analysierenden bzw. prüfenden Verfahren, die Aussagen
-über die Qualität eines Produkts machen. \cite{prof._dr._r._lindermeier_projekt-_2006}
+über die Qualität eines Produkts machen.
 In diesem Bereich der Qualitätssicherung befindet sich unter anderem der klassische Software-Test. Eine Übersicht über das gesamte Gebiet der Software-Qualitätssicherung, wie es sich uns gegenwärtig darstellt, ist in Abbildung \ref{fig:softwareQualitätssicherung} dargestellt. 
 \begin{figure}[htb]
   \centering  
@@ -42,35 +42,35 @@ In diesem Bereich der Qualitätssicherung befindet sich unter anderem der klassi
 Im laufe der Zeit wurden viele Versuche unternommen um die Qualität von Software zu steigern. Besondere Bedeutung hat dabei der Software-Test erlangt.
 Der IEEE Std 610.12 definiert den Begriff Test als das ausführen einer Software unter bestimmten Bedingungen mit dem Ziel, die erhaltenen Ergebnisse auszuwerten, also gegen erwartete Werte zu vergleichen.
 (Im Original: \glqq An activity in which a system or component is executed under specific conditions, the results are observed or recorded, and an evaluation is made of some aspect of the system or component.\grqq\ \cite{ieee_ieee_1991})
-Bereits zu beginn der Softwareentwicklung hat man versucht Programme vor ihrer Auslieferung zu testen. Der dabei erzielte Erfolg entsprach nicht immer den Erwartungen. Im laufe der Jahre wurde das Testen daher auf eine immer breitere Grundlage gestellt. Es entwickelten sich Unterteilungen des Software-Tests die bis heute bestand haben. Hier wären zu nennen:
+Bereits zu beginn der Softwareentwicklung hat man versucht Programme vor ihrer Auslieferung zu testen. Der dabei erzielte Erfolg entsprach nicht immer den Erwartungen. Im laufe der Jahre wurde das Testen daher auf eine immer breitere Grundlage gestellt. Es entwickelten sich Unterteilungen des Software-Tests die bis heute bestand haben. Thaller \cite[vgl. S.18]{thaller_software-test_2002}  nennt hier beispielsweise:
 \begin{itemize}
 \item White-Box-Test
 \item Black-Box-Test und externe Testgruppe
 \item Volume Test, Stress Test und Test auf Systemebene
 \end{itemize}
-Jeder dieser Begriffe beschreibt bestimmte Techniken, die bei konsequenter Anwendung dazu führen können Fehler in Softwareprodukten zu identifizieren. \cite[vgl. S.18]{thaller_software-test_2002}
+Jeder dieser Begriffe beschreibt bestimmte Techniken, die bei konsequenter Anwendung dazu führen können Fehler in Softwareprodukten zu identifizieren. 
 
-Neben der Auswahl der richtigen Techniken für ein bestimmtes Problem spielt in der Praxis die Testkonstruktion eine zentrale Rolle. Bereits für kleine Programme ist es faktisch nicht mehr möglich das Verhalten einer Software für alle möglichen Eingaben zu überprüfen. Es muss sich daher immer auf eine vergleichsweise winzige Auswahl an Testfällen beschränkt werden. Testfälle unterscheiden sich jedoch stark in ihrer Relevanz. Die Auswahl der Testfälle hat daher einen großen Einfluss auf die Anzahl der gefundenen Fahler und damit auch auf die Qualität des Endprodukts. \cite[vgl. S.22]{hoffmann_software-qualitat_2013}
+Nach Hoffmann \cite[vgl. S.22]{hoffmann_software-qualitat_2013} spielt neben der Auswahl der richtigen Techniken für ein bestimmtes Problem in der Praxis die Testkonstruktion eine zentrale Rolle. Bereits für kleine Programme ist es faktisch nicht mehr möglich das Verhalten einer Software für alle möglichen Eingaben zu überprüfen. Es muss sich daher immer auf eine vergleichsweise winzige Auswahl an Testfällen beschränkt werden. Testfälle unterscheiden sich jedoch stark in ihrer Relevanz. Die Auswahl der Testfälle hat daher einen großen Einfluss auf die Anzahl der gefundenen Fahler und damit auch auf die Qualität des Endprodukts. 
 
-Dennoch ist der Software-Test eines der am meisten verbreiteten Techniken zur Verbesserung der Softwarequalität. Um über lange Sicht gute Software zu produzieren reicht es jedoch nicht aus sich nur auf diese Technik allein zu stützen. Ein großer Nachteil des Softwaretests ist es, dass Fehler erst in einer relativ späten Phase der Entwicklung identifiziert werden. Je später eine Fehler jedoch erkannt wird, desto teurer wird auch seine Beseitigung. Abbildung \ref{fig:softwareQualitätssicherung} zeigt, dass der Software-Test nur eine von vielen Techniken des Qualitätsmanagement darstellt. Um eine möglichst qualitativ hochwertige Software zu erhalten, ist es daher ratsam, sich bei der Qualitätssicherung möglichst breit aufzustellen und sich nicht nur auf die analytische Qualitätssicherung in Form des Software-Tests zu verlassen. \cite[vgl. S.18]{thaller_software-test_2002}
+Dennoch ist der Software-Test laut Hofmann \cite[vgl. S.22]{hoffmann_software-qualitat_2013} eines der am meisten verbreiteten Techniken zur Verbesserung der Softwarequalität. Um über lange Sicht gute Software zu produzieren reicht es jedoch nicht aus sich nur auf diese Technik allein zu stützen. Ein großer Nachteil des Softwaretests ist laut Thaller \cite[vgl. S.18]{thaller_software-test_2002}, dass Fehler erst in einer relativ späten Phase der Entwicklung identifiziert werden. Je später eine Fehler jedoch erkannt wird, desto teurer wird auch seine Beseitigung. Abbildung \ref{fig:softwareQualitätssicherung} zeigt, dass der Software-Test nur eine von vielen Techniken des Qualitätsmanagement darstellt. Um eine möglichst qualitativ hochwertige Software zu erhalten, ist es daher ratsam, sich bei der Qualitätssicherung möglichst breit aufzustellen und sich nicht nur auf die analytische Qualitätssicherung in Form des Software-Tests zu verlassen. 
 
 
 \section{Testautomatisierung}
 \label{sec:testautoGrundlagen}
-Das Testen von Software macht in heutigen Projekten einen großen Teil der Projektkosten aus. Studien haben gezeigt, dass das Testen für 50\% 
+Das Testen von Software macht in heutigen Projekten einen großen Teil der Projektkosten aus. So sprechen beispielsweise Harrold \cite{harrold_testing:_2000} und auch Ramler \cite{ramler_economic_2006} davon, dass das Testen für 50\% 
 und mehr der gesamten Projektkosten verantwortlich sein kann. 
-Mit Steigender Komplexität der Softwäre steigen diese Kosten immer weiter an. \cite{ramler_economic_2006} \cite{harrold_testing:_2000}
-Um diese Kosten zu reduzieren haben sich im laufe der Zeit die bestehenden Testmethoden immer weiter entwickelt und auch neue Ansätze herausgebildet. Einer dieser Ansätze ist es Software-Tests möglichst automatisiert durchzuführen.  \cite{harrold_testing:_2000} Diesen Ansatz fast man mit dem Begriff Testautomatisierung zusammen.
-Seidl et al. definieren Testautomatisierung als \glqq die Durchführung von ansonsten manuellen Testtätigkeiten durch Automaten.\grqq \cite[S.7]{seidl_basiswissen_2012}
-Diese Definition zeigt, dass das Spektrum der Testautomatisierung breit gefächert ist. Testautomatisierung beschränkt sich nicht nur auf das automatisierte durchführen von Testfällen sondern erstreckt sich über alle Bereiche des Software-Test. ...[ Die Verschiedenen Möglichkeiten der Testaustomatisierung werden in Kapitel.. dargestellt]... .
-Aus Sicht des Qualitätsmanagement ist die Testautomatisierung sowohl den Methoden zur Steigerung der Produktqualität als auch der Prozessqualität zugeordnet. Ein automatisierter Software-Test hat immer noch den selben Charakter wie ein manueller Software-Test und ist daher ein Teil der analytischen Qualitätssicherung. Allerdings erfordert Testautomatisierung auch immer infrastrukturelle Anpassungen. Automatisierte Testfälle benötigen in der Regel eine Besondere Software-Infrastruktur wie etwa ein Automatisierungsframework. Solche Maßnahmen, die den Programmentwickler aus technischer Sicht in die Lage versetzen, seiner täglichen Arbeit in geregelter und vor allem produktiver Weise nachzugehen, werden den Methoden zur Verbesserung der Prozessqualität zugeordnet. (siehe Abbildung \ref{fig:softwareQualitätssicherung}).
-\cite[vgl. Seite 25]{hoffmann_software-qualitat_2013}
+Mit Steigender Komplexität der Softwäre steigen diese Kosten immer weiter an.  
+Um diese Kosten zu reduzieren haben sich im laufe der Zeit die bestehenden Testmethoden immer weiter entwickelt und auch neue Ansätze herausgebildet. Harrold \cite{harrold_testing:_2000} beschreibt als einen möglichen Ansatz, Software-Tests möglichst automatisiert durchzuführen. Diesen Ansatz fast man mit dem Begriff Testautomatisierung zusammen.
+Seidl et al. \cite[S.7]{seidl_basiswissen_2012} definieren Testautomatisierung als \glqq die Durchführung von ansonsten manuellen Testtätigkeiten durch Automaten.\grqq
+Diese Definition zeigt, dass das Spektrum der Testautomatisierung breit gefächert ist. Testautomatisierung beschränkt sich nicht nur auf das automatisierte durchführen von Testfällen sondern erstreckt sich über alle Bereiche des Software-Test. Die Verschiedenen Möglichkeiten der Testaustomatisierung werden in Kapitel \ref{sec:bereiche_der_testautomatisierung} dargestellt.
+Aus Sicht des Qualitätsmanagement ist die Testautomatisierung sowohl den Methoden zur Steigerung der Produktqualität als auch der Prozessqualität zugeordnet. Ein automatisierter Software-Test hat immer noch den selben Charakter wie ein manueller Software-Test und ist daher ein Teil der analytischen Qualitätssicherung. Allerdings erfordert Testautomatisierung laut Hoffmann \cite[vgl. Seite 25]{hoffmann_software-qualitat_2013} auch immer infrastrukturelle Anpassungen. Automatisierte Testfälle benötigen in der Regel eine Besondere Software-Infrastruktur wie etwa ein Automatisierungsframework. Solche Maßnahmen, die den Programmentwickler aus technischer Sicht in die Lage versetzen, seiner täglichen Arbeit in geregelter und vor allem produktiver Weise nachzugehen, werden den Methoden zur Verbesserung der Prozessqualität zugeordnet. (siehe Abbildung \ref{fig:softwareQualitätssicherung}).
+
 
 
 \section{Testprozess}
 \label{sec:testprozess}
 
-Um Software-Tests effektiv und Strukturiert durchzuführen wird eine verfeinerter Ablaufplan für die einzelnen Testaufgaben benötigt. Diesen Ablaufplan fassen Splinner und Linz im fundamentalen Testprozess zusammen. \cite{spillner_basiswissen_2007} Die einzelnen Arbeitsschritte die im Lebenszyklus eines Software-Tests anfallen werden dabei verschiedenen Phasen zugeordnet.
+Um Software-Tests effektiv und Strukturiert durchzuführen wird eine verfeinerter Ablaufplan für die einzelnen Testaufgaben benötigt. Diesen Ablaufplan fassen Splinner und Linz \cite{spillner_basiswissen_2007} im fundamentalen Testprozess zusammen.  Die einzelnen Arbeitsschritte die im Lebenszyklus eines Software-Tests anfallen werden dabei verschiedenen Phasen zugeordnet.
 Durch den Testprozess wird die Aufgabe des Testens so in kleinere Testaufgaben untergliedert.
 
 Testaufgaben, die man dabei unterscheidet sind:
@@ -84,14 +84,14 @@ Testaufgaben, die man dabei unterscheidet sind:
       \item Abschluss der Testaktivitäten       
 \end{itemize}
 
-\glqq Wer strukturiert testet, wird, unabhängig vom jeweiligen Vorgehen, diese Aktivitäten auf die eine oder andere Weise abbilden.\grqq\ \cite[S. 9]{seidl_basiswissen_2012}
-\glqq Obgleich die Aufgaben in sequenzieller Reihenfolge im Testprozess angegeben sind, können sie sich überschneiden und teilweise auch gleichzeitig durchgeführt werden.\grqq\ \cite[S.19]{spillner_basiswissen_2007} Auf Grundlage des fundamentalen Testprozesses nach Splinner und Linz werden im folgenden diese Teilaufgaben näher beschrieben. \cite[S.20ff]{spillner_basiswissen_2007}
-Diese Beschreibung wird durch Ausführungen von Seidl et al. erweitert. \cite[S. 9 ff.]{seidl_basiswissen_2012}
+\glqq Wer strukturiert testet, wird, unabhängig vom jeweiligen Vorgehen, diese Aktivitäten auf die eine oder andere Weise abbilden.\grqq\ \cite[S. 9]{seidl_basiswissen_2012} \\
+\glqq Obgleich die Aufgaben in sequenzieller Reihenfolge im Testprozess angegeben sind, können sie sich überschneiden und teilweise auch gleichzeitig durchgeführt werden.\grqq\ \cite[S.19]{spillner_basiswissen_2007} \\ Auf Grundlage des fundamentalen Testprozesses nach Splinner und Linz \cite[S.20ff]{spillner_basiswissen_2007} werden im folgenden diese Teilaufgaben näher beschrieben. 
+Diese Beschreibung wird durch Ausführungen von Seidl et al. \cite[S. 9 ff.]{seidl_basiswissen_2012} erweitert. 
 
 \subsection{Testplanung und Steuerung}
 \label{subsec:testplanung_und_steuerung}
 Um dem Umfang und der Komplexität heutiger Software-Tests gerecht zu werden, benötigt man zu Beginn des Testprozesses eine genaue Planung.
-Ziel dieser Planung ist es, den Rahmen für die weiteren Testaktivitäten festzulegen. Die Aufgaben und die Zielsetzungen der Tests müssen ermittelt wurden. Eine Ressourcenplanung wird benötigt und eine geeignete Teststrategie muss ermittelt werden. In Kapitel \ref{sec:softwaretest} wurde bereits erwähnt, dass das vollständige Testen einer Anwendung in der Regel nicht möglich ist. Die einzelnen Systemteile müssen daher nach Schwere der zu erwartenden Fehlerwirkung priorisiert werden. Um so schwerwiegender die zu erwartende Fehlerwirkung ist, umso intensiver muss der betrachtete Systemteil auch getestet werden. Ziel der Teststrategie ist also \glqq die optimale Verteilung der Tests auf die \frqq richtigen\flqq\ Stellen das Softwaresystems.\grqq\ \cite[S.21]{spillner_basiswissen_2007} Steht das Softwareprojekt unter einem hohen Zeitdruck müssen Testfälle zusätzlich Priorisiert werden.
+Ziel dieser Planung ist es, den Rahmen für die weiteren Testaktivitäten festzulegen. Die Aufgaben und die Zielsetzungen der Tests müssen ermittelt wurden. Eine Ressourcenplanung wird benötigt und eine geeignete Teststrategie muss ermittelt werden. In Kapitel \ref{sec:softwaretest} wurde bereits erwähnt, dass das vollständige Testen einer Anwendung in der Regel nicht möglich ist. Die einzelnen Systemteile müssen daher nach Schwere der zu erwartenden Fehlerwirkung priorisiert werden. Um so schwerwiegender die zu erwartende Fehlerwirkung ist, umso intensiver muss der betrachtete Systemteil auch getestet werden. Ziel der Teststrategie ist also \glqq die optimale Verteilung der Tests auf die \frqq richtigen\flqq\ Stellen das Softwaresystems.\grqq\ \cite[S.21]{spillner_basiswissen_2007} \\ Steht das Softwareprojekt unter einem hohen Zeitdruck müssen Testfälle zusätzlich Priorisiert werden.
 Um zu verhindern, dass das Testen zu einem endlosen Prozess wird, müssen auch geeignete Testendekriterien festgelegt werden. Anhand dieser Kriterien kann später entschieden werden ob der Testprozess abgeschlossen werden kann.
 
 Bereits zu Beginn des Testprozesses werden auch wichtige Grundsteine für eine spätere Testautomatisierung gelegt. Es muss entschieden werden, in welchen Teststufen und Testbereichen eine Automatisierung eingesetzt werden soll. Vor allem ist die frage zu klären ob und in welchem Ausmaß eine Automatisierung überhaupt sinnvoll ist. Es kann durchaus vorkommen, dass eine Analyse ergibt, dass eine Testautomatisierung für ein Projekt unwirtschaftlich ist.
@@ -137,18 +137,18 @@ In jedem Fall muss über die erhaltenen Ergebnisse und das daraus resultierende 
 
 \subsection{Abschluss der Testaktivitäten}
 \label{subsec:abschluss_der_testaktivitäten}
-Sind die Testaktivitäten abgeschlossen sollten zum Schluss alle im laufe des Testprozesses gemachten Erfahrungen analysiert werden. So können die gewonnenen Erkenntnisse für spätere Projekte genutzt werden. Dadurch kann eine stetige Verbesserung des Testprozesses erreicht werden.
+Sind die Testaktivitäten beendet, sollten zum Schluss alle im laufe des Testprozesses gemachten Erfahrungen analysiert werden. So können die gewonnenen Erkenntnisse für spätere Projekte genutzt werden. Dadurch kann eine stetige Verbesserung des Testprozesses erreicht werden.
 Die während des Prozesses erstellte Testware sollte archiviert werden. Auf diese weise steht sie für folgende Regressionstests zur Verfügung. Die Kosten in Wartung und Pflege der Software können damit gesenkt werden.
 Bei der Testautomatisierung bedeutet das, die Wiederverstellbarkeit der Testumgebung und des Sourcecodes der Tests sicherzustellen.
 \newline\\
-Abschließend ist zu sagen, dass sich die Testautomatisierung in der Regel gut in einen bereits bestehenden Testprozess integrieren lasst. Sie wird allerdings \glqq den Prozess nicht verbessern oder gerade richten, sondern nur unterstützen.\grqq\ \cite[S.21]{seidl_basiswissen_2012} Ist der Testprozess schon vor Einführung einer Automatisierung schlecht gelaufen, wird er es nach der Einführung auch noch.
+Abschließend ist zu sagen, dass sich die Testautomatisierung in der Regel gut in einen bereits bestehenden Testprozess integrieren lasst. Sie wird allerdings \glqq den Prozess nicht verbessern oder gerade richten, sondern nur unterstützen.\grqq\ \cite[S.21]{seidl_basiswissen_2012} \\ Ist der Testprozess schon vor Einführung einer Automatisierung schlecht gelaufen, wird er es nach der Einführung auch noch.
 Die Testautomatisierung ist also nicht als Heilmittel für schlecht laufende Prozesse gedacht sondern als Möglichkeit sich einen bereits gut laufenden Prozess effizienter zu gestalten.
 
 \section{Vorgehensmodelle}
 \label{sec:vorgehensmodelle}
 Der in Kapitel \ref{sec:testprozess} beschriebene Testprozess ist nicht als losgelöster, eigenständiger Prozess zu betrachten. Vielmehr ist der Testprozess immer ein Teil eines größeren Entwicklungsablaufes bei der Erstellung eines Softwareprodukts. Einen solchen Entwicklungsablauf versucht man mit Hilfe von sogenannten Softwareentwicklungsmodellen, auch Vorgehensmodelle genannt, abzubilden.
 Ein Projekt wird dazu in einzelne Phasen untergliedert an deren Ende ein gewisses Ziel bzw. Ergebnis steht.
-Auf gröbster Ebene lassen sich die Abläufe auf vier Hauptphasen reduzieren. Diese Phasen finden sich mehr oder weniger Ausgeprägt in den meisten der gängigen Vorgehensmodelle wieder und werden auch so von Seidl et al. verwendet. \cite[S.21 ff.]{seidl_basiswissen_2012}:
+Auf gröbster Ebene lassen sich die Abläufe auf vier Hauptphasen reduzieren. Diese Phasen finden sich mehr oder weniger Ausgeprägt in den meisten der gängigen Vorgehensmodelle wieder und werden auch so von Seidl et al. \cite[S.21 ff.]{seidl_basiswissen_2012} verwendet.:
 
 \begin{itemize}
 \item Spezifikation
@@ -157,9 +157,9 @@ Auf gröbster Ebene lassen sich die Abläufe auf vier Hauptphasen reduzieren. Di
 \item Test
 \end{itemize}
 
-Das Testen, bzw. der Testprozess ist also eine von mehreren Phasen in solch einem Entwicklungsmodell.
+Das Testen, bzw. der Testprozess ist eine von mehreren Phasen in solch einem Entwicklungsmodell.
 Es gibt eine Vielzahl von unterschiedlichen Softwareentwicklungsmodellen. Der Hauptunterschied liegt meist in der zeitlichen Koppelung und der inhaltlichen Ausprägung der einzelnen Phasen. Die einzelnen Phasen können sich innerhalb eines Vorgehensmodells überschneiden und wiederholen und müssen auch nicht immer wie in der Auflistung angegeben sequentiell abgearbeitet werden.
-Aus der Sicht der Testautomatisierung ist eine Einteilung der verschiedenen Vorgehensmodelle in zwei Gruppen sinnvoll: \cite[vgl. S.21 ff.]{seidl_basiswissen_2012}
+Aus der Sicht der Testautomatisierung ist nach Seidl et al. \cite[vgl. S.21 ff.]{seidl_basiswissen_2012} eine Einteilung der verschiedenen Vorgehensmodelle in zwei Gruppen sinnvoll: 
 
 \begin{itemize}
 \item Klassische Entwicklungsmodelle, die eher sequentiell ausgerichtet sind
@@ -169,7 +169,7 @@ Aus der Sicht der Testautomatisierung ist eine Einteilung der verschiedenen Vorg
 \subsection{Klassische Entwicklungsmodelle}
 \label{subsec:klassische_entwicklungsmodelle}
 
-Die hier als Klassische Entwicklungsmodelle betitelten Vorgehensmodelle zeichnen sich vor allem dadurch aus, dass die einzelnen Phasen sequentiell ausgeführt werden. Der bekannteste Vertreter dieser Vorgehensmodelle ist das Wasserfallmodell \cite{royce_managing_1987}. In diesem Modell sind alle Phasen strickt voneinander getrennt. Eine neue Phase kann erst begonnen werden, wenn eine vorangegangene Phase abgeschlossen wurde. Rücksprünge in vorangegangenen Phasen sind unerwünscht. In der Praxis wird diese vorgehen jedoch oft nicht ganz so strickt umgesetzt. Es kommt zu Mischformen, bei denen die einzelnen Phasen nicht mehr voll sequentiell abgearbeitet werden sondern sich teilweise überlagern. Vor allem im Bereich des Testens geht man oft zu einer solchen Überlagerung über. Das Testen ist meist keine getrennte Phase am Ende des Entwicklungsprozesses sondern erstreckt sich über den gesamten Prozess ausgehend von der frühen Spezifikationsphase.
+Die hier als Klassische Entwicklungsmodelle betitelten Vorgehensmodelle zeichnen sich vor allem dadurch aus, dass die einzelnen Phasen sequentiell ausgeführt werden. Der bekannteste Vertreter dieser Vorgehensmodelle ist das Wasserfallmodell \cite{royce_managing_1987}. In diesem Modell sind alle Phasen strickt voneinander getrennt. Eine neue Phase kann erst begonnen werden, wenn eine vorangegangene Phase abgeschlossen wurde. Rücksprünge in vorangegangenen Phasen sind unerwünscht. In der Praxis wird diese vorgehen laut Seidl et al. \cite[vgl. S.22]{seidl_basiswissen_2012} jedoch oft nicht ganz so strickt umgesetzt. Es kommt zu Mischformen, bei denen die einzelnen Phasen nicht mehr voll sequentiell abgearbeitet werden sondern sich teilweise überlagern. Vor allem im Bereich des Testens geht man oft zu einer solchen Überlagerung über. Das Testen ist meist keine getrennte Phase am Ende des Entwicklungsprozesses sondern erstreckt sich über den gesamten Prozess ausgehend von der frühen Spezifikationsphase.
 
 \begin{figure}[htb]
   \centering  
@@ -179,17 +179,18 @@ Die hier als Klassische Entwicklungsmodelle betitelten Vorgehensmodelle zeichnen
   \label{fig:verschiedene_auspraegungen_klassischer_entwicklungsmodelle}
 \end{figure}
 
-In Projekten die ein solch sequentielles Vorgehen wählen, muss bereits in der Planungsphase des Testprozesses genau abgewägt werden, ob eine Automatisierung der Testfälle überhaupt sinnvoll ist.
+Seidl et al. \cite[vgl. S.22]{seidl_basiswissen_2012} stellen fest, dass in Projekten die ein solch sequentielles Vorgehen wählen, bereits in der frühen Planungsphase des Testprozesses genau abgewägt werden muss, ob eine Automatisierung der Testfälle überhaupt sinnvoll ist.
 Wenn zu Beginn des Projektes schon klar ist, dass die Testfälle nur ein einziges mal am Ende des Entwicklungsprozesses ausgeführt werden, steht eine Automatisierung oft nicht in Relation zu den erhöhten Kosten die bei der Erstellung der Testfälle anfallen würden.
 Bei dieser Entscheidung ist allerdings zu beachten, dass Software meist mit dem Ende eines Projektes nicht seinen finalen Stand erreicht hat. Fehler so wie geänderte Anforderungen führen meist dazu, dass sich Softwareprodukte ständig Weiterentwickeln.
 Diese Weiterentwicklung ist zwangsläufig mit Codeänderungen verbunden die wiederum zu Fehlern in bereits bestehenden Code führen kann.
 Um solche Fehler zu entdecken müssen im Rahmen von Regressionstests auch Testfälle wiederholt werden die bereits erfolgreich abgeschlossen wurden.
 Solche Regressionstests lassen sich bei einer vorhandenen Testautomatisierung besonders leicht durchführen. Sind also in der Software nach Projektabschluss größere Änderungen zu erwarten kann sich eine Automatisierung über längere Sicht durchaus lohnen.
-Neben Regressionstests kann auch die Notwendigkeit einer höheren Testtiefe oder einer breiteren Testabdeckung ein Faktor sein sich für eine Automatisierung zu entscheiden.
+Neben Regressionstests kann nach Seidl et al. \cite[vgl. S.23]{seidl_basiswissen_2012} auch die Notwendigkeit einer höheren Testtiefe oder einer breiteren Testabdeckung ein Faktor sein sich für eine Automatisierung zu entscheiden.
 In manchen Fällen, wie beispielsweise Lasttests mit mehreren hundert Usern, kann eine Automatisierung auch unabdingbar werden.
 
 \subsection{Iterative und agile Entwicklungsmodelle}
 \label{subsec:iterative_und_agile_entwicklungsmodelle}
+Als weiter Gruppe der Vorgehensmodelle nennen Seidl et al. \cite[vgl. S.23 ff.]{seidl_basiswissen_2012} die Iterative und agile Entwicklungsmodelle.\\
 Im Gegensatz zu den klassischen Entwicklungsmodellen sind in iterativen Modellen Rücksprünge in vorangegangene Phasen explizit erlaubt. Eine oder alle Phasen werden in diesen Modellen wiederholt durchlaufen. Auf diese Weise kann das Softwareprodukt inkrementell wachsen. Durch ein derartiges Vorgehen ist es einfacher möglich auf den Umstand zu reagieren, dass sich Anforderungen in Softwareprojekten häufig ändern. Auch agile Vorgehensmodelle leben von solch einem iterativen Vorgehen. Die einzelnen Phasen werden in kleinen Zyklen viele male durchlaufen.
 Ein bekannter Vertreter der agilen Methoden ist Scrum \cite{schwaber_agile_2002}. In Scrum wird ein Softwareprodukt in kurzen sogenannten Sprints realisiert. Innerhalb eines solchen Sprints wählt das Team selbständig eine Teilaufgabe des Projekts aus. Diese Teilaufgabe wird spezifiziert, designet, entwickelt und getestet. Am Ende eines Sprints steht ein Softwareprodukt, welches um ein weiteren Baustein ergänzt wurde.
 Der Sprint ist das zentrale Element dieses Prozessmodelles und kennzeichnet eine Iteration.
@@ -200,9 +201,9 @@ Der Sprint ist das zentrale Element dieses Prozessmodelles und kennzeichnet eine
   \caption{Verschiedene Ausprägungen iterativer und agiler Entwicklungsmodelle}
   \label{fig:verschiedene_auspraegungen_iterativer_und_agiler_entwicklungsmodelle}
 \end{figure}
-Für das Testen stellen diese kurzen Iterationen ein Problem dar.
+Für das Testen stellen diese kurzen Iterationen laut  Seidl et al. \cite[vgl. S.24]{seidl_basiswissen_2012} ein Problem dar.
 Jeder Entwicklungszyklus bringt neue Features hervor die mit Testfällen abgedeckt werden müssen. Der Agile Charakter in diesen Vorgehensmodellen bedingt, dass sich Anforderungen ständig ändern und somit auch bereits fertiger Code oft angepasst werden muss. Darüber hinaus ist nicht ausgeschlossen, dass neue Features Auswirkungen auf alten Code haben können. Neben den neu implementierten Teilen muss daher zum Ende einer jeden Iteration auch sämtlicher alter Code getestet werden.
 Das bedingt einen enormen Testaufwand am Ende einer jeden Iteration. 
 In agilen Vorgehensmodellen wie Scrum ist der Testaufwand nach wenigen Sprints bereits so hoch, dass ein Testdurchlauf zusammen mit allen Regressionstests nicht mehr zu bewältigen ist.
-Gerade in Projekten, die einem derartigen Vorgehensmodell folgen, ist es daher sinnvoll Testautomatisierung einzusetzen. Einmal implementierte Testfälle können zum Ende einer jeden Iteration erneut ausgeführt werden. Die höheren Kosten, die bei der Automatisierung entstehen sind so schnell amortisiert.
+Gerade in Projekten, die einem derartigen Vorgehensmodell folgen, ist es daher sinnvoll Testautomatisierung einzusetzen. Einmal implementierte Testfälle können zum Ende einer jeden Iteration erneut ausgeführt werden. Die höheren Kosten, die bei der Automatisierung entstehen sind so schnell amortisiert.\\
 Das sich ständig ändernde Testobjekt bedingt nicht nur die Notwendigkeit von automatisierten Testfällen, es erhöht gleichzeitig auch die Anforderungen an die Qualität der Testfälle. Häufige Änderungen am zu testenden Code lassen einmal implementierte Testfälle schnell veralten. Es muss daher bei der Erstellung der automatisierten Tests besonders auf die Wartbarkeit geachtet werden. Testfälle sollten möglichst Robust gewählt werden und nicht schon durch kleine Änderungen am Testobjekt zerstört werden. Änderungen am Testobjekt sind in agilen Projekten unvermeidbar. Unter diesem Gesichtspunkt sollte daher auch das Design der Testfälle erfolgen. Automatisierte Testfälle sollten ähnliche Qualitätsstandards wie der Code des eigentlichen Projektes verfolgen. Anpassungen an den Testfällen werden sonst schnell zu zeitaufwändig. Die Pflege der bereits implementierten Testfälle wird dann nicht mehr tragbar und die Akzeptanz der Tests im Projekt sinkt.
