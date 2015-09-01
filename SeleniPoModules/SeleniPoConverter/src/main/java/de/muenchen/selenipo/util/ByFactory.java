@@ -81,14 +81,14 @@ public class ByFactory {
 	 *            Text, id, title.
 	 */
 	public By checkbox(String locator) {
-		return xpath(fieldXPath("input[@type='checkbox']", locator));
+		return xpath(fieldXPath("input[@type='checkbox' or @type='CHECKBOX']", locator));
 	}
 
 	/**
 	 * Select radio button by its name, id, or label text.
 	 */
 	public By radioButton(String locator) {
-		return xpath(fieldXPath("input[@type='radio']", locator));
+		return xpath(fieldXPath("input[@type='radio' or @type='RADIO']", locator));
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class ByFactory {
 	 */
 	public By textField(String locator) {
 		//TODO
-		return xpath(".//input[./@type = 'text']", locator);
+		return xpath(".//input[./@type = 'text' or ./@type = 'TEXT']", locator);
 	}
 
 	private static String fieldXPath(String base, String locator) {
