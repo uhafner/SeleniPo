@@ -1,42 +1,311 @@
 \chapter{Testautomatisierung}
 \label{sec:testautomatisierung}
+In Kapitel \ref{sec:testautoGrundlagen} wurde der Begriff Testautomatisierung bereits eingeführt. Die darin gewählte Definition hat gezeigt, dass man unter Testautomatisierung weit mehr versteht, als das automatisierte ausführen von Testfällen auch wenn das der wohl am weitesten verbreiteten Bereich der Automatisierung ist.
+Testautomatisierung ist in allen Bereichen des Entwicklungs- bzw. Testprozesses möglich.\\
+\glqq Das Spektrum umfasst alle Tätigkeiten zur Überprüfung der Softwarequalität im Entwicklungsprozess, in den unterschiedlichen Entwicklungsphasen und Teststufen so wie die entsprechenden Aktivitäten von Entwicklern, Testern, Analytikern oder auch der in die Entwicklung eingebundenen Anwender. Die Grenzen der Automatisierung liegen darin, dass diese nur die manuellen Tätigkeiten eines Testers übernehmen kann, nicht aber die intellektuelle, krative und intuitive Dimension dieser Rolle.\grqq\ \cite[S.7]{seidl_basiswissen_2012} \\
+Die intellektuelle Dimension ist vor allem in den frühen Phasen des Testprozesses gefordert. Diese Phasen sind maßgeblich für die spätere Qualität der einzelnen Testfälle. Testautomatisierung wird daher nie die Arbeiten eines guten Testanalysten voll ersetzen können. Um so weiter der Testprozess voranschreitet, um so praktischer werden auch die zu erledigenden Aufgaben. Das Potential für eine Automatisierung steigt also im laufe des Testprozesses.
+Fewster und Graham \cite[vgl. S.18]{fewster_software_1999} stellen diesen Zusammenhang in einer Grafik bildlich dar.  Abbildung \ref{fig:intellektuellVsPraktisch} greift diese Darstellung auf und passt sie auf den in Kapitel \ref{sec:testprozess} vorgestellten Testprozess an. Die verschiedenen Möglichkeiten der Testautomatisierung werden in Kapitel \ref{sec:bereiche_der_testautomatisierung} geklärt. Zunächst soll jedoch die Frage beantwortet werden warum eine Automatisierung von Testfällen überhaupt Sinn macht.
 
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=1]{img/intelektuellVsPraktisch.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S.18]{fewster_software_1999}
+  \caption{Grenzen und Möglichkeiten der Testautomatisierung}
+  \label{fig:intellektuellVsPraktisch}
+\end{figure}
 
 \section{Warum Testautomatisierung}
 \label{sec:warum_testautomatisierung}
 
+Richtig durchgeführt kann Testautomatisierung eine Reihe von Vorteilen bringen. Dustin et al.  \cite[S.44 ff.]{dustin_software_2001} stellen drei bedeutende Vorteile der Testautomatisierung fest:
+\begin{itemize}
+\item[1.] Erstellung eines zuverlässigen Systems
+\item[2.] Verbesserung der Testqualität und Testtiefe
+\item[3.] Verringerung des Testaufwands und Reduzierung des Zeitplans
+\end{itemize}
 
 
-\section{Bereiche der Testautomatisierung}
-\label{sec:bereiche_der_estautomatisierung}
-Einteilung nach testprozess nicht perfekt. Dahre eine einteilung die der automatisierung besser passt:
-A Search-Based Approach for Cost-Effective Software Test Automation Decision Support and an Industrial Case Study
+In der Literatur gibt es zahlreiche Listen von Vorteilen der Testautomatisierung, wie beispielsweise von Fewster und Graham \cite[vgl. S.9 ff.]{fewster_software_1999} oder Thaller \cite[vgl. S.28 ff.]{thaller_software-test_2002}, die sehr viel feiner gegliedert sind als die von Dustin et al. \cite[S.44 ff.]{dustin_software_2001} gewählten Oberpunkte. 
+Gleicht man diese Vorteile mit den von Dustin et al. gewählten Oberpunkten ab zeigt sich, dass vor allem die Punkte 2 und 3 gut durch diese repräsentiert werden. Sie lassen sich leicht mit den feiner ausformulierten Vorteilen unterfüttern. Punkt 1, die Erstellung eines zuverlässigen Systems, ist hingegen nur schwer direkt durch feiner formulierte Vorteile zu untermauern. In der Regel wird dieser Punkt indirekt durch eine Verbesserung in in den Punkten 2 und 3 beeinflusst.
+Eine Verringerung des Testaufwands für einzelne Tests schafft mehr Zeit die in bessere und breiter angelegte Tests investiert werden kann. Neben der direkten Beeinflussung führt Testautomatisierung also zusätzlich auch indirekt zu einer höhere Testqualität und Testtiefe. Diese bedingt dann wiederum, dass mehr Fehler im System aufgedeckt werde können. So kann eine höhere Qualität des Endproduktes erreicht werden die sich in einem zuverlässigeren System zeigt.
+Da Punkt 1 nur schwer direkt durch Vorteile belegt werden kann und eher eine Folge der Verbesserung in den anderen beiden Bereichen ist, wird er im weiteren nicht näher betrachtet.
+Fewster und Graham \cite[vgl. S.10]{fewster_software_1999} fassen die Vorteile der Testautomatisierung noch weiter zusammen und reduzieren sich in ihrer Fazit auf die Worte Qualitäts- und Effizienzsteigerung.
+Diese Begriffe entsprechen weitestgehend den von Dustin et al. gewählten Oberpunkten. Qualitätssteigerung fasst dabei die Verbesserung der Testqualität und Testtiefe zusammen, die Verringerung des Testaufwands und Reduzierung des Zeitplans entspricht der Effizienzsteigerung. 
+Um die Vorteile der Testautomatisierung auf eine Feinere und damit greifbarer Ebene zu bewegen werden im Folgenden die Vorteile wie sie 
+Fewster und Graham beschreiben verwendet und den von Dustin et al. gewählten Kategorien zugeordnet.
+
+\subsection{Verringerung des Testaufwands und Reduzierung des Zeitplans}
+\label{sec:verringerung_des_testaufwands_und_reduzierung_des_zeitplans}
+Die Vorteile in Tabelle \ref{tbl:effizienz_testautomatisierung} beschreiben, dass der Aufwand der für das Testen einer Software betrieben werden muss mit Hilfe von Automatisierung reduziert werden kann.
+Reduzierter Aufwand in den Tests so wie eine schnellere und wiederholbare Abarbeitung der Testfälle führen dann meist dazu, dass der gesamte Zeitplan des Projekts positiv beeinflusst wird. Sein volles Potential entfaltet Automatisierung immer dann, wenn Testfälle wiederholt ausgeführt werden. Regressionstests, die vor jedem neuen Releaszyklus einer Software ausgeführt werden sind daher beispielsweise prädestiniert dazu automatisiert zu werden. Tester können so von sich wiederholenden Testaufgaben entlastet werden. Der Testaufwand wird reduziert und die Tester sind frei für andere Aufgaben was wiederum das Projekt beschleunigt.
+
+\begin{table}
+\begin{tabular}{p{0.4\textwidth}|p{0.6\textwidth}}
+Ausführen existierender Regressionstests für eine neue Version der Software
+& Der Aufwand um Regressionstests manuell durchzuführen kann schnell sehr groß werden. Sind Testfälle automatisiert ist es möglich sie bei Änderungen am System mit wenig aufwand erneut durchzuführen. \\
+\hline 
+Besserer Einsatz von Resourcen
+& Durch Automatisierung lässt es sich vermeiden Tester mit generischen Aufgaben zu binden wie beispielsweise das immer gleiche Tippen von Testeingaben.
+Die so freien gewordenen Resourcen können für andere Aufgaben verwendet werden.
+Der Zeitplan des Projektes kann so verkürzt werden. \\ 
+\hline 
+Wiederverwendbarkeit von Testfällen & 
+Neue Projekte können von den Ergebnissen der Testautomatisierung aus vorangegangenen Projekten profitieren. Auch innerhalb eines Projektes können Teile von Automatisierten Testfällen oft wiederverwendet werden.
+Das Reduziert den Zeitplan des Projekts. \\ 
+\hline 
+Frühere Markteinführung. & Richtig eingesetzt beschleunigt Testautomatisierung den gesamten Testprozess. Das verkürzt letztendlich auch die Zeit bis zur Markteinführung der Software. \\ 
+
+
+\end{tabular} 
+\caption{Verringerung des Testaufwands und Reduzierung des Zeitplans nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}}
+\label{tbl:effizienz_testautomatisierung}
+\end{table}
+
+\subsection{Verbesserung der Testqualität und Testtiefe}
+\label{sec:verbesserung_der_testqualität_und_testtiefe}
+Die in Tabelle \ref{tbl:qualitaet_testautomatisierung} beschriebenen Vorteile zeigen, dass sich mit Hilfe der Testautomatisierung Verbesserungen im Bereich der Testqualität und Testtiefe erreichen lassen. Eine bessere Testqualität wird meist dadurch erzielt, dass die Testfälle in ihrer Gesamtheit ein höheres Potential erreichen Fehler aufzudecken. Vor allem eine höhere Testtiefe und eine breitere Testabdeckung sind hier die treibenden Faktoren. Aber auch die Qualität einzelner Testfälle kann mittels Testautomatisierung direkt verbessert werden. Vor allem eine bessere Wiederverwendbarkeit und Wiederholbarkeit sind hier der ausschlaggebend.
+
+\begin{table}
+\begin{tabular}{p{0.4\textwidth}|p{0.6\textwidth}}
+\\
+\hline 
+Mehr Testfälle öfter ausführen
+& Aus Zeitmangel müssen sich Tester oft auf einen geringeren Testumfang zurückziehen also eigentlich gewünscht ist. Vor allem bei sehr generischen Testfällen, die sich vielleicht nur in verschiedenen Maskeneingabe unterscheiden ist es mithilfe von Testautomatisierung möglich in weniger Zeit ein vielfaches an Testfällen durchzuführen.
+Eine tiefere Testabdeckung ist die Folge. Da solche Testfälle in der Regel auf einem generischen Basistestfall beruhen ist es hier besonders einfach möglich eine durchgehend hohe Testqualität zu gewährleisten. \\ 
+\hline 
+Testfälle durchführen die ohne Automatisierung schwer bis unmöglich wären & 
+Einen Lasttest mit z.B. mehr als 200 Benutzern manuell durchzuführen erweist sich als nahezu unmöglich. Die Eingaben von 200 Benutzern lassen sich mit Hilfe von automatisierten Lasttests jedoch gut simulieren. Über Testfälle die ohne Automatisierung gar nicht möglich wären, lässt sich die Testbreite erhöhen. Die Qualität der Tests steigt durch das erhöhte Potential Fehler zu entdecken. \\ 
+\hline 
+Konsistenz und Wiederholbarkeit von Testfällen & Testfälle die automatisch durchgeführt werden, werden immer auf die selbe weise durchgeführt. Eine derartige Konsistenz in den Testfällen ist auf manuellem Wege kaum zu erreichen. Fehler in der Testfalldurchführung können so vermieden werden. Die Qualität der Testfälle steigt. \\ 
+\hline 
+Erhöhtes Vertrauen in die Testfälle und Software & Das Wissen, dass eine Vielzahl an Testfällen erfolgreich vor jedem Release durchgeführt wurden, erhöht das vertrauen von Entwickler und Kunden, dass unerwartete Überraschungen ausbleiben.
+Werden Testfälle regelmäßig ausgeführt, erhöht das zusätzlich das vertrauen, dass diese Testfälle stabil sind und keine Falschmeldungen liefern. \\ 
+
+
+\end{tabular} 
+\caption{Verbesserung der Testqualität und Testtiefe nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}}
+\label{tbl:qualitaet_testautomatisierung}
+\end{table}
+
+\subsection{Kosten also Bewertungsgrundlage für die Testautomatisierung}
+\label{sec:kosten_der_testautomatisierung}
+Die unter Kapitel \ref{sec:verbesserung_der_testqualität_und_testtiefe} und Kapitel \ref{sec:verringerung_des_testaufwands_und_reduzierung_des_zeitplans} aufgezeigten Vorteile der Testautomatisierung haben das Problem, dass sie sich meist nur schwer messen und mit genauen Zahlen belegen lassen.
+Um das zu erreichen muss man sich auf die kleinste gemeinsame Größe zurückziehen auf die all die genannten Vorteile hinarbeiten: Eine Reduzierung der Kosten beim Testen.
+Sowohl eine Verbesserung der Testqualität und Testtiefe als auch eine Verringerung des Testaufwands und Reduzierung des Zeitplans verfolgen in letzter Instanz immer das Ziel Kosten einzusparen. Sei es direkt durch z.B. eine verkürzte Projektlaufzeit als auch indirekt durch geringere Folgekosten in der Wartung bedingt durch eine höhere Testqualität.
+Die geringeren Folgekosten sind wiederum nur schwer mit einer genauen Zahl zu beziffern. Ist ein Projekt erst einmal abgeschlossen lässt sich nicht mehr einfach ermitteln wie hoch die Differenz und der Schweregrad der gefundenen Fehler beim automatisierten im Gegensatz zum manuellen Testen gewesen wäre.
+Um den Nutzen von Testautomatisierung daher für ein Projekt messbar zu machen und nachvollziehbar zu begründen, bieten nach Ramler und Wolfmaier \cite{ramler_economic_2006} die direkten Kosten die durch das Erstellen und Ausführen der Testfälle entstehen den besten Angriffspunkt. 
+Ramler und Wolfmaier \cite{ramler_economic_2006} zitieren eine Fallstudie von Linz und Daigl \cite{dustin_automated_1999} die eine Unterteilung der Kosten in Zwei Komponenten vornimmt.
+\begin{itemize}
+    \item[] \(V:=\text{Ausgaben für Testspezifikation und Implementierung}\)
+    \item[] \(D:=\text{Ausgaben für eine einzelnen Testlauf}\)
+\end{itemize}
+
+Mit Hilfe dieser beiden Variablen können die Kosten (\(A_a\)) für einen einzelnen automatisierte Testfall wie folgt angegeben werden:
+\begin{equation}
+A_a:=V_a+n*D_a
+\end{equation}
+\(V_a\) Symbolisiert die Kosten die für die Spezifikation und Implementierung des automatisierten Testfalls anfallen. \(D_a\) die Kosten die für das einmalige Ausführen des Testfalles entstehen und \(n\) steht für die Anzahl der durchgeführten Testläufe.
+Um zu bestimmen wie sich das Manuelle und Automatisiertes Testen zueinander verhalten, kann analog die selbe Gleichung für das manuelle Testen aufgestellt werden.
+\begin{equation}
+A_m:=V_m+n*D_m
+\end{equation}
+
+Mit Hilfe dieser beiden Gleichungen lässt sich zeigen, dass sich ab einer gewissen Anzahl an Testläufen die Automatisierung gegenüber der manuellen Ausführung aus Sicht der Kosten lohnt.
+Es wird dabei davon ausgegangen, dass die initiale Investition \(V_a\) für die Automatisierung höher ist als die initiale Investition für das Manuelle Testen \(V_m\).
+Die Kosten des Testfalls steigen mit jeder Testausführung \(n\) für die Automatisierung jedoch langsamer an. Beide Funktionen schneiden sich daher in einem break-even Punkt ab dem die Automatisierung die günstigere Alternative darstellt.
+Abbildung \ref{fig:breakEven} veranschaulicht diesen Zusammenhang noch einmal grafisch.
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.8]{img/breakeven.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite{ramler_economic_2006}
+  \caption{Break-even Punkt für Testautomatisierung}
+  \label{fig:breakEven}
+\end{figure}
+
+Zusammenfassend lässt sich also feststellen, dass vor allem wiederholt ausgeführte Testtätigkeiten hohes Einsparungspotential bei einer Testautomatisierung bieten.
+
+
+\subsection{Probleme der Testautomatisierung}
+\label{sec:probleme_der_testautomatisierung}
+Ramler und Wolfmaier \cite{ramler_economic_2006} zitieren ein erreichen des break-even Punkt wie er in Kapitel \ref{sec:kosten_der_testautomatisierung} beschrieben ist nach einer Ausführung von 2-20 Testläufen. Diese große Spanne macht deutlich, wie wichtig es ist, in der Testplanung und Steuerung genau abzuwägen ob und wo eine Automatisierung sinnvoll einzusetzen ist. Eine Automatisierung kann oft auch unwirtschaftlich sein, vor allem immer dann, wenn Tests nur ein einziges mal ausgeführt werden. Implementierungs- und Wartungsaufwand von automatisierten Testfällen sind meist sehr viel höher als die von manuellen Testfällen. Dieser Mehraufwand muss in irgend einer weise gerechtfertigt sein. Laut Fewster und Graham \cite[vgl. S. 22 ff.]{fewster_software_1999} und auch Thaller \cite[vgl. S.230 ff.]{thaller_software-test_2002} wird dieser Punkt oftmals vernachlässigt und die Testautomatisierung als Heilmittel für schlecht laufende Prozesse und zu hohe Kosten gesehen. Dabei ist genau das Gegenteil der Fall. Es ist sinnvoller zunächst die Qualität der Tests und des eigenen Testprozesses zu optimieren bevor eine Automatisierung eingeführt wird. 
+Eine weiterer Schwachpunkt der Automatisierung ist nach Fewster und Graham \cite[vgl. S. 22 ff.]{fewster_software_1999}, dass die Automatisierung von Software-Tests zwar einen deutlichen Mehraufwand bedeuten jedoch die Anzahl der gefundenen Fehler nur wenig erhöht wird.
+Bevor Testfälle automatisiert werden, müssen sie in der Regel zuvor einmal manuell durchgeführt werden um sicher zu stellen, dass der angedachte Test auch sinnvoll und realisierbar ist. Meist werden Fehler bereits bei dieser manuellen Aufgabe festgestellt. Wird der Testfall dann automatisiert, deckt er weit weniger wahrscheinlich einen Fehler auf als bei seiner ersten, manuellen Ausführung. Darüber hinaus können automatisierte Testfälle Fehler nur über die Akzeptanzkriterien aufdecken die ihnen explizit hinterlegt wurden. Oft reichen die hinterlegten Kriterien aber nicht aus um alle Fehlerquellen abzudecken. Das kann laut Fewster und Graham \cite[vgl. S. 23 ff.]{fewster_software_1999} dazu führen, dass Testfälle als positiv gekennzeichnet werden obwohl sie in Wirklichkeit fehlerhaft waren. Bei manuellen Tests fallen vergessene Akzeptanzkriterien eher auf bzw. werden durch den Tester instinktiv hinzu gedacht. Die Anzahl der fälschlicherweise positiv gewerteten Testfälle sinkt. Eine weitere positiven Aspekt den Fewster und Graham \cite[vgl. S. 24 ff.]{fewster_software_1999} in einem manueller Tester sehen ist eine höhere Stabilität in den Testfällen. Ein Tester kann sich auf kleinere Änderungen in der zu testenden Software leicht einstellen. Er kann selbst entscheiden ob eine Abweichung vom Testfall als Fehler zu werten oder zu vernachlässigen ist. Automatisierte Testfälle bieten diesen Luxus nicht. Sie verfolgen einen festen Ablaufplan und können nur schwer mit Veränderungen in der zu testenden Software umgehen. Das macht sie im Vergleich zu manuellen Tests instabil und erfordert einen erhöhten Wartungsaufwand. In manchen Fällen kann diese Abhängigkeit zwischen Software und automatisiertem Test sogar so weit führen, dass sie die Entwicklung der Software behindern. Beispielsweise dann, wenn eine Änderung in der Software so große Auswirkungen auf die automatisierten Testfälle hätte, dass es aus wirtschaftlicher Sicht nicht mehr sinnvoll ist sie durchzuführen. Die Kosten für die Anpassungen an den Tests wären dann so hoch, dass sie den Nutzen, welchen die Änderung an der Software bringt nicht mehr aufwiegen kann.
+Analog zu den in Tabelle \ref{tbl:effizienz_testautomatisierung} und \ref{tbl:qualitaet_testautomatisierung} genannten Vorteilen haben Fewster und Graham \cite[vgl. S. 10 ff.]{fewster_software_1999} auch eine Liste mit bekannten Nachteilen der Testautomatisierung aufgestellt welche die gerade angesprochenen Probleme noch einmal aufgreifen und ergänzen.
+
+\begin{table}
+\begin{tabular}{p{0.4\textwidth}|p{0.6\textwidth}}
+\\
+\hline 
+Unrealistische Erwartungen
+&  Testautomatisierung wird oft als Lösung für alle Testprobleme gesehen. Es ist wichtig, dass die Erwartungen aller beteiligten realistisch bleiben. \\ 
+\hline 
+Schlechte Testpraxis & Wenn das Testen in einem Unternehmen bereits eine Schwachstelle darstellt ist es nicht sinnvoll eine Testautomatisierung einzuführen. Es ist besser zunächst die vorherrschenden Prozesse zu optimieren. \\ 
+\hline 
+Die Anzahl der gefundenen Fehler wird sich nicht stark verändern & Fehler werden meist bei der ersten Durchführung eines Testfalls aufgedeckt. Wird ein Testfall wiederholt, sinkt auch seine Wahrscheinlichkeit Fehler aufzudecken. In der Regel werden Fehler bereits beim entwickeln der automatisierten Testfelle entdeckt, nicht erst bei weiteren Testläufen. \\
+\hline 
+Trügerische Sicherheit & Die Tatsache, dass alle automatisierten Testfälle positiv waren, bedeutet nicht, dass die Software auch frei von Fehlern ist. Möglicherweise sind nicht alle Bereiche der Software mit Testfällen abgedeckt oder die Akzeptanzkriterien der Testfälle sind nicht umfassend genug gewählt worden. Auch ist es möglich, dass die Testfälle fehlerhaft sind und falsche Ergebnisse anzeigen. \\
+\hline 
+Wartung & Automatisierte Testfälle haben einen hohen Wartungsaufwand. Änderungen an der Software bedingen oft auch, dass die Testfälle überarbeitet werden müssen. Wird dieser Wartungsaufwand so hoch, dass es günstiger wäre die Testfälle manuell durchzuführen, werden die automatisierten Tests unwirtschaftlich. \\
+\hline 
+Technische Probleme & Die Automatisierung von Testfällen stellt eine komplexe Aufgabe dar und ist daher oft mit Problemen verbunden. Die verwendeten Tools bzw. Frameworks sind meist selbst nicht befreit von Fehlern. Oft gibt es auch technische Probleme mit der zu testenden Software selbst. \\
+\hline 
+Probleme in der Organisation & Eine erfolgreiche Testautomatisierung stellt hohe Anforderungen an die technischen Fähigkeiten der Entwickler und erfordert starken Rückhalt in der Führungsebene. Testautomatisierung läuft nicht immer sofort reibungslos und erfordert oft Anpassungen in vorherrschenden Prozessen. \\
+
+\end{tabular} 
+\caption{Probleme der Testautomatisierung nach Fewster und Graham \cite[vgl. S. 10 ff.]{fewster_software_1999}}
+\label{tbl:probleme_testautomatisierung}
+\end{table}
+
+\section{Möglichkeiten der Testautomatisierung im Testprozess}
+\label{sec:bereiche_der_testautomatisierung}
+Wie bereits zu beginn diese Kapitels erwähnt, beschränkt sich die Testautomatisierung nicht nur auf das automatisierte ausführen von Testfällen sondern erstreckt sich über den gesamten Testprozess. Innerhalb des Testprozesses haben Amannejad et al. \cite{amannejad_search-based_2014} vier Hauptaufgaben identifiziert die aus Sicht der Testautomatisierung besonders interessant sind:
+
+\begin{itemize}
+\item Testdesign: Erstellen einer Liste von Testfällen.
+\item Testcodeerstellung: Erstellen von automatisiertem Testcode.
+\item Testdurchführung: Ausführen von Testfällen und aufzeichnen der Ergebnisse.
+\item Testauswertung: Auswerten der Testergebnisse.
+\end{itemize}
 
 \subsection{Testdesign}
 \label{subsec:testdesign}
+Beim Testdesign handelt es sich um eine Aufgabe die laut Thaller \cite[vgl. S. 231]{thaller_software-test_2002} nicht unbedingt prädestiniert dafür ist, automatisiert zu werden. Abbildung \ref{fig:intellektuellVsPraktisch} hat bereits gezeigt, dass es sich um eine eher intellektuelle geprägte Aufgabe handelt.
+Dennoch gibt es eine Reihe von Möglichkeiten wie das Designen von Testfällen automatisiert werden kann. Die verschiedenen Ansätze beschränken sich in der Regel darauf, unterschiedliche Testeingaben für die zu testende Software zu finden.
+Ein großes Problem welches die Tools zum Designen der Testfälle laut Fewster und Graham \cite[vgl. S. 19]{fewster_software_1999} dabei haben ist, dass sie einem fest vorgegebenen Algorithmus folgen. Dieses Vorgehen wird jedoch der intellektuellen Komponente dieser Aufgabe nicht gerecht. Ein Tester kann ähnlichen strukturierten Testfallerstellungsmethoden folgen wie sie beim automatisierten Testdesign verwendet werden, darüber hinaus ist er jedoch zusätzlich in der Lage außerhalb eines vorgegebenen Algorithmus Testfälle zu identifizieren, fehlende Anforderungen zu finden oder sogar, auf Grund von persönlicher Erfahrung, Fehler in der Spezifikation aufzudecken. Um eine komplexe Software umfassend zu Testen reicht es nicht aus, einem festen Algorithmus zu folgen. Eine tiefere Analyse durch einen Tester wird benötigt. 
+Ein weiteres Problem das Fewster und Graham \cite[vgl. S. 19]{fewster_software_1999} nennen, ist die Menge an Testfällen, die mit Hilfe von automatisierten Methoden erzeugt werden. Die Anzahl der Testfälle kann schnell so groß werden, dass sie nicht mehr in einem vertretbarem Zeitaufwand durchgeführt werden können. In diesem Fall müssen aus der Menge die wichtigsten Testfälle identifiziert werden. Testfälle nach ihrer Relevanz zu filtern ist wiederum eine intellektuelle Aufgabe die nur schwer in einem Automatisierungstool abgebildet werden kann.\\
+Trotz ihrer Probleme haben Methoden zum automatisierten Testfalldesign durchaus ihre Daseinsberechtigung. Sie können die Arbeit des Testers beschleunigen, indem sie ihm einen Grundstock an Testfällen an die Hand geben, der durch weitere Testfälle erweitert werden kann. Sinnvoll ist es, sich nicht ausschließlich auf die Möglichkeit des automatisierten Testfalldesigns zu stützen, sondern sie mit den Fähigkeiten, die ein menschlicher Tester mit sich bringt, zu kombinieren.\\
+Seidel et al. \cite[vgl. S. 27]{seidl_basiswissen_2012} beschreiben eine Reihe an Testfallentwurfsmethoden die sie unter dem Oberbegriff der Kombinatorik zusammenfassen. Diese Entwurfsmethoden zielen darauf ab aus einer Fülle von möglichen Eingaben, diejenigen herauszufinden, die ein hohes Fehlerpotenzial in sich bergen. Darunter fallen beispielsweise:
+\begin{itemize}
+\item Äquivalenzklassenbildung
+\item Grenzwertanalyse
+\item Klassifikationsbaummethode
+\end{itemize}
+Diese Entwurfsmethoden kommen vor allem beim manuellen designen von Testfällen zum Einsatz, bieten aber auch die Möglichkeit toolgestützt und damit automatisiert abzulaufen.
+Fewster und Graham \cite[vgl. S. 19 ff.]{fewster_software_1999} beschreiben eine Reihe von weiteren Methoden zum erzeugen von Eingabedaten die vermehrt in automatisierten Tools zum Einsatz kommen:
+\begin{itemize}
+\item Code-basierte Generierung von Eingabedaten
+\item Interface-basierte Generierung von Eingabedaten
+\item Spezifikations-basierte Generierung von Eingabedaten
+\end{itemize}
 
+\subsubsection{Code-basierte Generierung von Eingabedaten}
+\label{subsubsec:codebasierte_generierung}
+Die Generierung der Eingabedaten erfolgt bei diesem Ansatz anhand der Struktur des Codes (siehe Abbildung \ref{fig:codeBasedDesign}). Jede Eingabe bedingt einen fest vorbestimmten Ablauf durch das Programm. Anhand des Codes können die benötigten Eingaben ermittelt werden, die für das durchlaufen von unterschiedlichen Pfaden im Programm benötigt werden.
+Fewster und Graham \cite[vgl. S. 19 ff.]{fewster_software_1999} sehen in diesem Ansatz jedoch Probleme. Ein Testfall benötigt immer auch ein erwartetes Ergebnis. Über die Code-basierte Generierung ist es nicht möglich diese Ergebnisse zu ermitteln. Die generierten Testfälle sind also unvollständig. Ein weiteres Problem von diesem vorgehen ist, dass ausschließlich der Code getestet wird der auch existiert. Fehlende Funktionalitäten können so nicht erkannt werden. Es wird getestet, dass der Code das \grq tut, was er tut und nicht das, was er tun soll.\grq\ \cite[vgl. S. 20]{fewster_software_1999}
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.6]{img/codeBasedDesign.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S. 19]{fewster_software_1999}
+  \caption{Code-basierte Generierung von Testfällen}
+  \label{fig:codeBasedDesign}
+\end{figure}
+
+
+\subsubsection{Interface-basierte Generierung von Eingabedaten}
+\label{subsubsec:interfacebasierte_generierung}
+Bei dieser Methode erfolgt nach Fewster und Graham \cite[vgl. S. 20]{fewster_software_1999} die Generierung anhand von gut definierten Schnittstellen wie der Benutzeroberfläche einer Desktop- oder Web-Anwendung (siehe Abbildung \ref{fig:interfaceBasedDesign}). 
+Wird als Schnittstelle die Benutzeroberfläche gewählt kann beispielsweise getestet werden ob eine Checkbox nach dem Betätigen aktiviert bzw. deaktiviert wurde. Eine andere Möglichkeit wäre es rekursiv jeden Link in einer Webanwendung zu durchlaufen. Alle defekten Links einer Webanwendung könnten auf diese Weise identifiziert werden.
+Mit Hilfe dieses Ansatzes ist es laut Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999} auch möglich einfache Akzeptanzkriterien zu generieren. Werden die Links einer Web-Anwendung rekursiv durchlaufen, könnte beispielsweise überprüft werden, dass die Links auch auf eine neue Seite Führen. 
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.6]{img/interfaceBasedDesign.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S. 20]{fewster_software_1999}
+  \caption{Interface-basierte Generierung von Testfällen}
+  \label{fig:interfaceBasedDesign}
+\end{figure}
+
+
+\subsubsection{Spezifikations-basierte Generierung von Eingabedaten}
+\label{subsubsec:spezifikationsbasierte_generierung}
+Mit Hilfe von Spezifikations-basierter Generierung ist es nach Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999} möglich sowohl Testeingaben als auch die zugehörigen erwarteten Ergebnisse zu erzeugen (siehe Abbildung \ref{fig:specBasedDesign}). Als Basis wird dazu eine Spezifikation benötigt die automatisiert analysiert werden kann. Die Möglichkeiten dafür reichen von natürlicher Sprache die gewissen Strukturen folgt bis hin zu technischen Modellen.\\ Vor allem die Benutzung von Modellen hat in den letzten Jahren immer mehr an Bedeutung gewonnen und ist heute unter dem Namen modellbasiertes Testen bekannt. Als Referenz auf diesem Gebiet kann das Werk von Roßner et al.\ \cite{rossner_basiswissen_2010} \glqq Basiswissen Modellbsierter Test\grqq\ dienen.
+Ein Vorteil des Spezifikations-basierte Ansatzes ist nach Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999}, dass die Testfälle nicht auf Basis einer Implementierung sondern auf Basis einer Spezifikation erzeugt werden. Damit ist sichergestellt, dass die Testfälle nicht nur, wie bei der Code-basierte Generierung, überprüfen \grq was die Software tut\grq , sondern \grq was sie tun soll\grq.
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.6]{img/specBasedDesign.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S. 21]{fewster_software_1999}
+  \caption{Spezifikations-basierte Generierung von Testfällen}
+  \label{fig:specBasedDesign}
+\end{figure}
 
 \subsection{Testcodeerstellung}
 \label{subsec:testcodeerstellung}
-c&r
+Bei der Testautomatisierung versteht man unter Testcodeerstellung das erzeugen von Testscripten bzw. Testcode, der später wiederholt gestartet werden kann. Der erzeugte Code setzt die Testfälle um die zuvor in der Designphase gefunden wurden.
+In vielen Fällen handelt es sich dabei um einen manuellen Schritt. Die Testcodeerstellung ist oft eine reine Entwicklertätigkeit bei der ein Tester die angedachten Testfälle in Testcode implementiert.
+Aber auch in diesem Schritt sind laut Amannejad et al. \cite{amannejad_search-based_2014} Möglichkeiten für eine Automatisierung gegeben.
+Es existieren beispielsweise teilautomatisierte Ansätze. Mit Hilfe von sogenannten \grq record-and playback\grq\ Tools (R\&PB) können die Interaktionen eines Benutzers mit der zu testenden Software aufgezeichnet werden. Die aufgezeichneten Abläufe können dann verwendet werden um automatisierte Testskripte zu generieren.
+Auch ein voll automatisierter Ansatz ist möglich, wenn auch nicht so weit verbreitet wie der manuelle bzw. teilautomatisierte Ansatz.
+Mittels modellbasiertem Testen ist es nicht nur möglich Testfalldesigns abzuleiten. Liegen die Modelle in einem entsprechend hohen Detailgrad vor ist es sogar möglich daraus direkt Testcode zu erzeugen. Bouquet et al. \cite{bouquet_test_2008} beschreiben beispielsweise einen modellbasierten Ansatz mit dessen Hilfe das designen, erstellen und ausführen von Testfällen automatisiert geschehen kann. 
+Zusammengefasst ist die Testcodeerstellung damit in drei unterschiedlichen Automatisierungsgraden möglich:
+\begin{itemize}
+\item Manuell
+\item Teilautomatisiert (R\&PB)
+\item Automatisiert
+\end{itemize}
+
+Allen Ansätzen gemeinsam ist, dass sie immer eine Schnittstelle zum System benötigen über welche der automatisierte Testcode mit der zu testenden Anwendung kommunizieren kann.
+Meszaros et al. \cite{meszaros_agile_2003} unterscheiden dabei zwei Hauptangriffspunkte:
+\begin{itemize}
+\item API: Als Schnittstelle wird der Code der zu testenden Anwendung direkt benutzt.
+\item UI: Als Schnittstelle wird die Benutzeroberfläche der Anwendung verwendet.
+\end{itemize}
+
+Kombiniert man die verschiedenen Ansätze der Testcodeerstellung mit den Schnittstellen ergibt sich eine Matrix welche die verschiedenen Möglichkeiten der Testcodeerstellung beim automatisierten Testen abbildet. Eine grafische Darstellung dieser Matrix bietet Abbildung \ref{fig:bereicheTestcodeerstellung}.
+
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.7]{img/bereicheTestcodeerstellung.png}\\
+  \footnotesize\sffamily\textbf{Quelle:} vgl. \cite{meszaros_agile_2003}
+  \caption{Verschiedene Möglichkeiten der Testcodeerstellung}
+  \label{fig:bereicheTestcodeerstellung}
+\end{figure}
+
+Die vollautomatisierte Generierung, also die beiden rechten Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung}, befindet sich außerhalb des Rahmens dieser Arbeit und wird daher im folgenden nicht mehr näher betrachtet.
+Meszaros et al. \cite{meszaros_agile_2003} haben eine ähnliche Matrix aufgestellt die noch um eine weitere Dimension der Testgranularität (Unit-, Integrations- und System-Test) erweitert ist. Diese Dimension hat allerdings nur wenig Auswirkungen auf die Herangehensweise in der Testautomatisierung und wurden deshalb in Abbildung \ref{fig:bereicheTestcodeerstellung} nicht mit aufgeführt.
+
+\subsubsection{API}
+\label{subsubsec:API}
+
+Unter der Abkürzung API (application programming interface) sind in diesem Zusammenhang alle Schnittstellen zu verstehen, die intern von der zu testenden Anwendung angeboten werden. Darunter fällt beispielsweise das direkte aufrufen von Servicemethoden die als Businesslogik innerhalb der Anwendung bereitgestellt werden.
+Ein weit verbreitete Technologie die im Rahmen der Testautomatisierung oft diese Art der Schnittstelle verwenden sind die modernen \grq XUnit-Frameworks\grq. In den Meisten Programmiersprachen existiert ein Unit-Framework mit dem es möglich ist direkt die im Programm angebotene Logik mit automatisierten Testfällen abzuprüfen. In der Praxis wird diese Aufgabe meist direkt vom Entwickler in Form von Unit-Tests (Komponenten-Tests) übernommen. Der Begriff \grq XUnit-Frameworks\grq\ kann leicht missverstanden werden, da er impliziert, dass es sich bei den mit Hilfe des Frameworks umgesetzten Testfällen um Unit-Tests handelt. Tatsächlich können jedoch Testfälle aller Teststufen, von Unit- bis System-Test, mit Hilfe dieser Frameworks umgesetzt werden.
+Die Testcodeerstellung erfolgt dabei meist Manuell womit diese Art der Automatisierung ein Beispiel für den oberen linken Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung} darstellt.
+Neben dem manuellen Vorgehen beschreiben Meszaros et al. \cite{meszaros_agile_2003} auch die Möglichkeit \grq record-and playback\grq\ für Testfälle zu verwenden die als Schnittstelle die API verwenden.
+Hierfür muss eine \grq record-and playback\grq\ auf API-Ebene für die zu testende Software entwickelt werden. Darüber ist es dann möglich bei einem manuellem Testlauf all das aufzuzeichnen, was den Zustand des Systems beeinflusst. Diese Aufzeichnungen können dann später wieder als Eingaben verwendet werden. Dieses Vorgehen wäre ein Beispiel für den oberen mittleren Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung} ist jedoch nicht sehr weit verbreitet.
+
+\subsubsection{UI}
+\label{subsubsec:UI}
+Bei Testfällen die als Schnittstelle zum System das User-Interface verwenden ist laut  Meszaros et al. \cite{meszaros_agile_2003} \grq record-and playback\grq\ wein sehr weit verbreitetes Vorgehen. Hierfür existieren Zahlreiche kommerzielle Testwerkzeuge wie beispielsweise HP Unified Functional Testing \cite{hp_testautomatisierung_2015}, aber auch Open-Source-Lösungen wie beispielsweise Selenium \cite{selenium_selenium_2015}.
+Mit Hilfe dieser Tools ist es möglich Testfälle aufzuzeichnen. Die Testfälle werden dazu zunächst einmal manuell durchzuführen. Während dieser manuellen Testausführung können die vom Tester auf der Benutzeroberfläche getätigten Eingaben vom Tool gespeichert werden. Die gespeicherten Interaktionen werden dann verwendet um daraus Testcode zu generieren mit dem der aufgezeichnete Testfall beliebig oft wiederholt werden kann. Dieses Vorgehen wird in Abbildung \ref{fig:bereicheTestcodeerstellung} durch den unteren mittleren Quadranten abgebildet.
+Der untere linke Quadrant symbolisiert die von Hand geschriebenen Testfälle die als Schnittstelle das User-Interface verwenden. Oft handelt es sich dabei um Testfälle die analog zu Abschnitt \ref{subsubsec:API} ein \grq XUnit-Frameworks\grq\ zur Testausführung verwenden. Diese Frameworks können um Aufsätze wie beispielsweise HttpUnit \cite{httpunit_httpunit_2015} oder Selenium \cite{selenium_selenium_2015} erweitert werden. Mit Hilfe solcher Erweiterungen ist es möglich, die Testfälle nicht mehr nur gegen die API der zu testenden Software zu entwickeln sondern zur Steuerung die Benutzeroberfläche zu verwenden. Neben diesen Aufsätzen für vorhandene Frameworks existieren auch zahlreiche eigenständige Tools wie beispielsweise MicroFocus SilkTest \cite{silk_test_borland_2015} welches neben Webanwendungen auch die Möglichkeit zum Testen von Denktopanwendungen bieten.
+Testcode von Hand zu schreiben ist ein weit verbreitetes Vorgehen. Vor allem immer dann, wenn kein vorhandenes Testtool verwendet wird sondern das Automatisierungsframeword für die zu testende Software selbst entwickelt wurde.
+
 
 \subsection{Testdurchführung}
 \label{subsec:testdurchführung}
+Unter Testdurchführung versteht man das ausführen der Testfälle so wie das aufzeichnen von Testergebnissen bzw. Testausgaben. Nach den Erfahrungen von Amannejad et al. \cite{amannejad_search-based_2014} ist dieser Bereich der Testautomatisierung derjenige, der von den meisten Tester am ehesten mit der Automatisierung verbunden wird.
+Die zuvor erstellten Testfälle müssen in dieser Phase des Testprozesses zur Ausführung gebracht werden. Die Möglichkeit zur Automatisierung hängt in diesem Schritt stark von den gewählten Methoden in den vorangegangenen Phasen des Testprozesses ab. Oft ist eine Automatisierung in diesem Schritt bereits ohne zusätzlichen Aufwand vorhanden. Vor allem immer dann, wenn der Testcode bereits Tool bzw. Framework unterstützt erstellt wurde.
+Die meisten Tools und Frameworks bieten eine automatisierte Testdurchführung bereits mit an.
+Im besonderen Maße sind an dieser Stelle auf Grund ihrer hohen Verbreitung die \grq XUnit-Frameworks\grq\ zu nennen.
+In Abschnitt \ref{subsec:testcodeerstellung} wurde gezeigt, dass diese Frameworks oft in der manuellen Testcodeerstellung verwendet werden. Das Unit-Framework übernimmt dabei die automatisierte Ausführung und Präsentation der Testergebnisse der Testskripte. Es handelt sich daher um ein Framework, welches die Testdurchführung automatisiert.
+Problematisch wird die Testdurchführung nach eigenen Erfahrungen immer dann, wenn Testcode losgelöst von bereits vorhandenen Tools bzw. Frameworks entwickelt wird. Der Testcode könnte beispielsweise gekapselt in Funktionen vorliegen und seine Ergebnisse einfach in die Konsole loggen. Steigt die Anzahl der Testfalle an, wird die Ausführung und vor allem die Auswertung dieser Testfälle schnell zum Problem. Der Aufwand der betrieben werden muss um die Testfälle anhand ihrer Logmeldungen auszuwerten kann schnell so ansteigen, dass der Zeitaufwand dazu nicht mehr tragbar wird. 
+Eine gesonderte Ausführung von einzelnen Testfällen bzw. kleineren Testfallgruppen ist in diesem Beispiel nur mit zusätzlichem Aufwand möglich.
+Werden Testfälle daher ohne Tool- bzw. Framework-unterstützung erstellt, muss sich früh darüber Gedanken gemacht werden, wie die Testfälle einfach und auswertbar zur Ausführung gebracht werden können.
+Diese Überlegungen resultieren meist in einem eigen entwickelten Testframework, welches die Ausführung und Auswertung des automatisierten Testcodes übernimmt.
 
 
 \subsection{Testauswertung}
 \label{subsec:testauswertung}
+Nachdem die zu testende Software mittels eines Testfalls ausgeführt wurde muss bestimmt werden, ob der Testfall erfolgreich oder fehlerhaft war. Diese Prüfung kann manuell erfolgen. Handelt es sich jedoch um automatisierte Testfälle ist diese Prüfung meist über feste Akzeptanzkriterien direkt im Testfall hinterlegt. Im Fall von Testfällen deren Durchführung über ein \grq XUnit-Frameworks\grq\ automatisiert wurde, werden diese Akzeptanzkriterien beispielsweise über sogenannte \grq Assertions\grq\ festgelegt.
+Um die erwarteten Ergebnisse für einen Testfall zu finden, werden sogenannte Testorakel verwendet.
+Jede Quelle die Auskunft über ein zu erwartendes Ergebnis gibt, kann als Testorakel dienen.
+Meist handelt es sich hierbei um Spezifikationen die manuell ausgewertet werden.
+Es gibt darüber hinaus aber auch zahlreiche Möglichkeiten und Versuche diese Testorakel zu automatisieren \cite{memon_automated_2000} \cite{richardson_specification-based_1992} \cite{shahamiri_comparative_2009}.
+Automatisierten Testorakel können dann wiederum für die Auswertung der Testergebnisse in den automatisierten Testfällen dienen. Eine manuelle Auswertung von Testorakeln kann so entfallen.
+Bereits mit fest hinterlegten Akzeptanzkriterien die manuell gefunden wurden gilt laut Amannejad et al. \cite{amannejad_search-based_2014} die Testauswertung als automatisiert. Mittels automatischer Testorakel kann diese Automatisierung jedoch noch ein höheres Level an Intelligenz erreichen. 
 
 
 
-\section{Schnittstellen der Testautomatisierung zum System}
-\label{sec:schnittstellen_der_testautomatisierung_zum_syste}
 
-Jeder testfall muss in irgendeiner weise mit dem zu testenden objekt interagieren.
-Analog zu manuellen tests gibt es hierfür verschiedene möglichkeiten.
-\subsection{API}
-\subsubsection{JUnit}
-\label{sec:junit}
-
-\subsection{GUI}
-Web
