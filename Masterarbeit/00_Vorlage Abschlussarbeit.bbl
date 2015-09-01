@@ -113,12 +113,6 @@
 \newblock New York, NY, USA : ACM, 2000 ({SIGSOFT} '00/{FSE}-8). --
 \newblock ISBN 1--58113--205--0, 30--39
 
-\bibitem[{Pro}06]{prof._dr._r._lindermeier_projekt-_2006}
-\textsc{{Prof. Dr. R. Lindermeier}}:
-\newblock \emph{Projekt- und {Qualitätsmanagement} {Softwarequalität} und
-  {Softwareprüfung}}.
-\newblock 2006
-
 \bibitem[RAO92]{richardson_specification-based_1992}
 \textsc{Richardson}, D.J. ; \textsc{Aha}, S.L.  ; \textsc{O'Malley}, T.O.:
 \newblock Specification-based test oracles for reactive systems.
@@ -167,10 +161,16 @@
 \newblock Heidelberg : dpunkt-Verl., 2012. --
 \newblock ISBN 978--3--89864--724--3
 
-\bibitem[{Sel}15]{selenium_selenium_2015}
+\bibitem[{Sel}15a]{selenium_selenium_2015}
 \textsc{{Selenium}}:
 \newblock \emph{Selenium - {Web} {Browser} {Automation}}.
 \newblock \url{http://www.seleniumhq.org/}.
+\newblock \,Version:\,August 2015
+
+\bibitem[{Sel}15b]{selenium_selenium_2015-1}
+\textsc{{Selenium}}:
+\newblock \emph{Selenium {Documentation}}.
+\newblock \url{http://www.seleniumhq.org/docs/}.
 \newblock \,Version:\,August 2015
 
 \bibitem[{Sil}15]{silk_test_borland_2015}
