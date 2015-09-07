@@ -29,7 +29,7 @@ In seiner aktuellen Ausprägung 2.x lassen sich, abgesehen von Komponenten die d
 
 \begin{itemize}
 \item Selenium IDE \\
-Bei der Selenium IDE handelt es sich um ein Firefox plug-in, das verwendet werden kann um Selenium-Testfälle zu erstellen. Testfälle können dabei von Hand erstellt werden oder mittels eines \grq record-and playback\grq -Mechanismus direkt im Browser aufgezeichnet werden. Die erstellten Testfälle können mit Akzeptanzkriterien angereichert werden und innerhalb der IDE wieder abgespielt werden.
+Bei der Selenium IDE handelt es sich um ein Firefox plug-in, das verwendet werden kann um Selenium-Testscripte zu erstellen. Testscripte können dabei von Hand erstellt oder mittels eines \grq record-and playback\grq -Mechanismus direkt im Browser aufgezeichnet werden. Die erstellten Testfälle können mit Akzeptanzkriterien angereichert werden und innerhalb der IDE wieder abgespielt werden.
 \item Selenium WebDriver \\
 Der Selenium WebDriver bietet für verschiedene Programmiersprachen eine API zur Steuerung eines Browsers aus dem Programmcode heraus. Der WebDriver bildet damit die Kernkomponente für alle Selenium-Testfälle die außerhalb der Selenium IDE entwickelt werden.
 
@@ -52,20 +52,77 @@ Im Bereich des WebDrivers stützt sich Selenium also auf bereits sehr gut etabli
 
 \section{Testcodeerstellung mit Selenium}
 \label{sec:Testdesign}
-
+Die Testcodeerstellung von Testfällen die Selenium verwenden kann auf zwei Arten erfolgen.
+Testcode kann Manuell erstellt werden oder über einen \grq record-and playback\grq -Mechanismus teilautomatisiert generiert werden.
 
 \subsection{Recorde-and-playback}
 \label{sec:recorde_and_playback}
+Die Selenium IDE bietet die Möglichkeit Testskripte mittels \grq record-and playback\grq\ zu erzeugen.
+Die im Testfall gewünschten Abläufe können dabei einfach im Browser abgearbeitet werden.
+Die durchgeführten Schritte werden von der Selenium IDE in der Selenium eigenen Sprache \grq Selense\grq\ aufgezeichnet. Diese Aufzeichnungen können später von der Selenium IDE interpretiert werden um so die Testabläufe erneut zu wiederholt.
+Testskripte können nach dem Aufzeichnen nachträglich überarbeitet werden. Damit können beispielsweise Akzeptanzkriterien an bestimmten Stellen im Testablauf eingearbeitet werden.\\
+Testfälle die über den \grq record-and playback\grq -Mechanismus erstellt wurden sind nicht an die Sprache \grq Selense\grq\ gebunden. Die Selenium IDE bietet die Möglichkeit die Testskripte in eine Reihe von Programmiersprachen zu exportieren. Darunter beispielsweise auch Java.
+Diese Testfälle benutzen dann wie in Abschnitt \ref{sec:testdurchführung_mit_selenium} beschrieben, den Selenium Webdriver für die Kommunikation mit dem Browser und ein Unit Testing Framework für die Ausführung.\\
+Das aufzeichnen von Abläufen bietet eine besonders einfache und schnelle Möglichkeit um Tetfälle zu erstellen. Dennoch wird in der Dokumentation von Selenium \cite{selenium_selenium_2015-1} davon abgeraten sich bei der Testfallerstellung alleine auf dieses Tool zu stützen. Die Selenium IDE wird als Prototyping-Tool verstanden mit dem kleine Aufgaben die nicht für den längerfristigen Einsatz gedacht sind schnell automatisiert werden können.
+Testabläufe die über den \grq record-and playback\grq -Mechanismus in der IDE erstellt werden unterliegen eine Reihe von Limitierungen. Leotta et al. \cite{leotta_repairing_2013} nennen als Limitierungen dieser Testfälle das fehlen von bedingten Anweisungen, Schleifen, Logging, Ausnahmebehandlungen so wie parametrisierten (a.k.a. data-driven) Testfällen.
+Neben den Limitierungen haben die Testfälle zusätzlich das Problem, dass sie eine schlechte Wartbarkeit aufweisen. Nach Leotta et al. \cite{leotta_repairing_2013} liegt das vor allem daran, dass die Testfälle sehr stark mit der Struktur der Webseiten verwoben sind und einen hohen Anteil an dupliziertem Code aufweisen.
+Die Limitierungen der IDE können zwar durch das Exportieren der Testfälle in eine Programmiersprache überwunden werden, die Qualität der Testfälle im Bezug auf ihre spätere Wartbarkeit kann nach  Leotta et al. \cite{leotta_repairing_2013} auf diesem Wege jedoch nicht verbessert werden.\\
+Um die genannten Probleme zu veranschaulichen wurden zwei Testfälle über den \grq record-and playback\grq -Mechanismus von Selenium erstellt und in die Programmiersprache Java exportiert.
+Die Beiden Testfälle sollen das anlegen und editieren eines Datensatzes auf einer einfachen Web-Anwendung überprüfen.
+Drei Seiten der Webanwendung werden für diesen Testfall verwendet. Die Seiten sind in Abbildung \ref{fig:toDoApp} dargestellt.
+
+\begin{figure}[htb]
+
+ \subfigure[Anlegen eines neuen Datensatzes]{\includegraphics[width=0.49\textwidth]{img/newTodo.png}}
+  \subfigure[Anzeigen eines Datensatzes]{\includegraphics[width=0.49\textwidth]{img/showTodo.png}}
+ \subfigure[Editieren eines Datensatzes]{\includegraphics[width=0.49\textwidth]{img/editTodo.png}}
+ \caption{Anlegen, Editieren und Anzeigen eines neuen Datensatzes}
+  \label{fig:toDoApp}
+\end{figure}
 
 
-\subsubsection{Vorteile von Recorde-and-playback}
-\label{sec:vorteile_von_recorde_and_playback}
-
-\subsubsection{Probleme von Recorde-and-playback}
-\label{sec:probleme_von_recorde_and_playback}
+Zur besseren Lesbarkeit wurden die Testfälle im Listing \ref{lst:exportierteTestfaelle} leicht überarbeitet, in ihrem Wesen jedoch nicht verändert.
+\begin{lstlisting}[caption={Exportierte Testfälle},label={lst:exportierteTestfaelle}]
+  /**
+  * Testfall legt einen neuen Datensatz an.
+  */
+  public void testCreateNewRecord() {
+    WebDriver driver = new FirefoxDriver();
+    driver.get("http://localhost:3000/todos/new");
+    driver.findElement(By.id("todo_title")).sendKeys("MyTitle");
+    driver.findElement(By.id("todo_notes")).sendKeys("MyNote");
+    driver.findElement(By.name("commit")).click();
+  
+    assertEquals("MyTitle", driver.findElement(By.id("title")).getText());
+    assertEquals("MyNote", driver.findElement(By.id("note")).getText());
+  }
+  
+  /**
+  * Testfall legt einen neuen Datensatz an und editiert ihn.
+  */
+  public void testEditRecord() throws Exception {
+    WebDriver driver = new FirefoxDriver();
+    driver.get("http://localhost:3000/todos/new");
+    driver.findElement(By.id("todo_title")).sendKeys("MyTitle");
+    driver.findElement(By.id("todo_notes")).sendKeys("MyNote");
+    driver.findElement(By.name("commit")).click();
+    driver.findElement(By.linkText("Edit")).click();
+    driver.findElement(By.id("todo_title")).clear();
+    driver.findElement(By.id("todo_title")).sendKeys("MyTitleEdit");
+    driver.findElement(By.id("todo_notes")).clear();
+    driver.findElement(By.id("todo_notes")).sendKeys("MyNoteEdit");
+    driver.findElement(By.name("commit")).click();
+    
+    assertEquals("MyTitleEdit", driver.findElement(By.id("title")).getText());
+    assertEquals("MyNoteEdit", driver.findElement(By.id("note")).getText());
+  }
+  
+\end{lstlisting}
+Die Testfälle für das Anlegen und Editieren sind in ihren Abläufen recht ähnlich. Das führt dazu, dass Testcode, nämlich das adressieren der Eingabefelder beim anlegen eines Datensatzes, dupliziert wurde.
 
 \subsection{Manuell}
 \label{sec:manuell}
+
 
 \subsection{Page Object Pattern}
 \label{sec:page_object_pattern}

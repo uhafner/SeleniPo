@@ -94,6 +94,15 @@
 \newblock 2001.
 \newblock ISO/IEC, 2001
 
+\bibitem[LCRS13]{leotta_repairing_2013}
+\textsc{Leotta}, M. ; \textsc{Clerissi}, D. ; \textsc{Ricca}, F.  ;
+  \textsc{Spadaro}, C.:
+\newblock Repairing {Selenium} {Test} {Cases}: {An} {Industrial} {Case} {Study}
+  about {Web} {Page} {Element} {Localization}.
+\newblock {In: }\emph{2013 {IEEE} {Sixth} {International} {Conference} on
+  {Software} {Testing}, {Verification} and {Validation} ({ICST})}, 2013, S.
+  487--488
+
 \bibitem[Mes03]{meszaros_agile_2003}
 \textsc{Meszaros}, Gerard:
 \newblock Agile {Regression} {Testing} {Using} {Record} \& {Playback}.
