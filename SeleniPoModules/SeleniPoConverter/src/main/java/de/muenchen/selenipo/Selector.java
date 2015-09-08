@@ -11,7 +11,7 @@ public enum Selector {
 
 	LINK("link"), XPATH("xpath"), HREF("href"), CHECKBOX("checkbox"), RADIOBUTTON(
 			"radioButton"), INPUT("input"), BUTTON("button"), TAGNAME("tagName"), OPTION(
-			"option"), ID("id"), TEXTAREA("textarea"), TEXTFIELD("textfield"), SELECT(
+			"option"), ID("id"), TEXTAREA("textArea"), TEXTFIELD("textField"), SELECT(
 			"select");
 
 	private static final ByFactory by = new ByFactory();
