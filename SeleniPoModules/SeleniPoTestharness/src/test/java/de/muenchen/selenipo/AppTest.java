@@ -1,5 +1,7 @@
 package de.muenchen.selenipo;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,6 +12,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import de.muenchen.selenipo.config.Config;
 import de.muenchen.selenipo.po.BasePo;
+import de.muenchen.selenipo.po.CreatePage;
+import de.muenchen.selenipo.po.ShowPage;
 import de.muenchen.selenipo.po.base.OverviewPage;
 import de.muenchen.selenipo.po.base.WelcomePage;
 
@@ -26,13 +30,15 @@ public class AppTest {
 
 	/**
 	 * Rigourous Test :-)
-	 * @throws InterruptedException 
+	 * 
+	 * @throws InterruptedException
 	 */
 	@Test
 	public void testApp() throws InterruptedException {
-		WelcomePage wp = new WelcomePage(po);
-		OverviewPage ov = wp.clickAENTER();
-		ov.clickAToDoApp();
-
+		CreatePage createPage = new CreatePage(po);
+		ShowPage showPage = createPage.createEntry("MyTitle", "MyNote");
+		Thread.sleep(1000);
+		assertEquals("MyTitle", showPage.idTitle.resolve().getText());
+		assertEquals("MyNote", showPage.idNotes.resolve().getText());
 	}
 }
