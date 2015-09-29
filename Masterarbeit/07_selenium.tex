@@ -42,6 +42,7 @@ Mit Hilfe des Selenium Servers ist es möglich Selenium-Testfälle nicht nur auf
 \label{sec:testdurchführung_mit_selenium}
 Abhängig davon ob die Testfälle für die Selenium IDE entwickelt wurden oder sich auf den Selenium WebDriver stützen unterscheiden sich die Möglichkeiten zur Ausführung der Testskripte.\\
 Testfälle die mit der Selenium IDE entwickelt wurden verwenden eine Selenium eigene Sprache mit dem Namen \grq Selense\grq.\ Diese Testfälle können in späteren Testläufen wieder über die Selenium IDE zur Ausführung gebracht werden. \\
+Dem gegenüber stehen Testfälle die den Selenium WebDriver verwenden.
 Testfälle die mittels Selenium WebDriver entwickelt wurden sind für ihre Ausführung nicht an ein spezielles Tool gebunden. Beim WebDriver handelt es sich um eine API mit deren Hilfe ein Browser ferngesteuert werden kann. Wie diese API in die Testfälle integriert wird ist dem Entwickler selbst überlassen. In der Praxis hat sich als Best Practice jedoch herausgestellt, dass Selenium-Testfälle, die den WebDriver verwenden, meist in Verbindung mit einem Unit Testing Framework entwickelt werden.
 Im Java Umfeld wären hier beispielsweise JUnit oder TestNG zu nennen.
 Die Testfälle können damit analog zu den klassischen Unit Tests entwickelt werden, verwenden jedoch als Schnittstelle zum System nicht die API sondern, über den WebDriver, die Benutzeroberfläche. 
@@ -122,7 +123,7 @@ Zur besseren Lesbarkeit wurden die Testfälle im Listing \ref{lst:exportierteTes
 \end{lstlisting}
 Die Testfälle für das Anlegen und Editieren sind in ihren Abläufen recht ähnlich. Beide Testfälle legen zunächst einen neuen Datensatz in der Anwendung an. Die Logik die hierfür verwendet wird ist in beiden Testfällen dupliziert worden. Das ist nicht nur ein Problem dieses Beispiels sondern ein Problem, dass durchaus hohe Praxisrelevanz hat. In den meisten Testabläufen finden sich wiederkehrende Aufgaben, wie beispielsweise einen Login, der nicht nur von einem Testfall benötigt wird.
 Selbst wenn sich die Abläufe zwischen den Testfällen stark unterscheiden werden Elemente, z.B. Input-Felder, die von der Anwendung angeboten werden in der Regel nicht nur einmal benutzt. Das führt zwangsläufig dazu, dass die Logik zum adressieren dieser Felder in einer Vielzahl von Testfällen dupliziert wird.\\
-Die Adressierung der Elemente in der Anwendung bedingt auch die hohe Koppelung der im Listing \ref{lst:exportierteTestfaelle} gezeigten Testfälle mit den Seiten der Anwendung. Die Selektoren die verwendet werden um die Elemente der Webanwendung anzusteuern sind direkt in den Testfall eingearbeitet. Änderungen an der Seitenstruktur der Anwendung haben damit direkten Einfluss auf die Testfälle.\\
+Die Adressierung der Elemente in der Anwendung bedingt auch die hohe Koppelung der im Listing \ref{lst:exportierteTestfaelle} gezeigten Testfälle mit den Seiten der Anwendung die Leotta et al. \cite{leotta_repairing_2013} als weiters problem identifiziert haben. Die Selektoren die verwendet werden um die Elemente der Webanwendung anzusteuern sind direkt in den Testfall eingearbeitet. Änderungen an der Seitenstruktur der Anwendung haben damit direkten Einfluss auf die Testfälle.\\
 Der duplizierter Code und der hohe Grad an Koppelung mit der Anwendung innerhalb der Testfälle bedingen, dass selbst kleine Änderungen in der zu testenden Anwendung, Korrekturen an vielen Stellen in den Testfällen nötig machen.
 
 \subsection{Manuell}
@@ -176,7 +177,7 @@ Das Page Object CreatPage in Listing \ref{lst:poCreatePage} repräsentiert die S
 
 Die Funktionalitäten die von den jeweiligen Seiten angeboten werden sind innerhalb des Page Objects gekapselt. Das Page Object CreatPage bietet beispielsweise die Eingabefelder für Titel und Note so wie den Button zum anlegen eines Datensatzes als globale Objekte von Typ Control an.
 Die Klasse Control dient in den dargestellten Page Objekten als Wrapper für den Selenium WebDriver. Control-Objekte sind also analog zu Selenium WebElementen zu verstehen.
-Die Funktionalität zum anlegen eines neuen Eintrags die im späteren Testfall benötigt wird bietet das Page Objekt CreatPage als Service-Methode an.\\
+Die Funktionalität zum anlegen eines neuen Eintrags die im späteren Testfall benötigt wird bietet das Page Objekt CreatPage als Service-Methode \grq createEnty()\grq\ an.\\
 
 Der Testfall in Listing \ref{lst:pageObjectTestfall} verwendet die Beiden Page Objekte um einen neuen Eintrag in der Anwendung anzulegen und zu überprüfen.
 
@@ -198,17 +199,25 @@ Der Testfall in Listing \ref{lst:pageObjectTestfall} verwendet die Beiden Page O
 
 Im Gegensatz zum Testfall in Listing \ref{lst:exportierteTestfaelle} ist es auf Grund des Page Object Pattern nicht mehr nötig explizite Referenzen auf die Struktur der Seite innerhalb der Testfälle zu machen. Alle Details der Seite sind innerhalb der PageObjekte gekapselt. Der Testfall verwendet lediglich die im Page Object angebotenen Funktionalität.
 
-Das Pag Object Design Pattern bietet damit laut Selenium Doc folgende Vorteile:
-The Page Object Design Pattern provides the following advantages.
 
-1. There is clean separation between test code and page specific code such as locators (or their use if you’re using a UI map) and layout.
-
-2. There is single repository for the services or operations offered by the page rather than having these services scattered through out the tests.
-
-Die in recordAndPb angesprochenen nachteile konnten somit eliminiert werden.
-In both cases this allows any modifications required due to UI changes to all be made in one place. Die Wartbarkeit wird so erhöht. Auf Sutdie beziehen.
 \subsubsection{Vorteile des Page Object Pattern}
 \label{sec:vorteile_des_page_object_pattern}
+
+Folgende Vorteile ergeben sich damit bei der Verwendung des Page Object Pattern die auch so in der Selenium Dokumentation \cite{selenium_selenium_2015-2} angegeben werden:
+
+\begin{enumerate}
+\item Es gibt eine klare Trennung zwischen Testcode und seitenspezifischem Code wie beispielsweise Elementadressierungen und Layout. \\ \\
+Die Adressierung der Elemente ist nicht mehr über die gesamten Testfälle verteilt sondern befindet sich an einem zentralen Ort, dem Page Object.
+Die hohe Koppelung der Testfälle mit den Seiten der Anwendung die Leotta et al. \cite{leotta_repairing_2013} als Problem genannt haben kann somit überwunden werden.
+
+\item Es gibt einen einzigen Ort für die Elemente und Operationen die von einer Seite angeboten werden. \\ \\
+Alle Informationen die eine Seite der Anwendung betreffen sind an einem zentralem Ort, dem Page Object gesammelt. Seitenspezifischer Code muss somit nicht mehr in den einzelnen Testfällen dupliziert werden. Die Funktionalitäten der Seite können über das entsprechende Page Object abgerufen werden.
+
+\end{enumerate}
+
+Beide Vorteile führen dazu, dass Änderungen die an einer Seite gemacht werden nur Auswirkungen an einem zentralen Stelle haben. Die Wartbarkeit der gesamten Testfälle wird so erhöht.
+Leotta et al. unterstützen diese These mit einer Fallstudie \cite{leotta_repairing_2013} in der Sie eine herkömmliche Testsuite mit einer Testsuite die das Page Object Pattern implementiert hinsichtlich ihrer Wartbarkeit verglichen haben.
+Das Ergebnis dieser Studie hat gezeigt, dass in Ihrem Fall die Zeit für die Wartung der Testfälle um ca. 65\% reduziert werden konnten. Die Anzahl der anzupassenden Codezeilen konnte um ca. 87\% reduziert werden.
 
 \subsubsection{Probleme des Page Object Pattern}
 \label{sec:probleme_des_page_object_pattern}

@@ -170,13 +170,20 @@
 \newblock Heidelberg : dpunkt-Verl., 2012. --
 \newblock ISBN 978--3--89864--724--3
 
-\bibitem[{Sel}15a]{selenium_selenium_2015}
+\bibitem[{Sel}15a]{selenium_selenium_2015-2}
+\textsc{{Selenium}}:
+\newblock \emph{Selenium - {Test} {Design} {Considerations}}.
+\newblock
+  \url{http://www.seleniumhq.org/docs/06_test_design_considerations.jsp}.
+\newblock \,Version:\,September 2015
+
+\bibitem[{Sel}15b]{selenium_selenium_2015}
 \textsc{{Selenium}}:
 \newblock \emph{Selenium - {Web} {Browser} {Automation}}.
 \newblock \url{http://www.seleniumhq.org/}.
 \newblock \,Version:\,August 2015
 
-\bibitem[{Sel}15b]{selenium_selenium_2015-1}
+\bibitem[{Sel}15c]{selenium_selenium_2015-1}
 \textsc{{Selenium}}:
 \newblock \emph{Selenium {Documentation}}.
 \newblock \url{http://www.seleniumhq.org/docs/}.
