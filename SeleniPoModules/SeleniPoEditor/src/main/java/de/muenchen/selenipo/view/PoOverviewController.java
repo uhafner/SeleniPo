@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -23,6 +24,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
@@ -171,6 +174,20 @@ public class PoOverviewController {
 		setTransitionRowFactory(transitionTable);
 		setHtmlRowFactory(htmlTable);
 
+		elementTable.setOnKeyPressed(getDelteOnDelKeyEvent());
+		transitionTable.setOnKeyPressed(getDelteOnDelKeyEvent());
+
+	}
+
+	EventHandler<KeyEvent> getDelteOnDelKeyEvent() {
+		return new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode() == KeyCode.DELETE) {
+					handleDelete();
+				}
+			}
+		};
 	}
 
 	private void setElementRowFactory(TableView<ElementFx> elementTable) {
@@ -215,6 +232,13 @@ public class PoOverviewController {
 								});
 
 						setElementTransitionRowMenu(row);
+
+						// edit on doubleclick
+						row.setOnMouseClicked(event -> {
+							if (event.getClickCount() == 2 && (!row.isEmpty())) {
+								handleEdit();
+							}
+						});
 
 						return row;
 					}
@@ -262,6 +286,13 @@ public class PoOverviewController {
 								});
 
 						setElementTransitionRowMenu(row);
+
+						// edit on doubleclick
+						row.setOnMouseClicked(event -> {
+							if (event.getClickCount() == 2 && (!row.isEmpty())) {
+								handleEdit();
+							}
+						});
 
 						return row;
 					}
@@ -311,6 +342,14 @@ public class PoOverviewController {
 								});
 
 						setHtmlRowMenu(row);
+
+						// edit on doubleclick
+						row.setOnMouseClicked(event -> {
+							if (event.getClickCount() == 2 && (!row.isEmpty())) {
+								handleMoveHtmlToElement();
+							}
+						});
+
 						return row;
 					}
 				});
@@ -743,11 +782,11 @@ public class PoOverviewController {
 		alert.showAndWait();
 		return alert;
 	}
-	
-	public void switchPoSelection(int index){
-		try{
+
+	public void switchPoSelection(int index) {
+		try {
 			getMainApp().getPoModelFx().getPoGenericsFx().get(index);
-		} catch (IndexOutOfBoundsException e){
+		} catch (IndexOutOfBoundsException e) {
 			logger.error("Das geforderte Element befindet sich nicht in der Liste");
 		}
 		getPoComboBox().getSelectionModel().select(index);
