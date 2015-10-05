@@ -222,5 +222,5 @@ Das Ergebnis dieser Studie hat gezeigt, dass in Ihrem Fall die Zeit für die War
 \subsubsection{Probleme des Page Object Pattern}
 \label{sec:probleme_des_page_object_pattern}
 
-
-
+Die Vorteile des Page Object Pattern kommen allerdings mit einem Preis. Die Komplexität des gesamten Testprojekts steigt. Testfälle können nicht mehr beliebig programmiert werden sondern sind in den Kontext von Page Objekts zu stellen. Das erfordert tiefgründige Designentscheidungen. So ist beispielsweise zu klären wie über die Page Objekts ein generischer Einstieg in die Anwendung angeboten werden kann oder wie der WebDriver über mehrere Page Objekts und Testfälle hinweg verwaltet werden kann. Auch die Page Objects selbst müssen erst einmal entwickelt werden bevor mit dem erstellen von Testfällen begonnen werden kann.\\
+Verglichen mit einem herkömmlichen Ansatz steigt mit der Verwendung des Page Object Pattern zu Beginn also der Aufwand beim erstellen eines Testprojektes. Leotta et al. \cite{leotta_repairing_2013} haben gezeigt, dass sich diese Investition durchaus lohnen kann, initial sind die Kosten allerdings höher.
