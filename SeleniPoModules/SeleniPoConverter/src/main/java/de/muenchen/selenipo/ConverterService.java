@@ -44,6 +44,10 @@ public interface ConverterService {
 
 	List<ValidationMessage> validateModel(PoModel model);
 	
+	public File getSaveFilePath();
+	
+	void setSaveFilePath(File file);
+	
 	
 
 }

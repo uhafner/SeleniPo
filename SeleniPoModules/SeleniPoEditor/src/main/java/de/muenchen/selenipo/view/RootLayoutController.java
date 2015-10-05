@@ -33,17 +33,65 @@ public class RootLayoutController {
 	@FXML
 	public void handleSave() {
 		logger.debug("Save..");
+		// Lade alten Filepath aus den Preferences. Wenn einer existiert
+		// werwende diesen.
+		logger.debug("Versuche altes Verzeichnis aus den Preferences zu laden...");
+		File saveFile = null;
+		if (mainApp.isFileGotLoaded()) {
+			// nur setzen wenn bereits einmal geladen wurde.
+			saveFile = mainApp.getConverterService().getSaveFilePath();
+		}
+
+		if (saveFile != null) {
+			// Speichere File in den Preferences
+			logger.debug("Speichere Filepath in den Preferences...");
+			mainApp.getConverterService().setSaveFilePath(saveFile);
+			// Make sure it has the correct extension
+			if (!saveFile.getPath().endsWith(".xml")) {
+				saveFile = new File(saveFile.getPath() + ".xml");
+			}
+			PoModelImpl poModelImpl = mainApp.getConverterService()
+					.convertToImpl(mainApp.getPoModelFx());
+			// Validiere das Model
+			List<ValidationMessage> validateMessages = mainApp
+					.getConverterService().validateModel(poModelImpl);
+			if (validateMessages.size() == 0) {
+				mainApp.getConverterService().persistToXml(saveFile,
+						poModelImpl);
+			} else {
+				createValidationErrorAlert(mainApp.getPrimaryStage(),
+						validateMessages);
+			}
+		} else {
+			handleSaveAs();
+		}
+	}
+
+	@FXML
+	public void handleSaveAs() {
+		logger.debug("Save as..");
 		FileChooser fileChooser = new FileChooser();
 
 		// Set extension filter
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
 				"XML files (*.xml)", "*.xml");
 		fileChooser.getExtensionFilters().add(extFilter);
+		// Lade alten Filepath aus den Preferences. Wenn einer existiert
+		// werwende diesen.
+		logger.debug("Versuche altes Verzeichnis aus den Preferences zu laden...");
+		File saveFilePath = mainApp.getConverterService().getSaveFilePath();
+		if (saveFilePath != null) {
+			fileChooser.setInitialDirectory(saveFilePath.getParentFile());
+			logger.debug("Verzeichnis gefunden: " + saveFilePath.getPath());
+		}
 
 		// Show save file dialog
 		File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
 
 		if (file != null) {
+			// Speichere File in den Preferences
+			logger.debug("Speichere Filepath in den Preferences...");
+			mainApp.getConverterService().setSaveFilePath(file);
 			// Make sure it has the correct extension
 			if (!file.getPath().endsWith(".xml")) {
 				file = new File(file.getPath() + ".xml");
@@ -72,10 +120,25 @@ public class RootLayoutController {
 				"XML files (*.xml)", "*.xml");
 		fileChooser.getExtensionFilters().add(extFilter);
 
+		// Lade alten Filepath aus den Preferences. Wenn einer existiert
+		// werwende diesen.
+		logger.debug("Versuche altes Verzeichnis aus den Preferences zu laden...");
+		File saveFilePath = mainApp.getConverterService().getSaveFilePath();
+		if (saveFilePath != null) {
+			fileChooser.setInitialDirectory(saveFilePath.getParentFile());
+			logger.debug("Verzeichnis gefunden: " + saveFilePath.getPath());
+		}
+
 		// Show save file dialog
 		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 
 		if (file != null) {
+			// Speichere File in den Preferences
+			logger.debug("Speichere Filepath in den Preferences...");
+			mainApp.getConverterService().setSaveFilePath(file);
+			// File wurde geladen. Beim Nächsten Save kann einfach gepeichert
+			// werden.
+			mainApp.setFileGotLoaded(true);
 			PoModelImpl loadFromXml = (PoModelImpl) mainApp
 					.getConverterService().loadFromXml(file);
 			PoModelFx fxModel = mainApp.getConverterService().convertToFxModel(

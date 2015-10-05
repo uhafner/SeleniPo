@@ -36,12 +36,17 @@ public class MainApp extends Application {
 
 	private static final Logger logger = Logger.getLogger(MainApp.class);
 
+	// Flag gibt an ob File geladen wurde. Verhindert ein Speichern über das
+	// File in den Preferences bevor ein File geladen wurde.
+	// Flag wird im Ladedialog auf true gesetzt.
+	private boolean fileGotLoaded = false;
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	AnnotationConfigApplicationContext context;
 
 	private WebDriver webDriver;
 	private PoModelFx poModelFx;
+
 	private PoGenericFx htmlPoGenericFx;
 	private ConverterService converterService;
 	private GeneratorService generatorService;
@@ -123,6 +128,8 @@ public class MainApp extends Application {
 			// Give the controller access to the main app.
 			PoOverviewController controller = loader.getController();
 			controller.setMainApp(this);
+			//Wähle das erste Po aus. Wenn leer wird die Exception gefangen
+			controller.switchPoSelection(0);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -315,6 +322,14 @@ public class MainApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public boolean isFileGotLoaded() {
+		return fileGotLoaded;
+	}
+
+	public void setFileGotLoaded(boolean fileGotLoaded) {
+		this.fileGotLoaded = fileGotLoaded;
 	}
 
 }

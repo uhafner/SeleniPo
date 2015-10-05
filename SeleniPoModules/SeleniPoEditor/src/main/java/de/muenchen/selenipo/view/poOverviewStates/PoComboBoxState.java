@@ -39,6 +39,9 @@ public class PoComboBoxState implements PoOverviewState {
 		if (okClicked) {
 			poOverviewController.getMainApp().getPoModelFx().getPoGenericsFx()
 					.add(poGenericFx);
+			int indexOf = poOverviewController.getMainApp().getPoModelFx()
+					.getPoGenericsFx().indexOf(poGenericFx);
+			poOverviewController.switchPoSelection(indexOf);
 		}
 	}
 

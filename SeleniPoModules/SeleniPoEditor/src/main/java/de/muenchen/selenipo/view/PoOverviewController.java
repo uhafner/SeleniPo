@@ -170,6 +170,7 @@ public class PoOverviewController {
 		setElementRowFactory(elementTable);
 		setTransitionRowFactory(transitionTable);
 		setHtmlRowFactory(htmlTable);
+
 	}
 
 	private void setElementRowFactory(TableView<ElementFx> elementTable) {
@@ -741,6 +742,16 @@ public class PoOverviewController {
 		alert.getDialogPane().setContent(expContent);
 		alert.showAndWait();
 		return alert;
+	}
+	
+	public void switchPoSelection(int index){
+		try{
+			getMainApp().getPoModelFx().getPoGenericsFx().get(index);
+		} catch (IndexOutOfBoundsException e){
+			logger.error("Das geforderte Element befindet sich nicht in der Liste");
+		}
+		getPoComboBox().getSelectionModel().select(index);
+		poComboBoxAction();
 	}
 
 	/**
