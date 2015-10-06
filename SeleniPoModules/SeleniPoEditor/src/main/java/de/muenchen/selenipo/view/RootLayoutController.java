@@ -9,18 +9,24 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import org.apache.log4j.Logger;
 
 import de.muenchen.selenipo.MainApp;
 import de.muenchen.selenipo.ValidationMessage;
+import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 import de.muenchen.selenipo.impl.fxModel.PoModelFx;
 import de.muenchen.selenipo.impl.persistanceModel.PoModelImpl;
 
@@ -31,7 +37,20 @@ public class RootLayoutController {
 	private static final String SAVE_FILE_NAME_PREFERENCES = "saveFile";
 	private static final String GENERATE_FILE_NAME_PREFERENCES = "generateFile";
 
+	@FXML
+	private MenuItem menuItemSave;
+
 	private MainApp mainApp;
+
+	/**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 */
+	@FXML
+	private void initialize() {
+		menuItemSave.setAccelerator(new KeyCodeCombination(KeyCode.S,
+				KeyCombination.CONTROL_DOWN));
+	}
 
 	@FXML
 	public void handleSave() {

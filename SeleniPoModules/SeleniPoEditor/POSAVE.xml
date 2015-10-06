@@ -6,7 +6,7 @@
         <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
           <type>XPATH</type>
           <locator>da</locator>
-          <identifier>da</identifier>
+          <identifier>daa</identifier>
         </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
       </elements>
       <transitions>
