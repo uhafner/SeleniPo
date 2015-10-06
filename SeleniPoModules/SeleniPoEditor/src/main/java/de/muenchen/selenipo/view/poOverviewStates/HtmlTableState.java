@@ -1,5 +1,6 @@
 package de.muenchen.selenipo.view.poOverviewStates;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -47,33 +48,36 @@ public class HtmlTableState implements PoOverviewState {
 
 	@Override
 	public boolean handleTest() {
+		boolean noError = true;
 		TableView<ElementFx> htmlTable = poOverviewController.getHtmlTable();
 
-		ElementFx element = htmlTable.getSelectionModel().getSelectedItem();
-		if (element != null) {
-			WebDriver driver = poOverviewController.getMainApp().getWebDriver();
-			Selector type = element.getType();
-			String locator = element.getLocator();
-			try {
-				WebElement webElement = driver.findElement(type.by(locator));
-				poOverviewController.getHtmlColour().put(
-						htmlTable.getSelectionModel().getSelectedIndex(),
-						Colour.GREEN);
+		ObservableList<ElementFx> elements = htmlTable.getSelectionModel()
+				.getSelectedItems();
+		if (!elements.isEmpty()) {
+			for (ElementFx elementFx : elements) {
+				WebDriver driver = poOverviewController.getMainApp()
+						.getWebDriver();
+				Selector type = elementFx.getType();
+				String locator = elementFx.getLocator();
+				try {
+					WebElement webElement = driver
+							.findElement(type.by(locator));
+					poOverviewController.getHtmlColour().put(
+							htmlTable.getItems().indexOf(elementFx), Colour.GREEN);
 
-				return true;
-			} catch (NoSuchElementException e) {
-				poOverviewController.getHtmlColour().put(
-						htmlTable.getSelectionModel().getSelectedIndex(),
-						Colour.RED);
-				return false;
+				} catch (NoSuchElementException e) {
+					poOverviewController.getHtmlColour().put(
+							htmlTable.getItems().indexOf(elementFx), Colour.RED);
+					noError = false;
+				}
 			}
-
 		} else {
 			poOverviewController.createNoElementSelectedAlert(
 					poOverviewController.getMainApp().getPrimaryStage(),
 					"html Table");
-			return false;
+			noError = false;
 		}
+		return noError;
 	}
 
 	@Override
@@ -132,17 +136,21 @@ public class HtmlTableState implements PoOverviewState {
 	@Override
 	public void handleMoveHtmlToElement() {
 		TableView<ElementFx> htmlTable = poOverviewController.getHtmlTable();
-		ElementFx element = htmlTable.getSelectionModel().getSelectedItem();
-		if (element != null) {
+		ObservableList<ElementFx> elements = htmlTable.getSelectionModel()
+				.getSelectedItems();
+		if (!elements.isEmpty()) {
 			PoGenericFx selectedPo = poOverviewController.getPoComboBox()
 					.getSelectionModel().getSelectedItem();
 			if (selectedPo != null) {
-				selectedPo.getElementsFx().add(element);
+				for (ElementFx elementFx : elements) {
+					selectedPo.getElementsFx().add(elementFx);
+				}
 			} else {
 				poOverviewController
 						.createNoPoSelectedAlert(poOverviewController
 								.getMainApp().getPrimaryStage());
 			}
+
 		} else {
 			poOverviewController.createNoElementSelectedAlert(
 					poOverviewController.getMainApp().getPrimaryStage(),
@@ -154,18 +162,22 @@ public class HtmlTableState implements PoOverviewState {
 	@Override
 	public void handleMoveHtmlToTransition() {
 		TableView<ElementFx> htmlTable = poOverviewController.getHtmlTable();
-		ElementFx element = htmlTable.getSelectionModel().getSelectedItem();
-		if (element != null) {
+		ObservableList<ElementFx> elements = htmlTable.getSelectionModel()
+				.getSelectedItems();
+		if (!elements.isEmpty()) {
 			PoGenericFx selectedPo = poOverviewController.getPoComboBox()
 					.getSelectionModel().getSelectedItem();
 			if (selectedPo != null) {
-				TransitionFx transFx = poOverviewController.getMainApp()
-						.getConverterService()
-						.convertElementToTransitionFx(element);
-				boolean okClicked = poOverviewController.getMainApp()
-						.showTransitionEditDialog(transFx);
-				if (okClicked) {
-					selectedPo.getTransitionsFx().add(transFx);
+				for (ElementFx elementFx : elements) {
+
+					TransitionFx transFx = poOverviewController.getMainApp()
+							.getConverterService()
+							.convertElementToTransitionFx(elementFx);
+					boolean okClicked = poOverviewController.getMainApp()
+							.showTransitionEditDialog(transFx);
+					if (okClicked) {
+						selectedPo.getTransitionsFx().add(transFx);
+					}
 				}
 			} else {
 				poOverviewController
