@@ -489,6 +489,17 @@ public class PoOverviewController {
 		resetColours();
 		poOverviewState.handleNew();
 	}
+	
+	/**
+	 * Called when the user clicks on the new button next to the Po combobox.
+	 */
+	@FXML
+	private void handleNewPo() {
+		logger.debug("NewPo pressed..");
+		resetColours();
+		poComboboxClick();
+		poOverviewState.handleNew();
+	}
 
 	/**
 	 * Called when the user clicks on the edit button.

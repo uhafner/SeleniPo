@@ -13,5 +13,9 @@ public interface Element {
 	public String getIdentifier();
 
 	public void setIdentifier(String identefier);
+	
+	public String getXPath();
+	
+	public String getCssSelector();
 
 }

@@ -1,5 +1,9 @@
 package de.muenchen.selenipo.impl.persistanceModel;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByCssSelector;
+import org.openqa.selenium.By.ByXPath;
+
 import de.muenchen.selenipo.Element;
 import de.muenchen.selenipo.Selector;
 
@@ -42,6 +46,26 @@ public class ElementImpl implements Element {
 
 	public void setIdentifier(String identefier) {
 		this.identefier = identefier;
+	}
+
+	public String getXPath() {
+		if (locator != null && type != null) {
+			By by = type.by(locator);
+			if (by instanceof ByXPath) {
+				return by.toString().substring(10);
+			}
+		}
+		return null;
+	}
+
+	public String getCssSelector() {
+		if (locator != null && type != null) {
+			By by = type.by(locator);
+			if (by instanceof ByCssSelector) {
+				return by.toString().substring(16);
+			}
+		}
+		return null;
 	}
 
 	@Override
