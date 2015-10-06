@@ -3,7 +3,23 @@
     <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
       <identifier>WelcomePage</identifier>
       <packageName>base</packageName>
-      <elements/>
+      <elements>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+          <type>LINK</type>
+          <locator>locString</locator>
+          <identefier>test</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+          <type>XPATH</type>
+          <locator>loc2</locator>
+          <identefier>test2</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+          <type>HREF</type>
+          <locator>loc3</locator>
+          <identefier>tzest3</identefier>
+        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
+      </elements>
       <transitions>
         <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
           <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl">
@@ -13,13 +29,13 @@
             <transitions>
               <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
                 <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../../../../.."/>
-                <type>LINK</type>
+                <type reference="../../../../../../elements/de.muenchen.selenipo.impl.persistanceModel.ElementImpl/type"/>
                 <locator>ToDo-App</locator>
                 <identefier>aToDoApp</identefier>
               </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
             </transitions>
           </to>
-          <type reference="../to/transitions/de.muenchen.selenipo.impl.persistanceModel.TransitionImpl/type"/>
+          <type reference="../../../elements/de.muenchen.selenipo.impl.persistanceModel.ElementImpl/type"/>
           <locator>bEnter</locator>
           <identefier>aENTER</identefier>
         </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>

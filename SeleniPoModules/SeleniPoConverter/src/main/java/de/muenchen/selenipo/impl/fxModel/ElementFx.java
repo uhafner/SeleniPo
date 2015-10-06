@@ -1,5 +1,9 @@
 package de.muenchen.selenipo.impl.fxModel;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByCssSelector;
+import org.openqa.selenium.By.ByXPath;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -68,6 +72,28 @@ public class ElementFx implements Element {
 
 	public StringProperty identifierProperty() {
 		return identifier;
+	}
+
+	@Override
+	public String getXPath() {
+		if (locator != null && type != null) {
+			By by = type.get().by(locator.get());
+			if (by instanceof ByXPath) {
+				return by.toString().substring(10);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public String getCssSelector() {
+		if (locator != null && type != null) {
+			By by = type.get().by(locator.get());
+			if (by instanceof ByCssSelector) {
+				return by.toString().substring(16);
+			}
+		}
+		return null;
 	}
 
 }
