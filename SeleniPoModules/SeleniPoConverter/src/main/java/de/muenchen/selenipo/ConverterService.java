@@ -43,11 +43,9 @@ public interface ConverterService {
 	TransitionFx convertElementToTransitionFx(Element element);
 
 	List<ValidationMessage> validateModel(PoModel model);
-	
-	public File getSaveFilePath();
-	
-	void setSaveFilePath(File file);
-	
-	
+
+	public File loadFileFromPreferences(String fileName);
+
+	void putFileToPreferences(String fileName, File file);
 
 }

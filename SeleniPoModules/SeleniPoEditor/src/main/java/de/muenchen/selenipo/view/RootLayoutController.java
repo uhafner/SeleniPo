@@ -28,6 +28,9 @@ public class RootLayoutController {
 	private static final Logger logger = Logger
 			.getLogger(RootLayoutController.class);
 
+	private static final String SAVE_FILE_NAME_PREFERENCES = "saveFile";
+	private static final String GENERATE_FILE_NAME_PREFERENCES = "generateFile";
+
 	private MainApp mainApp;
 
 	@FXML
@@ -39,13 +42,15 @@ public class RootLayoutController {
 		File saveFile = null;
 		if (mainApp.isFileGotLoaded()) {
 			// nur setzen wenn bereits einmal geladen wurde.
-			saveFile = mainApp.getConverterService().getSaveFilePath();
+			saveFile = mainApp.getConverterService().loadFileFromPreferences(
+					SAVE_FILE_NAME_PREFERENCES);
 		}
 
 		if (saveFile != null) {
 			// Speichere File in den Preferences
 			logger.debug("Speichere Filepath in den Preferences...");
-			mainApp.getConverterService().setSaveFilePath(saveFile);
+			mainApp.getConverterService().putFileToPreferences(
+					SAVE_FILE_NAME_PREFERENCES, saveFile);
 			// Make sure it has the correct extension
 			if (!saveFile.getPath().endsWith(".xml")) {
 				saveFile = new File(saveFile.getPath() + ".xml");
@@ -79,7 +84,8 @@ public class RootLayoutController {
 		// Lade alten Filepath aus den Preferences. Wenn einer existiert
 		// werwende diesen.
 		logger.debug("Versuche altes Verzeichnis aus den Preferences zu laden...");
-		File saveFilePath = mainApp.getConverterService().getSaveFilePath();
+		File saveFilePath = mainApp.getConverterService()
+				.loadFileFromPreferences(SAVE_FILE_NAME_PREFERENCES);
 		if (saveFilePath != null) {
 			fileChooser.setInitialDirectory(saveFilePath.getParentFile());
 			logger.debug("Verzeichnis gefunden: " + saveFilePath.getPath());
@@ -91,7 +97,8 @@ public class RootLayoutController {
 		if (file != null) {
 			// Speichere File in den Preferences
 			logger.debug("Speichere Filepath in den Preferences...");
-			mainApp.getConverterService().setSaveFilePath(file);
+			mainApp.getConverterService().putFileToPreferences(
+					SAVE_FILE_NAME_PREFERENCES, file);
 			// Make sure it has the correct extension
 			if (!file.getPath().endsWith(".xml")) {
 				file = new File(file.getPath() + ".xml");
@@ -123,7 +130,8 @@ public class RootLayoutController {
 		// Lade alten Filepath aus den Preferences. Wenn einer existiert
 		// werwende diesen.
 		logger.debug("Versuche altes Verzeichnis aus den Preferences zu laden...");
-		File saveFilePath = mainApp.getConverterService().getSaveFilePath();
+		File saveFilePath = mainApp.getConverterService()
+				.loadFileFromPreferences(SAVE_FILE_NAME_PREFERENCES);
 		if (saveFilePath != null) {
 			fileChooser.setInitialDirectory(saveFilePath.getParentFile());
 			logger.debug("Verzeichnis gefunden: " + saveFilePath.getPath());
@@ -135,7 +143,9 @@ public class RootLayoutController {
 		if (file != null) {
 			// Speichere File in den Preferences
 			logger.debug("Speichere Filepath in den Preferences...");
-			mainApp.getConverterService().setSaveFilePath(file);
+			mainApp.getConverterService().putFileToPreferences(
+					SAVE_FILE_NAME_PREFERENCES, file);
+			;
 			// File wurde geladen. Beim Nächsten Save kann einfach gepeichert
 			// werden.
 			mainApp.setFileGotLoaded(true);
@@ -151,7 +161,14 @@ public class RootLayoutController {
 	@FXML
 	public void handleGenerate() {
 		logger.debug("generate..");
+		// Lade directory von Preferences falls vorhanden
+		File generateFile = mainApp.getConverterService()
+				.loadFileFromPreferences(GENERATE_FILE_NAME_PREFERENCES);
 		DirectoryChooser dirChooser = new DirectoryChooser();
+		if (generateFile != null) {
+			dirChooser.setInitialDirectory(generateFile);
+			logger.debug("Verzeichnis gefunden: " + generateFile.getPath());
+		}
 		File dir = dirChooser.showDialog(mainApp.getPrimaryStage());
 		if (dir != null) {
 			try {
@@ -162,6 +179,9 @@ public class RootLayoutController {
 				if (validateMessages.size() == 0) {
 					mainApp.getGeneratorService().generatePageObjects(
 							mainApp.getPoModelFx(), dir.getAbsolutePath());
+					// Speichere das gewählte directory in die Preferneces
+					mainApp.getConverterService().putFileToPreferences(
+							GENERATE_FILE_NAME_PREFERENCES, dir);
 				} else {
 					createValidationErrorAlert(mainApp.getPrimaryStage(),
 							validateMessages);

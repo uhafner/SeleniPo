@@ -311,10 +311,10 @@ public class ConverterServiceImpl implements ConverterService {
 	 * 
 	 * @return
 	 */
-	public File getSaveFilePath() {
+	public File loadFileFromPreferences(String fileName) {
 		Preferences prefs = Preferences
 				.userNodeForPackage(ConverterService.class);
-		String filePath = prefs.get("filePath", null);
+		String filePath = prefs.get(fileName, null);
 		if (filePath != null) {
 			return new File(filePath);
 		} else {
@@ -329,13 +329,14 @@ public class ConverterServiceImpl implements ConverterService {
 	 * @param file
 	 *            the file or null to remove the path
 	 */
-	public void setSaveFilePath(File file) {
+	public void putFileToPreferences(String fileName, File file) {
 		Preferences prefs = Preferences
 				.userNodeForPackage(ConverterService.class);
 		if (file != null) {
-			prefs.put("filePath", file.getPath());
+			prefs.put(fileName, file.getPath());
 		} else {
-			prefs.remove("filePath");
+			prefs.remove(fileName);
 		}
 	}
+
 }

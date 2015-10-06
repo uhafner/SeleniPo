@@ -105,6 +105,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 		context.put("display", display);
 		context.put("poGeneric", poGeneric);
 		context.put("destionationPos", destinationPos);
+		context.put("basePackagePath", packagePath.replaceAll("/", "."));
 
 		logger.debug(String.format("RootFolder: %s", rootFolder));
 		logger.debug("-Erzeuge Generated PO:");
