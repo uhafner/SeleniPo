@@ -7,7 +7,7 @@
         <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
           <type>XPATH</type>
           <locator>//h1</locator>
-          <identefier>hi</identefier>
+          <identifier>hi</identifier>
         </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
       </elements>
       <transitions>
@@ -21,13 +21,13 @@
                 <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../../../../.."/>
                 <type>LINK</type>
                 <locator>ToDo-App</locator>
-                <identefier>toDo-App</identefier>
+                <identifier>toDo-App</identifier>
               </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
             </transitions>
           </to>
           <type reference="../to/transitions/de.muenchen.selenipo.impl.persistanceModel.TransitionImpl/type"/>
           <locator>bEnter</locator>
-          <identefier>enterButton</identefier>
+          <identifier>enterButton</identifier>
         </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
       </transitions>
     </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>

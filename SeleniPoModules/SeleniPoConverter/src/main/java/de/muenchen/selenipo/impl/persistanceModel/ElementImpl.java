@@ -11,11 +11,11 @@ public class ElementImpl implements Element {
 
 	private Selector type;
 	private String locator;
-	private String identefier;
+	private String identifier;
 
-	public ElementImpl(String idetefier, Selector type, String locator) {
+	public ElementImpl(String idetifier, Selector type, String locator) {
 		super();
-		this.identefier = idetefier;
+		this.identifier = idetifier;
 		this.type = type;
 		this.locator = locator;
 	}
@@ -41,11 +41,11 @@ public class ElementImpl implements Element {
 	}
 
 	public String getIdentifier() {
-		return identefier;
+		return identifier;
 	}
 
-	public void setIdentifier(String identefier) {
-		this.identefier = identefier;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 	public String getXPath() {
@@ -73,7 +73,7 @@ public class ElementImpl implements Element {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((identefier == null) ? 0 : identefier.hashCode());
+				+ ((identifier == null) ? 0 : identifier.hashCode());
 		result = prime * result + ((locator == null) ? 0 : locator.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
@@ -88,10 +88,10 @@ public class ElementImpl implements Element {
 		if (getClass() != obj.getClass())
 			return false;
 		ElementImpl other = (ElementImpl) obj;
-		if (identefier == null) {
-			if (other.identefier != null)
+		if (identifier == null) {
+			if (other.identifier != null)
 				return false;
-		} else if (!identefier.equals(other.identefier))
+		} else if (!identifier.equals(other.identifier))
 			return false;
 		if (locator == null) {
 			if (other.locator != null)
@@ -106,7 +106,7 @@ public class ElementImpl implements Element {
 	@Override
 	public String toString() {
 		return "------ Element [type=" + type + ", locator=" + locator
-				+ ", identifier=" + identefier + "]" + System.lineSeparator();
+				+ ", identifier=" + identifier + "]" + System.lineSeparator();
 	}
 
 }
