@@ -55,20 +55,24 @@ public class HtmlTableState implements PoOverviewState {
 				.getSelectedItems();
 		if (!elements.isEmpty()) {
 			for (ElementFx elementFx : elements) {
-				WebDriver driver = poOverviewController.getMainApp()
-						.getWebDriver();
-				Selector type = elementFx.getType();
-				String locator = elementFx.getLocator();
-				try {
-					WebElement webElement = driver
-							.findElement(type.by(locator));
-					poOverviewController.getHtmlColour().put(
-							htmlTable.getItems().indexOf(elementFx), Colour.GREEN);
+				if (elementFx != null) {
+					WebDriver driver = poOverviewController.getMainApp()
+							.getWebDriver();
+					Selector type = elementFx.getType();
+					String locator = elementFx.getLocator();
+					try {
+						WebElement webElement = driver.findElement(type
+								.by(locator));
+						poOverviewController.getHtmlColour().put(
+								htmlTable.getItems().indexOf(elementFx),
+								Colour.GREEN);
 
-				} catch (NoSuchElementException e) {
-					poOverviewController.getHtmlColour().put(
-							htmlTable.getItems().indexOf(elementFx), Colour.RED);
-					noError = false;
+					} catch (NoSuchElementException e) {
+						poOverviewController.getHtmlColour().put(
+								htmlTable.getItems().indexOf(elementFx),
+								Colour.RED);
+						noError = false;
+					}
 				}
 			}
 		} else {
@@ -143,7 +147,9 @@ public class HtmlTableState implements PoOverviewState {
 					.getSelectionModel().getSelectedItem();
 			if (selectedPo != null) {
 				for (ElementFx elementFx : elements) {
-					selectedPo.getElementsFx().add(elementFx);
+					if (elementFx != null) {
+						selectedPo.getElementsFx().add(elementFx);
+					}
 				}
 			} else {
 				poOverviewController
@@ -169,14 +175,15 @@ public class HtmlTableState implements PoOverviewState {
 					.getSelectionModel().getSelectedItem();
 			if (selectedPo != null) {
 				for (ElementFx elementFx : elements) {
-
-					TransitionFx transFx = poOverviewController.getMainApp()
-							.getConverterService()
-							.convertElementToTransitionFx(elementFx);
-					boolean okClicked = poOverviewController.getMainApp()
-							.showTransitionEditDialog(transFx);
-					if (okClicked) {
-						selectedPo.getTransitionsFx().add(transFx);
+					if (elementFx != null) {
+						TransitionFx transFx = poOverviewController
+								.getMainApp().getConverterService()
+								.convertElementToTransitionFx(elementFx);
+						boolean okClicked = poOverviewController.getMainApp()
+								.showTransitionEditDialog(transFx);
+						if (okClicked) {
+							selectedPo.getTransitionsFx().add(transFx);
+						}
 					}
 				}
 			} else {

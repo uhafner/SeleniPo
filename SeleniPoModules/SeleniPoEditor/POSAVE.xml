@@ -2,19 +2,13 @@
   <poGenerics>
     <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
       <identifier>test</identifier>
-      <elements>
-        <de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
-          <type>XPATH</type>
-          <locator>da</locator>
-          <identifier>daa</identifier>
-        </de.muenchen.selenipo.impl.persistanceModel.ElementImpl>
-      </elements>
+      <elements/>
       <transitions>
         <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
           <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../.."/>
           <type>LINK</type>
           <locator>da</locator>
-          <identifier>dada</identifier>
+          <identifier>dadaa</identifier>
         </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
       </transitions>
     </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
