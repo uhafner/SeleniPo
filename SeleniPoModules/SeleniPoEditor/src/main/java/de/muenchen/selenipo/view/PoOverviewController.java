@@ -176,6 +176,7 @@ public class PoOverviewController {
 
 		elementTable.setOnKeyPressed(getDelteOnDelKeyEvent());
 		transitionTable.setOnKeyPressed(getDelteOnDelKeyEvent());
+		poComboBox.setOnKeyPressed(getDelteOnDelKeyEvent());
 
 	}
 
