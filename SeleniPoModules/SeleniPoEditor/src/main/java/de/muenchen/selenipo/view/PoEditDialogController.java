@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import de.muenchen.selenipo.impl.fxModel.PoGenericFx;
 
@@ -33,6 +35,11 @@ public class PoEditDialogController {
 	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
+		dialogStage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode().equals(KeyCode.ENTER)) {
+				handleOk();
+			}
+		});
 	}
 
 	/**

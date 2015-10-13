@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import javafx.print.PageOrientation;
 
@@ -235,8 +236,8 @@ public class ConverterServiceImpl implements ConverterService {
 					uniqueKeys.add(elem.getIdentifier());
 				} else {
 					ValidationMessage vMessage = new ValidationMessage(
-							po.getIdentifier()+"."+elem.getIdentifier(), ListType.ELEMENT,
-							"Identefier ist nicht eindeutig");
+							po.getIdentifier() + "." + elem.getIdentifier(),
+							ListType.ELEMENT, "Identefier ist nicht eindeutig");
 					if (!duplecateKeysToReturn.contains(vMessage)) {
 						duplecateKeysToReturn.add(vMessage);
 					}
@@ -249,7 +250,8 @@ public class ConverterServiceImpl implements ConverterService {
 					uniqueKeys.add(trans.getIdentifier());
 				} else {
 					ValidationMessage vMessage = new ValidationMessage(
-							po.getIdentifier()+"."+trans.getIdentifier(), ListType.TRANISTION,
+							po.getIdentifier() + "." + trans.getIdentifier(),
+							ListType.TRANISTION,
 							"Identefier ist nicht eindeutig");
 					if (!duplecateKeysToReturn.contains(vMessage)) {
 						duplecateKeysToReturn.add(vMessage);
@@ -301,4 +303,40 @@ public class ConverterServiceImpl implements ConverterService {
 
 		return errorsToReturn;
 	}
+
+	/**
+	 * Returns the file preference, i.e. the file that was last opened. The
+	 * preference is read from the OS specific registry. If no such preference
+	 * can be found, null is returned.
+	 * 
+	 * @return
+	 */
+	public File loadFileFromPreferences(String fileName) {
+		Preferences prefs = Preferences
+				.userNodeForPackage(ConverterService.class);
+		String filePath = prefs.get(fileName, null);
+		if (filePath != null) {
+			return new File(filePath);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Sets the file path of the currently loaded file. The path is persisted in
+	 * the OS specific registry.
+	 * 
+	 * @param file
+	 *            the file or null to remove the path
+	 */
+	public void putFileToPreferences(String fileName, File file) {
+		Preferences prefs = Preferences
+				.userNodeForPackage(ConverterService.class);
+		if (file != null) {
+			prefs.put(fileName, file.getPath());
+		} else {
+			prefs.remove(fileName);
+		}
+	}
+
 }

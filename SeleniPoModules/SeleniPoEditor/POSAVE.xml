@@ -1,30 +1,16 @@
 <de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>
   <poGenerics>
     <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
-      <identifier>WelcomePage</identifier>
-      <packageName>base</packageName>
+      <identifier>test</identifier>
       <elements/>
       <transitions>
         <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
-          <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl">
-            <identifier>OverviewPage</identifier>
-            <packageName>base</packageName>
-            <elements/>
-            <transitions>
-              <de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
-                <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../../../../.."/>
-                <type>LINK</type>
-                <locator>ToDo-App</locator>
-                <identefier>aToDoApp</identefier>
-              </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
-            </transitions>
-          </to>
-          <type reference="../to/transitions/de.muenchen.selenipo.impl.persistanceModel.TransitionImpl/type"/>
-          <locator>bEnter</locator>
-          <identefier>aENTER</identefier>
+          <to class="de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl" reference="../../.."/>
+          <type>LINK</type>
+          <locator>da</locator>
+          <identifier>dadaa</identifier>
         </de.muenchen.selenipo.impl.persistanceModel.TransitionImpl>
       </transitions>
     </de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl>
-    <de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl reference="../de.muenchen.selenipo.impl.persistanceModel.PoGenericImpl/transitions/de.muenchen.selenipo.impl.persistanceModel.TransitionImpl/to"/>
   </poGenerics>
 </de.muenchen.selenipo.impl.persistanceModel.PoModelImpl>

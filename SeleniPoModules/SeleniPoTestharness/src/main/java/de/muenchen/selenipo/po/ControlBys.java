@@ -27,12 +27,12 @@ public class ControlBys implements Control {
 	}
 
 	public WebElement resolve() {
-		NoSuchElementException problem = new NoSuchElementException("No 'By' specified!");
+		NoSuchElementException problem = new NoSuchElementException(
+				"No 'By' specified!");
 		for (By by : bys) {
 			try {
 				return parent.find(by);
-			}
-			catch (NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				problem = e;
 			}
 		}
@@ -44,15 +44,23 @@ public class ControlBys implements Control {
 	}
 
 	public void uncheck() {
-		parent.check(resolve(), false);
+		check(resolve(), false);
 	}
 
 	public void check() {
-		parent.check(resolve(), true);
+		check(resolve(), true);
 	}
 
 	public void check(boolean state) {
-		parent.check(resolve(), state);
+		check(resolve(), state);
+	}
+
+	/**
+	 * Sets the state of the checkbox to the specified value.
+	 */
+	protected void check(WebElement e, boolean state) {
+		if (e.isSelected() != state)
+			e.click();
 	}
 
 	public void click() {
@@ -89,20 +97,21 @@ public class ControlBys implements Control {
 	}
 
 	/**
-	 * @return true, wenn das Attribut "readonly" auf Wert "readonly" oder "true" ist
+	 * @return true, wenn das Attribut "readonly" auf Wert "readonly" oder
+	 *         "true" ist
 	 */
 	public boolean isReadOnly() {
 		WebElement e = resolve();
 		String attribute = e.getAttribute("readonly");
 		if (attribute == null) {
 			return false;
-		}
-		else if (attribute.equalsIgnoreCase("true") || attribute.equalsIgnoreCase("readonly")) {
+		} else if (attribute.equalsIgnoreCase("true")
+				|| attribute.equalsIgnoreCase("readonly")) {
 			return true;
-		}
-		else {
+		} else {
 			throw new RuntimeException(
-					"Control.isReadOnly() -- Unbekannter readonly-Attribut-Wert: " + attribute);
+					"Control.isReadOnly() -- Unbekannter readonly-Attribut-Wert: "
+							+ attribute);
 		}
 	}
 }

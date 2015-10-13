@@ -1,5 +1,9 @@
 package de.muenchen.selenipo.impl.persistanceModel;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByCssSelector;
+import org.openqa.selenium.By.ByXPath;
+
 import de.muenchen.selenipo.Element;
 import de.muenchen.selenipo.Selector;
 
@@ -7,11 +11,11 @@ public class ElementImpl implements Element {
 
 	private Selector type;
 	private String locator;
-	private String identefier;
+	private String identifier;
 
-	public ElementImpl(String idetefier, Selector type, String locator) {
+	public ElementImpl(String idetifier, Selector type, String locator) {
 		super();
-		this.identefier = idetefier;
+		this.identifier = idetifier;
 		this.type = type;
 		this.locator = locator;
 	}
@@ -37,11 +41,31 @@ public class ElementImpl implements Element {
 	}
 
 	public String getIdentifier() {
-		return identefier;
+		return identifier;
 	}
 
-	public void setIdentifier(String identefier) {
-		this.identefier = identefier;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+
+	public String getXPath() {
+		if (locator != null && type != null) {
+			By by = type.by(locator);
+			if (by instanceof ByXPath) {
+				return by.toString().substring(10);
+			}
+		}
+		return null;
+	}
+
+	public String getCssSelector() {
+		if (locator != null && type != null) {
+			By by = type.by(locator);
+			if (by instanceof ByCssSelector) {
+				return by.toString().substring(16);
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -49,7 +73,7 @@ public class ElementImpl implements Element {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((identefier == null) ? 0 : identefier.hashCode());
+				+ ((identifier == null) ? 0 : identifier.hashCode());
 		result = prime * result + ((locator == null) ? 0 : locator.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
@@ -64,10 +88,10 @@ public class ElementImpl implements Element {
 		if (getClass() != obj.getClass())
 			return false;
 		ElementImpl other = (ElementImpl) obj;
-		if (identefier == null) {
-			if (other.identefier != null)
+		if (identifier == null) {
+			if (other.identifier != null)
 				return false;
-		} else if (!identefier.equals(other.identefier))
+		} else if (!identifier.equals(other.identifier))
 			return false;
 		if (locator == null) {
 			if (other.locator != null)
@@ -82,7 +106,7 @@ public class ElementImpl implements Element {
 	@Override
 	public String toString() {
 		return "------ Element [type=" + type + ", locator=" + locator
-				+ ", identifier=" + identefier + "]" + System.lineSeparator();
+				+ ", identifier=" + identifier + "]" + System.lineSeparator();
 	}
 
 }

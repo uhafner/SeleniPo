@@ -1,7 +1,5 @@
 package de.muenchen.selenipo.po;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -24,81 +22,6 @@ public class PageObject {
 	protected ByFactory by;
 	@Autowired
 	protected WebDriver driver;
-
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	protected List<WebElement> findElements(By by) {
-		return driver.findElements(by);
-	}
-
-	protected WebElement link(String text) {
-		return find(By.linkText(text));
-	}
-
-	protected WebElement input(By by, String value) {
-		try {
-			WebElement input = find(by);
-			input.sendKeys(value);
-			return input;
-		} catch (NoSuchElementException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	/**
-	 * Checks the checkbox.
-	 */
-	protected void check(WebElement e) {
-		if (!e.isSelected())
-			e.click();
-	}
-
-	/**
-	 * Sets the state of the checkbox to the specified value.
-	 */
-	protected void check(WebElement e, boolean state) {
-		if (e.isSelected() != state)
-			e.click();
-	}
-
-	/**
-	 * Checks the specified checkbox.
-	 */
-	protected void check(String locator) {
-		check(find(by.checkbox(locator)));
-	}
-
-	/**
-	 * Thread.sleep that masks exception.
-	 */
-	protected static void sleep(long ms) {
-		try {
-			Thread.sleep(ms);
-		} catch (InterruptedException e) {
-			throw new Error(e);
-		}
-	}
-
-	/**
-	 * @param locator
-	 *            Text, ID, or link.
-	 */
-	protected void clickLink(String locator) {
-		find(by.link(locator)).click();
-	}
-
-	/**
-	 * Picks up the last element that matches given selector.
-	 */
-	protected WebElement last(By selector) {
-		find(selector); // wait until at least one is found
-
-		// but what we want is the last one
-		List<WebElement> l = driver.findElements(selector);
-		return l.get(l.size() - 1);
-	}
 
 	/**
 	 * Returns the first visible element that matches the selector.
@@ -143,6 +66,21 @@ public class PageObject {
 		} catch (StaleElementReferenceException _) {
 			return false;
 		}
+	}
+
+	/**
+	 * Thread.sleep that masks exception.
+	 */
+	protected static void sleep(long ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			throw new Error(e);
+		}
+	}
+
+	public WebDriver getDriver() {
+		return driver;
 	}
 
 	protected Control control(By... bys) {
