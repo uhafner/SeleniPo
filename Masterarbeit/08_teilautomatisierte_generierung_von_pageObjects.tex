@@ -1,18 +1,57 @@
 \chapter{Teilautomatisierte Generierung von Page Objects}
 \label{sec:teilautomatisierte_generierung_von_pageObjects}
 
+Ein großer Teil des in Kapitel \ref{sec:probleme_des_page_object_pattern} angesprochenen initialen Mehraufwands bei der Verwendung des Page Object Pattern beläuft sich auf die Erstellung der Page Objects.
+Wie in Listing \ref{lst:poCreatePage} und \ref{lst:poShowPage} zu sehen ist, handelt es sich bei Page Objects allerdings um nicht gerade komplexe Klassen. In der Praxis zeigt sich, dass ein Großteil der Arbeit darin besteht die verschiedenen Locatoren der Elemente aus dem Quelltext der Seite herauszufinden und in die Generische Form eines Page Objects zu überführen.
+Diese Arbeit kostet zwar viel Zeit, ist allerdings nicht gerade anspruchsvoll.
+Möchte man den initialen Mehraufwand bei der Verwendung des Page Object Pattern entgegenwirken bieten die Page Objects somit einen guten Ansatzpunkt.
+Ihre Erstellung ist zeitaufwendig und weitestgehend generisch. Gute Voraussetzungen also um das Erzeugen der Pagae Objects zu Automatisieren.
+\section{Übersicht über die Idee}
+
+Selenium in Verbindung mit dem Page Object Pattern ist auch ein Teil des Technologiestacks des IT-Dienstleisters der Landeshauptstadt München (it@M) und wird zum Testen komplexer Webanwendungen verwendet. Auch bei it@M hat man in Bezug auf die Erstellung der Page Objects die Erfahrungen gemacht dass es sich um eine generische und zeitaufwendige Arbeit handelt.
+In Zusammenarbeit mit it@M wurde daher die Idee entwickelt, das Erstellen von Page Objects mit Hilfe einer Softwarelösung zu unterstützen. 
+Anhand des Seitenquelltextes der zu testenden Webanwendung sollen die verschiedenen Elemente des Page Objects identifiziert und zur Generierung der Page Objects verwendet werden.
+Zwei Ansätze wurden dabei diskutiert. Eine vollautomatisierte Generierung von Page Objects und eine teilautomatisierte Generierung.
+Ein vollautomatischer Ansatz würde beinhalten, dass für einen übergebenen Seitenquelltext ohne weiteres Zutun ein vollständiges Page Object generiert wird. Dieser Ansatz hat jedoch mit zahlreichen Problemen zu kämpfen. Oft wird nur ein Bruchteil der Elemente einer Webseite für die Testfälle benötigt. Selenium kann aber prinzipiell jedes Element, dass im Seitenquelltext bereitgestellt wird, ansprechen. Bei einer vollautomatischen Generierung müssten daher entweder alle Elemente einer Seite übernommen oder eine definierte Auswahl getroffen werden.
+Wird eine Auswahl getroffen besteht das Risiko, dass Elemente ausgelassen werden die vom Tester möglicherweise benötigt werden. Werden alle Elemente übernommen, werden die Page Objects schnell überladen und unübersichtlich. Das Überladen der Page Objects geschieht auf Kosten der Robustheit. Strukturelle Änderungen in der Website wirken sich auch auf die Locatoren der Elemente in den Page Objects aus. Um die Page Objects stabil zu halten, müssen diese bei Änderungen in der Seitenstruktur berichtigt werden.
+Es ist daher nicht sinnvoll Elemente in den Page Objects zu pflegen, die nicht verwendet werden. Unbenutzte Elemente bedeuten entweder zusätzlichen Wartungsaufwand oder veralten unbemerkt.
+Ein weiteres Problem stellen die Übergänge zwischen den Seiten einer Webanwendung dar. Interaktionen mit der Webanwendung wie beispielsweise das betätigen eines Button führen oft zum aufrufen einer neuen Seite. Im weiteren werden diese Übergänge als Transitions bezeichnet. Diese Transitions werden optimaler weise auch in den Page Objects abgebildet. Das Page Object gibt dazu das entsprechende Page Object der Zielseite als Rückgabe eines Methodenaufrufs zurück wie es beispielsweise in der Methode createEntry() im Listing \ref{lst:poCreatePage} gezeigt ist. Allein aus dem Seitenquelltext zu ermitteln welche Seite das Ziel einer Transition ist erweist sich jedoch oft als sehr schwierig bis unmöglich.
+Um die Komplexität des Projektes auf Grund der genannten Probleme nicht zu groß werden zu lassen wurde sich für einen teilautomatisierte Lösung entschieden.
+Ziel ist es also nicht, automatisch ein vollständiges Page Object zu generieren sondern den Entwickler bei der Generierung der Page Objects zu unterstützen. Anhand des Quelltextes sollen dem Entwickler die möglichen Elemente der Seite in einer Vorauswahl bereitgestellt werden. Aus diesen Elementen können dann diejenigen ausgewählt werden, die vom Entwickler im späteren Page Object benötigt werden. Auf diese Weise wird eine Überladung der Page Objects verhindert und gleichzeitig sichergestellt, dass die Elemente vorhanden sind, die benötigt werden.
+Ob es sich bei einem Element um eine Transition handelt, also ein Element welches auf eine neue Seite führt, muss auch nicht mehr automatisch anhand des Quelltextes ermittelt werden sonder kann vom Entwickler direkt angegeben werden.
+Die so vom Entwickler ausgewählten Informationen können dann verwendet werden um daraus das fertige Page Object zu generieren.
+
+\section{Abgrenzung zu bestehenden Ansätzen}
+Das generieren von Pos ist ein recht aktuelles Tema. es gibt bereits anätze die von teilautomatisiert bis vollautomatisiert reichen. Folgende Projekte sind bekannt:
+.\\
+.\\
+.\\
+.\\
+.\
 idee -> POs sollen generiert werden.
---> Teilautomatisiert ( Probleme der Vollautomatisierung)
-
-Was für lösungen gibt es bereits
 --> großer Teil des Mehraufwands geht in die Erstellung von POs. POs sind allerdings nicht gerade komplexe Objekte. Die Arbeit ist überwiegend langweilige und generische sich wiederhohlende tätigkeit bei der es vorallem darumg geht die Locators in den Pos zu identifizieren und die Übergänge zu den Seiten abzubilden.
+--> Teilautomatisiert als ziel weil vollautomatisiert sehr komplex.( Probleme der Vollautomatisierung)
 
+Was für Lösungen gibt es bereits
 --> Eigene Lösung
 
-Anforderungen??
+Screenshot..
 
-Use-Cases
+Einordnung in Deploymentsicht
+--> Beschreibe anhand von diagramm
+
+Use-Cases: Beschreibe Standartusecase mit Sequenzdiagramm. (Pageobjekte anlegen -> kann um Elemente und Transitiionen Erweitert werden. Diese können auch Teilautomatisiert aus HTML generiert werden.
+
+Use-Cases Diagramm 
+Verbindung von Use-Case-Diagramm mit GUI
+
 --> die einzelnen Usecases fachlich beschreiben.
+
+Technische Sicht. 
+Komponentendiagramm Allgemein erklären.
+
+Jede Komponente abarbeiten in sinnvoller tiefe (z.B. Klassendiagram / Zustandsautomat ect.)
+
 
 \section{übersicht über die Idee}
 
