@@ -35,7 +35,7 @@
 \BOOKMARK [0][-]{chapter.5}{Teilautomatisierte Generierung von Page Objects}{}% 35
 \BOOKMARK [1][-]{section.5.1}{\334bersicht \374ber die Idee}{chapter.5}% 36
 \BOOKMARK [1][-]{section.5.2}{Abgrenzung zu bestehenden Ans\344tzen}{chapter.5}% 37
-\BOOKMARK [1][-]{section.5.3}{\374bersicht \374ber die Idee}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.3}{SeleniPo - PageObject Generator}{chapter.5}% 38
 \BOOKMARK [1][-]{section.5.4}{Was gibt es bereits f\374r L\366sungen}{chapter.5}% 39
 \BOOKMARK [1][-]{section.5.5}{einordnung des Testharness und gui in die Geamtstruktur \(Deploymentdiagramm\)}{chapter.5}% 40
 \BOOKMARK [1][-]{section.5.6}{\374bersicht \374ber Aufbau des Systems}{chapter.5}% 41
