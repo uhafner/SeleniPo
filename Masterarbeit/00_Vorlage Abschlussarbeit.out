@@ -36,9 +36,9 @@
 \BOOKMARK [1][-]{section.5.1}{\334bersicht \374ber die Idee}{chapter.5}% 36
 \BOOKMARK [1][-]{section.5.2}{Abgrenzung zu bestehenden Ans\344tzen}{chapter.5}% 37
 \BOOKMARK [1][-]{section.5.3}{SeleniPo - PageObject Generator}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.4}{Was gibt es bereits f\374r L\366sungen}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.5}{einordnung des Testharness und gui in die Geamtstruktur \(Deploymentdiagramm\)}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.6}{\374bersicht \374ber Aufbau des Systems}{chapter.5}% 41
-\BOOKMARK [2][-]{subsection.5.6.1}{pro modul ein kapitel}{section.5.6}% 42
-\BOOKMARK [1][-]{section.5.7}{Vorteile und Probleme}{chapter.5}% 43
-\BOOKMARK [1][-]{section.5.8}{Anwendung}{chapter.5}% 44
+\BOOKMARK [2][-]{subsection.5.3.1}{Deploymentsicht}{section.5.3}% 39
+\BOOKMARK [2][-]{subsection.5.3.2}{Fachliche Sicht}{section.5.3}% 40
+\BOOKMARK [1][-]{section.5.4}{\374bersicht \374ber Aufbau des Systems}{chapter.5}% 41
+\BOOKMARK [2][-]{subsection.5.4.1}{pro modul ein kapitel}{section.5.4}% 42
+\BOOKMARK [1][-]{section.5.5}{Vorteile und Probleme}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.6}{Anwendung}{chapter.5}% 44

@@ -7,6 +7,8 @@ Diese Arbeit kostet zwar viel Zeit, ist allerdings nicht gerade anspruchsvoll.
 Möchte man den initialen Mehraufwand bei der Verwendung des Page Object Pattern entgegenwirken bieten die Page Objects somit einen guten Ansatzpunkt.
 Ihre Erstellung ist zeitaufwendig und weitestgehend generisch. Gute Voraussetzungen also um das Erzeugen der Pagae Objects zu Automatisieren.
 \section{Übersicht über die Idee}
+\label{sec:uebersicht_ueber_idee}
+
 
 Selenium in Verbindung mit dem Page Object Pattern ist auch ein Teil des Technologiestacks des IT-Dienstleisters der Landeshauptstadt München (it@M) und wird dort zum Testen komplexer Webanwendungen verwendet. Auch bei it@M hat man in Bezug auf die Erstellung der Page Objects die Erfahrungen gemacht, dass es sich um eine generische und zeitaufwendige Arbeit handelt.
 In Zusammenarbeit mit it@M wurde daher die Idee entwickelt, das Erstellen von Page Objects mit Hilfe einer Softwarelösung zu unterstützen. 
@@ -23,6 +25,7 @@ Die so vom Entwickler ausgewählten Informationen können dann verwendet werden 
 Im Rahmen des Projektes SeleniPo soll dieser Ansatz in Zusammenarbeit mit it@M in Form einer Denktopanwendung umgesetzt werden. 
 
 \section{Abgrenzung zu bestehenden Ansätzen}
+\label{sec:abgrenzung_zu_bestehenden_ansaetzen}
 Sowohl für die vollautomatische Generierung von Page Objects als auch für eine teilautomatisierten Generierung gibt es bereits mögliche Lösungsansätze. 
 Stocco et al. \cite{stocco_why_2015} beschreiben in einem Paper das von ihnen entwickeltes Framework APOGEN mit deren Hilfe Page Objects vollautomatisch generiert werden können. Die Generierung der Page Objects soll dabei weit über das Anlegen von Elementen hinausgehen und auch die Funktionalitäten der einzelnen Webseiten in Form von Methoden mit einschließen.
 Das Framework analysiert dazu die Struktur der Webanwendung mittels eines Crawlers. Die Informationen die über den Crawler zusammengetragen wurden, wie beispielsweise das DOM der einzelnen Webseiten, werden anschließend über eine statische Analyse aufbereitet und für die Generierung der Page Objects verwendet.
@@ -72,6 +75,7 @@ Mit SeleniPo soll der Versuch unternommen werden die Schwachstellen der bereits 
 
 \newpage
 \section{SeleniPo - PageObject Generator}
+\label{sec:selenipo_pogenerator}
 
 Abbildung \ref{fig:poGenerator} zeigt die Denktopanwendung (PageObject Generator) die im Rahmen des Projektes SeleniPo entwickelt wurde. Mit Hilfe dieser Anwendung ist es möglich Page Objects teilautomatisiert zu generieren. Die Anwendung bietet dazu die Möglichkeit einen Browser zu starten und über vorgefertigte Selektoren die Webanwendung nach benötigten Elementen bzw. Transitionen zu durchsuchen. Auf diese Weise kann ein Modell der Anwendung erstellt werden, dass zur Generierung der Page Objects verwendet wird.
 
@@ -126,15 +130,38 @@ Abbildung \ref{fig:poGeneratorMenu} markiert das Menü des PageObject Generator.
   \label{fig:poGeneratorMenu}
 \end{figure}
 
+\subsection{Deploymentsicht}
+
+\label{sec:deploymentsicht}
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.32]{img/Deployment.jpg}\\
+  \caption{Einordnung des PageObject Generator in die Deploymentsicht}
+  \label{fig:deployment}
+\end{figure}
+
+Abbildung \ref{fig:deployment} zeigt die Einordnung des PageObject Generator in die Infrastruktur von it@M. Anhand dieser Abbildung soll gezeigt werden in welchem Bezug sich der Generator zu einer zu testenden Webanwendung befindet.
+Zwei übergeordnete Teilbereiche werden unterschieden. Die virtualisierte Serverumgebung (MIA) und der lokale Rechner eines Entwicklers. Auf der virtualisierten Serververumgebung werden die entwicklerübergreifenden Infrastrukturkomponenten wie beispielsweise eine Versionsverwaltung bereitgestellt. Unter dem Entwicklungsrechner ist der Arbeitsplatz eines einzelnen Projektteilnehmers zu verstehen.\\
+Auf dem Entwicklungsrechner wird die zu testende Webanwendung entwickelt. Zu Testzwecken kann diese Anwendung in ihrem aktuellen Entwicklungsstand auf einem lokalen Webserver deployt werden.
+Der lokale Rechner des Entwicklers ist auch der Ort an dem der PageObject Generator eingesetzt wird. Die lokal deployte Webanwendung kann verwendet werden um für die verschiedenen Seiten der zu testenden Anwendung Page Objects mit Hilfe des Generators zu erzeugen. Diese Page Objects werden bei der Generierung in ein zweites Projekt abgelegt, in welchem die Seleniumtestfälle entwickelt werden. Dieses Projekt wird in Abbildung \ref{fig:deployment} als SeleniPoTestharness bezeichnet und kann vom Entwicklerteam entweder selbst erstellt oder als leeres Quickstart-Projekt vorgefertigt bezogen werden. MIt Hilfe der Page Objects im Testharness können Testfälle entwickelt werden die während der Erstellung auf dem lokalen Entwicklungsrechner gegen die lokal deployte Webanwendung ausgeführt werden.
+Der Sourcecode der zu testende Webanwendung als auch des SeleniPoTestharness wir in einer Versionsverwaltung in der virtualisierten Severumgebung abgelegt. Bei it@M wird zu diesem Zweck Subversion eingesetzt. Über die Versionsverwaltung kann eine Softwareproduktionsstraße bedient werden die das bauen, deployen und testen der der Webanwendung automatisiert. Bei it@M kommt hierfür der Continuous Integration Server Jenkins zum Einsatz. Jenkins bezieht die jeweils aktuellen Sourcen für das Testprojekt und die Webanwendung aus dem Subversion und kann so regelmäßig eine Aktuelle version des Webanwendung bauen und auf ein Testsystem in der virtuellen Serverumgebung deployen. Der aktuelle Testharness kann dann analog von Jenkins gesteuert die aktuell entwickelten Selenium Testfälle gegen diesen Webserver zur Ausführung bringen.
+
+
+
+\subsection{Fachliche Sicht}
+\label{sec:fachliche_sicht}
+
+Abbildung \ref{fig:sequenz} zeigt auf hoher Abstraktionsebene einen Standartablauf bei der Benutzung des Page Object Generators.
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.5]{img/Sequenzdiagramm.jpg}\\
+  \caption{Ablauf eines Standartanwendungsfall}
+  \label{fig:sequenz}
+\end{figure}
+
 \newpage
 
-
-
-
-Screenshot..
-
-Einordnung in Deploymentsicht
---> Beschreibe anhand von diagramm
 
 Use-Cases: Beschreibe Standartusecase mit Sequenzdiagramm. (Pageobjekte anlegen -> kann um Elemente und Transitiionen Erweitert werden. Diese können auch Teilautomatisiert aus HTML generiert werden.
 
@@ -152,11 +179,9 @@ Jede Komponente abarbeiten in sinnvoller tiefe (z.B. Klassendiagram / Zustandsau
 
 
 
-\section{Was gibt es bereits für Lösungen}
-Die Stabilität einer Testsuite steht und fällt mit der Stabilität der locatoren. Daher ist der Ansatz der gezeigten Lösungen nicht immer der beste.
 
 
-\section{einordnung des Testharness und gui in die Geamtstruktur (Deploymentdiagramm)}
+
 
 \section{übersicht über Aufbau des Systems}
 
