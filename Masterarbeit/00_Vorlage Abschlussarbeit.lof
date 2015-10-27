@@ -8,20 +8,21 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Grenzen und M\IeC {\"o}glichkeiten der Testautomatisierung\relax }}{15}{figure.caption.8}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Break-even Punkt f\IeC {\"u}r Testautomatisierung\relax }}{19}{figure.caption.11}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Code-basierte Generierung von Testf\IeC {\"a}llen\relax }}{24}{figure.caption.14}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Interface-basierte Generierung von Testf\IeC {\"a}llen\relax }}{25}{figure.caption.16}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Spezifikations-basierte Generierung von Testf\IeC {\"a}llen\relax }}{25}{figure.caption.18}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Verschiedene M\IeC {\"o}glichkeiten der Testcodeerstellung\relax }}{27}{figure.caption.19}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Code-basierte Generierung von Testf\IeC {\"a}llen\relax }}{24}{figure.caption.13}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Interface-basierte Generierung von Testf\IeC {\"a}llen\relax }}{25}{figure.caption.14}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Spezifikations-basierte Generierung von Testf\IeC {\"a}llen\relax }}{25}{figure.caption.15}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Verschiedene M\IeC {\"o}glichkeiten der Testcodeerstellung\relax }}{27}{figure.caption.16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Einordnung von Selenium in die verschiedene M\IeC {\"o}glichkeiten der Testcodeerstellung\relax }}{32}{figure.caption.22}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Anlegen, Editieren und Anzeigen eines neuen Datensatzes\relax }}{35}{figure.caption.23}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Anlegen eines neuen Datensatzes}}}{35}{figure.caption.23}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Anzeigen eines Datensatzes}}}{35}{figure.caption.23}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Editieren eines Datensatzes}}}{35}{figure.caption.23}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Einordnung von Selenium in die verschiedene M\IeC {\"o}glichkeiten der Testcodeerstellung\relax }}{32}{figure.caption.17}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Anlegen, editieren und anzeigen eines neuen Datensatzes\relax }}{35}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Anlegen eines neuen Datensatzes}}}{35}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Anzeigen eines Datensatzes}}}{35}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Editieren eines Datensatzes}}}{35}{figure.caption.18}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces SeleniPo - PageObject Generator\relax }}{47}{figure.caption.26}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces SeleniPo - PageObject Generator - Page Object Model\relax }}{48}{figure.caption.27}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces SeleniPo - PageObject Generator - Html Parser\relax }}{49}{figure.caption.28}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces SeleniPo - PageObject Generator - Men\IeC {\"u}\relax }}{50}{figure.caption.29}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Einordnung des PageObject Generator in die Deploymentsicht\relax }}{51}{figure.caption.30}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Ablauf eines Standartanwendungsfall\relax }}{52}{figure.caption.31}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces SeleniPo - Page Object Generator\relax }}{47}{figure.caption.19}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces SeleniPo - Page Object Generator - Page Object Model\relax }}{48}{figure.caption.20}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces SeleniPo - Page Object Generator - Html Parser\relax }}{49}{figure.caption.21}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces SeleniPo - Page Object Generator - Men\IeC {\"u}\relax }}{50}{figure.caption.22}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Einordnung des Page Object Generator in die Deploymentsicht\relax }}{51}{figure.caption.23}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces M\IeC {\"o}glicher Ablauf eines Standartanwendungsfall\relax }}{52}{figure.caption.24}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Anwendungsf\IeC {\"a}lle des Page Object Generator\relax }}{53}{figure.caption.25}

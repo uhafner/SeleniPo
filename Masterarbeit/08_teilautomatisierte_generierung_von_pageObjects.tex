@@ -1,8 +1,9 @@
+
 \chapter{Teilautomatisierte Generierung von Page Objects}
 \label{sec:teilautomatisierte_generierung_von_pageObjects}
 
 Ein großer Teil des in Kapitel \ref{sec:probleme_des_page_object_pattern} angesprochenen initialen Mehraufwands bei der Verwendung des Page Object Pattern beläuft sich auf die Erstellung der Page Objects.
-Wie in Listing \ref{lst:poCreatePage} und \ref{lst:poShowPage} zu sehen ist, handelt es sich bei Page Objects allerdings um nicht gerade komplexe Klassen. In der Praxis zeigt sich, dass ein Großteil der Arbeit darin besteht die verschiedenen Locatoren der Elemente aus dem Quelltext der Seite herauszufinden und in die Generische Form eines Page Objects zu überführen.
+Wie in Listing \ref{lst:poCreatePage} und \ref{lst:poShowPage} zu sehen ist, handelt es sich bei Page Objects jedoch um wenig komplexe Klassen. In der Praxis zeigt sich, dass ein Großteil der Arbeit darin besteht die verschiedenen Locatoren der Elemente aus dem Quelltext der Seite herauszufinden und in die generische Form eines Page Objects zu überführen.
 Diese Arbeit kostet zwar viel Zeit, ist allerdings nicht gerade anspruchsvoll.
 Möchte man den initialen Mehraufwand bei der Verwendung des Page Object Pattern entgegenwirken bieten die Page Objects somit einen guten Ansatzpunkt.
 Ihre Erstellung ist zeitaufwendig und weitestgehend generisch. Gute Voraussetzungen also um das Erzeugen der Pagae Objects zu Automatisieren.
@@ -57,7 +58,7 @@ Der HTML-Quelltext muss händisch aus der zu testenden Anwendung extrahiert werd
 OWAP als auch der SWD Page Recorder haben zusätzlich das Problem, dass die erzeugten XPath ausdrücke oft sehr einfach gewählt werden und damit sehr stark von der Position der Element innerhalb der Seite abhängig sind. Die eigentlichen Charakteristika der Elemente werden somit oft nicht beachtet. Listing \ref{lst:badXPath}
 zeigt einen solche von OHMAP generierten XPath.
 
-\begin{lstlisting}[caption={Exportierte Testfälle},label={lst:badXPath}]
+\begin{lstlisting}[caption={Einfacher XPath-Locator des Projektes OHMAP},label={lst:badXPath}]
 	public class YourPageObjectName {
 		//...		
  		@FindBy(xpath = "/html/body/div/div[1]/div[1]/h1/a[2]")
@@ -67,28 +68,28 @@ zeigt einen solche von OHMAP generierten XPath.
 \end{lstlisting}
 
 Der zu adressierende Link in  Listing \ref{lst:badXPath} wird alleine über seine Position innerhalb des DOM der Seite bestimmt.
-Um den Locator zu zerstören würde es alleine genügen ein weiteres div-Tag vor dem Link einzufügen.
+Um den Locator zu zerstören würde es genügen ein weiteres div-Tag vor dem Link einzufügen.
 \\
 Ein weiteres Problem, dass sich die gezeigten Lösungen teilen ist, dass sie immer nur ein Page Object auf einmal betrachten. Transitionen, also Übergänge zwischen den einzelnen Webseiten der zu testenden Anwendung, werden somit nicht beachtet. Die dynamische Komponente der Anwendung wird beim generieren der Page Objects somit außer acht gelassen und muss nachträglich händisch hinzugefügt werden.
 
 Mit SeleniPo soll der Versuch unternommen werden die Schwachstellen der bereits existierenden Lösungsansätzen zu verbessern und eine Plattformunabhängige Lösung zu schaffen, die in der IT-Infrastruktur von it@M betrieben werden kann.
 
 \newpage
-\section{SeleniPo - PageObject Generator}
+\section{SeleniPo - Page Object Generator}
 \label{sec:selenipo_pogenerator}
 
-Abbildung \ref{fig:poGenerator} zeigt die Denktopanwendung (PageObject Generator) die im Rahmen des Projektes SeleniPo entwickelt wurde. Mit Hilfe dieser Anwendung ist es möglich Page Objects teilautomatisiert zu generieren. Die Anwendung bietet dazu die Möglichkeit einen Browser zu starten und über vorgefertigte Selektoren die Webanwendung nach benötigten Elementen bzw. Transitionen zu durchsuchen. Auf diese Weise kann ein Modell der Anwendung erstellt werden, dass zur Generierung der Page Objects verwendet wird.
+Abbildung \ref{fig:poGenerator} zeigt die Denktopanwendung (Page Object Generator) die im Rahmen des Projektes SeleniPo entwickelt wurde. Mit Hilfe dieser Anwendung ist es möglich Page Objects teilautomatisiert zu generieren. Die Anwendung bietet dazu die Möglichkeit einen Browser zu starten und über vorgefertigte Selektoren die Webanwendung nach benötigten Elementen bzw. Transitionen zu durchsuchen. Auf diese Weise kann ein Modell der Anwendung erstellt werden, dass zur Generierung der Page Objects verwendet wird.
 
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.5]{img/poGenerator.JPG}\\
-  \caption{SeleniPo - PageObject Generator}
+  \caption{SeleniPo - Page Object Generator}
   \label{fig:poGenerator}
 \end{figure}
 
 
 
-Das Interface des PageObject Generators teilt sich in drei Bereiche:
+Das Interface des Page Object Generators teilt sich in drei Bereiche:
 
 \begin{itemize}
 	\item Das aktuelle Page Object Modell (Abbildung \ref{fig:poGeneratorPo})
@@ -102,7 +103,7 @@ Abbildung \ref{fig:poGeneratorPo} zeigt den Bereich des Generators mit dem das a
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.5]{img/poGeneratorPo.JPG}\\
-  \caption{SeleniPo - PageObject Generator - Page Object Model}
+  \caption{SeleniPo - Page Object Generator - Page Object Model}
   \label{fig:poGeneratorPo}
 \end{figure}
 
@@ -114,19 +115,19 @@ Abbildung \ref{fig:poGeneratorHtml} zeigt den Bereich des Generators mit dem der
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.5]{img/poGeneratorHtml.JPG}\\
-  \caption{SeleniPo - PageObject Generator - Html Parser}
+  \caption{SeleniPo - Page Object Generator - Html Parser}
   \label{fig:poGeneratorHtml}
 \end{figure}
 
 \newpage
 
-Abbildung \ref{fig:poGeneratorMenu} markiert das Menü des PageObject Generator. Mit Hilfe des Menüs können Zwischenstände des Page Object Modells gespeichert und geladen werden.
+Abbildung \ref{fig:poGeneratorMenu} markiert das Menü des Page Object Generator. Mit Hilfe des Menüs können Zwischenstände des Page Object Modells gespeichert und geladen werden.
 Über das Menü kann darüber hinaus die Generierung der Page Objects aus dem aktuell geladenen Modell gestartet werden.
 
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.5]{img/poGeneratorMenu.JPG}\\
-  \caption{SeleniPo - PageObject Generator - Menü}
+  \caption{SeleniPo - Page Object Generator - Menü}
   \label{fig:poGeneratorMenu}
 \end{figure}
 
@@ -136,37 +137,165 @@ Abbildung \ref{fig:poGeneratorMenu} markiert das Menü des PageObject Generator.
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.32]{img/Deployment.jpg}\\
-  \caption{Einordnung des PageObject Generator in die Deploymentsicht}
+  \caption{Einordnung des Page Object Generator in die Deploymentsicht}
   \label{fig:deployment}
 \end{figure}
 
-Abbildung \ref{fig:deployment} zeigt die Einordnung des PageObject Generator in die Infrastruktur von it@M. Anhand dieser Abbildung soll gezeigt werden in welchem Bezug sich der Generator zu einer zu testenden Webanwendung befindet.
+Abbildung \ref{fig:deployment} zeigt die Einordnung des Page Object Generator in die Infrastruktur von it@M. Anhand dieser Abbildung soll gezeigt werden in welchem Bezug sich der Generator zu einer zu testenden Webanwendung und dem späteren Testprojekt befindet.
 Zwei übergeordnete Teilbereiche werden unterschieden. Die virtualisierte Serverumgebung (MIA) und der lokale Rechner eines Entwicklers. Auf der virtualisierten Serververumgebung werden die entwicklerübergreifenden Infrastrukturkomponenten wie beispielsweise eine Versionsverwaltung bereitgestellt. Unter dem Entwicklungsrechner ist der Arbeitsplatz eines einzelnen Projektteilnehmers zu verstehen.\\
 Auf dem Entwicklungsrechner wird die zu testende Webanwendung entwickelt. Zu Testzwecken kann diese Anwendung in ihrem aktuellen Entwicklungsstand auf einem lokalen Webserver deployt werden.
-Der lokale Rechner des Entwicklers ist auch der Ort an dem der PageObject Generator eingesetzt wird. Die lokal deployte Webanwendung kann verwendet werden um für die verschiedenen Seiten der zu testenden Anwendung Page Objects mit Hilfe des Generators zu erzeugen. Diese Page Objects werden bei der Generierung in ein zweites Projekt abgelegt, in welchem die Seleniumtestfälle entwickelt werden. Dieses Projekt wird in Abbildung \ref{fig:deployment} als SeleniPoTestharness bezeichnet und kann vom Entwicklerteam entweder selbst erstellt oder als leeres Quickstart-Projekt vorgefertigt bezogen werden. MIt Hilfe der Page Objects im Testharness können Testfälle entwickelt werden die während der Erstellung auf dem lokalen Entwicklungsrechner gegen die lokal deployte Webanwendung ausgeführt werden.
-Der Sourcecode der zu testende Webanwendung als auch des SeleniPoTestharness wir in einer Versionsverwaltung in der virtualisierten Severumgebung abgelegt. Bei it@M wird zu diesem Zweck Subversion eingesetzt. Über die Versionsverwaltung kann eine Softwareproduktionsstraße bedient werden die das bauen, deployen und testen der der Webanwendung automatisiert. Bei it@M kommt hierfür der Continuous Integration Server Jenkins zum Einsatz. Jenkins bezieht die jeweils aktuellen Sourcen für das Testprojekt und die Webanwendung aus dem Subversion und kann so regelmäßig eine Aktuelle version des Webanwendung bauen und auf ein Testsystem in der virtuellen Serverumgebung deployen. Der aktuelle Testharness kann dann analog von Jenkins gesteuert die aktuell entwickelten Selenium Testfälle gegen diesen Webserver zur Ausführung bringen.
+Der lokale Rechner des Entwicklers ist auch der Ort an dem der Page Object Generator eingesetzt wird. Die lokal deployte Webanwendung kann verwendet werden um für die verschiedenen Seiten der zu testenden Anwendung Page Objects mit Hilfe des Generators zu erzeugen. Diese Page Objects werden bei der Generierung in ein zweites Projekt abgelegt, in welchem die Seleniumtestfälle entwickelt werden. Dieses Projekt wird in Abbildung \ref{fig:deployment} als SeleniPoTestharness bezeichnet und kann vom Entwicklerteam entweder selbst erstellt oder als leeres Quickstart-Projekt vorgefertigt bezogen werden. Mit Hilfe der Page Objects im Testharness können Testfälle entwickelt werden die während der Erstellung auf dem lokalen Entwicklungsrechner gegen die lokal deployte Webanwendung ausgeführt werden.
+Der Sourcecode der zu testende Webanwendung als auch des SeleniPoTestharness wir in einer Versionsverwaltung in der virtualisierten Severumgebung abgelegt. Bei it@M wird zu diesem Zweck Subversion eingesetzt. Über die Versionsverwaltung kann eine Softwareproduktionsstraße bedient werden die das bauen, deployen und testen der der Webanwendung automatisiert. Bei it@M kommt hierfür der Continuous Integration Server Jenkins zum Einsatz. Jenkins bezieht die jeweils aktuellen Sourcen für das Testprojekt und die Webanwendung aus dem Subversion und kann so regelmäßig eine aktuelle Version der Webanwendung bauen und auf ein Testsystem in der virtuellen Serverumgebung deployen. Der aktuelle Testharness kann dann analog von Jenkins gesteuert die aktuell entwickelten Selenium Testfälle gegen diesen Webserver zur Ausführung bringen.
 
 
 
-\subsection{Fachliche Sicht}
-\label{sec:fachliche_sicht}
+\subsection{Möglicher Ablauf eines Standartanwendungsfall}
+\label{sec:moeglicher_ablauf_eines_standartanwendungsfall}
 
 Abbildung \ref{fig:sequenz} zeigt auf hoher Abstraktionsebene einen Standartablauf bei der Benutzung des Page Object Generators.
+
+
 
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.5]{img/Sequenzdiagramm.jpg}\\
-  \caption{Ablauf eines Standartanwendungsfall}
+  \caption{Möglicher Ablauf eines Standartanwendungsfall}
   \label{fig:sequenz}
 \end{figure}
 
+Über das Menü (siehe Abbildung \ref{fig:poGeneratorMenu}) hat der Benutzer des Page Object Generator die Möglichkeit einen bereits zuvor angelegten Zwischenstand des Page Object Modells aus einer XML-Datei zu laden. Die Bereits angelegten Page Objects werden nach dem Laden im Dropdown im bereich des Page Object Modells (siehe Abbildung \ref{fig:poGeneratorPo}) angezeigt. Der Benutzer hat nun die Möglichkeit mit den bereit vorhandenen Page Objects weiterzuarbeiten oder ein neues Page Object anzulegen. Entscheidet er sich dazu, ein neues Page Object anzulegen, wird dieses vorausgewählt im Modell angezeigt. Das Page Object kann nun manuell mit Elemente bzw. Transitionen befüllt werden. Um das Page Object teilautomatisiert zu befüllen kann über den Start-Button ein Webbrowser gestartet werden. Im Browser muss die Seite der Webanwendung geladen werden die dem aktuell ausgewählten Page Object entspricht. Mit dem Dropdown des HTML-Parser (siehe Abbildung \ref{fig:poGeneratorHtml}) kann nun die ausgewählte Webseite nach passenden Elementen bzw. Transitionen durchsucht werden.
+Passende Ergebnisse können in das ausgewählte Page Object übernommen und dort bei Bedarf noch einmal überarbeitet werden.
+Der neu erreichte Zwischenstand kann wiederum über das Menü gespeichert werden.
+Um die Page Objects als Code aus dem Modell zu erzeugen kann über das Menü die Generierung gestartet werden. Bei richtiger Konfiguration des Page Object Generators muss dazu lediglich das Rootverzeichnis des entsprechenden Testprojektes als Zielort der Generierung ausgewählt werden.
+
+
+\subsection{Anwendungsfälle des Page Object Generator}
+\label{sec:page_object_generator_usecases}
+
+Die Anwendungsfälle des Page Object Generators sind in Abbildung \ref{fig:use_case} dargestellt und werden im nachfolgenden Abschnitt näher beschrieben. 
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.45]{img/Use-Cases.jpg}\\
+  \caption{Anwendungsfälle des Page Object Generator}
+  \label{fig:use_case}
+\end{figure}
+
+\subsubsection{Neues Page Object anlegen}
+\label{sec:neues_page_object_anlegen}
+
+\begin{tabular}[h]{|p{4cm}|p{11,5cm}|}
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Kurzbeschreibung: & 
+Entwickler legt ein neues Page Object an. \\  
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Akteure: & 
+Entwickler \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Motivation: & 
+Entwickler benötigt Page Object in den Testfällen. \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Vorbedingung: &  \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Name und Packege des Page Object \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Page Object ist ausgewählt \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Nachbedingungen: & Page Object wurde im Modell der Anwendung angelegt.  \\ 
+\hline 
+\end{tabular} 
+
+\paragraph{Ablauf}
+
+\begin{itemize}[itemsep=0pt]
+\item[1.] Entwickler betätigt Button \grq New..\grq\ neben dem Page Object Dropdown. 
+\item[2.] System zeigt Dialog an. 
+\item[3.] Entwickler trägt Namen des Page Object im Feld \grq Identifier\grq\ des Dialogs ein. Optional kann der Entwickler ein Package für das Page Object angeben. Das Package verfeinert den Pfad ausgehend vom Rootverzeichnis der Page Objects.
+\item[4.] Entwickler bestätigt den Dialog mit \grq Enter\grq\ oder dem Button \grq OK\grq\
+\item[5.] System prüft ob das Feld \grq Identifier\grq\ befüllt ist.
+\item[6.] System wählt Page Object in Dropdown aus.
+\end{itemize}
+
+\paragraph{Vorgang abgebrochen}
+Statt Schritt 4-6:
+\begin{itemize}[itemsep=0pt]
+\item[4.] Entwickler bricht Vorgang mit dem Button \grq Cancel\grq\ ab. 
+\item[5.] System ändert internen Zustand nicht. 
+\end{itemize}
+
+\paragraph{Validierung fehlgeschlagen}
+Statt Schritt 6:
+\begin{itemize}[itemsep=0pt]
+\item[6.] System zeigt Fehlermeldung an. 
+\item[7.] Entwickler bestätigt Fehlermeldung. 
+\end{itemize}
+Weiter mit Punkt 3. 
+
+
+\subsubsection{Neues Element hinzufügen}
+\label{sec:neues_element_hinzufügen}
+
+\begin{tabular}[h]{|p{4cm}|p{11,5cm}|}
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Kurzbeschreibung: & 
+Entwickler legt ein Element in einem Page Object an. \\  
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Akteure: & 
+Entwickler \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Motivation: & 
+Entwickler benötigt Element der Seite in den Testfällen. \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Vorbedingung: &  \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Interner Name des Element, Art des Selectors, Locator der das Element in der Seite identifiziert \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Element wird in den Elementen des Page Object angezeigt \\ 
+\hline 
+\rule[-1ex]{0pt}{2.5ex}Nachbedingungen: & Element wurde im Modell der Anwendung angelegt.  \\ 
+\hline 
+\end{tabular} 
+
+\paragraph{Ablauf}
+
+\begin{itemize}[itemsep=0pt]
+\item[1.] Entwickler wählt passendes Page Object aus Dropdown aus. Falls Page Object noch nicht vorhanden, legt er es neu an (siehe Anwendungsfall \ref{sec:neues_page_object_anlegen}). 
+\item[2.] Entwickler klickt in Bereich für die Elemente des Page Objects. 
+\item[3.] System wechselt in den internen Zustand zum bearbeiten von Elementen.
+\item[4.] Entwickler betätigt Button \grq New..\grq\ in der rechten unteren Button-Leiste.
+\item[5.] System zeigt Dialog an. 
+\item[6.] Entwickler trägt den internen Name des Element, die Art des Selectors und den Locator der das Element in der Seite identifiziert in die Felder des Dialogs ein.
+\item[7.] Entwickler bestätigt den Dialog mit \grq Enter\grq\ oder dem Button \grq OK\grq\
+\item[8.] System prüft ob alle Felder befüllt sind.
+\item[9.] System zeigt Element in den Elementen des Page Object an.
+\end{itemize}
+
+\paragraph{Vorgang abgebrochen}
+Statt Schritt 7-9:
+\begin{itemize}[itemsep=0pt]
+\item[7.] Entwickler bricht Vorgang mit dem Button \grq Cancel\grq\ ab. 
+\item[8.] System ändert internen Zustand nicht. 
+\end{itemize}
+
+\paragraph{Validierung fehlgeschlagen}
+Statt Schritt 9:
+\begin{itemize}
+\item[9.] System zeigt Fehlermeldung an. 
+\item[10.] Entwickler bestätigt Fehlermeldung. 
+\end{itemize}
+Weiter mit Punkt 6. 
+
+
+
+
+
+
+
+
+
+
 \newpage
-
-
-Use-Cases: Beschreibe Standartusecase mit Sequenzdiagramm. (Pageobjekte anlegen -> kann um Elemente und Transitiionen Erweitert werden. Diese können auch Teilautomatisiert aus HTML generiert werden.
-
-Use-Cases Diagramm 
-Verbindung von Use-Case-Diagramm mit GUI
+TODO: 
 
 --> die einzelnen Usecases fachlich beschreiben.
 
@@ -183,10 +312,9 @@ Jede Komponente abarbeiten in sinnvoller tiefe (z.B. Klassendiagram / Zustandsau
 
 
 
-\section{übersicht über Aufbau des Systems}
+\section{Aufbau des Systems}
 
 \subsection{pro modul ein kapitel}
 
-\section{Vorteile und Probleme}
+\section{Ausblick}
 
-\section{Anwendung}
