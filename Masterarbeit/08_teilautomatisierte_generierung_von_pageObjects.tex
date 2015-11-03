@@ -144,8 +144,9 @@ Abbildung \ref{fig:poGeneratorMenu} markiert das Menü des Page Object Generator
 Abbildung \ref{fig:deployment} zeigt die Einordnung des Page Object Generator in die Infrastruktur von it@M. Anhand dieser Abbildung soll gezeigt werden in welchem Bezug sich der Generator zu einer zu testenden Webanwendung und dem späteren Testprojekt befindet.
 Zwei übergeordnete Teilbereiche werden unterschieden. Die virtualisierte Serverumgebung (MIA) und der lokale Rechner eines Entwicklers. Auf der virtualisierten Serververumgebung werden die entwicklerübergreifenden Infrastrukturkomponenten wie beispielsweise eine Versionsverwaltung bereitgestellt. Unter dem Entwicklungsrechner ist der Arbeitsplatz eines einzelnen Projektteilnehmers zu verstehen.\\
 Auf dem Entwicklungsrechner wird die zu testende Webanwendung entwickelt. Zu Testzwecken kann diese Anwendung in ihrem aktuellen Entwicklungsstand auf einem lokalen Webserver deployt werden.
-Der lokale Rechner des Entwicklers ist auch der Ort an dem der Page Object Generator eingesetzt wird. Die lokal deployte Webanwendung kann verwendet werden um für die verschiedenen Seiten der zu testenden Anwendung Page Objects mit Hilfe des Generators zu erzeugen. Diese Page Objects werden bei der Generierung in ein zweites Projekt abgelegt, in welchem die Seleniumtestfälle entwickelt werden. Dieses Projekt wird in Abbildung \ref{fig:deployment} als SeleniPoTestharness bezeichnet und kann vom Entwicklerteam entweder selbst erstellt oder als leeres Quickstart-Projekt vorgefertigt bezogen werden. Mit Hilfe der Page Objects im Testharness können Testfälle entwickelt werden die während der Erstellung auf dem lokalen Entwicklungsrechner gegen die lokal deployte Webanwendung ausgeführt werden.
-Der Sourcecode der zu testende Webanwendung als auch des SeleniPoTestharness wir in einer Versionsverwaltung in der virtualisierten Severumgebung abgelegt. Bei it@M wird zu diesem Zweck Subversion eingesetzt. Über die Versionsverwaltung kann eine Softwareproduktionsstraße bedient werden die das bauen, deployen und testen der der Webanwendung automatisiert. Bei it@M kommt hierfür der Continuous Integration Server Jenkins zum Einsatz. Jenkins bezieht die jeweils aktuellen Sourcen für das Testprojekt und die Webanwendung aus dem Subversion und kann so regelmäßig eine aktuelle Version der Webanwendung bauen und auf ein Testsystem in der virtuellen Serverumgebung deployen. Der aktuelle Testharness kann dann analog von Jenkins gesteuert die aktuell entwickelten Selenium Testfälle gegen diesen Webserver zur Ausführung bringen.
+Der lokale Rechner des Entwicklers ist auch der Ort an dem der Page Object Generator eingesetzt wird. Die lokal deployte Webanwendung kann verwendet werden um für die verschiedenen Seiten der zu testenden Anwendung Page Objects mit Hilfe des Generators zu erzeugen. Diese Page Objects werden in ein zweites Projekt abgelegt, in welchem die Seleniumtestfälle entwickelt werden. Dieses Projekt wird in Abbildung \ref{fig:deployment} als SeleniPoTestharness bezeichnet und kann vom Entwicklerteam entweder selbst erstellt oder als leeres Quickstart-Projekt vorgefertigt bezogen werden. Mit Hilfe der Page Objects im Testharness können Testfälle entwickelt werden die während der Erstellung auf dem lokalen Entwicklungsrechner gegen die lokal deployte Webanwendung ausgeführt werden.
+Über die virtualisierte Serverumgebung können die lokal auf den Entwicklungsrechnern der Projektteilnehmer erstellten Ergebnisse zusammengeführt werden. 
+Der Sourcecode der zu testende Webanwendung so wie des SeleniPoTestharness wir in einer Versionsverwaltung in der MIA abgelegt. Bei it@M wird zu diesem Zweck Subversion eingesetzt. Über die Versionsverwaltung kann eine Softwareproduktionsstraße bedient werden die das bauen, deployen und testen der der Webanwendung das bisher manuell auf den Entwicklungsrechnern durchgeführt wurde automatisiert. Bei it@M kommt hierfür der Continuous Integration Server Jenkins zum Einsatz. Jenkins bezieht die jeweils aktuellen Sourcen für das Testprojekt und die Webanwendung aus dem Subversion und kann so regelmäßig eine aktuelle Version der Webanwendung bauen und auf ein Testsystem in der virtuellen Serverumgebung deployen. Jenkins kann daraufhin die im Testharness aktuell entwickelten Selenium Testfälle gegen diesen Webserver zur Ausführung bringen.
 
 
 
@@ -197,7 +198,7 @@ Entwickler benötigt Page Object in den Testfällen. \\
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Vorbedingung: &  \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Name und Packege des Page Object \\ 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Name und Packege des Page Object. \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Page Object ist ausgewählt. \\ 
 \hline 
@@ -256,7 +257,7 @@ Entwickler benötigt Element der Seite in den Testfällen. \\
 \rule[-1ex]{0pt}{2.5ex}Vorbedingung: & 
 Page Object bereits angelegt.\\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Interner Name des Element, Art des Selectors, Locator der das Element in der Seite identifiziert \\ 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Interner Name des Elements, Art des Selectors, Locator der das Element in der Seite identifiziert \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Element wird in den Elementen des Page Object angezeigt. \\ 
 \hline 
@@ -311,7 +312,7 @@ Entwickler benötigt einen Übergang zu einer anderen Seite in den Testfällen. 
 \rule[-1ex]{0pt}{2.5ex}Vorbedingung: & 
 Page Object bereits angelegt. Page Object das Ziel des Seitenübergangs ist wurde bereits angelget.\\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Interner Name des Element, Art des Selectors, Locator der das Element in der Seite identifiziert, Ziel Page Object \\ 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Interner Name des Elements, Art des Selectors, Locator der das Element in der Seite identifiziert, Ziel Page Object. \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Transition wird in den Transitions des Page Object angezeigt. \\ 
 \hline 
@@ -366,7 +367,7 @@ Entwickler benötigt Element der Seite in den Testfällen. \\
 \rule[-1ex]{0pt}{2.5ex}Vorbedingung: & 
 Page Object bereits angelegt. \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Seitenquelltext der ausgewählten Webseite. Art des Locators. \\ 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Art des Locators nach dem die Seite durchsucht werden soll. \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Element wird in den Elementen des Page Object angezeigt. \\ 
 \hline 
@@ -377,7 +378,7 @@ Page Object bereits angelegt. \\
 \paragraph{Ablauf}
 
 \begin{itemize}[itemsep=0pt]
-\item[1.] Entwickler wählt passendes Page Object aus.
+\item[1.] Entwickler wählt Page Object aus.
 \item[2.] Entwickler startet aus der Anwendung heraus den Webbrowser mit der zum ausgewählten Page Object korrespondierenden Seite. 
 \item[3.] Entwickler wählt Art des Locators aus für den die Seite durchsucht werden soll.
 \item[4.] Entwickler wählt Aktion zum Analysieren der ausgewählten Webseite aus.
@@ -412,7 +413,7 @@ Entwickler benötigt einen Übergang zu einer anderen Seite in den Testfällen. 
 \rule[-1ex]{0pt}{2.5ex}Vorbedingung: & 
 Page Object bereits angelegt. Page Object das Ziel des Seitenübergangs ist wurde bereits angelget. \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Art des Locators. Ziel Page Object \\ 
+\rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Art des Locators nach dem die Seite durchsucht werden soll, Ziel Page Object. \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Transition wird in den Transitions des Page Object angezeigt. \\ 
 \hline 
@@ -430,7 +431,7 @@ Page Object bereits angelegt. Page Object das Ziel des Seitenübergangs ist wurd
 \item[5.] System zeigt die für den ausgewählten Locator auf der Seite identifizierten Elemente an.
 \item[6.] Entwickler wählt gewünschtes Element aus den Treffern aus. 
 \item[7.] Entwickler wählt Aktion zum übernehmen des Elements als Transition in das Page Object aus.
-\item[8.] System zeigt Dialog mit den Informationen der ausgewählten Elements an.
+\item[8.] System zeigt Dialog mit den Informationen des ausgewählten Elements an.
 \item[9.] Entwickler ergänzt die Informationen um das Ziel Page Object der Transition.
 \item[10.] Entwickler bestätigt den Dialog.
 \item[11.] System prüft ob alle Felder befüllt sind.
@@ -438,7 +439,7 @@ Page Object bereits angelegt. Page Object das Ziel des Seitenübergangs ist wurd
 \end{itemize}
 
 \paragraph{Testen der Transition}
-Statt Schritt 7-8:
+Statt Schritt 7-12:
 \begin{itemize}
 \item[7.] Entwickler wählt Aktion zum Testen des ausgewählten Elements aus. 
 \item[8.] System zeigt an ob das Element auf der ausgewählten Webseite erfolgreich erreicht werden konnte. 
@@ -480,7 +481,7 @@ Eintrag bereits vorhanden. \\
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Geänderte Werte. \\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Eintrag wird in aktualisierte Form angezeigt. \\ 
+\rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Eintrag wird in aktualisierter Form angezeigt. \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Nachbedingungen: & Eintrag wurde im Modell der Anwendung aktualisiert.  \\ 
 \hline 
@@ -494,7 +495,7 @@ Eintrag bereits vorhanden. \\
 \item[3.] System zeigt Dialog mit den alten Werten des Eintrags an.
 \item[4.] Entwickler nimmt die gewünschten Änderungen vor.
 \item[5.] Entwickler bestätigt den Dialog
-\item[8.] System prüft die Felder des Dialogs.
+\item[6.] System prüft die Felder des Dialogs.
 \item[7.] System zeigt den Eintrag in aktualisierter Form an.
 \end{itemize}
 
@@ -508,8 +509,8 @@ Statt Schritt 5-7:
 \paragraph{Validierung fehlgeschlagen}
 Statt Schritt 7:
 \begin{itemize}[itemsep=0pt]
-\item[6.] System zeigt Fehlermeldung an. 
-\item[7.] Entwickler bestätigt Fehlermeldung. 
+\item[7.] System zeigt Fehlermeldung an. 
+\item[8.] Entwickler bestätigt Fehlermeldung. 
 \end{itemize}
 Weiter mit Punkt 4. 
 
@@ -546,7 +547,7 @@ Eintrag bereits vorhanden. \\
 \item[3.] System entfernt den ausgewählten Eintrag.
 \end{itemize}
 
-\paragraph{Löschen eines gesamten Page Object}
+\paragraph{Zu löschender Eintrag ist gesamtes Page Object}
 Statt Schritt 3:
 \begin{itemize}[itemsep=0pt]
 \item[3.] System zeigt einen Bestätigungsdialog an. 
@@ -555,7 +556,7 @@ Statt Schritt 3:
 Weiter mit Punkt 3. 
 
 \paragraph{Vorgang abgebrochen}
-Statt Schritt 4 des Sonderfalls Löschen eines gesamten Page Object:
+Statt Schritt 4 des Sonderfalls \grq Zu löschender Eintrag ist gesamtes Page Object\grq:
 \begin{itemize}[itemsep=0pt]
 \item[4.] Entwickler bricht Vorgang ab. 
 \item[5.] System ändert internen Zustand nicht. 
@@ -615,7 +616,7 @@ Save Datei vorhanden. \\
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Eingehende Daten: & Save Datei\\ 
 \hline 
-\rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Einträge der Save Datei werden angezeigt. \\ 
+\rule[-1ex]{0pt}{2.5ex}Ergebnisse: & Zustand der Save Datei wiederhergestellt. \\ 
 \hline 
 \rule[-1ex]{0pt}{2.5ex}Nachbedingungen: & Modell der Anwendung wurde mit den Werden aus der Save Datei befüllt.  \\ 
 \hline 
@@ -624,7 +625,7 @@ Save Datei vorhanden. \\
 \paragraph{Ablauf}
 
 \begin{itemize}[itemsep=0pt]
-\item[1.] Entwickler wählt die Aktion zum Laden einer Save Datei aus.
+\item[1.] Entwickler wählt die Aktion zum laden einer Save Datei aus.
 \item[2.] System öffnet Auswahldialog. 
 \item[3.] Entwickler wählt Save Datei aus.
 \item[4.] System zeigt die Einträge der Save Datei an.
@@ -667,14 +668,16 @@ Entwickler möchte einen Stand der Anwendung zur späteren Wiederherstellbarkeit
 \item[1.] Entwickler wählt die Aktion zum Speichern eines Zwischenstands aus.
 \item[2.] System öffnet Auswahldialog. 
 \item[3.] Entwickler wählt Ort zum Ablegen der Save Datei aus.
-\item[4.] System erzeugt Save Datei.
+\item[4.] Entwickler gibt Namen für die Save Datei an.
+\item[5.] Entwickler bestätigt Dialog.
+\item[6.] System erzeugt Save Datei.
 \end{itemize}
 
 \paragraph{Vorgang abgebrochen}
-Statt Schritt 3:
+Statt Schritt 5-6:
 \begin{itemize}[itemsep=0pt]
-\item[3.] Entwickler bricht Vorgang ab. 
-\item[4.] System ändert internen Zustand nicht. 
+\item[5.] Entwickler bricht Vorgang ab. 
+\item[6.] System ändert internen Zustand nicht. 
 \end{itemize}
 
 \subsubsection{Page Objects generieren}
@@ -718,11 +721,38 @@ Statt Schritt 3:
 \item[4.] System ändert internen Zustand nicht. 
 \end{itemize}
 
+\newpage
+
+\subsection{Aufbau des Systems}
+In seiner internen Struktur ist des Page Object Generator in vier Module aufgeteilt die unterschiedliche aufgaben übernehmen. Auf Projektebene sind diese Module in einem übergeordneten Modul mit dem Namen SeleniPoModules zusammengefasst. Abbildung \ref{fig:component_diagramm} zeigt die verschiedenen Module des Page Object Genrators und deren Abhängigkeiten zueinander.
+Neben den Modulen des Page object Generators zeigt Abbildung \ref{fig:component_diagramm} zusätzlich den SeleniPoTestharness der später dazu verwendet werden kann die vom Page Object Generator erzeugten Klassen in einen ausführbaren Kontext zu stellen.
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.46]{img/ComponentDiagram.jpg}\\
+  \caption{Module des Page Object Generators}
+  \label{fig:component_diagramm}
+\end{figure}
+
+\subsubsection{SeleniPoEditor}
+
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.46]{img/StateMashine.jpg}\\
+  \caption{Zustandsmodell des SeleniPoEditor}
+  \label{fig:state_mashine}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.46]{img/poGeneratorEvents.jpg}\\
+  \caption{Zuordnung der Events zu den in Abbildung \ref{fig:state_mashine} verwendeten Namen}
+  \label{fig:state_mashine}
+\end{figure}
 
 \newpage
 TODO: 
-
---> die einzelnen Usecases fachlich beschreiben.
 
 Technische Sicht. 
 Komponentendiagramm Allgemein erklären.
@@ -737,9 +767,7 @@ Jede Komponente abarbeiten in sinnvoller tiefe (z.B. Klassendiagram / Zustandsau
 
 
 
-\section{Aufbau des Systems}
 
-\subsection{pro modul ein kapitel}
 
 \section{Ausblick}
 
