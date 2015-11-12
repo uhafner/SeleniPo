@@ -24,8 +24,11 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces SeleniPo - Page Object Generator - Html Parser\relax }}{49}{figure.caption.21}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces SeleniPo - Page Object Generator - Men\IeC {\"u}\relax }}{50}{figure.caption.22}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Einordnung des Page Object Generator in die Deploymentsicht\relax }}{51}{figure.caption.23}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces M\IeC {\"o}glicher Ablauf eines Standartanwendungsfall\relax }}{52}{figure.caption.24}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Anwendungsf\IeC {\"a}lle des Page Object Generator\relax }}{53}{figure.caption.25}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Module des Page Object Generators\relax }}{64}{figure.caption.55}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Zustandsmodell des SeleniPoEditor\relax }}{64}{figure.caption.56}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Zuordnung der Events zu den in Abbildung \ref {fig:state_mashine} verwendeten Namen\relax }}{65}{figure.caption.57}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces M\IeC {\"o}glicher Ablauf eines Standartanwendungsfall\relax }}{53}{figure.caption.24}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Anwendungsf\IeC {\"a}lle des Page Object Generator\relax }}{54}{figure.caption.25}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Module des Page Object Generators\relax }}{55}{figure.caption.26}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Vereinfachte Struktur des internen Modells des Page Object Generators\relax }}{56}{figure.caption.27}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Services die von SeleniPoConverter bereitgestellt werden\relax }}{57}{figure.caption.28}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Zustandsmodell des SeleniPoEditor\relax }}{69}{figure.caption.58}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Zuordnung der in Abbildung \ref {fig:state_mashine} verwendeten Namen \relax }}{69}{figure.caption.59}
