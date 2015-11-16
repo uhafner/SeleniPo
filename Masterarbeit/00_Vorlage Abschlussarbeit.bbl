@@ -16,6 +16,13 @@
   {Software} {Testing}, {Verification} and {Validation} {Workshops} ({ICSTW})},
   2014, S. 302--311
 
+\bibitem[{Apa}15]{apache_software_foundation_apache_2015}
+\textsc{{Apache Software Foundation}}:
+\newblock \emph{Apache {Velocity} {Site} - {The} {Apache} {Velocity}
+  {Project}}.
+\newblock \url{http://velocity.apache.org/}.
+\newblock \,Version:\,November 2015
+
 \bibitem[BGLP08]{bouquet_test_2008}
 \textsc{Bouquet}, Fabrice ; \textsc{Grandpierre}, Christophe ;
   \textsc{Legeard}, Bruno  ; \textsc{Peureux}, Fabien:
@@ -106,6 +113,12 @@
 \newblock 2001.
 \newblock ISO/IEC, 2001
 
+\bibitem[{Joe}15]{joe_walnes_xstream_2015}
+\textsc{{Joe Walnes}}:
+\newblock \emph{{XStream} - {About} {XStream}}.
+\newblock \url{http://x-stream.github.io/}.
+\newblock \,Version:\,November 2015
+
 \bibitem[LCRS13]{leotta_repairing_2013}
 \textsc{Leotta}, M. ; \textsc{Clerissi}, D. ; \textsc{Ricca}, F.  ;
   \textsc{Spadaro}, C.:
@@ -133,6 +146,13 @@
   {Century} {Applications}}.
 \newblock New York, NY, USA : ACM, 2000 ({SIGSOFT} '00/{FSE}-8). --
 \newblock ISBN 1--58113--205--0, 30--39
+
+\bibitem[{Ora}15]{oracle_client_2015}
+\textsc{{Oracle}}:
+\newblock \emph{Client {Technologies}: {Java} {Platform}, {Standard} {Edition}
+  ({Java} {SE}) 8 {Release} 8}.
+\newblock \url{http://docs.oracle.com/javafx}.
+\newblock \,Version:\,November 2015
 
 \bibitem[RAO92]{richardson_specification-based_1992}
 \textsc{Richardson}, D.J. ; \textsc{Aha}, S.L.  ; \textsc{O'Malley}, T.O.:

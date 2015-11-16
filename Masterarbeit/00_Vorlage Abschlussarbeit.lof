@@ -29,6 +29,9 @@
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Module des Page Object Generators\relax }}{55}{figure.caption.26}
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Vereinfachte Struktur des internen Modells des Page Object Generators\relax }}{56}{figure.caption.27}
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Services die von SeleniPoConverter bereitgestellt werden\relax }}{57}{figure.caption.28}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Services die von SeleniPoHtmlParser bereitgestellt werden\relax }}{58}{figure.caption.29}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Services die von SeleniPoHtmlParser bereitgestellt werden\relax }}{60}{figure.caption.30}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Zustandsmodell des SeleniPoEditor\relax }}{69}{figure.caption.58}
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Zuordnung der in Abbildung \ref {fig:state_mashine} verwendeten Namen \relax }}{69}{figure.caption.59}
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Zustandsmodell des SeleniPoEditor\relax }}{72}{figure.caption.60}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Zuordnung der in Abbildung \ref {fig:state_mashine} verwendeten Namen \relax }}{72}{figure.caption.61}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Vollst\IeC {\"a}ndiges technisches Modell des Page Object Generator \relax }}{73}{figure.caption.62}

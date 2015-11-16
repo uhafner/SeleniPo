@@ -560,3 +560,95 @@ Statt Schritt 3:
   \label{fig:state_mashine_zuordnung}
 \end{figure}
 
+\newpage
+\section{Vollständiges technisches Modell}
+\label{anhang:vollständiges_technisches_modell}
+
+
+\begin{figure}[h]
+  \centering  
+  \includegraphics[scale=0.235, angle=90]{img/ComplexModel.jpg}\\
+  \caption{Vollständiges technisches Modell des Page Object Generator }
+  \label{fig:state_mashine_zuordnung}
+\end{figure}
+
+\newpage
+
+\section{Beispiel für ein Velocity Template}
+\label{anhang:beispiel_velocity_template}
+\begin{lstlisting}[caption={poGenerated.vm},label={lst:template_pogenerated}]
+#set( $BASE_PACKAGE = $basePackagePath )
+#set( $GENERATED_PACKAGE = "$BASE_PACKAGE#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $EDIT_PACKAGE = "$BASE_PACKAGE" )
+#set( $CLASS_NAME = "$poGeneric.getIdentifier()Generated" )
+
+package $GENERATED_PACKAGE;
+
+import ${BASE_PACKAGE}.BasePo;
+import ${BASE_PACKAGE}.Control;
+import ${BASE_PACKAGE}.PageObject;
+#foreach( $destPo in $destionationPos )
+import $EDIT_PACKAGE#if ( $destPo.getPackageName() && $destPo.getPackageName().trim().size() != 0 ).$destPo.getPackageName()#end.$destPo.getIdentifier();
+#end
+
+public class $CLASS_NAME extends BasePo {
+
+#foreach( $element in $poGeneric.getElements() )
+	public final Control $element.getIdentifier() = control(by.$element.getType().getByMethodName()("$element.getLocator()"));
+#end
+#foreach( $transition in $poGeneric.getTransitions() )
+	public final Control $transition.getIdentifier() = control(by.$transition.getType().getByMethodName()("$transition.getLocator()"));
+#end
+	public $CLASS_NAME(PageObject po) {
+		super(po);
+	}
+#foreach( $transition in $poGeneric.getTransitions() )
+	
+	public $transition.getDestination().getIdentifier() click${display.capitalize($transition.getIdentifier())}() {
+		${transition.getIdentifier()}.click();
+		return new $transition.getDestination().getIdentifier()(this);
+	}
+#end  
+#foreach( $element in $poGeneric.getElements() )
+	/**
+	 * Get the Control for the Element $transition.getIdentifier().
+	 * @return $transition.getIdentifier() - Element
+	 */
+	public Control get${display.capitalize($element.getIdentifier())}() {
+		return $element.getIdentifier();
+	}	
+#end
+#foreach( $transition in $poGeneric.getTransitions() )
+	/**
+	 * Get the Control for the Transition $transition.getIdentifier().
+	 * @return $transition.getIdentifier() - Transition
+	 */
+	public Control get${display.capitalize($transition.getIdentifier())}() {
+		return $transition.getIdentifier();
+	}
+	
+#end
+}
+
+\end{lstlisting} 
+\begin{lstlisting}[caption={poEditable.vm},label={lst:template_poeditable}]
+#set( $BASE_PACKAGE = $basePackagePath )
+#set( $EDIT_PACKAGE = "$BASE_PACKAGE#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $GENERATED_PACKAGE = "$BASE_PACKAGE#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $CLASS_NAME = "$poGeneric.getIdentifier()" )
+#set( $CLASS_NAME_SUPER = "$poGeneric.getIdentifier()Generated" )
+
+package $EDIT_PACKAGE;
+
+import ${BASE_PACKAGE}.BasePo;
+import ${BASE_PACKAGE}.Control;
+import ${BASE_PACKAGE}.PageObject;
+import $GENERATED_PACKAGE.$CLASS_NAME_SUPER;
+
+public class $CLASS_NAME extends $CLASS_NAME_SUPER {
+
+	public $CLASS_NAME(PageObject po) {
+		super(po);
+	}
+}
+\end{lstlisting} 
