@@ -8,6 +8,7 @@ package de.muenchen.selenipo.po;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -31,7 +32,7 @@ public class ControlBys implements Control {
 				"No 'By' specified!");
 		for (By by : bys) {
 			try {
-				return parent.find(by);
+				return find(by);
 			} catch (NoSuchElementException e) {
 				problem = e;
 			}
@@ -112,6 +113,61 @@ public class ControlBys implements Control {
 			throw new RuntimeException(
 					"Control.isReadOnly() -- Unbekannter readonly-Attribut-Wert: "
 							+ attribute);
+		}
+	}
+	
+	/**
+	 * Returns the first visible element that matches the selector.
+	 * 
+	 * @throws NoSuchElementException
+	 *             if the element is not found.
+	 * @see #getElement(By) if you don't want to see an exception
+	 */
+	protected WebElement find(By selector) {
+		try {
+			long endTime = System.currentTimeMillis() + 3000;
+			while (System.currentTimeMillis() <= endTime) {
+				WebElement e = parent.getDriver().findElement(selector);
+				if (isDisplayed(e))
+					return e;
+
+				for (WebElement f : parent.getDriver().findElements(selector)) {
+					if (isDisplayed(f))
+						return f;
+				}
+
+				// give a bit more chance for the element to become visible
+				sleep(100);
+			}
+			throw new NoSuchElementException("Unable to locate visible "
+					+ selector + " in " + parent.getDriver().getCurrentUrl());
+		} catch (NoSuchElementException x) {
+			// this is often the best place to set a breakpoint
+			String msg = String.format("Unable to locate %s in %s\n\n%s",
+					selector, parent.getDriver().getCurrentUrl(), parent.getDriver().getPageSource());
+			throw new NoSuchElementException(msg, x);
+		}
+	}
+
+	/**
+	 * Consider stale elements not displayed.
+	 */
+	private boolean isDisplayed(WebElement e) {
+		try {
+			return e.isDisplayed();
+		} catch (StaleElementReferenceException _) {
+			return false;
+		}
+	}
+
+	/**
+	 * Thread.sleep that masks exception.
+	 */
+	protected static void sleep(long ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			throw new Error(e);
 		}
 	}
 }

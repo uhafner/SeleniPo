@@ -1,6 +1,6 @@
 package de.muenchen.selenipo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import de.muenchen.selenipo.config.Config;
 import de.muenchen.selenipo.po.BasePo;
 import de.muenchen.selenipo.po.CreatePage;
 import de.muenchen.selenipo.po.ShowPage;
-import de.muenchen.selenipo.po.base.OverviewPage;
-import de.muenchen.selenipo.po.base.WelcomePage;
 
 /**
  * Unit test for simple App.

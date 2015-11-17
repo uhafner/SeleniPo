@@ -317,8 +317,8 @@ public class HtmlParserServiceImpl implements HtmlParserService {
 	/**
 	 * Sucht nach allen Links für den vorhanden ist: id or text or title
 	 * 
-	 * @param html
-	 * @return
+	 * @param html Quelltext der zu untersuchenden Seite
+	 * @return PoGeneric- neues Page Object mit den gefundenen Elementen
 	 */
 	private PoGeneric parseElementsFromHtmlForLink(String html) {
 		final String PREFIX = "a";

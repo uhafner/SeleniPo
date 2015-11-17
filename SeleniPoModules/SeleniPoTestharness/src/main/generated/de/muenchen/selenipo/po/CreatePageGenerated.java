@@ -15,12 +15,7 @@ public class CreatePageGenerated extends BasePo {
 	public CreatePageGenerated(PageObject po) {
 		super(po);
 	}
-	public ShowPage createEntry(String title, String note){
-		tfTodotitle.sendKeys(title);
-		tfTodonotes.sendKeys(note);
-		return clickBCreateTodo();
-		
-	}
+
 	public ShowPage clickBCreateTodo() {
 		bCreateTodo.click();
 		return new ShowPage(this);
