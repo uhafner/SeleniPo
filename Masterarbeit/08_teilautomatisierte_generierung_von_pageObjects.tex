@@ -309,7 +309,7 @@ Listing \ref{lst:parserLINK} zeigt beispielhaft die Implementierung für den Auf
 Die für die jeweiligen Selectoren implementiert Filterstrategie orientiert sich an der Strategie die später in den Testfällen verwendet wird um die Elemente auf der Webseite zu adressieren. Die Testfälle verwenden zum Adressieren der Elemente eine Klasse ByFactory auf die im Abschnitt \ref{sec:selenipotestharness} eingegangen wird.
 Dieses vorgehen hat den Nachteil, dass die Möglichkeit besteht, Elemente zu verwerfen die vom Benutzer für den ausgewählten Filter zwar erwartet werden, den implementierten Filterkriterien jedoch nicht entsprechen.
 Im Beispiel aus Listing \ref{lst:parserLINK} wären das alle Links für die weder das Attribut id, text oder title gesetzt sind.
-Über dieses vorgehen iskt allerdings sichergestellt, dass für einen untersuchten Selector nur Elemente zur Auswahl gestellt werden, die in den späteren Testfällen über die Klasse ByFactory auch aufgelöst werden können.\\
+Über dieses vorgehen ist allerdings sichergestellt, dass für einen untersuchten Selector nur Elemente zur Auswahl gestellt werden, die in den späteren Testfällen über die Klasse ByFactory auch aufgelöst werden können.\\
 Die Palette der vorgefertigten Filter deckt den größten Teil der im HTML vorhandenen Elemente bereits ab. Sollte es dennoch zu dem Fall kommen, dass Elemente über die existierenden Selectoren nicht erreicht werden können, besteht immer die Möglichkeit mit Hilfe des Selectors XPATH Elemente über einen eigenen XPath-Ausdruck anzusprechen.
 
 
@@ -326,17 +326,65 @@ Abbildung \ref{fig:generator_service} zeigt das Klassendiagramm des Moduls.
 \end{figure}
 Für die Generierung des Codes aus dem Modell der Anwendung wird die Template-Engine Velocity \cite{apache_software_foundation_apache_2015} verwendet.
 Mit Hilfe von Velocity kann ein beliebiges Modell der Anwendung über vordefinierte Templates in die gewünschten Struktur gewandelt werden.
-Die Tamplates können vom Benutzer des des Page Object Generators beliebig editiert werden. Auf diese weise können die im Modell der Anwendung hinterlegten Informationen in jede vom Anwender gewünschte Form aufbereitet werden. Anhang \ref{anhang:beispiel_velocity_template} zeigt als Beispiel den Templatevorschlag der im Rahmen dieser Arbeit im Page Object Generator verwendet wird.
-Pro Page Object werden jeweils zwei Klassen erzeugt. Listing \ref{lst:template_poeditable}
+Die Tamplates können vom Benutzer des Page Object Generators beliebig editiert werden. Auf diese weise können die im Modell der Anwendung hinterlegten Informationen in jede vom Anwender gewünschte Form aufbereitet werden. Anhang \ref{anhang:beispiel_velocity_template} zeigt als Beispiel den Templatevorschlag der im Rahmen dieser Arbeit im Page Object Generator verwendet wird.
+Pro Page Object werden jeweils zwei Klassen erzeugt. Eine Klasse welche die gesamte generierte Logik enthält so wie eine Klasse welche abgesehen von einem Konstruktor leer ist und von dieser Klasse ableitet. 
+Die komplexe Klasse wird im folgenden als PageObject\_Generated bezeichnet. Das zugehörige Template befindet sich in Listing \ref{lst:template_pogenerated}. Die
+nahezu leere Klasse wird im folgenden als PageObject\_Dynamisch bezeichnet und ist im Template in Listing \ref{lst:template_poeditable} verwirklicht.
+Abbildung \ref{fig:postruktur} zeigt die Abhängigkeit zwischen den beiden zu generierenden Klassen.
 
-zwei Teile
-
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.6]{img/postruktur.jpg}\\
+  \caption{Abhängigkeit zwischen dem generierten und dem dynamischen Teil eines Page Objects}
+  \label{fig:postruktur}
+\end{figure}
+ 
+Mit Hilfe der Aufteilung eines Page Objects in zwei Klassen soll verhindert werden, dass bei mehrmaligem Generieren des gleichen Page Objects Änderungen die vom Testentwickler im Code vorgenommen wurden überschrieben werden. Als Konvention gilt daher, dass Änderungen durch den Entwickler nur im PageObject\_Dynamisch vorgenommen werden dürfen. Der generierte Teil des Page Objects darf vom Entwickler nicht verändert werden.
+Bei einem erneuten generieren der Page Objects werden lediglich die PageObject\_Generated überschrieben, der dynamische Teil bleibt unangetastet.
+Auf diese weise ist sichergestellt, dass Änderungen die im dynamischen Teil vorgenommen werden nicht überschrieben werden jedoch Anpassungen über den Page Object Generator vorgenommen wurden Einzug in den generierten Teil finden können.
+Page Objects können so über die gesamte Projektlaufzeit iterativ im Page Object Generator aufgebaut werden und müssen nicht bereits zu beginn im finalen Zustand modelliert werden.\\
+Der Ort an dem die fertigen Page Objects abgelegt werden ist über eine Konfigurationsdatei und die Page Objects variabel einstellbar. 
+Abbildung \ref{fig:packagepath} stellt grafisch dar wie die endgültige package-Struktur eines Page Objects gebildet wird.
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.8]{img/packagePath.png}\\
+  \caption{Erzeugen der package-Struktur eines Page Object}
+  \label{fig:packagepath}
+\end{figure}
+In der Grundkonfiguration wird der generierte Teil eines Page Objects unterhalb des package \grq src.main.generated\grq\ abgelegt. Der dynamische Teil befindet sich im package \grq src.main.java\grq.
+Diese Strukturierung bildet die getroffene Konvention ab, dass in der späteren Verwendung der dynamische teil des Page Objects als Instanz in den Testfällen verwendet wird und der generierte Teil nicht editiert werden darf.
+Ausgehend von diesen packages kann über die Konfiguration der Pfad weiter verfeinert werden. So kann beispielsweise konfiguriert werden, dass der generierte Teil eines Page Objects immer im package \grq src.main.generated.de.muenchen.selenipo.po\grq\ abgelegt werden, der dynamische im package \grq src.main.java.de.muenchen.selenipo.po\grq.
+Während der Erstellung eines Page Objects im Page Object Generator kann auf Ebene der Page Objects eine weitere Verfeinerung der Struktur vorgenommen werden. Ausgehend von den global konfigurierten Ziel-packages kann so jedes Page Object in ein beliebiges package abgelegt werden.
+Für die Generierung der Klassen kann bei richtiger Konfiguration dann einfach das Rootverzeichnis des Testprojektes ausgewählt werden.
 
 \subsubsection{SeleniPoTestharness}
 \label{sec:selenipotestharness}
 
-Die Klasse .. wird verwendet um die Möglichkeit zu bieten auch komplexere ausdrücke sinnvoll zu verwalten. Viele tools reduzeiren sich auf einfache ausdrücke die allerdings nicht allzu stabiel sind siehe Kapitel...
-Komplexe Ausdrücke über teilweise mehrere zeilen würden die lesbarkeit der Page Objects negativ beeinträchtigen. Über die Klasse ... wurde somit eine möglichkeit geschaffen Komplexere abfragen sinnvoll zu verwalten.
+Im Rahmen dieser Arbeit wurde auch ein Testprojekt entwickelt welches mit den Page Objects die über den Page Object Generator erzeugt wurden arbeiten kann.
+Das Testprojekt wird im folgenden als Testharness bezeichnet.
+Damit Testharness und Page Object Generator zusammenarbeiten können müssen die Struktur der Templates des Generators und die Struktur des Testharness zusammenpassen.
+Die Struktur der Templates kann vom Benutzer des Page Object Genrators jeder Zeit auf seine Bedürftnisse angepasst werden. Prinzipiell kann dadurch jede Struktur eines Testharness unterstützt werden.
+Damit die Templates die im Rahmen dieser Arbeit entwickelt wurden unterstützt werden muss der Testharness allerdings einige Anforderungen erfüllen.
+Abbildung \ref{fig:strukturTestharness} zeigt die Page Object Struktur die um Testharness verwendet wird.
+\begin{figure}[htb]
+  \centering  
+  \includegraphics[scale=0.5]{img/strukturTestharness.jpg}\\
+  \caption{Page Object Struktur des Testharness}
+  \label{fig:strukturTestharness}
+\end{figure}
+
+1. Struktur der PO
+2. Control. Warum? --> Referenzen nicht sofort aufgelößt
+3. Wie werden Controls erzeugt. methode control() bekommt By übergeben --> ByFactory die am ende ein xpath css erzeugt und im PO angesiedelt ist.
+(Vielleicht ein Beispiel für ein fertiges PO zeigen)
+4. Control nicht umbedingt notwendig. Es ist auch möglich die 
+
+
+Einerseits muss die in den Templates vorgegebene Struktur umgesetzt werden.
+ByFactory warum und wie.
+Kurz die Struktur.
+Die muss nicht immer eingehalten werden. Was sind die Mögliochkeiten.
+
 
 
 \section{Ausblick}
