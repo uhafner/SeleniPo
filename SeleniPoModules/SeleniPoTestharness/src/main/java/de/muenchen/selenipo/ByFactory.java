@@ -133,7 +133,7 @@ public class ByFactory {
 	 */
 	public By textField(String locator) {
 		//TODO
-		return xpath(fieldXPath("input[./@type = 'text' or ./@type = 'TEXT']", locator));
+		return xpath(fieldXPath("input[./@type = 'text' or ./@type = 'TEXT' or ./@type = 'password' or ./@type = 'PASSWORD' or ./@type = 'search' or ./@type = 'email' or ./@type = 'url' or ./@type = 'tel']", locator));
 	}
 
 	private static String fieldXPath(String base, String locator) {

@@ -29,7 +29,7 @@ public class PageObject {
 		return new ControlBys(this, bys);
 	}
 
-	protected ByFactory getBy() {
+	public ByFactory getBy() {
 		return by;
 	}
 

@@ -163,7 +163,7 @@ public class ControlBys implements Control {
 	/**
 	 * Thread.sleep that masks exception.
 	 */
-	protected static void sleep(long ms) {
+	private static void sleep(long ms) {
 		try {
 			Thread.sleep(ms);
 		} catch (InterruptedException e) {
