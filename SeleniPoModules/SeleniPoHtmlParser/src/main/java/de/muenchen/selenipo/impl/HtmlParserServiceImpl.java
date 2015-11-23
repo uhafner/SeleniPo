@@ -107,7 +107,7 @@ public class HtmlParserServiceImpl implements HtmlParserService {
 		final String PREFIX = "tf";
 		PoGeneric poGeneric = new PoGenericImpl();
 		Document doc = Jsoup.parse(html);
-		Elements elements = doc.select("input[type=text]");
+		Elements elements = doc.select("input[type = text], input[type = search],input[type = password],input[type = tel],input[type = url],input[type = email]");
 		for (Element element : elements) {
 			if (element.hasAttr("id")) {
 				de.muenchen.selenipo.Element createdElement = createElement(
