@@ -365,7 +365,7 @@ Das Testprojekt wird im folgenden als Testharness bezeichnet.
 Damit Testharness und Page Object Generator zusammenarbeiten können müssen die Struktur der Templates des Generators und die Struktur des Testharness zusammenpassen.
 Die Struktur der Templates kann vom Benutzer des Page Object Genrators jeder Zeit auf seine Bedürftnisse angepasst werden. Prinzipiell kann dadurch jede Struktur eines Testharness unterstützt werden.
 Damit die Templates die im Rahmen dieser Arbeit entwickelt wurden unterstützt werden muss der Testharness allerdings einige Anforderungen erfüllen.
-Abbildung \ref{fig:strukturTestharness} zeigt die Page Object Struktur die um Testharness verwendet wird.
+Abbildung \ref{fig:strukturTestharness} zeigt die Page Object Struktur die sowohl in den Templates als auch im Testharness verwendet wird.
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.5]{img/strukturTestharness.jpg}\\
@@ -373,28 +373,30 @@ Abbildung \ref{fig:strukturTestharness} zeigt die Page Object Struktur die um Te
   \label{fig:strukturTestharness}
 \end{figure}
 
-1. Struktur der PO
-2. Control. Warum? --> Referenzen nicht sofort aufgelößt
-3. Wie werden Controls erzeugt. methode control() bekommt By übergeben --> ByFactory die am ende ein xpath css erzeugt und im PO angesiedelt ist.
-(Vielleicht ein Beispiel für ein fertiges PO zeigen)
-4. Control nicht umbedingt notwendig. Es ist auch möglich die 
+Die Wurzel des Vererbungshierarchie eines Page Objects bildet die Klasse PageObject. Die Klasse PageObject beinhaltet die Kernkomponente des Testharness, den Selenium WebDriver. Neben dem WebDriver enthält die Klasse PageObject noch eine weitere Kernkomponente, die Klasse ByFactory, die allerdings nur spezifisch für diese Implementierung eines Testharness ist und nicht zum Standard bei der Verwendung des Page Object Pattern gehört.
+Die Helferklasse ByFactory ermöglicht es in einfacher Art komplexe \grq org.openqa.selenium.By\grq -Ausdrücke zu erzeugen die verwendet werden um über den WebDriver Elemente auf der Webseite zu lokalisieren. Als Übergabe erhält die Factory dazu einen einfachen Locator-String der beispielsweise dem Value oder der Id des gesuchten Tags entspricht. Die Klasse ByFactory ist mit dem Page Object Generator abgestimmt. Für jeden Selector des Generators gibt es eine entsprechende Factory-Methode. Die vom Generator erzeugten Locatoren sind so gewählt, dass sie von der ByFactory interpretiert werden können. Damit ist sichergestellt, dass ein vom Generator erzeugter Locator von der ByFactory auch aufgelöst werden kann.
+Die Verwendung der Factory-Klasse bringt den Vorteil, dass komplexe XPath-Ausdrücke einfach gekapselt und lesbar in den Page Objects abgelegt werden können.
+Das Modell des Generators bietet allerdings auch die möglichkeit die fertig aufgelösten Ausdrücke ohne die zusätzliche Verwendung der ByFactory zu erhalten.
+Mit den Methoden  \grq Element.getXPath()\grq\ bzw.  \grq Element.getCssSelector()\grq\ können je nach verwendetem Selector der XPath bzw. der CssSelector als String erfragt werden. \\
+Die Klasse BasePo ist das nächste Kind in der Vererbungshierarchie. Als einzige Klasse bietet BasePo einen parameterlosen Konstruktor und bildet somit den Einstiegspunkt bei der Verwendung der Page Objekts in einem Testfall. Bei der konstruktorlosen Initialisierung des BasePo wird ein neuer WebDriver angelegt der auf einer über die Konfiguration hinterlegbaren Adresse startet.
+Alle weiteren Page Objects erhalten bei der Instanzieierung als Übergabe ein bereits instantiiertes Page Object aus dem der WebDriver übernommen werden kann.
+Damit kann der Zustand des WebDrivers innerhalb eines Testfalls von Page Object zu Page Object übergeben werden.
+Ausgehend von der Klasse BasePo erben die vom Page Object Generator erzeugten Klassen PageObject\_Generated und PageObject\_Dynamisch (siehe Kapitel \ref{sec:selenipogenerator}).
+Die verschiedenen Elemente der Webseite werden im Page Object als Implementierung des Interfaces Control angeboten.
+Die Klasse ControlBys implementiert das Interface Control und kapselt ein Selenium WebElement. Als Referenz gegen die Webseite wir bei der Instanziierung ein By-Ausdruck übergeben der über die ByFactory erzeugt werden kann.
+Für die Interaktion mit dem referenzierten Element bietet die Klasse eine Vielzahl an Methoden an. Eine davon ist die Methode \grq Control.resolve()\grq\
+welche das gekapselte WebElement zurückliefert.
+Die Kapselung eines WebElements in die Klasse ControlBys hat den Vorteil, dass WebElemente in einem PageObject als Klassenvariablen geführt werden können.
+Die Klasse ControlBys verhindert nämlich, dass ein WebElement sofort bei der Instanziierung eines PageObject gegen die geladene Webseite im Webdriver aufgelöst wird. Erst beim Aufruf einer Methode wird der übergebene By-Ausdruck verwendet um das eigentliche WebElement über die WebDriver-Methode findElement() zu erhalten.
+So wird verhindert, dass ein Page Object bereits bei der Instanziierung versucht Elemente auf der Webseite abzufragen die möglicherweise noch gar nicht geladen sind oder erst durch vorangegangene Interaktion erreichbar gemacht werden müssen. Die Klasse PageObject bietet zur einfachen erezugeung von Controls die statische Methode \grq control(bys : By ...)\grq\ an die auch in den Templates verwendet wird.
 
-
-Einerseits muss die in den Templates vorgegebene Struktur umgesetzt werden.
-ByFactory warum und wie.
-Kurz die Struktur.
-Die muss nicht immer eingehalten werden. Was sind die Mögliochkeiten.
 
 
 
 \section{Ausblick}
-
-TODO: 
-
-Technische Sicht. 
-Komponentendiagramm Allgemein erklären.
-
-Jede Komponente abarbeiten in sinnvoller tiefe (z.B. Klassendiagram / Zustandsautomat ect.)
+Piloten und Erfahrungen
+Probleme, 
+was gibts noch zu tun
 
 
 
