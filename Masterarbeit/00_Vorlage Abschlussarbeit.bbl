@@ -72,6 +72,13 @@
 \newblock New York, NY, USA : ACM, 2000 ({ICSE} '00). --
 \newblock ISBN 1--58113--253--0, 61--72
 
+\bibitem[Hed15]{hedley_jsoup_2015}
+\textsc{Hedley}, Jonathan:
+\newblock \emph{jsoup {Java} {HTML} {Parser}, with best of {DOM}, {CSS}, and
+  jquery}.
+\newblock \url{http://jsoup.org/}.
+\newblock \,Version:\,November 2015
+
 \bibitem[Hof13]{hoffmann_software-qualitat_2013}
 \textsc{Hoffmann}, Dirk~W.:
 \newblock \emph{Software-{Qualität}}.

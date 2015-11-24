@@ -44,14 +44,14 @@
 \contentsline {section}{\numberline {5.1}\IeC {\"U}bersicht \IeC {\"u}ber die Idee}{42}{section.5.1}
 \contentsline {section}{\numberline {5.2}Abgrenzung zu bestehenden Ans\IeC {\"a}tzen}{44}{section.5.2}
 \contentsline {section}{\numberline {5.3}SeleniPo - Page Object Generator}{47}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Deploymentsicht}{50}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}M\IeC {\"o}glicher Ablauf eines Standartanwendungsfall}{52}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.1}Einordnung des Page Object Generator in den Gesamtkontext}{50}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Beispielhafter Ablauf bei der Benutzung des Page Object Generator}{52}{subsection.5.3.2}
 \contentsline {subsection}{\numberline {5.3.3}Anwendungsf\IeC {\"a}lle des Page Object Generator}{53}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Aufbau des Systems}{54}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.4}Aufbau und technische Aspekte der Anwendung}{54}{subsection.5.3.4}
 \contentsline {subsubsection}{\numberline {5.3.4.1}SeleniPoEditor}{54}{subsubsection.5.3.4.1}
 \contentsline {subsubsection}{\numberline {5.3.4.2}SeleniPoConverter}{55}{subsubsection.5.3.4.2}
 \contentsline {subsubsection}{\numberline {5.3.4.3}SeleniPoHtmlParser}{57}{subsubsection.5.3.4.3}
-\contentsline {subsubsection}{\numberline {5.3.4.4}SeleniPoGenerator}{59}{subsubsection.5.3.4.4}
+\contentsline {subsubsection}{\numberline {5.3.4.4}SeleniPoGenerator}{60}{subsubsection.5.3.4.4}
 \contentsline {subsubsection}{\numberline {5.3.4.5}SeleniPoTestharness}{62}{subsubsection.5.3.4.5}
 \contentsline {section}{\numberline {5.4}Ausblick}{64}{section.5.4}
 \contentsline {chapter}{\numberline {A}Anhang}{65}{appendix.A}

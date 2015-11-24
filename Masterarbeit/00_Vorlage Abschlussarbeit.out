@@ -36,10 +36,10 @@
 \BOOKMARK [1][-]{section.5.1}{\334bersicht \374ber die Idee}{chapter.5}% 36
 \BOOKMARK [1][-]{section.5.2}{Abgrenzung zu bestehenden Ans\344tzen}{chapter.5}% 37
 \BOOKMARK [1][-]{section.5.3}{SeleniPo - Page Object Generator}{chapter.5}% 38
-\BOOKMARK [2][-]{subsection.5.3.1}{Deploymentsicht}{section.5.3}% 39
-\BOOKMARK [2][-]{subsection.5.3.2}{M\366glicher Ablauf eines Standartanwendungsfall}{section.5.3}% 40
+\BOOKMARK [2][-]{subsection.5.3.1}{Einordnung des Page Object Generator in den Gesamtkontext}{section.5.3}% 39
+\BOOKMARK [2][-]{subsection.5.3.2}{Beispielhafter Ablauf bei der Benutzung des Page Object Generator}{section.5.3}% 40
 \BOOKMARK [2][-]{subsection.5.3.3}{Anwendungsf\344lle des Page Object Generator}{section.5.3}% 41
-\BOOKMARK [2][-]{subsection.5.3.4}{Aufbau des Systems}{section.5.3}% 42
+\BOOKMARK [2][-]{subsection.5.3.4}{Aufbau und technische Aspekte der Anwendung}{section.5.3}% 42
 \BOOKMARK [1][-]{section.5.4}{Ausblick}{chapter.5}% 43
 \BOOKMARK [0][-]{appendix.A}{Anhang}{}% 44
 \BOOKMARK [1][-]{section.A.1}{Anwendungsfallbeschreibung}{appendix.A}% 45

@@ -24,16 +24,16 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces SeleniPo - Page Object Generator - Html Parser\relax }}{49}{figure.caption.21}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces SeleniPo - Page Object Generator - Men\IeC {\"u}\relax }}{50}{figure.caption.22}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Einordnung des Page Object Generator in die Deploymentsicht\relax }}{51}{figure.caption.23}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces M\IeC {\"o}glicher Ablauf eines Standartanwendungsfall\relax }}{53}{figure.caption.24}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Beispielhafter Ablauf bei der Benutzung des Page Object Generator\relax }}{53}{figure.caption.24}
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Anwendungsf\IeC {\"a}lle des Page Object Generator\relax }}{54}{figure.caption.25}
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Module des Page Object Generators\relax }}{55}{figure.caption.26}
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Vereinfachte Struktur des internen Modells des Page Object Generators\relax }}{56}{figure.caption.27}
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Services die von SeleniPoConverter bereitgestellt werden\relax }}{57}{figure.caption.28}
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Services die von SeleniPoHtmlParser bereitgestellt werden\relax }}{58}{figure.caption.29}
 \contentsline {figure}{\numberline {5.12}{\ignorespaces Services die von SeleniPoHtmlParser bereitgestellt werden\relax }}{60}{figure.caption.30}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Abh\IeC {\"a}ngigkeit zwischen dem generierten und dem dynamischen Teil eines Page Objects\relax }}{60}{figure.caption.31}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Abh\IeC {\"a}ngigkeit zwischen dem generierten und dem dynamischen Teil eines Page Objects\relax }}{61}{figure.caption.31}
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Erzeugen der package-Struktur eines Page Object\relax }}{61}{figure.caption.32}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Page Object Struktur des Testharness\relax }}{62}{figure.caption.33}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Page Object Struktur des Testharness\relax }}{63}{figure.caption.33}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces Zustandsmodell des SeleniPoEditor\relax }}{76}{figure.caption.63}
 \contentsline {figure}{\numberline {A.2}{\ignorespaces Zuordnung der in Abbildung \ref {fig:state_mashine} verwendeten Namen \relax }}{76}{figure.caption.64}
