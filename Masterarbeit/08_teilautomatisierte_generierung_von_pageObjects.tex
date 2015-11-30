@@ -353,7 +353,7 @@ Abbildung \ref{fig:packagepath} stellt grafisch dar wie die endgültige Paket-St
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.8]{img/packagePath.png}\\
-  \caption{Erzeugen der package-Struktur eines Page Object}
+  \caption{Erzeugen der Paket-Struktur eines Page Object}
   \label{fig:packagepath}
 \end{figure}
 In der Grundkonfiguration wird der generierte Teil eines Page Objects unterhalb des Pakets \grq src.main.generated\grq\ abgelegt. Der dynamische Teil befindet sich im Paket \grq src.main.java\grq.
@@ -391,18 +391,37 @@ Die verschiedenen Elemente der Webseite werden im Page Object als Implementierun
 Die Klasse ControlBys implementiert das Interface Control und kapselt ein Selenium WebElement. Als Referenz gegen die Webseite wir bei der Instanziierung ein By-Ausdruck übergeben der über die ByFactory erzeugt werden kann.
 Für die Interaktion mit dem referenzierten Element bietet die Klasse eine Vielzahl an Methoden an. Eine davon ist die Methode \grq Control.resolve()\grq\
 welche das gekapselte WebElement zurückliefert.
-Die Kapselung eines WebElements in die Klasse ControlBys hat den Vorteil, dass WebElemente in einem PageObject als Klassenvariablen geführt werden können.
+Die Kapselung eines WebElements in die Klasse ControlBys hat den Vorteil, dass WebElemente in einem PageObject als Variablen geführt werden können.
 Die Klasse ControlBys verhindert nämlich, dass ein WebElement sofort bei der Instanziierung eines PageObject gegen die geladene Webseite im Webdriver aufgelöst wird. Erst beim Aufruf einer Methode wird der übergebene By-Ausdruck verwendet um das eigentliche WebElement über die WebDriver-Methode findElement() zu erhalten.
 So wird verhindert, dass ein Page Object bereits bei der Instanziierung versucht Elemente auf der Webseite abzufragen die möglicherweise noch gar nicht geladen sind oder erst durch vorangegangene Interaktion erreichbar gemacht werden müssen. Die Klasse PageObject bietet zur einfachen erezugeung von Controls die statische Methode \grq control(bys : By ...)\grq\ an die auch in den Templates verwendet wird.
 
 
+\section{Praxistest}
+Um erste Erfahrungen mit dem Page Object Generator im Praxisbetrieb zu sammeln wurden eine frühe Version des Generators dazu verwendet Page Objects für ein bereits etabliertes Projekt mit geringer Testabdeckung zu erzeugen.
+Für das System zur Verwaltung von Schulversäumnissen in der Stadt München sollten Systemtests mit Hilfe des Selenium WebDrivers erzeugt werden. Mit Hilfe des Page Object Generators wurden die benötigten Page Objects erzeugt.
+Fokus des ersten Praxistests lag darauf Erfahrungen zu sammeln wie intuitiv die Bedienung des Page Object Generators für einen neuen Anwender nach einer kurzen Einweisung ist.
+Die Erkenntnisse die dabei gesammelt wurden lieferten wichtige Hinweise die vor allem zu großen Verbesserungen im Bereich der Benutzerfreundlichkeit führten.
+Wichtige Bereiche der Anwendung sind auf Grund des Feedbacks nun über Tastatur- und Mauseingaben zu Steuern und nicht mehr nur exklusiv über die in der GUI angebotenen Interaktionskomponenten. \\ Darüber hinaus hat sich gezeigt, dass in der Regel eine Vielzahl von Elementen und Transitionen für ein Page Object auf einmal übernommen werden. Die Übernahme von Elementen und Transitionen ist daher nicht mehr nur auf einzelne Ergebnisse des Parsers beschränkt. Per Multiselect können nun eine Vielzahl von Treffern auf einmal übernommen werden.\\ Die Verwendung in der Praxis hat auch gezeigt, dass das Laden, Speichern und Generieren von Page Objects Aktionen sind die häufiger ausgeführt werden als zu beginn erwartet. Auf Grund dieser Erkenntnis, wurde die Anwendung dahingegen verbessert, dass sie sich die letzten vom Benutzer für die jeweilige Aktion ausgewählten Pfade merkt. Lange Navigationswege bei der Auswahl der Pfade können so vermieden werden. Die genannten Veränderungen waren nur einige von eine Vielzahl von Verbesserungen die auf Grund des ersten Praxistest des Page Object Generators vorgenommen werden konnten.
+Mit der überarbeiteten Version wurde ein zweiter Praxistest angetreten. In diesem Testbetrieb sollten für die Anwendung zum erzeugen der Jahresstatistiken der Kindertagesstätten der Stadt München die Page Objects erzeugt werden.
+Die Verbesserungen aus dem ersten Praxistest wurden gut angenommen. Die Bereiche die bei der Bedienung zuvor noch Probleme gemacht hatten wurden nun intuitiv richtig verwendet.
+Die Erkenntnisse die aus dem zweiten Praxistest gewonnen werden könnten zeigten vor allem Bereiche im Page Object Generator auf die im Hinblick auf eine höhere Flexibilität verbessert werden können.
+Für die Generierung der eindeutigen Namen von Elementen und Transitionen werden in einem fest vorgegebenem Algorithmus die HTML-Attribute des jeweiligen HTML-Tags ausgewertet. Das gewählte vorgehen liefert nicht immer sinvolle Namen. In ungünstigen Konstellationen kann es vorkommen, dass der gleiche Wert mehrmals erzeugt wird, was zu unnötigem Mehraufwand bei der Überarbeitung der Namen führt.\\
+Die Aufteilung der Page Objects in einen Generierten und einen Dynamischen Teil wie sie in Kapitel \ref{sec:selenipogenerator} beschrieben ist, wurde nicht von allen Testanwendern intuitiv angenommen.
+Auch wenn diese Aufteilung von mit als sinnvoll erachtet wird, bietet es sich an den Benutzer die Entscheidungsfreiheit zu bieten die Generierung des dynamischen Teils zu verhindern.\\
+Auch bei der Erzeugung der Paket-Struktur wie sie in Abbildung \ref{fig:packagepath} gezeigt ist wurde eine zu geringe Flexibilität bemängelt.
+Sowohl für den Dynamischen als auch für den Generierten Teil eines Page Objects wird die selbe Variable zum erzeugen des Pfades unterhalb von \grq src.main.java\grq\ bzw. \grq src.main.generated\grq\ verwendet. Ein ablegen des Dynamischen und des Generierten Teil eines Page Objects in verschiedenen Packeten ist damit nicht möglich.\\
+Abgesehen von den Verbesserungsvorschlägen des ersten und zweiten Praxistests wurde der Page Object Generator in beiden Prüfungen von den Anwendern durchwegs als Positiv bewertet. Die Generierung der Page Objects wurde als Arbeitserleichterung empfunden welche eine Zeitersparnis im Vergleich zum manuellen Erzeugen mit sich Bringt. Die Zeitdifferenz zum manuellen erstellen der Page Objects wurde in den Praxistests allerdings nicht Wissenschaftlich gemessen und überprüft. Es handelt sich bei den Aussagen der Anwender daher um deren persönliche Empfindung.
 
+In beiden Tests stieß. Wurde als arbeitserleichterung empfunden. ob es einen Geschwindikeitsgewinn gibt wurde nicht wissenschaftlich gemessen
 
 \section{Ausblick}
-Piloten und Erfahrungen
-Probleme, 
-was gibts noch zu tun
-
+Ein Maximum an Zeitersparnis lässt sich mit dem Page Object Generator erreichen, wenn der Konfigurationsaufwand von Testprojekt und Generator möglichst gering gehalten wird.
+Ein sinnvoller Ansatzpunkt um das Projekt SeleniPo weiter voranzutreiben wäre es daher die Entwicklung des Testharness zu Verbessern. Bei der Implementierung des Testharness wie er in Kapitel \ref{sec:selenipotestharness} beschrieben ist, handelt es sich um einen Prototypen der zwar als Grundlage für den produktiven Einsatz verwendet werden kann jedoch noch viel Verbesserungspotential bietet. Mit einem auf den Page Object Generator perfekt abgestimmten Testharness lässt sich der Konfigurationsaufwand des Generators auf nahezu null reduzieren. Das senkt die Hämschwelle für die Benutzung des Tools und steigert die Akzeptanz beim Benutzer.
+Darüber hinaus lässt sich mit einem gut vorbereiteten Testharness die Verwendung von best practice Ansätzäen weiter unterstützt.
+Ein weitere Richtung in die der Page Object Generator verbessert werden könnte, wäre es verschiedenen Templates für die Generierung der Page Objects anzubieten.
+Die derzeit im Page Object Generator angebotenen Templates und damit die generierten Page Object Klassen haben sich vom Selenium vorgeschlagenen Standard für Page Objects entfernt. Selenium schlägt die Verwendung von Page Objects mit annotierten WebElements als variablen vor. Die mit Locatoren annotierten WebElements werden bei der Instanziierung über eine PageFactory-Klasse aufgelöst und befüllt.
+Im Gegensatz dazu erzeugen die im Page Object Generator derzeit hinterlegten Templates PageObject-Klassen die an Stelle von WebElementes die Klasse Control verwenden und Abhängig von der Existent der Klasse ByFactory sind (siehe Kapitel \ref{sec:selenipotestharness}). Um die von Selenium angebotene PageFactory zu unterstützen müssen neue Templates geschaffen welche die von der PageFactory-Klasse benötigten Konventionen erfüllen.
+Diese Templates hätten den Vorteil, dass der Page Object Generator auch außerhalb der Landeshauptstadt München, für die der Generator in erster Linie entwickelt wurde, leichter Verbreitung finden könnte. Die von den Templates aktuell streng vorgegebene Struktur für das Testprojekt ist bei erster Betrachtung nicht sofort verständlich da sie sich vom Standard entfernt hat und erschwert damit Benutzern welche an die Arbeit mit der PageFactory-Klasse gewohnt sind den Einstieg.
 
 
 
