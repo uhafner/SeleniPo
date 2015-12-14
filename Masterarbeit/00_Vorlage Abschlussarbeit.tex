@@ -4,6 +4,8 @@
  \usepackage[onehalfspacing]{setspace}
 % ============= Packages =============
 
+
+
 % Dokumentinformationen
 \usepackage[
 	pdftitle={Testautomatisierung},
@@ -21,6 +23,8 @@
 
 
 % Standard Packages
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{Literatur.bib}
 \usepackage[autostyle]{csquotes}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -157,7 +161,6 @@
 
 %Literaturverzeichnis
 \newpage
-\bibliographystyle{alphadin}
-\bibliography{Literatur}
+\printbibliography
 
 \end{document}

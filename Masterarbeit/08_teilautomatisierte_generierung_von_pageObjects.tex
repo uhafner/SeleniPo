@@ -413,23 +413,3 @@ Sowohl für den Dynamischen als auch für den Generierten Teil eines Page Object
 Abgesehen von den Verbesserungsvorschlägen des ersten und zweiten Praxistests wurde der Page Object Generator in beiden Prüfungen von den Anwendern durchwegs als Positiv bewertet. Die Generierung der Page Objects wurde als Arbeitserleichterung empfunden welche eine Zeitersparnis im Vergleich zum manuellen Erzeugen mit sich Bringt. Die Zeitdifferenz zum manuellen erstellen der Page Objects wurde in den Praxistests allerdings nicht Wissenschaftlich gemessen und überprüft. Es handelt sich bei den Aussagen der Anwender daher um deren persönliche Empfindung.
 
 
-\section{Ausblick}
-Ein Maximum an Zeitersparnis lässt sich mit dem Page Object Generator erreichen, wenn der Konfigurationsaufwand von Testprojekt und Generator möglichst gering gehalten wird.
-Ein sinnvoller Ansatzpunkt um das Projekt SeleniPo weiter voranzutreiben wäre es daher die Entwicklung des Testharness zu Verbessern. Bei der Implementierung des Testharness wie er in Kapitel \ref{sec:selenipotestharness} beschrieben ist, handelt es sich um einen Prototypen der zwar als Grundlage für den produktiven Einsatz verwendet werden kann jedoch noch viel Verbesserungspotential bietet. Mit einem auf den Page Object Generator perfekt abgestimmten Testharness lässt sich der Konfigurationsaufwand des Generators auf nahezu null reduzieren. Das senkt die Hämschwelle für die Benutzung des Tools und steigert die Akzeptanz beim Benutzer.
-Darüber hinaus lässt sich mit einem gut vorbereiteten Testharness die Verwendung von best practice Ansätzäen weiter unterstützt.
-Ein weitere Richtung in die der Page Object Generator verbessert werden könnte, wäre es verschiedenen Templates für die Generierung der Page Objects anzubieten.
-Die derzeit im Page Object Generator angebotenen Templates und damit die generierten Page Object Klassen haben sich vom Selenium vorgeschlagenen Standard für Page Objects entfernt. Selenium schlägt die Verwendung von Page Objects mit annotierten WebElements als variablen vor. Die mit Locatoren annotierten WebElements werden bei der Instanziierung über eine PageFactory-Klasse aufgelöst und befüllt.
-Im Gegensatz dazu erzeugen die im Page Object Generator derzeit hinterlegten Templates PageObject-Klassen die an Stelle von WebElementes die Klasse Control verwenden und Abhängig von der Existent der Klasse ByFactory sind (siehe Kapitel \ref{sec:selenipotestharness}). Um die von Selenium angebotene PageFactory zu unterstützen müssen neue Templates geschaffen welche die von der PageFactory-Klasse benötigten Konventionen erfüllen.
-Diese Templates hätten den Vorteil, dass der Page Object Generator auch außerhalb der Landeshauptstadt München, für die der Generator in erster Linie entwickelt wurde, leichter Verbreitung finden könnte. Die von den Templates aktuell streng vorgegebene Struktur für das Testprojekt ist bei erster Betrachtung nicht sofort verständlich da sie sich vom Standard entfernt hat und erschwert damit Benutzern welche an die Arbeit mit der PageFactory-Klasse gewohnt sind den Einstieg.
-
-
-
-
-
-
-
-
-
-
-
-

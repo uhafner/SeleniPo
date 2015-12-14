@@ -1,13 +1,17 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: 00_Vorlage Abschlussarbeit.aux
-A level-1 auxiliary file: 01_titel.aux
-A level-1 auxiliary file: 02_danksagungen.aux
-A level-1 auxiliary file: 03_zusammenfassung.aux
-A level-1 auxiliary file: 04_einleitung.aux
-A level-1 auxiliary file: 05_grundlagen.aux
-A level-1 auxiliary file: 06_testautomatisierung.aux
-A level-1 auxiliary file: 07_selenium.aux
-A level-1 auxiliary file: 08_teilautomatisierte_generierung_von_pageObjects.aux
-A level-1 auxiliary file: 09_fazit.aux
-A level-1 auxiliary file: 10_anhang.aux
-The style file: alphadin.bst
-Database file #1: Literatur.bib
+[0] Config.pm:327> INFO - This is Biber 2.2
+[0] Config.pm:330> INFO - Logfile is '00_Vorlage Abschlussarbeit.blg'
+[33] biber-MSWIN:283> INFO - === 
+[34] Biber.pm:334> INFO - Reading '00_Vorlage Abschlussarbeit.bcf'
+[131] Utils.pm:147> WARN - Warning: Found biblatex control file version 2.7, expected version 2.8
+[132] Biber.pm:677> INFO - Found 36 citekeys in bib section 0
+[152] Biber.pm:3054> INFO - Processing section 0
+[170] Biber.pm:3193> INFO - Looking for bibtex format file 'Literatur.bib' for section 0
+[178] bibtex.pm:1072> INFO - Decoding LaTeX character macros into UTF-8
+[185] bibtex.pm:935> INFO - Found BibTeX data source 'Literatur.bib'
+[532] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[532] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[532] Biber.pm:2931> INFO - Sorting list 'anyt' of type 'entry' with scheme 'anyt' and locale 'de-DE'
+[532] Biber.pm:2935> INFO - No sort tailoring available for locale 'de-DE'
+[583] bbl.pm:505> INFO - Writing '00_Vorlage Abschlussarbeit.bbl' with encoding 'UTF-8'
+[589] bbl.pm:596> INFO - Output to 00_Vorlage Abschlussarbeit.bbl
+[589] Biber.pm:107> INFO - WARNINGS: 1
