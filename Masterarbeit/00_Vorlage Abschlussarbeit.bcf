@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bcf:controlfile version="2.7" xmlns:bcf="https://sourceforge.net/projects/biblatex">
+<bcf:controlfile version="2.8" xmlns:bcf="https://sourceforge.net/projects/biblatex">
   <!-- BIBER OPTIONS -->
   <bcf:options component="biber" type="global">
     <bcf:option type="singlevalued">
@@ -117,7 +117,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortlocale</bcf:key>
-      <bcf:value>de_DE</bcf:value>
+      <bcf:value>ngerman</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortscheme</bcf:key>
@@ -321,7 +321,6 @@
     <bcf:option>related</bcf:option>
     <bcf:option>dashed</bcf:option>
     <bcf:option>mergedate</bcf:option>
-    <bcf:option>ibidpage</bcf:option>
   </bcf:optionscope>
   <bcf:optionscope type="PER_TYPE">
     <bcf:option>alphaothers</bcf:option>
@@ -420,6 +419,9 @@
   <!-- SOURCEMAP -->
   <bcf:sourcemap>
     <bcf:maps datatype="bibtex" level="driver">
+      <bcf:map>
+        <bcf:map_step map_field_set="day" map_null="1"/>
+      </bcf:map>
       <bcf:map>
         <bcf:map_step map_type_source="conference" map_type_target="inproceedings"/>
         <bcf:map_step map_type_source="electronic" map_type_target="online"/>
@@ -2237,21 +2239,129 @@
     <bcf:datasource type="file" datatype="bibtex">Literatur.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">iso/iec_iso/iec_2001</bcf:citekey>
-    <bcf:citekey order="2">hoffmann_software-qualitat_2013</bcf:citekey>
-    <bcf:citekey order="3">iso/iec_iso/iec_2001</bcf:citekey>
-    <bcf:citekey order="4">hoffmann_software-qualitat_2013</bcf:citekey>
-    <bcf:citekey order="5">hoffmann_software-qualitat_2013</bcf:citekey>
+    <bcf:citekey order="1">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="2">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="3">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="4">selenium_selenium_2015</bcf:citekey>
+    <bcf:citekey order="5">iso/iec_iso/iec_2001</bcf:citekey>
     <bcf:citekey order="6">hoffmann_software-qualitat_2013</bcf:citekey>
-    <bcf:citekey order="7">ieee_ieee_1991</bcf:citekey>
-    <bcf:citekey order="8">thaller_software-test_2002</bcf:citekey>
+    <bcf:citekey order="7">iso/iec_iso/iec_2001</bcf:citekey>
+    <bcf:citekey order="8">iso/iec_iso/iec_2001</bcf:citekey>
     <bcf:citekey order="9">hoffmann_software-qualitat_2013</bcf:citekey>
-    <bcf:citekey order="10">thaller_software-test_2002</bcf:citekey>
-    <bcf:citekey order="11">ramler_economic_2006</bcf:citekey>
-    <bcf:citekey order="12">seidl_basiswissen_2012</bcf:citekey>
-    <bcf:citekey order="13">hoffmann_software-qualitat_2013</bcf:citekey>
-    <bcf:citekey order="14">spillner_basiswissen_2007</bcf:citekey>
-    <bcf:citekey order="15">seidl_basiswissen_2012</bcf:citekey>
-    <bcf:citekey order="16">ieee_ieee_2008</bcf:citekey>
+    <bcf:citekey order="10">hoffmann_software-qualitat_2013</bcf:citekey>
+    <bcf:citekey order="11">hoffmann_software-qualitat_2013</bcf:citekey>
+    <bcf:citekey order="12">ieee_ieee_1991</bcf:citekey>
+    <bcf:citekey order="13">thaller_software-test_2002</bcf:citekey>
+    <bcf:citekey order="14">hoffmann_software-qualitat_2013</bcf:citekey>
+    <bcf:citekey order="15">hoffmann_software-qualitat_2013</bcf:citekey>
+    <bcf:citekey order="16">thaller_software-test_2002</bcf:citekey>
+    <bcf:citekey order="17">harrold_testing:_2000</bcf:citekey>
+    <bcf:citekey order="18">ramler_economic_2006</bcf:citekey>
+    <bcf:citekey order="19">harrold_testing:_2000</bcf:citekey>
+    <bcf:citekey order="20">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="21">hoffmann_software-qualitat_2013</bcf:citekey>
+    <bcf:citekey order="22">spillner_basiswissen_2007</bcf:citekey>
+    <bcf:citekey order="23">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="24">spillner_basiswissen_2007</bcf:citekey>
+    <bcf:citekey order="25">spillner_basiswissen_2007</bcf:citekey>
+    <bcf:citekey order="26">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="27">spillner_basiswissen_2007</bcf:citekey>
+    <bcf:citekey order="28">ieee_ieee_2008</bcf:citekey>
+    <bcf:citekey order="29">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="30">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="31">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="32">royce_managing_1987</bcf:citekey>
+    <bcf:citekey order="33">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="34">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="35">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="36">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="37">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="38">schwaber_agile_2002</bcf:citekey>
+    <bcf:citekey order="39">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="40">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="41">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="42">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="43">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="44">dustin_software_2001</bcf:citekey>
+    <bcf:citekey order="45">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="46">thaller_software-test_2002</bcf:citekey>
+    <bcf:citekey order="47">dustin_software_2001</bcf:citekey>
+    <bcf:citekey order="48">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="49">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="50">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="51">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="52">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="53">ramler_economic_2006</bcf:citekey>
+    <bcf:citekey order="54">ramler_economic_2006</bcf:citekey>
+    <bcf:citekey order="55">dustin_automated_1999</bcf:citekey>
+    <bcf:citekey order="56">ramler_economic_2006</bcf:citekey>
+    <bcf:citekey order="57">ramler_economic_2006</bcf:citekey>
+    <bcf:citekey order="58">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="59">thaller_software-test_2002</bcf:citekey>
+    <bcf:citekey order="60">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="61">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="62">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="63">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="64">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="65">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="66">amannejad_search-based_2014</bcf:citekey>
+    <bcf:citekey order="67">thaller_software-test_2002</bcf:citekey>
+    <bcf:citekey order="68">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="69">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="70">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="71">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="72">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="73">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="74">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="75">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="76">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="77">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="78">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="79">rossner_basiswissen_2010</bcf:citekey>
+    <bcf:citekey order="80">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="81">fewster_software_1999</bcf:citekey>
+    <bcf:citekey order="82">amannejad_search-based_2014</bcf:citekey>
+    <bcf:citekey order="83">bouquet_test_2008</bcf:citekey>
+    <bcf:citekey order="84">meszaros_agile_2003</bcf:citekey>
+    <bcf:citekey order="85">meszaros_agile_2003</bcf:citekey>
+    <bcf:citekey order="86">meszaros_agile_2003</bcf:citekey>
+    <bcf:citekey order="87">meszaros_agile_2003</bcf:citekey>
+    <bcf:citekey order="88">meszaros_agile_2003</bcf:citekey>
+    <bcf:citekey order="89">hp_testautomatisierung_2015</bcf:citekey>
+    <bcf:citekey order="90">selenium_selenium_2015</bcf:citekey>
+    <bcf:citekey order="91">httpunit_httpunit_2015</bcf:citekey>
+    <bcf:citekey order="92">selenium_selenium_2015</bcf:citekey>
+    <bcf:citekey order="93">silk_test_borland_2015</bcf:citekey>
+    <bcf:citekey order="94">amannejad_search-based_2014</bcf:citekey>
+    <bcf:citekey order="95">memon_automated_2000</bcf:citekey>
+    <bcf:citekey order="96">richardson_specification-based_1992</bcf:citekey>
+    <bcf:citekey order="97">shahamiri_comparative_2009</bcf:citekey>
+    <bcf:citekey order="98">amannejad_search-based_2014</bcf:citekey>
+    <bcf:citekey order="99">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="100">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="101">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="102">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="103">selenium_selenium_2015</bcf:citekey>
+    <bcf:citekey order="104">seidl_basiswissen_2012</bcf:citekey>
+    <bcf:citekey order="105">meszaros_agile_2003</bcf:citekey>
+    <bcf:citekey order="106">selenium_selenium_2015-1</bcf:citekey>
+    <bcf:citekey order="107">selenium_selenium_2015-1</bcf:citekey>
+    <bcf:citekey order="108">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="109">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="110">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="111">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="112">selenium_selenium_2015-2</bcf:citekey>
+    <bcf:citekey order="113">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="114">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="115">leotta_repairing_2013</bcf:citekey>
+    <bcf:citekey order="116">stocco_why_2015</bcf:citekey>
+    <bcf:citekey order="117">stocco_why_2015</bcf:citekey>
+    <bcf:citekey order="118">virtuetech_gmbh_ohmap_2015</bcf:citekey>
+    <bcf:citekey order="119">dmytro_zharii_dzharii/swd-recorder_2015</bcf:citekey>
+    <bcf:citekey order="120">daniel_wiredrive/wtframework_2015</bcf:citekey>
+    <bcf:citekey order="121">oracle_client_2015</bcf:citekey>
+    <bcf:citekey order="122">joe_walnes_xstream_2015</bcf:citekey>
+    <bcf:citekey order="123">hedley_jsoup_2015</bcf:citekey>
+    <bcf:citekey order="124">apache_software_foundation_apache_2015</bcf:citekey>
   </bcf:section>
 </bcf:controlfile>
