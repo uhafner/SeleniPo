@@ -426,7 +426,7 @@
       \endverb
       \keyw{610,applications,computer,computer field,definitions,dictionary,glossaries,glossary,terminology}
     \endentry
-    \entry{iso/iec_iso/iec_2001}{book}{}
+    \entry{iso/iec_iso/iec_2001}{misc}{}
       \name{author}{1}{}{%
         {{hash=52cd1b9a72b970ae67a342ec87c35a21}{{ISO}/{IEC}}{I\bibinitperiod}{}{}{}{}{}{}}%
       }
@@ -440,11 +440,33 @@
       \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{2001}
       \field{title}{{ISO}/{IEC} 9126. Software engineering -- Product quality}
       \field{year}{2001}
       \verb{file}
       \verb ISO/IEC 9126. Software engineering -- Product quality (bibtex):C\:\\Users\\Matthias\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\8mdn3ouj.default\\zotero\\storage\\S6SU3ZA5\\bibtexbrowser.html:text/html
+      \endverb
+    \endentry
+    \entry{iso/iec_iso/iec_2011}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0828a8408614177181026ea908d5594a}{{ISO/IEC}}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{0828a8408614177181026ea908d5594a}
+      \strng{fullhash}{0828a8408614177181026ea908d5594a}
+      \field{labelalpha}{ISO11}
+      \field{sortinit}{I}
+      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{ISO}/{IEC} 25010:2011 - Systems and software engineering -- Systems and software Quality Requirements and Evaluation ({SQuaRE}) -- System and software quality models}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2015}
+      \field{year}{2011}
+      \verb{file}
+      \verb ISO/IEC 25010\:2011 - Systems and software engineering -- Systems and software Quality Requirements and Evaluation (SQuaRE) -- System and software quality models:C\:\\Users\\Matthias\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\8mdn3ouj.default\\zotero\\storage\\7N4CFGPI\\catalogue_detail.html:text/html
+      \endverb
+      \verb{url}
+      \verb http://www.iso.org/iso/catalogue_detail.htm?csnumber=35733
       \endverb
     \endentry
     \entry{joe_walnes_xstream_2015}{online}{}
