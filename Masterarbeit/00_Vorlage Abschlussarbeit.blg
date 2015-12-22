@@ -1,15 +1,15 @@
 [0] Config.pm:327> INFO - This is Biber 2.2
-[1] Config.pm:330> INFO - Logfile is '00_Vorlage Abschlussarbeit.blg'
-[79] biber-MSWIN:283> INFO - === 
-[79] Biber.pm:334> INFO - Reading '00_Vorlage Abschlussarbeit.bcf'
-[322] Biber.pm:677> INFO - Found 37 citekeys in bib section 0
-[367] Biber.pm:3054> INFO - Processing section 0
-[410] Biber.pm:3193> INFO - Looking for bibtex format file 'Literatur.bib' for section 0
-[427] bibtex.pm:1072> INFO - Decoding LaTeX character macros into UTF-8
-[444] bibtex.pm:935> INFO - Found BibTeX data source 'Literatur.bib'
-[1418] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1418] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1419] Biber.pm:2931> INFO - Sorting list 'anyt' of type 'entry' with scheme 'anyt' and locale 'de-DE'
-[1419] Biber.pm:2935> INFO - No sort tailoring available for locale 'de-DE'
-[1569] bbl.pm:505> INFO - Writing '00_Vorlage Abschlussarbeit.bbl' with encoding 'UTF-8'
-[1582] bbl.pm:596> INFO - Output to 00_Vorlage Abschlussarbeit.bbl
+[0] Config.pm:330> INFO - Logfile is '00_Vorlage Abschlussarbeit.blg'
+[74] biber-MSWIN:283> INFO - === 
+[74] Biber.pm:334> INFO - Reading '00_Vorlage Abschlussarbeit.bcf'
+[302] Biber.pm:677> INFO - Found 37 citekeys in bib section 0
+[353] Biber.pm:3054> INFO - Processing section 0
+[400] Biber.pm:3193> INFO - Looking for bibtex format file 'Literatur.bib' for section 0
+[418] bibtex.pm:1072> INFO - Decoding LaTeX character macros into UTF-8
+[435] bibtex.pm:935> INFO - Found BibTeX data source 'Literatur.bib'
+[1385] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1386] UCollate.pm:66> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1386] Biber.pm:2931> INFO - Sorting list 'anyt' of type 'entry' with scheme 'anyt' and locale 'de-DE'
+[1386] Biber.pm:2935> INFO - No sort tailoring available for locale 'de-DE'
+[1525] bbl.pm:505> INFO - Writing '00_Vorlage Abschlussarbeit.bbl' with encoding 'UTF-8'
+[1538] bbl.pm:596> INFO - Output to 00_Vorlage Abschlussarbeit.bbl
