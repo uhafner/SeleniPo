@@ -4,7 +4,7 @@ Software hat in der heutigen Zeit für Unternehmen und jeden einzelnen gleicherm
 Die Komplexität der Softwareprodukte steigt ständig weiter an. Neben der steigenden Komplexität sind auch die Anforderungen an die Qualität der Software immer weiter gewachsen.
 Das hat zur Folge, dass bei der Entwicklung von Software, ein immer größeres Augenmerk auf den Bereich des Testens gelegt wird.
 Um den steigenden Anforderungen an Software und Qualität bezüglich des Testens gerecht zu werden, wird häufig die Testautomatisierung als möglicher Lösungsweg vorgeschlagen.
-Durch den Einsatz von Testautomatisierung verspricht man sich Vorteile beim testen von Softwarelösungen. Diese Vorteile sollen vor allem über eine Effektivitäts- und Effizienzsteigerung erreicht werden.\\
+Durch den Einsatz von Testautomatisierung verspricht man sich Vorteile beim testen von Softwarelösungen. Diese Vorteile sollen vor allem über eine Qualitäts- und Effizienzsteigerung erreicht werden.\\
 Eine Vielzahl an Softwarelösungen werden heutzutage in Form von Webanwendungen umgesetzt.
 Um diese automatisiert zu Testen, wird oft auf Testfälle zurückgegriffen, die automatisch Eingaben auf der Oberfläche der Anwendung tätigen, um anschließend das Verhalten der Anwendung zu überprüfen.
 Ein gängiges Tool, mit welchem diese Form der Testfälle umgesetzt werden kann, ist Selenium \cite{selenium_selenium_2015}.
@@ -12,19 +12,19 @@ Ein gängiges Tool, mit welchem diese Form der Testfälle umgesetzt werden kann,
 
 \section{Motivation}
 \label{sec:motivation}
-Testautomatisierung hat oft das Problem, dass Testfälle zwar wiederholt und einfach ausgeführt werden können, der initiale Mehraufwand bei der Erstellung der Testfälle ist jedoch häufig so hoch, dass er die erreichten Vorteile schnell wieder zu Nichte machen kann. Ein möglicher Weg um Verbesserungen in der Testautomatisierung zu erzielen ist es daher, diesen Mehraufwand möglichst gering zu halten.
-Testfälle die mit Hilfe des Selenium WebDiver entwickelt werden, leiden häufig unter eben dieser Schwierigkeit. Die initiale Erstellung der Tests ist in der Regel sehr aufwändig.
-Um die Testfälle möglichst wartbar zu halten wird bei der Verwendung des WebDrivers ein bestimmtes Design Pattern verwendet, das Page Object Pattern.
-Teil dieses Pattern ist es, eine Vielzahl von sogenannten Page Objects zu erstellen, welche die einzelnen Seiten einer Webanwendung repräsentieren.\\
-In Hinblick auf den initialen Mehraufwand bei automatisierten Testfällen bietet die Erstellung dieser Page Object-Klassen großes Einsparungspotential, da sie auf Grund ihrer generischen Struktur die Möglichkeit bieten, automatisch erzeugt zu werden.
+Testautomatisierung hat oft das Problem, dass Testfälle zwar wiederholt und einfach ausgeführt werden können, der initiale Mehraufwand für die Erstellung der Testfälle aber häufig so zeitaufwändig ist, dass der erreichte Vorteil nur gering zum Tragen kommt. Ein möglicher Weg, um Verbesserungen in der Testautomatisierung zu erzielen, ist es daher, diesen Mehraufwand zu minimieren.\\
+Testfälle die mit Hilfe des Selenium WebDiver entwickelt werden, leiden oftmals unter eben dieser Schwierigkeit. Die initiale Erstellung der Tests ist in der Regel sehr aufwändig.
+Um die Testfälle möglichst wartbar zu halten, wird bei der Verwendung des WebDrivers ein bestimmtes Design Pattern, das Page Object Pattern, verwendet.
+Bestandteil dieses Pattern ist es, eine Vielzahl von sogenannten Page Objects zu erstellen, welche die einzelnen Seiten einer Webanwendung repräsentieren.\\
+In Hinblick auf den initialen Mehraufwand weist die Erstellung dieser Page Object-Klassen ein großes Einsparungspotential auf. Aufgrund ihrer generischen Struktur bieten die Page Objects nämlich das Potential automatisch erzeugt zu werden.
 In Zusammenarbeit mit dem IT-Dienstleister der Landeshauptstadt München (it@M) soll daher eine Software entwickelt werden, mit deren Hilfe die Erstellung der Page Object-Klassen vereinfacht werden kann.
 
 \section{Roadmap}
 \label{roadmap}
-Der Hauptteil dieser Arbeit gliedert sich in vier Kapitel. In Kapitel \ref{sec:grundlagen} werden zunächst die Grundlagen in den Bereichen der Software-Qualität, dem Testen im Allgemeinen und der Testautomatisierung im speziellen gelegt.
-Kapitel \ref{sec:testautomatisierung} geht dann näher auf die Testautomatisierung ein und soll einen Überblick über die verschiedenen Bereiche und Möglichkeiten geben, welche die Testautomatisierung bietet.
+Der Hauptteil dieser Arbeit gliedert sich in vier Kapitel. In Kapitel \ref{sec:grundlagen} werden zunächst die Grundlagen in den Bereichen der Software-Qualität, dem Testen im allgemeinen und der Testautomatisierung im speziellen gelegt.
+Kapitel \ref{sec:testautomatisierung} geht näher auf die Testautomatisierung ein und soll einen Überblick über die verschiedenen Bereiche und Möglichkeiten geben, welche die Testautomatisierung bietet.
 In Kapitel \ref{sec:selenium} wird das Testautomatisierungstool Selenium vorgestellt und in diesem Zusammenhang das Page Object Pattern erläutert.
-Abschließend soll in Kapitel \ref{sec:teilautomatisierte_generierung_von_pageObjects} eine Softwarelösung vorgestellt und umgesetzt werden, mit deren Hilfe die Verwendung des Page Object Pattern unterstützt werden kann.
+In Kapitel \ref{sec:teilautomatisierte_generierung_von_pageObjects} wird eine Softwarelösung vorgestellt mit deren Hilfe die Verwendung des Page Object Pattern unterstützt wird.
 
   
 
