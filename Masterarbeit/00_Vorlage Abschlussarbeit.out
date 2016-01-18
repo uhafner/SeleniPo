@@ -31,7 +31,7 @@
 \BOOKMARK [1][-]{section.4.1}{Selenium}{chapter.4}% 31
 \BOOKMARK [1][-]{section.4.2}{Testdurchf\374hrung mit Selenium}{chapter.4}% 32
 \BOOKMARK [1][-]{section.4.3}{Testcodeerstellung mit Selenium}{chapter.4}% 33
-\BOOKMARK [2][-]{subsection.4.3.1}{Recorde-and-playback}{section.4.3}% 34
+\BOOKMARK [2][-]{subsection.4.3.1}{Record-and-playback}{section.4.3}% 34
 \BOOKMARK [2][-]{subsection.4.3.2}{Manuell}{section.4.3}% 35
 \BOOKMARK [2][-]{subsection.4.3.3}{Page Object Pattern}{section.4.3}% 36
 \BOOKMARK [0][-]{chapter.5}{Teilautomatisierte Generierung von Page Objects}{}% 37

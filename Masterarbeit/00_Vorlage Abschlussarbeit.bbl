@@ -760,6 +760,33 @@
       \endverb
       \keyw{Automated Testing,benefits and costs of automation,manual testing,testing economics}
     \endentry
+    \entry{seidl_basiswissen_2012}{book}{}
+      \name{author}{3}{}{%
+        {{hash=47a41a1de81108d6f92d46184926905f}{Seidl}{S\bibinitperiod}{Richard}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=291a885bad926802aba37064e2d65f6f}{Baumgartner}{B\bibinitperiod}{Manfred}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=73e6bc24765842c085c8e27b1f95ff8d}{Bucsics}{B\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {dpunkt-Verl.}%
+      }
+      \strng{namehash}{04a99c1212c19922ae9e332ed522340f}
+      \strng{fullhash}{04a99c1212c19922ae9e332ed522340f}
+      \field{labelalpha}{SBB12}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1. Aufl.}
+      \field{isbn}{9783898647243}
+      \field{title}{Basiswissen Testautomatisierung}
+      \field{year}{2012}
+      \verb{file}
+      \verb DNB, Katalog der Deutschen Nationalbibliothek:C\:\\Users\\admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\fzgyck2c.default\\zotero\\storage\\BMBBCPSF\\opac.htm\;jsessionid=F4D0B30606E625D626658326B84285D7.html:text/html
+      \endverb
+    \endentry
     \entry{schwaber_agile_2002}{book}{}
       \name{author}{1}{}{%
         {{hash=ee6f08fcba839e09471a0bc69152b6a5}{Schwaber}{S\bibinitperiod}{Ken}{K\bibinitperiod}{}{}{}{}}%
@@ -785,31 +812,6 @@
       \field{year}{2002}
       \verb{file}
       \verb OPAC der Hochschule München:C\:\\Users\\admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\fzgyck2c.default\\zotero\\storage\\WVSFDI9U\\search.html:text/html
-      \endverb
-    \endentry
-    \entry{seidl_basiswissen_2012}{book}{}
-      \name{author}{1}{}{%
-        {{hash=47a41a1de81108d6f92d46184926905f}{Seidl}{S\bibinitperiod}{Richard}{R\bibinitperiod}{}{}{}{}}%
-      }
-      \list{location}{1}{%
-        {Heidelberg}%
-      }
-      \list{publisher}{1}{%
-        {dpunkt-Verl.}%
-      }
-      \strng{namehash}{47a41a1de81108d6f92d46184926905f}
-      \strng{fullhash}{47a41a1de81108d6f92d46184926905f}
-      \field{labelalpha}{Sei12}
-      \field{sortinit}{S}
-      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{1. Aufl.}
-      \field{isbn}{9783898647243}
-      \field{title}{Basiswissen Testautomatisierung / Richard Seidl ; Manfred Baumgartner ; Thomas Bucsics}
-      \field{year}{2012}
-      \verb{file}
-      \verb DNB, Katalog der Deutschen Nationalbibliothek:C\:\\Users\\admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\fzgyck2c.default\\zotero\\storage\\BMBBCPSF\\opac.htm\;jsessionid=F4D0B30606E625D626658326B84285D7.html:text/html
       \endverb
     \endentry
     \entry{selenium_selenium_2015}{online}{}

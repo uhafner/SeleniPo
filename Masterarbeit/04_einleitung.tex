@@ -2,28 +2,28 @@
 \label{sec:einleitung}
 Software hat in der heutigen Zeit für Unternehmen und Privatpersonen an großer Bedeutung gewonnen.
 Die Komplexität der Softwareprodukte steigt stetig an, gleichzeitig auch die Anforderungen an die Qualität.
-Das hat zur Folge, dass bei der Entwicklung von Software, ein immer größeres Augenmerk auf den Bereich des Testens gelegt wird.
-Hierbei gewinnt der Bereich der Testautomatisierung immer mehr an Bedeutung.
+Das hat zur Folge, dass bei der Entwicklung von Software ein immer größeres Augenmerk auf den Bereich des Testens gelegt wird.
+Vor allem die Testautomatisierung rückt hierbei immer mehr in den Vordergrund.
 Man verspricht sich dadurch eine stetige Qualitäts- und Effizienzsteigerung.\\
 Eine Vielzahl der gängigen Software wird heutzutage in Form von Webanwendungen genutzt.
 Um diese automatisiert zu Testen, wird oft auf Testfälle zurückgegriffen, die automatisch Eingaben auf der Oberfläche der Anwendung tätigen, um anschließend das Verhalten der Anwendung zu überprüfen.
-Ein gängiges Tool, mit welchem diese Form der Testfälle umgesetzt werden kann, ist Selenium \cite{selenium_selenium_2015}. Selenium ist ein Tool, welches auch beim externen IT-Dienstleister der Landeshauptstadt München für automatisierte Softwaretests eingesetzt wird. Im Rahmen dieser Arbeit soll eine Möglichkeit aufgezeigt werden wie die Verwendung dieses Tools bei der Landeshauptstadt München einfacher und effizienter gestaltet werden kann.
+Ein gängiges Tool, mit welchem diese Form der Testfälle umgesetzt werden kann, ist Selenium \cite{selenium_selenium_2015}. Selenium ist ein Tool, welches auch bei it@M, dem externen IT-Dienstleister der Landeshauptstadt München, für automatisierte Softwaretests eingesetzt wird. Im Rahmen dieser Arbeit soll eine Möglichkeit aufgezeigt werden, wie die Verwendung dieses Tools bei der Landeshauptstadt München einfacher und effizienter gestaltet werden kann.
 \\
 
 \section{Motivation}
 \label{sec:motivation}
-Testautomatisierung hat oft das Problem, dass Testfälle zwar wiederholt und einfach ausgeführt werden können, der initiale Mehraufwand für die Erstellung der Testfälle ist aber häufig so hoch, dass die erreichten Vorteile nur gering zum Tragen kommen. Ein möglicher Weg um Verbesserungen in der Testautomatisierung zu erzielen ist es daher, diesen Mehraufwand zu minimieren.\\
-Testfälle die mit Hilfe des Selenium WebDiver entwickelt werden, leiden oftmals unter eben dieser Schwierigkeit. Die initiale Erstellung der Tests ist in der Regel sehr aufwändig.
-Das liegt unter anderem daran, dass bei der Verwendung des WebDrivers ein bestimmtes Design Pattern, das Page Object Pattern, verwendet wird. Von diesem Design Pattern verspricht man sich möglichst wartbar und stabile Testfälle. Die Umsetzung des Pattern ist allerdings aufwendig.
-Bestandteil des Pattern ist es eine Vielzahl von sogenannten Page Objects zu erstellen, welche die einzelnen Seiten einer Webanwendung repräsentieren.\\
+Testautomatisierung hat oft das Problem, dass Testfälle zwar wiederholt und einfach ausgeführt werden können, der initiale Mehraufwand für die Erstellung der Testfälle ist aber, verglichen mit manuellen Tests, häufig so hoch, dass die erreichten Vorteile nur gering zum Tragen kommen. Ein möglicher Weg, um Verbesserungen in der Testautomatisierung zu erzielen, ist es daher, diesen Mehraufwand zu minimieren.\\
+Testfälle, die mit Hilfe des Selenium WebDiver entwickelt werden, leiden oftmals unter eben dieser Schwierigkeit. Die initiale Erstellung der Tests ist in der Regel sehr aufwändig.
+Das liegt unter anderem daran, dass bei der Verwendung des WebDrivers ein bestimmtes Design Pattern, das Page Object Pattern, verwendet wird. Von diesem Design Pattern verspricht man sich möglichst wartbare und stabile Testfälle.
+Bestandteil des Pattern ist es, eine Vielzahl von sogenannten Page Objects zu erstellen, welche die einzelnen Seiten einer Webanwendung repräsentieren.\\
 In Hinblick auf den initialen Mehraufwand weist die Erstellung dieser Page Object-Klassen ein großes Einsparungspotential auf. Aufgrund ihrer generischen Struktur bieten die Page Objects nämlich das Potential automatisch erzeugt zu werden.
 In Zusammenarbeit mit dem IT-Dienstleister der Landeshauptstadt München (it@M) soll daher eine Software entwickelt werden, mit deren Hilfe die Erstellung der Page Object-Klassen vereinfacht werden kann.
 
 \section{Roadmap}
 \label{roadmap}
-Der Hauptteil dieser Arbeit gliedert sich in vier Kapitel. In Kapitel \ref{sec:grundlagen} werden zunächst die Grundlagen in den Bereichen der Software-Qualität, dem Testen im Allgemeinen und der Testautomatisierung im speziellen gelegt.
+Der Hauptteil dieser Arbeit gliedert sich in vier Kapitel. In Kapitel \ref{sec:grundlagen} werden zunächst die Grundlagen in den Bereichen der Software-Qualität, dem Testen im Allgemeinen und der Testautomatisierung im Speziellen gelegt.
 Kapitel \ref{sec:testautomatisierung} geht näher auf die Testautomatisierung ein und soll einen Überblick über die verschiedenen Bereiche und Möglichkeiten geben, welche die Testautomatisierung bietet.
-In Kapitel \ref{sec:selenium} wird das Testautomatisierungstool Selenium vorgestellt und in diesem Zusammenhang das Page Object Pattern erläutert.
+Kapitel \ref{sec:selenium} beschäftigt sich mit dem Testautomatisierungstool Selenium und erläutert in diesem Zusammenhang das Page Object Pattern.
 In Kapitel \ref{sec:teilautomatisierte_generierung_von_pageObjects} wird eine Softwarelösung vorgestellt mit deren Hilfe die Verwendung des Page Object Pattern unterstützt werden kann.
 
   
