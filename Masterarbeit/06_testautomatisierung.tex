@@ -38,7 +38,7 @@ Fewster und Graham beschreiben, verwendet und den von Dustin et al. gewählten O
 
 \subsection{Verringerung des Testaufwands und Reduzierung des Zeitplans}
 \label{sec:verringerung_des_testaufwands_und_reduzierung_des_zeitplans}
-Die Vorteile in folgender Aufzählung beschreiben nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}, dass der Aufwand, der für das Testen einer Software betrieben werden muss, mit Hilfe von Automatisierung reduziert werden kann.
+Die Vorteile in folgender Aufzählung nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999} beschreiben, dass der Aufwand, der für das Testen einer Software betrieben werden muss, mit Hilfe von Automatisierung reduziert werden kann.
 Reduzierter Aufwand in den Tests, sowie eine schnellere und wiederholbare Abarbeitung der Testfälle, führen dann meist dazu, dass der gesamte Zeitplan des Projekts positiv beeinflusst wird. Sein volles Potential entfaltet Automatisierung immer dann, wenn Testfälle wiederholt ausgeführt werden. Regressionstests, die vor jedem neuen Releasezyklus einer Software durchgeführt werden, sind daher prädestiniert dazu, automatisiert zu werden. Tester können so von sich wiederholenden Testaufgaben entlastet werden. Das reduziert den Testaufwand und stellt Tester für andere Aufgaben frei, was wiederum das gesamte Projekt beschleunigt.
 
 \begin{itemize}
@@ -58,7 +58,7 @@ Richtig eingesetzt, beschleunigt Testautomatisierung den gesamten Testprozess. D
 
 \subsection{Verbesserung der Testqualität und Testtiefe}
 \label{sec:verbesserung_der_testqualität_und_testtiefe}
-Auch zeigen die beschriebenen Vorteile nach Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}, dass sich mit Hilfe der Testautomatisierung Verbesserungen im Bereich der Testqualität und Testtiefe erreichen lassen. Eine bessere Testqualität wird meist dadurch erzielt, dass die Testfälle in ihrer Gesamtheit ein höheres Potential erreichen, Fehler aufzudecken. Vor allem eine höhere Testtiefe und eine breitere Testabdeckung sind hier die treibenden Faktoren. Auch die Qualität einzelner Testfälle kann mittels Testautomatisierung direkt verbessert werden. Eine bessere Wiederholbarkeit ist hier der maßgebende Faktor.
+Auch zeigen die beschriebenen Vorteile von Fewster und Graham \cite[vgl. S. 9 ff.]{fewster_software_1999}, dass sich mit Hilfe der Testautomatisierung Verbesserungen im Bereich der Testqualität und Testtiefe erreichen lassen. Eine bessere Testqualität wird meist dadurch erzielt, dass die Testfälle in ihrer Gesamtheit ein höheres Potential erreichen, Fehler aufzudecken. Vor allem eine höhere Testtiefe und eine breitere Testabdeckung sind hier die treibenden Faktoren. Auch die Qualität einzelner Testfälle kann mittels Testautomatisierung direkt verbessert werden. Eine bessere Wiederholbarkeit ist hier der maßgebende Faktor.
 
 
 \begin{itemize}
@@ -99,14 +99,14 @@ A_m:=V_m+n*D_m
 
 Mit Hilfe dieser beiden Gleichungen lässt sich zeigen, dass sich ab einer gewissen Anzahl an Testläufen, die Automatisierung gegenüber der manuellen Ausführung, bezüglich der Kosten lohnt.
 Es wird dabei davon ausgegangen, dass die initiale Investition \(V_a\) für die Automatisierung höher ist, als die initiale Investition für das manuelle Testen \(V_m\).
-Die Kosten \(A_a\) des automatisierten Testfalls steigen mit jeder Testausführung \(n\) jedoch langsamer an. Beide Funktionen schneiden sich daher in einem Break-even-Point, ab dem die Automatisierung die günstigere Alternative darstellt.
+Die Kosten \(A_a\) des automatisierten Testfalls steigen mit jeder Testausführung \(n\) jedoch langsamer an. Beide Funktionen schneiden sich daher in einem Break-Even-Point, ab dem die Automatisierung die günstigere Alternative darstellt.
 Abbildung \ref{fig:breakEven} veranschaulicht diesen Zusammenhang grafisch.
 
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.8]{img/breakeven.png}\\
   \footnotesize\sffamily\textbf{Quelle:} \cite{ramler_economic_2006}
-  \caption{Break-even-Point für Testautomatisierung}
+  \caption{Break-Even-Point für Testautomatisierung}
   \label{fig:breakEven}
 \end{figure}
 
@@ -115,7 +115,7 @@ Zusammenfassend lässt sich feststellen, dass vor allem wiederholt ausgeführte 
 
 \subsection{Probleme der Testautomatisierung}
 \label{sec:probleme_der_testautomatisierung}
-Ramler und Wolfmaier \cite{ramler_economic_2006} zitieren ein Erreichen des Break-even-Point, wie er in Kapitel \ref{sec:kosten_der_testautomatisierung} beschrieben ist, nach einer Ausführung von 2-20 Testläufen. Diese große Spanne macht deutlich, wie wichtig es ist, in der Testplanung und Steuerung genau abzuwägen, ob und wo eine Automatisierung sinnvoll einzusetzen ist. Eine Automatisierung kann oft auch unwirtschaftlich sein, vor allem immer dann, wenn Tests nur ein einziges mal ausgeführt werden. Implementierungs- und Wartungsaufwand von automatisierten Testfällen sind meist sehr viel höher, als die von manuellen Testfällen. Dieser Mehraufwand muss in irgend einer Weise gerechtfertigt sein. Laut Fewster und Graham \cite[vgl. S. 22 ff.]{fewster_software_1999} und auch Thaller \cite[vgl. S.230 ff.]{thaller_software-test_2002} wird dieser Punkt oftmals vernachlässigt und die Testautomatisierung als Heilmittel für schlecht laufende Prozesse und zu hohe Kosten gesehen. Dabei ist genau das Gegenteil der Fall. Es ist sinnvoller, zunächst die Qualität der Tests und des eigenen Testprozesses zu optimieren, bevor eine Automatisierung eingeführt wird.\\ 
+Ramler und Wolfmaier \cite{ramler_economic_2006} zitieren ein Erreichen des Break-Even-Point, wie er in Kapitel \ref{sec:kosten_der_testautomatisierung} beschrieben ist, nach einer Ausführung von 2-20 Testläufen. Diese große Spanne macht deutlich, wie wichtig es ist, in der Testplanung und Steuerung genau abzuwägen, ob und wo eine Automatisierung sinnvoll einzusetzen ist. Eine Automatisierung kann oft auch unwirtschaftlich sein, vor allem immer dann, wenn Tests nur ein einziges mal ausgeführt werden. Implementierungs- und Wartungsaufwand von automatisierten Testfällen sind meist sehr viel höher, als die von manuellen Testfällen. Dieser Mehraufwand muss in irgend einer Weise gerechtfertigt sein. Laut Fewster und Graham \cite[vgl. S. 22 ff.]{fewster_software_1999} und auch Thaller \cite[vgl. S.230 ff.]{thaller_software-test_2002} wird dieser Punkt oftmals vernachlässigt und die Testautomatisierung als Heilmittel für schlecht laufende Prozesse und zu hohe Kosten gesehen. Dabei ist genau das Gegenteil der Fall. Es ist sinnvoller, zunächst die Qualität der Tests und des eigenen Testprozesses zu optimieren, bevor eine Automatisierung eingeführt wird.\\ 
 Ein weiterer Schwachpunkt der Automatisierung ist nach Fewster und Graham \cite[vgl. S. 22 ff.]{fewster_software_1999}, dass die Automatisierung von Software-Tests zwar einen Mehraufwand bedeutet, jedoch die Anzahl der gefundenen Fehler nur geringfügig erhöht wird.
 Bevor Testfälle automatisiert werden, müssen sie in der Regel zuvor einmal manuell durchgeführt werden, um sicher zu stellen, dass der angedachte Test auch sinnvoll und realisierbar ist. Meist werden Fehler bereits bei dieser manuellen Überprüfung festgestellt. Wird der Testfall dann automatisiert, deckt er weit weniger wahrscheinlich einen Fehler auf, als bei seiner ersten, manuellen Ausführung. Darüber hinaus können automatisierte Testfälle Fehler nur über die Akzeptanzkriterien aufdecken, die ihnen explizit hinterlegt wurden. Oft reichen die hinterlegten Kriterien aber nicht aus, um alle Fehlerquellen abzudecken. Das kann laut Fewster und Graham \cite[vgl. S. 23 ff.]{fewster_software_1999} dazu führen, dass Testfälle als positiv gekennzeichnet werden, obwohl sie in Wirklichkeit fehlerhaft waren. Bei manuellen Tests fallen vergessene Akzeptanzkriterien eher auf bzw. werden durch den Tester intuitiv ergänzt. Die Anzahl der fälschlicherweise positiv gewerteten Testfälle sinkt also mit der manuellen Durchführung.\\
 Einen weiteren positiven Aspekt, den Fewster und Graham \cite[vgl. S. 24 ff.]{fewster_software_1999} in einem manuellen Tester sehen, ist eine höhere Stabilität in den Testfällen. Ein Tester kann sich auf kleinere Änderungen in der zu testenden Software leicht einstellen. Er kann selbst entscheiden, ob eine Abweichung vom Testfall als Fehler zu werten oder zu vernachlässigen ist. Automatisierte Testfälle bieten diesen Luxus nicht. Sie verfolgen einen festen Ablaufplan und können nur schwer mit Veränderungen in der zu testenden Software umgehen. Das macht sie, im Vergleich zu manuellen Tests, instabil und erfordert einen erhöhten Wartungsaufwand. In manchen Fällen kann diese Abhängigkeit zwischen Software und automatisiertem Test sogar so weit führen, dass sie die Entwicklung der Software behindern. Beispielsweise dann, wenn eine Änderung so große Auswirkungen auf die automatisierten Testfälle hätte, dass es aus wirtschaftlicher Sicht nicht mehr sinnvoll ist sie durchzuführen. Die Kosten für die Anpassungen wären dann so hoch, dass sie den Nutzen der Softwareänderung übersteigt.\\
@@ -166,26 +166,26 @@ Seidel et al. \cite[vgl. S. 27]{seidl_basiswissen_2012} beschreiben eine Reihe a
 Diese Entwurfsmethoden kommen vor allem beim manuellen Designen von Testfällen zum Einsatz, bieten aber auch die Möglichkeit toolgestützt und damit automatisiert abzulaufen.
 Fewster und Graham \cite[vgl. S. 19 ff.]{fewster_software_1999} beschreiben eine Reihe von weiteren Methoden zum Erzeugen von Eingabedaten, die vermehrt in automatisierten Tools zum Einsatz kommen:
 \begin{itemize}
-\item Code-basierte Generierung von Eingabedaten
-\item Interface-basierte Generierung von Eingabedaten
-\item Spezifikations-basierte Generierung von Eingabedaten
+\item Codebasierte Generierung von Eingabedaten
+\item Interfacebasierte Generierung von Eingabedaten
+\item Spezifikationsbasierte Generierung von Eingabedaten
 \end{itemize}
 
-\subsubsection{Code-basierte Generierung von Eingabedaten}
+\subsubsection{Codebasierte Generierung von Eingabedaten}
 \label{subsubsec:codebasierte_generierung}
 Die Generierung der Eingabedaten erfolgt bei diesem Ansatz anhand der Struktur des Codes (siehe Abbildung \ref{fig:codeBasedDesign}). Jede Eingabe bedingt einen fest vorbestimmten Ablauf durch das Programm. Anhand des Codes können daher die benötigten Eingaben ermittelt werden, die für das durchlaufen von unterschiedlichen Pfaden im Programm benötigt werden.
-Fewster und Graham \cite[vgl. S. 19 ff.]{fewster_software_1999} sehen in diesem Ansatz jedoch Probleme. Ein Testfall benötigt immer auch ein erwartetes Ergebnis. Über die Code-basierte Generierung ist es nicht möglich diese Ergebnisse zu ermitteln. Die generierten Testfälle sind also unvollständig.\\
+Fewster und Graham \cite[vgl. S. 19 ff.]{fewster_software_1999} sehen in diesem Ansatz jedoch Probleme. Ein Testfall benötigt immer auch ein erwartetes Ergebnis. Über die Codebasierte Generierung ist es nicht möglich diese Ergebnisse zu ermitteln. Die generierten Testfälle sind also unvollständig.\\
 Ein weiteres Problem dieses Vorgehens ist, dass ausschließlich der Code getestet wird, der bereits implementiert wurde. Fehlende Funktionalitäten können so nicht erkannt werden. Es wird getestet, dass der Code das \grq tut, was er tut und nicht das, was er tun soll.\grq\ \cite[vgl. S. 20]{fewster_software_1999}
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.6]{img/codeBasedDesign.png}\\
   \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S. 19]{fewster_software_1999}
-  \caption{Code-basierte Generierung von Testfällen}
+  \caption{Codebasierte Generierung von Testfällen}
   \label{fig:codeBasedDesign}
 \end{figure}
 
 
-\subsubsection{Interface-basierte Generierung von Eingabedaten}
+\subsubsection{Interfacebasierte Generierung von Eingabedaten}
 \label{subsubsec:interfacebasierte_generierung}
 Bei dieser Methode erfolgt nach Fewster und Graham \cite[vgl. S. 20]{fewster_software_1999} die Generierung anhand von gut definierten Schnittstellen, wie der Benutzeroberfläche einer Desktop- oder Web-Anwendung (siehe Abbildung \ref{fig:interfaceBasedDesign}). 
 Wird als Schnittstelle die Benutzeroberfläche gewählt, kann beispielsweise getestet werden, ob eine Checkbox nach einer Interaktion aktiviert bzw. deaktiviert wurde.\\
@@ -196,21 +196,21 @@ Mit Hilfe dieses Ansatzes ist es laut Fewster und Graham \cite[vgl. S. 21]{fewst
   \centering  
   \includegraphics[scale=0.6]{img/interfaceBasedDesign.png}\\
   \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S. 20]{fewster_software_1999}
-  \caption{Interface-basierte Generierung von Testfällen}
+  \caption{Interfacebasierte Generierung von Testfällen}
   \label{fig:interfaceBasedDesign}
 \end{figure}
 
 
-\subsubsection{Spezifikations-basierte Generierung von Eingabedaten}
+\subsubsection{Spezifikationsbasierte Generierung von Eingabedaten}
 \label{subsubsec:spezifikationsbasierte_generierung}
-Mit Hilfe von Spezifikations-basierter Generierung ist es nach Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999} möglich sowohl Testeingaben, als auch die zugehörigen erwarteten Ergebnisse zu erzeugen (siehe Abbildung \ref{fig:specBasedDesign}). Als Basis wird dazu eine Spezifikation benötigt, die automatisiert analysiert werden kann. Die Möglichkeiten dafür reichen von natürlicher Sprache, die gewissen Strukturen folgt, bis hin zu technischen Modellen.\\ Vor allem die Benutzung von Modellen hat in den letzten Jahren immer mehr an Bedeutung gewonnen und ist heute unter dem Namen \grq modellbasiertes Testen\grq\ bekannt. Als Referenz auf diesem Gebiet kann das Werk von Roßner et al.\ \cite{rossner_basiswissen_2010}, \glqq Basiswissen Modellbsierter Test\grqq, dienen.\\
-Ein Vorteil des Spezifikations-basierten Ansatzes ist nach Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999} auch, dass die Testfälle nicht auf Basis einer Implementierung, sondern auf Basis einer Spezifikation erzeugt werden. Damit wird sichergestellt, dass sie nicht nur, wie bei der Code-basierten Generierung, überprüfen \grq was die Software tut\grq , sondern \grq was die Software tun soll\grq.
+Mit Hilfe von Spezifikationsbasierter Generierung ist es nach Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999} möglich sowohl Testeingaben, als auch die zugehörigen erwarteten Ergebnisse zu erzeugen (siehe Abbildung \ref{fig:specBasedDesign}). Als Basis wird dazu eine Spezifikation benötigt, die automatisiert analysiert werden kann. Die Möglichkeiten dafür reichen von natürlicher Sprache, die gewissen Strukturen folgt, bis hin zu technischen Modellen.\\ Vor allem die Benutzung von Modellen hat in den letzten Jahren immer mehr an Bedeutung gewonnen und ist heute unter dem Namen \grq modellbasiertes Testen\grq\ bekannt. Als Referenz auf diesem Gebiet kann das Werk von Roßner et al.\ \cite{rossner_basiswissen_2010}, \grq Basiswissen Modellbsierter Test\grq, dienen.\\
+Ein Vorteil des Spezifikationsbasierten Ansatzes ist nach Fewster und Graham \cite[vgl. S. 21]{fewster_software_1999} auch, dass die Testfälle nicht auf Basis einer Implementierung, sondern auf Basis einer Spezifikation erzeugt werden. Damit wird sichergestellt, dass sie nicht nur, wie bei der Codebasierten Generierung, überprüfen \grq was die Software tut\grq , sondern \grq was die Software tun soll\grq.
 
 \begin{figure}[htb]
   \centering  
   \includegraphics[scale=0.6]{img/specBasedDesign.png}\\
   \footnotesize\sffamily\textbf{Quelle:} \cite[vgl. S. 21]{fewster_software_1999}
-  \caption{Spezifikations-basierte Generierung von Testfällen}
+  \caption{Spezifikationsbasierte Generierung von Testfällen}
   \label{fig:specBasedDesign}
 \end{figure}
 
@@ -219,7 +219,7 @@ Ein Vorteil des Spezifikations-basierten Ansatzes ist nach Fewster und Graham \c
 Bei der Testautomatisierung versteht man unter Testcodeerstellung das Erzeugen von Testcode, der später wiederholt gestartet werden kann. Der erzeugte Code setzt die Testfälle um, die zuvor in der Designphase erarbeitet wurden.
 In vielen Fällen handelt es sich hierbei um einen manuellen Schritt. Die Testcodeerstellung ist oft eine reine Entwicklertätigkeit, bei der ein Tester die angedachten Testfälle als Testcode implementiert.
 Aber auch in diesem Schritt sind laut Amannejad et al. \cite{amannejad_search-based_2014} Möglichkeiten für eine Automatisierung gegeben.\\
-Es existieren beispielsweise teilautomatisierte Ansätze. Mit Hilfe von sogenannten \grq record-and playback\grq-Tools (R\&PB) können die Interaktionen eines Benutzers mit der zu testenden Software aufgezeichnet werden. Die aufgezeichneten Abläufe können dann verwendet werden, um automatisierte Testskripte zu generieren.\\
+Es existieren beispielsweise teilautomatisierte Ansätze. Mit Hilfe von sogenannten \grq record and playback\grq-Tools (R\&PB) können die Interaktionen eines Benutzers mit der zu testenden Software aufgezeichnet werden. Die aufgezeichneten Abläufe können dann verwendet werden, um automatisierte Testskripte zu generieren.\\
 Auch ein vollautomatisierter Ansatz ist möglich, wenn auch nicht so weit verbreitet, wie der manuelle bzw. teilautomatisierte Ansatz.
 Mittels modellbasiertem Testen ist es nicht nur möglich, wie in Kapitel \ref{subsubsec:spezifikationsbasierte_generierung} angesprochen, Testfalldesigns abzuleiten. Liegen die Modelle in einem entsprechend hohen Detailgrad vor, kann daraus sogar direkt Testcode erzeugt werden. Bouquet et al. \cite{bouquet_test_2008} beschreiben beispielsweise einen modellbasierten Ansatz, mit dessen Hilfe das Designen, Erstellen und Ausführen von Testfällen automatisiert geschehen kann.\\
 Zusammengefasst ist die Testcodeerstellung damit in drei unterschiedlichen Automatisierungsgraden möglich:
@@ -256,15 +256,15 @@ Die vollautomatisierte Testcodeerstellung mittels modellbasierten Testen, darges
 
 Unter der Abkürzung API sind in diesem Zusammenhang alle Schnittstellen zu verstehen, die intern von der zu testenden Anwendung angeboten werden. Darunter fällt beispielsweise das direkte aufrufen von Servicemethoden, die als Businesslogik innerhalb der Anwendung bereitgestellt werden.\\
 Eine weit verbreitete Gruppe von Frameworks, welche oft diese Art der Schnittstelle verwenden, sind die modernen \grq XUnit-Frameworks\grq. In den meisten Programmiersprachen existiert ein Unit-Framework, mit dem es möglich ist, direkt die im Programm angebotene Logik mit automatisierten Testfällen zu überprüfen. In der Praxis wird diese Aufgabe meist direkt von einem Entwickler, in Form von Unit-Tests (Komponenten-Tests) übernommen. Der Begriff \grq XUnit-Frameworks\grq\ kann leicht missverstanden werden, da er impliziert, dass es sich bei den mit Hilfe des Frameworks umgesetzten Testfällen immer um Unit-Tests handelt. Es können jedoch Testfälle aller Teststufen, von Unit- bis System-Test, mit Hilfe dieser Frameworks umgesetzt werden.
-Die Testcodeerstellung erfolgt dabei manuell, womit diese Art der Automatisierung ein Beispiel für den oberen linken Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung} darstellt.\\
-Neben dem manuellen Vorgehen beschreiben Meszaros et al. \cite{meszaros_agile_2003} auch die Möglichkeit \grq record-and playback\grq\ für Testfälle zu verwenden, die als Schnittstelle die API ansteuern.
-Hierfür muss eine \grq record-and playback\grq-Mechanismus auf API-Ebene für die zu testende Software entwickelt werden. Darüber ist es dann bei einem manuellem Testlauf möglich, all das aufzuzeichnen, was den Zustand des Systems beeinflusst hat. Aus diesen Aufzeichnungen kann dann Testcode erzeugt werden, der es ermöglicht die gewünschten Abläufe zu wiederholen. Solch ein Vorgehen wäre ein Beispiel für den oberen mittleren Quadranten in Abbildung \ref{fig:bereicheTestcodeerstellung}. Diese Art der Testcodeerstellung findet aber keine verbreitete Anwendung.
+Die Testcodeerstellung erfolgt dabei manuell, womit diese Art der Automatisierung ein Beispiel für den oberen linken Quader in Abbildung \ref{fig:bereicheTestcodeerstellung} darstellt.\\
+Neben dem manuellen Vorgehen beschreiben Meszaros et al. \cite{meszaros_agile_2003} auch die Möglichkeit \grq record and playback\grq\ für Testfälle zu verwenden, die als Schnittstelle die API ansteuern.
+Hierfür muss eine \grq record and playback\grq-Mechanismus auf API-Ebene für die zu testende Software entwickelt werden. Darüber ist es dann bei einem manuellem Testlauf möglich, all das aufzuzeichnen, was den Zustand des Systems beeinflusst hat. Aus diesen Aufzeichnungen kann dann Testcode erzeugt werden, der es ermöglicht die gewünschten Abläufe zu wiederholen. Solch ein Vorgehen wäre ein Beispiel für den oberen mittleren Quader in Abbildung \ref{fig:bereicheTestcodeerstellung}. Diese Art der Testcodeerstellung findet aber keine verbreitete Anwendung.
 
 \subsubsection{UI}
 \label{subsubsec:UI}
-Bei Testfällen, die als Schnittstelle zum System das User-Interface verwenden, ist laut  Meszaros et al. \cite{meszaros_agile_2003} vor allem \grq record-and playback\grq\ ein sehr weit verbreiteter Ansatz. Es existieren zahlreiche kommerzielle Testwerkzeuge, um dieses Vorgehen zu unterstützen, wie beispielsweise HP Unified Functional Testing \cite{hp_testautomatisierung_2015}, aber auch Open-Source-Lösungen wie Selenium \cite{selenium_selenium_2015}.\\
-Diese Tools ermöglichen es Abläufe aufzuzeichnen, um sie später automatisch zu wiederholen. Die Testfälle werden dafür zunächst manuell auf der Benutzeroberfläche der Anwendung durchgeführt. Während dieser manuellen Testausführung können die vom Tester getätigten Eingaben vom Tool gespeichert werden. Die gespeicherten Interaktionen werden dann verwendet, um daraus Testcode zu generieren, mit dem die Abläufe auf der Benutzeroberfläche beliebig oft wiederholt werden können. Dieses Art der Testcodeerstellung wird in Abbildung \ref{fig:bereicheTestcodeerstellung}, durch den unteren mittleren Quadranten dargestellt.\\
-Der untere linke Quadrant steht für manuell erstellten Testcode, der als Schnittstelle zum System das User-Interface verwendet. Oft handelt es sich dabei um Testfälle, die analog zu Abschnitt \ref{subsubsec:API} ein \grq XUnit-Frameworks\grq\ zur Testausführung verwenden. Diese Frameworks können um Aufsätze, wie beispielsweise HttpUnit \cite{httpunit_httpunit_2015} oder Selenium \cite{selenium_selenium_2015} erweitert werden. Mit Hilfe dieser Erweiterungen ist es möglich, Testfälle nicht mehr nur gegen die API der zu testenden Software zu entwickeln, sondern zur Steuerung die Benutzeroberfläche zu verwenden. Neben Aufsätzen für vorhandene Frameworks existieren auch zahlreiche eigenständige Tools, wie beispielsweise MicroFocus SilkTest \cite{silk_test_borland_2015}, welche neben Webanwendungen auch die Möglichkeit zum Testen von Desktopanwendungen bieten.\\
+Bei Testfällen, die als Schnittstelle zum System das User-Interface verwenden, ist laut  Meszaros et al. \cite{meszaros_agile_2003} vor allem \grq record and playback\grq\ ein sehr weit verbreiteter Ansatz. Es existieren zahlreiche kommerzielle Testwerkzeuge, um dieses Vorgehen zu unterstützen, wie beispielsweise HP Unified Functional Testing \cite{hp_testautomatisierung_2015}, aber auch Open-Source-Lösungen wie Selenium \cite{selenium_selenium_2015}.\\
+Diese Tools ermöglichen es Abläufe aufzuzeichnen, um sie später automatisch zu wiederholen. Die Testfälle werden dafür zunächst manuell auf der Benutzeroberfläche der Anwendung durchgeführt. Während dieser manuellen Testausführung können die vom Tester getätigten Eingaben vom Tool gespeichert werden. Die gespeicherten Interaktionen werden dann verwendet, um daraus Testcode zu generieren, mit dem die Abläufe auf der Benutzeroberfläche beliebig oft wiederholt werden können. Dieses Art der Testcodeerstellung wird in Abbildung \ref{fig:bereicheTestcodeerstellung}, durch den unteren mittleren Quader dargestellt.\\
+Der untere linke Quader steht für manuell erstellten Testcode, der als Schnittstelle zum System das User-Interface verwendet. Oft handelt es sich dabei um Testfälle, die analog zu Abschnitt \ref{subsubsec:API} ein \grq XUnit-Frameworks\grq\ zur Testausführung verwenden. Diese Frameworks können um Aufsätze, wie beispielsweise HttpUnit \cite{httpunit_httpunit_2015} oder Selenium \cite{selenium_selenium_2015} erweitert werden. Mit Hilfe dieser Erweiterungen ist es möglich, Testfälle nicht mehr nur gegen die API der zu testenden Software zu entwickeln, sondern zur Steuerung die Benutzeroberfläche zu verwenden. Neben Aufsätzen für vorhandene Frameworks existieren auch zahlreiche eigenständige Tools, wie beispielsweise MicroFocus SilkTest \cite{silk_test_borland_2015}, welche neben Webanwendungen auch die Möglichkeit zum Testen von Desktopanwendungen bieten.\\
 Testcode von Hand zu schreiben ist ein weit verbreitetes Vorgehen. Vor allem immer dann, wenn kein vorhandenes Testtool verwendet wird, sondern das Automatisierungsframework für die zu testende Software selbst entwickelt wurde.
 
 
@@ -276,7 +276,7 @@ Die meisten Tools und Frameworks ermöglichen bereits eine automatisierte Testdu
 Im besonderen Maße sind an dieser Stelle, aufgrund ihrer hohen Verbreitung, erneut die \grq XUnit-Frameworks\grq\ zu nennen.
 In Abschnitt \ref{subsec:testcodeerstellung} wurde aufgezeigt, dass diese Frameworks oft in der manuellen Testcodeerstellung verwendet werden. Das Unit-Framework übernimmt dabei die automatisierte Ausführung des Testcodes, sowie die Präsentation der Testergebnisse und ist damit ein Beispiel für ein Framework, welches die Testdurchführung automatisiert.\\
 Probleme ergeben sich, wenn Testcode losgelöst von bereits vorhandenen Tools bzw. Frameworks entwickelt wurde. Der Testcode könnte beispielsweise gekapselt in Funktionen vorliegen und seine Ergebnisse in die Konsole loggen. Steigt die Anzahl der Testfälle, wird die Ausführung und vor allem die folgende Auswertung zum Problem. Der Aufwand, der später betrieben werden muss, um die Testfälle anhand ihrer Logmeldungen auszuwerten, kann so eine Dimension erreichen, die nicht mehr wirtschaftlich ist. Ein weiteres Problem stellt dar, dass eine gesonderte Ausführung von einzelnen Testfällen bzw. kleineren Testfallgruppen nur mit zusätzlichem Aufwand möglich ist.\\
-Werden Testfälle daher ohne Tool- bzw. Framework-unterstützung erstellt, müssen zeitnah Überlegungen angestellt werden, wie die diese einfach und auswertbar zur Ausführung gebracht werden können.
+Werden Testfälle daher ohne Tool- bzw. Framework-unterstützung erstellt, müssen zeitnah Überlegungen angestellt werden, wie diese einfach und auswertbar zur Ausführung gebracht werden können.
 Diese Überlegungen resultieren meist in einem eigen entwickelten Testframework, welches die Ausführung des automatisierten Testcodes und die Aufzeichnung der Ergebnisse übernimmt.
 
 

@@ -15,8 +15,8 @@ Ein weit verbreitetes Tool für die Automatisierung, welches diesen Ansatz verfo
 \section{Selenium}
 \label{sec:selenium}
 Seidel et al. \cite[S. 142]{seidl_basiswissen_2012} beschreiben Selenium als \glqq eines der gängigsten Open-Source-Automatisierungswerkzeuge für Webapplikationen.\grqq\\
-Ordnet man Selenium der in Kapitel \ref{subsec:testcodeerstellung} erstellten Unterteilung in der Testcodeerstellung zu, ist dieses im unteren mittleren und unteren linken Quadranten angesiedelt. Abbildung \ref{fig:bereicheTestcodeerstellungSelenium} hinterlegt diese Bereiche farblich.
-Selenium ist also ein Tool, mit welchem Testfälle erstellt werden können, die als Schnittstelle die grafische Benutzeroberfläche eine Webanwendung verwenden. Die Testcodeerstellung erfolgt dabei manuell oder teilautomatisiert mittels \grq record-and-playback\grq.\\
+Ordnet man Selenium der in Kapitel \ref{subsec:testcodeerstellung} erstellten Unterteilung in der Testcodeerstellung zu, ist dieses im unteren mittleren und unteren linken Quader angesiedelt. Abbildung \ref{fig:bereicheTestcodeerstellungSelenium} hinterlegt diese Bereiche farblich.
+Selenium ist also ein Tool, mit welchem Testfälle erstellt werden können, die als Schnittstelle die grafische Benutzeroberfläche eine Webanwendung verwenden. Die Testcodeerstellung erfolgt dabei manuell oder teilautomatisiert mittels \grq record and playback\grq.\\
 
 \begin{figure}[htb]
   \centering  
@@ -31,7 +31,7 @@ In seiner aktuellen Ausprägung 2.48 lassen sich, abgesehen von Komponenten, die
 
 \begin{itemize}
 \item Selenium IDE \\
-Bei der Selenium IDE handelt es sich um ein Firefox Plug-in, das verwendet werden kann, um Selenium-Testskripte zu erstellen. Testskripte können von Hand erstellt, oder mittels eines \grq record-and-playback\grq -Mechanismus direkt im Browser aufgezeichnet werden. Die erstellten Testfälle können mit Akzeptanzkriterien angereichert und innerhalb der IDE wieder abgespielt werden.
+Bei der Selenium IDE handelt es sich um ein Firefox Plug-in, das verwendet werden kann, um Selenium-Testskripte zu erstellen. Testskripte können von Hand erstellt, oder mittels eines \grq record and playback\grq -Mechanismus direkt im Browser aufgezeichnet werden. Die erstellten Testfälle können mit Akzeptanzkriterien angereichert und innerhalb der IDE wieder abgespielt werden.
 \item Selenium WebDriver \\
 Der Selenium WebDriver bietet für verschiedene Programmiersprachen eine Schnittstelle zur Steuerung eines Browsers aus dem Programmcode heraus. Der WebDriver bildet damit die Kernkomponente für alle Selenium-Testfälle, die außerhalb der Selenium IDE entwickelt werden.
 
@@ -56,24 +56,24 @@ Bei Verwendung des WebDrivers ist Selenium durch die eingesetzten Unit-Framework
 \section{Testcodeerstellung mit Selenium}
 \label{sec:Testdesign}
 Die Testcodeerstellung bei Testfällen, die Selenium verwenden, kann auf zwei Arten erfolgen.
-Der Testcode kann manuell erstellt oder über einen \grq record-and-playback\grq -Mechanismus teilautomatisiert generiert werden.
+Der Testcode kann manuell erstellt oder über einen \grq record and playback\grq -Mechanismus teilautomatisiert generiert werden.
 
-\subsection{Record-and-playback}
+\subsection{Record and playback}
 \label{sec:recorde_and_playback}
-Die Selenium IDE bietet die Möglichkeit, Testskripte mittels \grq record-and-playback\grq\ zu erzeugen.
+Die Selenium IDE bietet die Möglichkeit, Testskripte mittels \grq record and playback\grq\ zu erzeugen.
 Die im Testfall gewünschten Abläufe werden dazu zunächst im Browser durchgeführt.
-Die Selenium IDE zeichnet während dessen die durchgeführten Schritte, in der Selenium eigenen Sprache \grq Selense\grq, auf. Diese Aufzeichnungen können zu einem späteren Zeitpunkt von der Selenium IDE erneut aufgerufen werden, um die Testabläufe zu wiederholten.
+Die Selenium IDE zeichnet während dessen die durchgeführten Schritte, in der Selenium eigenen Sprache \grq Selenese\grq, auf. Diese Aufzeichnungen können zu einem späteren Zeitpunkt von der Selenium IDE erneut aufgerufen werden, um die Testabläufe zu wiederholten.
 Testskripte können nach der Aufzeichnung überarbeitet werden. Auf diese Weise ist es beispielsweise möglich, Akzeptanzkriterien an bestimmten Stellen einzuarbeiten.\\
-Testfälle, die über den \grq record-and-playback\grq -Mechanismus erstellt wurden, sind nicht an die Sprache \grq Selenese\grq\ gebunden. Die Selenium IDE bietet die Möglichkeit, Testskripte in eine Reihe von Programmiersprachen zu exportieren, darunter auch Java.
+Testfälle, die über den \grq record and playback\grq -Mechanismus erstellt wurden, sind nicht an die Sprache \grq Selenese\grq\ gebunden. Die Selenium IDE bietet die Möglichkeit, Testskripte in eine Reihe von Programmiersprachen zu exportieren, darunter auch Java.
 Diese Testfälle benutzen dann, wie in Abschnitt \ref{sec:testdurchführung_mit_selenium} beschrieben, den Selenium WebDriver für die Kommunikation mit dem Browser und ein Unit-Framework für die Ausführung.\\
-Die \grq record-and-playback\grq -Funktionalität bietet einen besonders einfachen und schnellen Weg, Testfälle zu erstellen. Dennoch wird in der Dokumentation von Selenium \cite{selenium_selenium_2015-1} davon abgeraten, sich bei der Testfallerstellung alleine auf dieses Tool zu stützen. Die Selenium IDE wird als Prototyping-Tool verstanden, mit dem kleinere Aufgaben, die nicht für den längerfristigen Einsatz gedacht sind, schnell automatisiert werden können.
+Die \grq record and playback\grq -Funktionalität bietet einen besonders einfachen und schnellen Weg, Testfälle zu erstellen. Dennoch wird in der Dokumentation von Selenium \cite{selenium_selenium_2015-1} davon abgeraten, sich bei der Testfallerstellung alleine auf dieses Tool zu stützen. Die Selenium IDE wird als Prototyping-Tool verstanden, mit dem kleinere Aufgaben, die nicht für den längerfristigen Einsatz gedacht sind, schnell automatisiert werden können.
 
-\subsubsection{Probleme von record-and-playback}
+\subsubsection{Probleme von record and playback}
 \label{sec:probleme_von_recorde_and_playback}
-Testabläufe die über den \grq record-and-playback\grq -Mechanismus der IDE erstellt werden, unterliegen eine Reihe von Einschränkungen. Als Limitierungen werden von Leotta et al. \cite{leotta_repairing_2013} das Fehlen von bedingten Anweisungen, Schleifen, Logging, Ausnahmebehandlungen sowie parametrisierten (a.k.a. data-driven) Testfällen genannt.
+Testabläufe die über den \grq record and playback\grq -Mechanismus der IDE erstellt werden, unterliegen eine Reihe von Einschränkungen. Als Limitierungen werden von Leotta et al. \cite{leotta_repairing_2013} das Fehlen von bedingten Anweisungen, Schleifen, Logging, Ausnahmebehandlungen sowie parametrisierten (a.k.a. data-driven) Testfällen genannt.
 Neben diesen Limitierungen besteht zusätzlich das Problem einer schlechten Wartbarkeit. Nach Leotta et al. \cite{leotta_repairing_2013} liegt das vor allem daran, dass die Testfälle sehr stark mit der Struktur der Webseiten verwoben sind und einen hohen Anteil an dupliziertem Code aufweisen.
 Die Limitierungen der IDE können zwar durch das Exportieren der Testfälle in eine Programmiersprache überwunden werden, die Qualität im Bezug auf ihre spätere Wartbarkeit kann nach  Leotta et al. \cite{leotta_repairing_2013} jedoch nicht auf diesem Weg verbessert werden.\\
-Um die starke Koppelung mit der Webanwendung und den hohen Anteil an dupliziertem Code zu veranschaulichen, wurden zwei Testfälle über den \grq record-and-playback\grq -Mechanismus von Selenium erstellt und in die Programmiersprache Java exportiert.
+Um die starke Koppelung mit der Webanwendung und den hohen Anteil an dupliziertem Code zu veranschaulichen, wurden zwei Testfälle über den \grq record and playback\grq -Mechanismus von Selenium erstellt und in die Programmiersprache Java exportiert.
 Diese beiden Testfälle sollen das Anlegen und Editieren eines Datensatzes auf einer Webanwendung überprüfen.
 Drei Seiten der Anwendung werden hierfür verwendet. Die Seiten sind in Abbildung \ref{fig:toDoApp} dargestellt.
 
@@ -135,17 +135,17 @@ Der duplizierte Code und der hohe Grad an Koppelung mit der Anwendung innerhalb 
 
 \subsection{Manuell}
 \label{sec:manuell}
-Eine weitere Möglichkeit bildet das manuelle Erstellen der Testskripte. Für die Ausführung und Kommunikation mit der Anwendung, verwenden die manuell erstellten Skripte das selbe Toolset, wie die mittels \grq record-and-playback\grq\ generierten und exportierten Testfälle. Analog zu den in Listing \ref{lst:exportierteTestfaelle} gezeigten Testfällen, wird auch bei diesen Skripten der Selenium WebDriver für die Kommunikation mit der Anwendung verwendet. Die Ausführung geschieht in der Regel ebenfalls über ein Unit-Framework.\\
+Eine weitere Möglichkeit bildet das manuelle Erstellen der Testskripte. Für die Ausführung und Kommunikation mit der Anwendung, verwenden die manuell erstellten Skripte das selbe Toolset, wie die mittels \grq record and playback\grq\ generierten und exportierten Testfälle. Analog zu den in Listing \ref{lst:exportierteTestfaelle} gezeigten Testfällen, wird auch bei diesen Skripten der Selenium WebDriver für die Kommunikation mit der Anwendung verwendet. Die Ausführung geschieht in der Regel ebenfalls über ein Unit-Framework.\\
 Im Vergleich zu den generierten Testfällen, ist das manuelle Entwickeln der Testskripte aufwendiger.
-Es bietet jedoch die Möglichkeit, den in Abschnitt \ref{sec:probleme_von_recorde_and_playback} genannten Problemen der \grq record-and-playback\grq -Variante entgegenzuwirken.\\
+Es bietet jedoch die Möglichkeit, den in Abschnitt \ref{sec:probleme_von_recorde_and_playback} genannten Problemen der \grq record and playback\grq -Variante entgegenzuwirken.\\
 Bei einem manuellen Ansatz kann von Anfang an auf eine wartbare und wiederverwertbare Struktur geachtet werden.
-Als Best Practice hat sich zu diesem Zwecke das Page Object Design Pattern durchgesetzt.
+Als Best Practice hat sich zu diesem Zwecke das Page Object Design Pattern, auch Page Object Pattern genannt, durchgesetzt.
 
 \subsection{Page Object Pattern}
 \label{sec:page_object_pattern}
 Im Page Object Pattern wird versucht, die Funktionalität, welche die zu testende Anwendung anbietet, in einem objektorientierten Ansatz zu kapseln.
 Alle Seiten der zu testenden Anwendung werden dazu als Kassen, sogenannte Page Objects, modelliert. Jede dieser Klassen verwaltet zentral alle Informationen, sowie die Funktionalität, die von der jeweils korrespondierenden Webseite angeboten wird. Die Hauptbestandteile eines Page Objects bilden Selenium-WebElemente. Im Rahmen dieser Arbeit werden diese als \grq Elemente\grq\ bezeichnet. Elemente werden in den Page Objects meist als globale Variablen angeboten und bilden die Verbindung zu den HTML-Elementen, welche auf der entsprechenden Webseite der Anwendung vorhanden sind.
-Um die Elemente auf der HTML-Seite zu identifizieren wird meist ein XPath-Ausdruck oder CSS-Selektor verwendet. Diese Ausdrücke bzw. Informationen die zum erzeugen dieser Ausdrücke verwendet werden, nennt man \grq Lokatoren\grq.\\ 
+Um die Elemente auf der HTML-Seite zu identifizieren wird meist ein XPath-Ausdruck oder CSS-Selektor verwendet. Diese Ausdrücke bzw. Informationen, die zum erzeugen dieser Ausdrücke verwendet werden, nennt man \grq Lokatoren\grq.\\ 
 Manche Elemente, wie beispielsweise Links oder bestimmte Buttons, haben die Besonderheit, dass sie einen Seitenwechsel in der Webanwendung hervorrufen. Diese Elemente werden in der Arbeit als \grq Transitionen\grq\ bezeichnet. Transitionen werden in den Page Objects meist in Form einer Methode abgebildet, die als Rückgabe das Page Object der entsprechenden Zielseite liefert. Funktionalität, die von einer Seite angeboten wird, wird innerhalb eines Page Objects ebenfalls gekapselt in Methoden abgebildet.\\
 Ein Page Object ist also eine objektorientierte Klasse, die als Interface für eine Seite der zu testenden Anwendung dient.
 Sämtliche Interaktion mit der zu testenden Anwendung, geschieht über die in den Page Objects angeboten Schnittstellen.
