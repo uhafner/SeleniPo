@@ -2,8 +2,8 @@
 \chapter{Teilautomatisierte Generierung von Page Objects}
 \label{sec:teilautomatisierte_generierung_von_pageObjects}
 
-Ein großer Teil des in Kapitel \ref{sec:probleme_des_page_object_pattern} angesprochenen initialen Mehraufwands, bei der Verwendung des Page Object Pattern beläuft sich auf die Erstellung der Page Objects.
-Wie in Listing \ref{lst:poCreatePage} und \ref{lst:poShowPage} zu sehen ist, handelt es sich bei Page Objects um weniger komplexe Klassen. In der Praxis zeigt sich, dass ein Großteil der Arbeit darin besteht, die verschiedenen Lokatoren der Elemente aus dem Quelltext der Seite zu extrahieren und in die generische Form eines Page Objects zu überführen.
+Ein großer Teil des in Kapitel \ref{sec:probleme_des_page_object_pattern} angesprochenen initialen Mehraufwands, bei der Verwendung des Page Object Pattern beläuft sich auf die Erstellung der Page Object Klassen.
+Wie in Listing \ref{lst:poCreatePage} und \ref{lst:poShowPage} zu sehen ist, sind Page Objects nicht sehr komplex. In der Praxis zeigt sich, dass ein Großteil der Arbeit darin besteht, die verschiedenen Lokatoren der Elemente aus dem Quelltext der Seite zu extrahieren und in die generische Form eines Page Objects zu überführen.
 Diese Aufgabe kostet zwar viel Zeit, ist allerdings nicht sehr anspruchsvoll.
 Möchte man den initialen Mehraufwand bei der Verwendung des Page Object Pattern entgegenwirken, liefern die Page Objects somit einen guten Ansatzpunkt.
 Aufgrund ihrer generischen Natur bieten sie gute Voraussetzungen, um automatisch generiert zu werden.
@@ -11,7 +11,7 @@ Aufgrund ihrer generischen Natur bieten sie gute Voraussetzungen, um automatisch
 \label{sec:uebersicht_ueber_idee}
 
 
-Selenium, in Verbindung mit dem Page Object Pattern, ist auch ein Teil des Technologiestacks des IT-Dienstleisters (it@M) der Landeshauptstadt München und wird dort zum Testen komplexer Webanwendungen verwendet. Auch it@M hat in Bezug auf die Erstellung von Page Objects die Erfahrung gemacht, dass es sich um eine generische und zeitaufwendige Arbeit handelt.
+Selenium, in Verbindung mit dem Page Object Pattern, ist auch ein Teil des Technologiestacks des IT-Dienstleisters der Landeshauptstadt München (it@M) und wird dort zum Testen komplexer Webanwendungen verwendet. Auch it@M hat in Bezug auf die Erstellung von Page Objects die Erfahrung gemacht, dass es sich um eine generische und zeitaufwendige Arbeit handelt.
 In Zusammenarbeit wurde daher die Idee entwickelt, das Erstellen von Page Objects mit Hilfe einer Softwarelösung zu unterstützen.
 Anhand des Seitenquelltextes der zu testenden Webanwendung sollen die verschiedenen Elemente des Page Objects identifiziert und zur Generierung der Klassen verwendet werden.
 Zwei Ansätze wurden dabei diskutiert. Eine vollautomatisierte und eine teilautomatisierte Generierung von Page Objects.\\
@@ -169,7 +169,7 @@ Abbildung \ref{fig:sequenz} zeigt auf hoher Abstraktionsebene einen Standardabla
   \label{fig:sequenz}
 \end{figure}
 
-Über das Menü (siehe Abbildung \ref{fig:poGeneratorMenu}) hat der Benutzer des Page Object Generators die Möglichkeit, einen bereits zuvor angelegten Zwischenstand des Page Object Modells aus einer Save-File zu laden. Die bereits angelegten Page Objects werden nach dem Laden im Dropdown-Menü im Bereich des Page Object Modells (siehe Abbildung \ref{fig:poGeneratorPo}) angezeigt. Der Benutzer hat nun die Möglichkeit, mit den bereits vorhandenen Page Objects weiterzuarbeiten oder ein neues Page Object anzulegen. Entscheidet er sich ein neues Page Object anzulegen, wird dies im Dropdown-Menü vorausgewählt angezeigt. Das Page Object kann nun manuell mit Elemente bzw. Transitionen befüllt werden.\\ Um das Page Object jedoch teilautomatisiert zu befüllen wird ein Webbrowser gestartet. Im Browser muss die Seite der Webanwendung aufgerufen werden, die dem aktuell ausgewählten Page Object entspricht. Mit dem Dropdown des HTML-Parser (siehe Abbildung \ref{fig:poGeneratorHtml}) wird die ausgewählte Webseite nach Elementen bzw. Transitionen durchsucht.
+Über das Menü (siehe Abbildung \ref{fig:poGeneratorMenu}) hat der Benutzer des Page Object Generators die Möglichkeit, einen bereits zuvor angelegten Zwischenstand des Page Object Modells aus einem Save-File zu laden. Die bereits angelegten Page Objects werden nach dem Laden im Dropdown-Menü im Bereich des Page Object Modells (siehe Abbildung \ref{fig:poGeneratorPo}) angezeigt. Der Benutzer hat nun die Möglichkeit, mit den bereits vorhandenen Page Objects weiterzuarbeiten oder ein neues Page Object anzulegen. Entscheidet er sich ein neues Page Object anzulegen, wird dies im Dropdown-Menü vorausgewählt angezeigt. Das Page Object kann nun manuell mit Elemente bzw. Transitionen befüllt werden.\\ Um das Page Object jedoch teilautomatisiert zu befüllen wird ein Webbrowser gestartet. Im Browser muss die Seite der Webanwendung aufgerufen werden, die dem aktuell ausgewählten Page Object entspricht. Mit dem Dropdown des HTML-Parser (siehe Abbildung \ref{fig:poGeneratorHtml}) wird die ausgewählte Webseite nach Elementen bzw. Transitionen durchsucht.
 Passende Ergebnisse können dann in das ausgewählte Page Object übernommen und dort bei Bedarf noch einmal überarbeitet werden.
 Der neu generierte Zwischenstand wird wiederum über das Menü gespeichert.\\
 Um die Page Objects letztendlich als Code aus dem Modell zu erzeugen, kann über das Menü die Generierung gestartet werden. Bei richtiger Konfiguration des Page Object Generators muss dazu lediglich das Rootverzeichnis des entsprechenden Testprojektes als Zielort der Generierung gewählt werden.
@@ -210,7 +210,7 @@ Im Folgenden wird auf die Aufgaben der einzelnen Module kurz näher eingegangen.
 Das zentrale Modul des Page Object Generators ist der SeleniPoEditor.
 Ausgehend von diesem Modul werden die übrigen Module verwendet, um die in Kapitel \ref{sec:page_object_generator_usecases} vorgestellten Anwendungsfälle zu verwirklichen.
 Das Modul SeleniPoEditor stellt dazu die grafische Benutzeroberfläche (GUI) der Anwendung bereit.
-Als Technologie wird dazu JavaFX \cite{oracle_client_2015} verwendet, das mit der Java Version 8 Einzug in den Oracle JDK gefunden hat. \\
+Als Technologie wird hierbei JavaFX \cite{oracle_client_2015} verwendet, das mit der Java Version 8 Einzug in den Oracle JDK gefunden hat. \\
 Um eine hohe Wartbarkeit dieser Komponente zu gewährleisten, wurde die GUI nach dem Model-View-Controller Prinzip verwirklicht.
 Das Modell besteht aus einem anwendungsspezifischem Java Objekt, welches eine Liste von Page Objekten mit deren zugehörigen Attributen darstellt.
 Für die View wird die XML-basierte Sprache FXML verwendet, um losgelöst von der Applikationslogik die Struktur der Benutzeroberfläche zu beschreiben.
@@ -235,12 +235,12 @@ Abbildung \ref{fig:simple_model} zeigt die Interface-Stuktur, welche das Modell 
 
 Kern des Modells ist das Interface PoModel, welches eine Liste von PoGenerics beinhaltet. Ein PoGeneric repräsentiert die Informationen, die benötigt werden, um eine einzelne Page Object Klasse zu erzeugen. Dementsprechend vereint dieses Interface eine Menge an Elementen und Transitionen.
 Ein Element steht dabei für eine beliebige Komponente einer Webseite, wie beispielsweise ein Eingabefeld.
-Transitionen sind von Elementen abgeleitet. Es handelt sich also um eine speziellere Form von Elementen. Mit Hilfe von Transitionen ist es möglich, auch die dynamische Komponente einer Webseite in Form von Seitenübergängen abzubilden. Als Transition werden all die Komponenten einer Webseite bezeichnet, die einen Übergang auf ein neues Page Object auslösen. Im Gegensatz zu Elementen bieten Transitionen daher noch ein Page Object Ziel mit an. Über die Methode \grq getDestination()\grq\ kann dieses Page Object Ziel erfragt wrerden\\
+Transitionen sind von Elementen abgeleitet. Es handelt sich also um eine speziellere Form von Elementen. Mit Hilfe von Transitionen ist es möglich, auch die dynamische Komponente einer Webseite in Form von Seitenübergängen abzubilden. Als Transition werden all die Komponenten einer Webseite bezeichnet, die einen Übergang auf ein neues Page Object auslösen. Im Gegensatz zu Elementen bieten Transitionen daher noch ein Page Object Ziel mit an. Über die Methode \grq getDestination()\grq\ kann dieses Page Object Ziel erfragt werden\\
 Sowohl Elemente als auch Transitionen werden über eine Selektor-Enumeration genauer definiert.
 Der Selektor gibt für ein Element im Modell an, welche Suchstrategie beim Auflösen des Lokators gegen die Webseite verwendet werden soll.
 Die verfügbaren Strategien werden durch die verschiedenen Aufzählungstypen der Enumeration festgelegt.\\
 Die Kerninformation zum Adressieren eines Elements auf der Webseite bildet der Lokator. Vom Generator wird diese Variable mit einem Wert befüllt, der charakteristisch für das zu adressierende Element ist. Je nach Element handelt es sich hierbei oft um ein HTML-Attribut, wie beispielsweise id- oder value-Attribute des entsprechenden HTML-Tags.\\
-In Verbindung mit dem ausgewählten Selektor kann über die Klasse ByFactory aus dem Lokator ein repräsentativer XPath-Ausdruck bzw. CSS-Selektor für das Element erzeugt werden. Im Kapitel \ref{sec:selenipotestharness} wird darauf näher eingegangen.\\
+In Verbindung mit dem ausgewählten Selektor kann über eine selbst erstellte Klasse \grq ByFactory\grq\ aus dem Lokator ein repräsentativer XPath-Ausdruck bzw. CSS-Selektor für das Element erzeugt werden. Im Kapitel \ref{sec:selenipotestharness} wird darauf näher eingegangen.\\
 Abbildung \ref{fig:simple_model} zeigt lediglich die Interface-Struktur des zugrunde liegenden Modells. Der Page Object Generator kennt zwei konkrete Implementierungen. Das vollständige Modell ist in Anhang \ref{anhang:vollständiges_technisches_modell} abgebildet.\\
 Zwei verschiedene Implementierungen sind notwendig, da JavaFX und XStream \cite{joe_walnes_xstream_2015}, welches für die Persistierung in XML verwendet wird, unterschiedliche Anforderungen an das Modell stellen. JavaFX benötigt spezielle Datentypen. Anstelle einer gewöhnlichen List wird beispielsweise eine ObservableList verwendet, um die View der GUI automatisch mit dem Modell synchron zu halten. Diese Datentypen können von XStream aufgrund eines fehlenden argumentlosen Konstruktors jedoch nicht mehr deserialisiert werden.
 Dementsprechend werden vom Converter eine Reihe von Services bereitgestellt, die das Wandeln des Modells in zwei Implementierungen ermöglicht. Eine Implementierung kann verwendet werden, um das Modell zu persistieren und wieder zu deserialisieren. Die Zweite Implementierung wird verwendet um im Umfeld von JavaFX zu arbeiten.\\
@@ -254,13 +254,13 @@ Abbildung \ref{fig:converter_service} zeigt alle vom Converter bereitgestellten 
 \end{figure}
 
 Neben den Services zum Wandeln des Modells wird in diesem Modul auch die Funktionalität zum Speichern und Laden, sowie zur fachlichen Validierung bereitgestellt.
-Zusätzlich wird die Möglichkeit geboten, benutzerspezifische Informationen, wie beispielsweise der Pfad zur zuletzt verwendeten Save-File, in den Properties des Anwenders abzulegen.
+Zusätzlich wird die Möglichkeit geboten, benutzerspezifische Informationen, wie beispielsweise den Pfad zum zuletzt verwendeten Save-File, in den Properties des Anwenders abzulegen.
 
 
 \subsubsection{SeleniPoHtmlParser}
 \label{sec:selenipohtmlparser}
 
-Das SeleniPoHtmlParser Modul beinhaltet die Funktionalität zum teilautomatisierten befüllen der Page Objects mit Elementen bzw. Transitionen.
+Das SeleniPoHtmlParser Modul beinhaltet die Funktionalität zum teilautomatisierten befüllen des Page Object Modells mit Elementen bzw. Transitionen.
 Das Modul stellt dazu eine Methode bereit, die es ermöglicht HTML-Quelltext anhand von einem übergebenen Selektor auszuwerten.
 Abbildung \ref{fig:html_service} zeigt das Klassendiagramm für diesen Service.
 
@@ -360,7 +360,7 @@ Abbildung \ref{fig:packagepath} stellt grafisch dar, wie die endgültige Paket-S
   \caption{Erzeugen der Paket-Struktur eines Page Object}
   \label{fig:packagepath}
 \end{figure}
-In der Grundkonfiguration wird der generierte Teil eines Page Objects unterhalb des Ordners \grq src.main.generated\grq\ abgelegt. Der dynamische Teil befindet unterhalb von \grq src.main.java\grq.
+In der Grundkonfiguration wird der generierte Teil eines Page Objects unterhalb des Ordners \grq src.main.generated\grq\ abgelegt. Der dynamische Teil befindet sich unterhalb von \grq src.main.java\grq.
 Diese Strukturierung bildet die getroffene Konvention ab, dass bei Verwendung der Page Objects der dynamische teil als Instanz in den Testfällen verwendet wird, der generierte Teil aber nicht editiert werden darf.
 Ausgehend von diesen Verzeichnissen ist es über die Konfiguration möglich, den Pfad weiter zu verfeinern. So kann konfiguriert werden, dass der generierte Teil eines Page Objects immer im Paket \grq de.muenchen.selenipo.po\grq\ abgelegt wird, der dynamische im Paket \grq de.muenchen.selenipo.po\grq.\\
 Während der Erstellung im Page Object Generator kann auf Ebene der Page Objects eine weitere Verfeinerung der Struktur vorgenommen werden. Ausgehend von den global konfigurierten Ziel-Paketen ist es so möglich, jedes Page Object in ein beliebiges Paket abzulegen.
