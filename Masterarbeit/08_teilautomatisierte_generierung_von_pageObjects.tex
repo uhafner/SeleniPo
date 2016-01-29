@@ -361,7 +361,7 @@ Abbildung \ref{fig:packagepath} stellt grafisch dar, wie die endgültige Paket-S
   \label{fig:packagepath}
 \end{figure}
 In der Grundkonfiguration wird der generierte Teil eines Page Objects unterhalb des Ordners \grq src.main.generated\grq\ abgelegt. Der dynamische Teil befindet sich unterhalb von \grq src.main.java\grq.
-Diese Strukturierung bildet die getroffene Konvention ab, dass bei Verwendung der Page Objects der dynamische teil als Instanz in den Testfällen verwendet wird, der generierte Teil aber nicht editiert werden darf.
+Diese Strukturierung bildet die getroffene Konvention ab, dass bei Verwendung der Page Objects der dynamische teil als Instanz in den Testfällen verwendet wird und der generierte Teil nicht editiert werden darf.
 Ausgehend von diesen Verzeichnissen ist es über die Konfiguration möglich, den Pfad weiter zu verfeinern. So kann konfiguriert werden, dass der generierte Teil eines Page Objects immer im Paket \grq de.muenchen.selenipo.po\grq\ abgelegt wird, der dynamische im Paket \grq de.muenchen.selenipo.po\grq.\\
 Während der Erstellung im Page Object Generator kann auf Ebene der Page Objects eine weitere Verfeinerung der Struktur vorgenommen werden. Ausgehend von den global konfigurierten Ziel-Paketen ist es so möglich, jedes Page Object in ein beliebiges Paket abzulegen.
 Bei richtiger Konfiguration kann dann für die Generierung der Klassen, einfach das Rootverzeichnis des Testprojektes ausgewählt werden.
@@ -394,8 +394,8 @@ Ausgehend von der Klasse BasePo erben die vom Page Object Generator erzeugten Kl
 Die verschiedenen Elemente der Webseite werden im Page Object als Implementierung des Interfaces Control angeboten.
 Die Klasse ControlBys implementiert dieses Interface und kapselt ein Selenium WebElement. Als Referenz gegen die Webseite wird bei der Instanziierung ein By-Ausdruck übergeben, der mittels ByFactory erzeugt werden kann.
 Für die Interaktion mit dem referenzierten Element bietet die Klasse eine Vielzahl von Methoden an. Eine davon ist die Methode \grq Control.resolve()\grq, welche das gekapselte WebElement zurückliefert.\\
-Die Kapselung eines WebElements in die Klasse ControlBys hat den Vorteil, dass WebElemente in einem PageObject als globale Variablen geführt werden können.
-Die Klasse ControlBys verhindert, dass ein WebElement sofort bei der Instanziierung eines PageObject gegen die geladene Webseite im Webdriver aufgelöst wird. Erst beim Aufruf einer Methode wird der übergebene By-Ausdruck verwendet, um das eigentliche WebElement über die WebDriver-Methode \grq findElement()\grq\ zu erhalten.
+Die Kapselung eines WebElements in die Klasse ControlBys hat den Vorteil, dass WebElemente in einem Page Object als globale Variablen geführt werden können.
+Die Klasse ControlBys verhindert, dass ein WebElement sofort bei der Instanziierung eines Page Object gegen die geladene Webseite im Webdriver aufgelöst wird. Erst beim Aufruf einer Methode wird der übergebene By-Ausdruck verwendet, um das eigentliche WebElement über die WebDriver-Methode \grq findElement()\grq\ zu erhalten.
 So wird verhindert, dass ein Page Object bereits bei der Instanziierung versucht, Elemente auf der Webseite abzufragen, die möglicherweise noch gar nicht geladen sind oder erst durch vorangegangene Interaktion erreichbar gemacht werden müssen.\\ Zum einfachen Erzeugen von Controls bietet die Klasse PageObject die statische Methode \grq control(bys : By ...)\grq\ an, die auch in den Templates verwendet wird.
 
 
