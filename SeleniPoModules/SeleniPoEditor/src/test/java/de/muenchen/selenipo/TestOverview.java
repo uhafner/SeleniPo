@@ -40,7 +40,7 @@ public class TestOverview extends GuiTest {
 		System.out.println("in");
 		Button button = find("New..");
 		click(button);
-		button = find("Cancel");
+		button = find("Cancle");
 		click(button);
 		button = find("Edit..");
 		click(button);
