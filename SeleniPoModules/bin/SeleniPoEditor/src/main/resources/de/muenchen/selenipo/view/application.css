@@ -1,0 +1,28 @@
+.root {
+   -style1-color: rgb(119.0, 192.0, 75.0, 0.9);
+}
+
+.errorStatus { 
+  -fx-background-color: derive(salmon, 50.0%);
+}
+
+.errorStatus:selected { 
+	   -fx-background-color: salmon;
+  
+}
+
+.okStatus { 
+	-fx-background-color: derive(-style1-color, 50.0%);
+  
+}
+.okStatus:selected { 
+	   -fx-background-color: -style1-color;
+  
+}
+
+
+
+
+
+
+

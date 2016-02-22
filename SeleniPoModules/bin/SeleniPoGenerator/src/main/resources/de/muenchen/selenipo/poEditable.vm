@@ -1,0 +1,20 @@
+#set( $BASE_PACKAGE = $basePackagePath )
+#set( $EDIT_PACKAGE = "$BASE_PACKAGE#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $GENERATED_PACKAGE = "$BASE_PACKAGE#if ( $poGeneric.getPackageName() && $poGeneric.getPackageName().trim().size() != 0 ).$poGeneric.getPackageName()#end" )
+#set( $CLASS_NAME = "$poGeneric.getIdentifier()" )
+#set( $CLASS_NAME_SUPER = "$poGeneric.getIdentifier()Generated" )
+
+package $EDIT_PACKAGE;
+
+import ${BASE_PACKAGE}.BasePo;
+import ${BASE_PACKAGE}.Control;
+import ${BASE_PACKAGE}.PageObject;
+import $GENERATED_PACKAGE.$CLASS_NAME_SUPER;
+
+public class $CLASS_NAME extends $CLASS_NAME_SUPER {
+
+	public $CLASS_NAME(PageObject po) {
+		super(po);
+	}
+
+}
