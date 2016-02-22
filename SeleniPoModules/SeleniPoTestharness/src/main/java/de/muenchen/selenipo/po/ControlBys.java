@@ -127,6 +127,7 @@ public class ControlBys implements Control {
 		try {
 			long endTime = System.currentTimeMillis() + 3000;
 			while (System.currentTimeMillis() <= endTime) {
+				try{
 				WebElement e = parent.getDriver().findElement(selector);
 				if (isDisplayed(e))
 					return e;
@@ -138,6 +139,9 @@ public class ControlBys implements Control {
 
 				// give a bit more chance for the element to become visible
 				sleep(100);
+				} catch (NoSuchElementException x) {
+					//Durchlaufe Schleife bis die Zeit abgelaufen
+				}
 			}
 			throw new NoSuchElementException("Unable to locate visible "
 					+ selector + " in " + parent.getDriver().getCurrentUrl());
